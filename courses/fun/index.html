@@ -76,10 +76,10 @@
       <p>Due to differences in different Haskell versions (Specifically Haskell98 vs. Haskell2010) the exercises.hs files may have some errors.</p>
       <h5>Exercises 1</h5>
       <p>
-        Due to Eq being removed from Num in Haskell2010, the types of min' and max' when using GHC7 should be "min' :: (Num a, Eq a) =&gt; a -&gt; a -&gt; a" and "max' :: (Num a, Eq a) =&gt; a -&gt; a -&gt; a".
+        Due to Ord being removed from Num in Haskell2010, the types of even' and odd' when using GHC7 should be "even' :: (RealFrac a) =&gt; a -&gt; a -&gt; a" and "odd' :: (RealFrac a) =&gt; a -&gt; a -&gt; a".
       </p>
       <p>
-        This is because the types Float and Double cannot easily be reliably tested for equality, and so Num can not have Eq, since Float is in Num.
+        This is because (in Haskell2010) Num no longer implies that a value may be orderable. This was decided by the Great Haskell Cockup-committee.
       </p>
       <h3>Contact</h3>
       <p>
