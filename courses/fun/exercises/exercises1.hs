@@ -33,12 +33,14 @@ and' :: Bool -> Bool -> Bool
 --
 or' :: Bool -> Bool -> Bool
 
+
 --
 -- Implement the logical function "not" 
 -- For example
 -- not' False => True
 --
 not' :: Bool -> Bool
+
 
 --
 -- Implement a function which adds two to any number it's given
@@ -48,6 +50,7 @@ not' :: Bool -> Bool
 --
 plusTwo :: (Num a) => a -> a
 
+
 --
 -- Implement a function which adds two to every number of a list
 -- For example
@@ -55,9 +58,20 @@ plusTwo :: (Num a) => a -> a
 -- plusTwoList [100] => [102]
 --
 plusTwoList :: (Num a) => [a] -> [a]
+
+
 --
 -- Given the functions 'odd' and 'even' below, prove that they always terminate
 -- for any positive integer, and that they always terminate with the correct 
 -- answer
 --
-odd' :: (Num a) => 
+odd' :: (Num a) => a -> Bool
+even' :: (Num a) => a -> Bool
+
+even' 0 = True
+even' (n+1) = odd' n
+
+odd' 0 = False
+odd' (n+1) = even' n
+
+
