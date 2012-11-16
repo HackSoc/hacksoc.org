@@ -69,9 +69,9 @@ odd' :: (Num a) => a -> Bool
 even' :: (Num a) => a -> Bool
 
 even' 0 = True
-even' (n+1) = odd' n
+even' n = odd' (n - 1)
 
 odd' 0 = False
-odd' (n+1) = even' n
+odd' n = even' (n - 1)
 
 
