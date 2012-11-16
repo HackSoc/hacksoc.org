@@ -72,6 +72,15 @@
         <li>Use a version control system and commit often. This means that if you screw up, but had a half way decent solution, you can easily recover it. Some common ones are <a href='http://darcs.net/'>Darcs</a>, <a href='http://git-scm.com/'>Git</a> and <a href='http://mercurial.selenic.com/'>Mercurial</a>. Most Haskell projects traditionally use Darcs, so if you're planning to use a lot of Haskell, it may be worthwhile familiarising yourself with it.</li>
       </ul>
       </p>
+      <h4>Errata</h4>
+      <p>Due to differences in different Haskell versions (Specifically Haskell98 vs. Haskell2010) the exercises.hs files may have some errors.</p>
+      <h5>Exercises 1</h5>
+      <p>
+        Due to Ord being removed from Num in Haskell2010, the types of even' and odd' when using GHC7 should be "even' :: (RealFrac a) =&gt; a -&gt; a -&gt; a" and "odd' :: (RealFrac a) =&gt; a -&gt; a -&gt; a".
+      </p>
+      <p>
+        This is because (in Haskell2010) Num no longer implies that a value may be orderable. This was decided by the Great Haskell Cockup-committee.
+      </p>
       <h3>Contact</h3>
       <p>
         To contact me, simply email me! dst502 "at" york "dot" ac "dot" uk. I can also be found in #cs-york roaming free under the nick 'Tinned_Tuna'. 
