@@ -4,7 +4,7 @@
 -- max' 2 3 => 3
 -- max' 5 4 => 5
 --
-max' :: (Ord a) => a -> a -> Bool
+max' :: (Ord a) => a -> a -> a 
 
 
 --
@@ -13,7 +13,7 @@ max' :: (Ord a) => a -> a -> Bool
 -- min' 2 3 => 2
 -- min' 5 4 => 4
 --
-min' :: (Ord a) => a -> a -> Bool
+min' :: (Ord a) => a -> a -> a
 
 
 --
