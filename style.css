@@ -13,6 +13,7 @@ h1 {  height: 55px; font-family: 'Rokkitt', serif; font-size: 80px; font-weight:
 h2 {  font-family: 'Sanchez', serif; font-size: 27px; color: #000;  }
 h3 {  font-family: 'Sanchez', serif; font-size: 23px; color: #000; }
 h4 {  font-family: 'Sanchez', serif; font-size: 16px; color: #000; }
+h5 {  font-family: 'Sanchez', serif; font-size: 13px; color: #000; }
 
 p { padding: 5px 5px 5px 20px; text-align: justify; line-height: 23px; }
 body { font-family: 'Verdana', sans-serif; font-size: 14px; color: #333; }
