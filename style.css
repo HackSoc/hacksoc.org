@@ -18,7 +18,8 @@ p { padding: 5px 5px 5px 20px; text-align: justify; line-height: 23px; }
 body { font-family: 'Verdana', sans-serif; font-size: 14px; color: #333; }
 strong { font-weight: bold; }
 
-ul { margin-left:4em; }
+ul, ol { margin-left:4em; }
+li { padding:0.2em;}
 #container { width: 960px; margin: 0 auto; } 
 header { padding: 20px 50px 15px 50px; border-bottom: dotted #ccc 3px; }
 
