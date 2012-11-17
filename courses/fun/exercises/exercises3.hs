@@ -72,3 +72,43 @@ subStrings :: [t] -> [[t]]
 -- powerSet [1,2,3] => [[], [1], [2], [3], [1,2], [1,3], [2,3], [1,2,3]]
 -- length $ powerSet [1,2,3] => 8 
 --
+powerSet :: [a] -> [[a]]
+
+
+--
+-- Determine if something is an element of a list
+-- For example
+-- elem' 2 [1..10] => True
+-- elem' 100 [1..10] => False
+--
+elem' :: (Eq a) => a -> [a] -> Bool
+
+
+--
+-- Append two lists.
+-- For eample
+-- append' [1,2,3] [4,5,6] => [1,2,3,4,5,6] 
+-- append' [] [4,5,6] => [4,5,6]
+--
+append' :: [a] -> [a] -> [a]
+
+
+--
+-- Implement foldr.
+-- For example
+-- foldr' (+) 0 [1..10] = 55
+-- foldr' (*) 1 [1..5] = 120
+--
+foldr' :: (a -> b -> b) -> b -> [a] -> b
+
+-- 
+--
+-- Construct a proofs of the following, where "==>" is read as logical implication:
+--
+-- elem' a (append' xs ys) ==> (elem a xs) || (elem a ys)
+-- map f (append' xs ys) ==> append' (map f xs) (map f ys)
+--
+-- Under what conditions does the following relation hold:
+--
+-- foldr f acc (append' xs ys) ==> append' (foldr f acc xs) (foldr f acc ys)
+--
