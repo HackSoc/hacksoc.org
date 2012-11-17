@@ -1,92 +1,92 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>HackSoc - the computer enthusiast society</title>
-  <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Sanchez|Quando' rel='stylesheet' type='text/css' />
-  <link href="../../style.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-  <div id="container">
-    <header>
-      <h1><a href="/" title="HackSoc">HackSoc</a></h1>
-      <h2>the computer enthusiast society</h2>
-	    <nav>
-		    <a href="http://www.github.com/hacksoc/" title="HackSoc @ github">github</a> &middot; <a href="http://webchat.freenode.net?channels=cs-york">irc</a>
-	    </nav> 
-    </header>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>HackSoc - the computer enthusiast society</title>
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Sanchez|Quando' rel='stylesheet' type='text/css' />
+    <link href="../../style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1><a href="/" title="HackSoc">HackSoc</a></h1>
+        <h2>the computer enthusiast society</h2>
+        <nav>
+          <a href="http://www.github.com/hacksoc/" title="HackSoc @ github">github</a> &middot; <a href="http://webchat.freenode.net?channels=cs-york">irc</a>
+        </nav> 
+      </header>
 
-    <div id="main">
-      <h2>Functional Programming</h2>
-      <h3>Location and Times</h3>
-      <p>
-        <strong>G/013</strong> at <strong>19:15</strong> every Tuesday and Thursday night.
-      </p>
-      <h3>Course Content</h3>
-      <p>
-        <ul>
-          <li>The What and Whys of Functional Programming</li>
-          <li>Basic Syntax for Haskell</li>
-          <li>Structural Recursion</li>
-          <li>Induction</li>
-          <li>And more (TBA)</li>
-        </ul>
-      </p>
+      <div id="main">
+        <h2>Functional Programming</h2>
+        <h3>Location and Times</h3>
+        <p>
+          <strong>G/013</strong> at <strong>19:15</strong> every Tuesday and Thursday night.
+        </p>
+        <h3>Course Content</h3>
+        <p>
+          <ul>
+            <li>The What and Whys of Functional Programming</li>
+            <li>Basic Syntax for Haskell</li>
+            <li>Structural Recursion</li>
+            <li>Induction</li>
+            <li>And more (TBA)</li>
+          </ul>
+        </p>
 
-      <h3>Resources</h3>
-      <h4>Compilers</h4>
-      <p>
-        You'll need a <a href='http://www.haskell.org/platform/'>Haskell Compiler</a>. Almost all of the other implementations are dead or abandoned now (If you're interested, Hugs, yhc and nhc98 are the dead compilers).
-      </p>
-      <h4>Books</h4>
-      <p>
-      There are many, many books on Haskell. This course will be academically driven, so I'll only recommend academically driven books for this course. However, there are other books that are more suitable to using Haskell in the "Real World".
-      <ul>
-        <li>Programming Haskell by Graham Hutton</li>
-        <li>The Haskell Road to Logic, Maths and Programming by Jan van Eijck</li>
-        <li>Haskell: The craft of functional programming by Simon Thompson</li>
-      </ul>
-      </p><p>
-      The first one is an excellent book, the second is also excellent, but more difficult to read, and the third and final book is easier to read, but not (in my opinion) as high a standard as the first two.
-      </p>
-      <h3>Exercises</h3>
-      <p>
-        You are in no way obliged to do the exercises. However, doing the exercises is <strong>strongly</strong> recommended. Doing the exercises in your own private time will help your understanding of the material significantly.
-        <ol>
-          <li><a href="./exercises/exercises1.hs">Exercises 1</a></li>
-        </ol>
-      </p>
-      <p>
-        The exercises will be released on a weekly basis. I will also take some time of the classes to go over the more difficult exercises, especially the ones which require a proof.
-      </p>
-      <h4>Solutions</h4>
-      <p>Once a week, solutions to the exercises will be released here. As mentioned before, I will also go over the solutions to any particularly difficult/interesting exercises in class</p>
-      <h4>Tips and Hints</h4>
-      <p>There are many things you can do to increase the benefit of the exercises, here are just a few:
-      <ul>
-        <li>Don't jump in with a higher-order function, especially for harder exercises. Try simpler techniques first.</li> 
-        <li>Pay attention to the types.</li>
-        <li>Just because a proof isn't requested, doesn't mean that you should avoid them.</li>
-        <li><a href='http://www.haskell.org/haskellwiki/Introduction_to_QuickCheck'>QuickCheck</a> is your friend. Beats the hell out of a single test file or manually typing test cases. If people think this would be useful, I may start producing a set QuickCheck tests for the exercies, and changing up the release cycle a little bit.</li>
-        <li>Just because you've done one exercise, doesn't mean it's done. You can likely think up several implementations, spanning primitive recursion, recursion with an accumulator, and functions expressed as a higher order function. Try to re-express your function in different ways. Experiment to determine which performs better, and why.</li>
-        <li>Use a version control system and commit often. This means that if you screw up, but had a half way decent solution, you can easily recover it. Some common ones are <a href='http://darcs.net/'>Darcs</a>, <a href='http://git-scm.com/'>Git</a> and <a href='http://mercurial.selenic.com/'>Mercurial</a>. Most Haskell projects traditionally use Darcs, so if you're planning to use a lot of Haskell, it may be worthwhile familiarising yourself with it.</li>
-      </ul>
-      </p>
-      <h4>Errata</h4>
-      <p>Due to differences in different Haskell versions (Specifically Haskell98 vs. Haskell2010) the exercises.hs files may have some errors.</p>
-      <h5>Exercises 1</h5>
-      <p>
-        Due to Ord being removed from Num in Haskell2010, the types of even' and odd' when using GHC7 should be "even' :: (RealFrac a) =&gt; a -&gt; a -&gt; a" and "odd' :: (RealFrac a) =&gt; a -&gt; a -&gt; a".
-      </p>
-      <p>
-        This is because (in Haskell2010) Num no longer implies that a value may be orderable. This was decided by the Great Haskell Cockup-committee.
-      </p>
-      <h3>Contact</h3>
-      <p>
-        To contact me, simply email me! dst502 "at" york "dot" ac "dot" uk. I can also be found in #cs-york roaming free under the nick 'Tinned_Tuna'. 
-      </p>
+        <h3>Resources</h3>
+        <h4>Compilers</h4>
+        <p>
+          You'll need a <a href='http://www.haskell.org/platform/'>Haskell Compiler</a>. Almost all of the other implementations are dead or abandoned now (If you're interested, Hugs, yhc and nhc98 are the dead compilers).
+        </p>
+        <h4>Books</h4>
+        <p>
+          There are many, many books on Haskell. This course will be academically driven, so I'll only recommend academically driven books for this course. However, there are other books that are more suitable to using Haskell in the "Real World".
+          <ul>
+            <li>Programming Haskell by Graham Hutton</li>
+            <li>The Haskell Road to Logic, Maths and Programming by Jan van Eijck</li>
+            <li>Haskell: The craft of functional programming by Simon Thompson</li>
+          </ul>
+        </p><p>
+          The first one is an excellent book, the second is also excellent, but more difficult to read, and the third and final book is easier to read, but not (in my opinion) as high a standard as the first two.
+        </p>
+        <h3>Exercises</h3>
+        <p>
+          You are in no way obliged to do the exercises. However, doing the exercises is <strong>strongly</strong> recommended. Doing the exercises in your own private time will help your understanding of the material significantly.
+          <ol>
+            <li><a href="./exercises/exercises1.hs">Exercises 1</a></li>
+          </ol>
+        </p>
+        <p>
+          The exercises will be released on a weekly basis. I will also take some time of the classes to go over the more difficult exercises, especially the ones which require a proof.
+        </p>
+        <h4>Solutions</h4>
+        <p>Once a week, solutions to the exercises will be released here. As mentioned before, I will also go over the solutions to any particularly difficult/interesting exercises in class</p>
+        <h4>Tips and Hints</h4>
+        <p>There are many things you can do to increase the benefit of the exercises, here are just a few:
+          <ul>
+            <li>Don't jump in with a higher-order function, especially for harder exercises. Try simpler techniques first.</li> 
+            <li>Pay attention to the types.</li>
+            <li>Just because a proof isn't requested, doesn't mean that you should avoid them.</li>
+            <li><a href='http://www.haskell.org/haskellwiki/Introduction_to_QuickCheck'>QuickCheck</a> is your friend. Beats the hell out of a single test file or manually typing test cases. If people think this would be useful, I may start producing a set QuickCheck tests for the exercies, and changing up the release cycle a little bit.</li>
+            <li>Just because you've done one exercise, doesn't mean it's done. You can likely think up several implementations, spanning primitive recursion, recursion with an accumulator, and functions expressed as a higher order function. Try to re-express your function in different ways. Experiment to determine which performs better, and why.</li>
+            <li>Use a version control system and commit often. This means that if you screw up, but had a half way decent solution, you can easily recover it. Some common ones are <a href='http://darcs.net/'>Darcs</a>, <a href='http://git-scm.com/'>Git</a> and <a href='http://mercurial.selenic.com/'>Mercurial</a>. Most Haskell projects traditionally use Darcs, so if you're planning to use a lot of Haskell, it may be worthwhile familiarising yourself with it.</li>
+          </ul>
+        </p>
+        <h4>Errata</h4>
+        <p>Due to differences in different Haskell versions (Specifically Haskell98 vs. Haskell2010) the exercises.hs files may have some errors.</p>
+        <h5>Exercises 1</h5>
+        <p>
+          Due to Ord being removed from Num in Haskell2010, the types of even' and odd' when using GHC7 should be "even' :: (RealFrac a) =&gt; a -&gt; a -&gt; a" and "odd' :: (RealFrac a) =&gt; a -&gt; a -&gt; a".
+        </p>
+        <p>
+          This is because (in Haskell2010) Num no longer implies that a value may be orderable. This was decided by the Great Haskell Cockup-committee.
+        </p>
+        <h3>Contact</h3>
+        <p>
+          To contact me, simply email me! dst502 "at" york "dot" ac "dot" uk. I can also be found in #cs-york roaming free under the nick 'Tinned_Tuna'. 
+        </p>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
 
