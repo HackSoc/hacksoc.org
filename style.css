@@ -9,7 +9,8 @@ q:before,q:after { content:''; }
 abbr,acronym { border:0;}
 /* end normalize*/
 
-h1 {  height: 55px; font-family: 'Rokkitt', serif; font-size: 80px; font-weight: bold; }
+h1 { height: 55px; font-family: 'Rokkitt', serif; font-size: 80px; font-weight: bold; }
+h1 a, h1 a:link, h1 a:visited, h1 a:active, h1 a:hover {color: #000; text-decoration: none; }
 h2 {  font-family: 'Sanchez', serif; font-size: 27px; color: #000;  }
 h3 {  font-family: 'Sanchez', serif; font-size: 23px; color: #000; }
 h4 {  font-family: 'Sanchez', serif; font-size: 16px; color: #000; }
