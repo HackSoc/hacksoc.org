@@ -9,7 +9,7 @@ sum' :: (Integral a) => a -> a -> a
 --
 -- Implement a method to find the product of all the integers in a given range.
 -- For example
--- prod' 5 10 => 55
+-- prod' 5 10 => 151200
 --
 prod' :: (Integral a) => a -> a -> a
 
