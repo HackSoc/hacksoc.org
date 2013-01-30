@@ -18,6 +18,77 @@
 
 \section{Version Control}
 
+A version control system (VCS) is a tool (or collection of tools)
+which make working on multiple versions of something, be it a program,
+website, document, whatever, and keeping track of all of the changes
+much easier. If it helps, you can think of a VCS as a glorified undo
+tool.
+
+If you're used to developing software by first making a backup of the
+file you want to work on, and then editing the original file (or even
+just editing the original file); or by editing the live system rather
+than an offline copy; you need version control.
+
+The work-flow for version control is a bit different:
+
+\begin{description}
+  \item[Edit] the appropriate files, there is no need to take a backup
+    first.
+  \item[Test] your changes. Of course, you did this before, right?
+  \item[Commit] your changes, that is, tell the VCS which files you
+    have changed and (usually) enter a short message explaining what
+    you did.
+  \item[Deploy] your commits, that is, send your commits to a server,
+    or some other user. If you're the sole user of the VCS for your
+    project, this may not be necessary (but can still be good---more
+    on that later).
+\end{description}
+
+You may think that having to enter a message for each commit is a
+hassle. Well, consider that by entering a good message, you'll be able
+to see what the commit did. This may be incredibly useful down the
+line when you're trying to find out where you introduced a bug, or
+removed something that was needed. By using a VCS, you're not just
+giving yourself an easy way to undo things, you're building a
+detailed history of the development of your project, which is an
+invaluable tool in itself.
+
+Eventually, you will make a commit that you realise was a bad
+idea. It's inevitable. It's ok. You can tell people you were drunk
+when you did it. Fortunately, we come to another strength of VCSs
+here, undoing things. Every VCS (that I know of) has some way to tell
+the system to undo a specific commit. How this is implemented
+varies---the commit may simply vanish, or the system may insert a new
+commit reverting all of its changes. You may also need to do some
+manual intervention, if you're undoing something which you have since
+built upon.
+
+Finally, let's cover branches and merging in this introduction. These
+are key concepts in the VCS workflow, and entire development paradigms
+have sprung up around how to use branches correctly (we'll be looking
+at two). A branch is a copy of your code. Each branch can be distinct,
+and branches can be merged (perhaps with some manual intervention
+required) at any time as well. It's possibly easiest to explain with
+a couple of examples of typical branches you may have:
+
+\begin{description}
+  \item[master] this is typically your stable, production-ready
+    code.
+  \item[devel] depending on your workflow, you may also have a
+    development branch. This will be ahead of master, and will be
+    merged into master when you have implemented everything you want
+    for the next release
+  \item[hotfixes] again, depending on your workflow, you may have a
+    branch for emergency fixes to releases. This will also be ahead of
+    master, but only by a handful of commits at a time, after which
+    point it will be merged and a new release made.
+\end{description}
+
+Of course, where branches really come into their own is when you have
+a good workflow based around them. It's also typical to have ``feature
+branches'', one branch for each new feature you are implementing,
+which is them merged into the development branch when complete.
+
 \subsection{Distributed vs. Centralised}
 
 \subsection{Some popular VCS tools}
