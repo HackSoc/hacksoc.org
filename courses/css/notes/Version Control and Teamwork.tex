@@ -343,6 +343,44 @@ you would do it:
   \item \texttt{git branch -d foo}
 \end{enumerate}
 
+\pagebreak
 \section{Some Best Practices for Teamwork}
+
+When using VCS by yourself, you can be a bit sloppy in some ways: you
+can be behind on pushing commits, you can write bad commit messages,
+and so on: things that don't really work well when in a team. Here's a
+list of things I consider more important when working with others:
+
+\begin{itemize}
+  \item Pick an indent style and stick to it.
+  \item Don't make needless whitespace changes. The occasional commit
+    to fix formatting is fine, but it should be a commit by itself,
+    rather than a mixture of code changes and unrelated whitespace
+    fixes.
+  \item Write good commit messages, the Linux kernel guidelines
+    recommend having a summary sentence, a blank line, and then a
+    paragraph or so of text explaining what was done in detail. This
+    may not be necessary for your project, but a good summary at least
+    is a must.
+  \item Pick a workflow and stick to it. Git Flow if you have a
+    release schedule, GitHub Flow if you release all the time.
+  \item Push commits frequently, you should never have more than two
+    or three waiting in your local repo.
+  \item Fetch commits frequently, certainly before you push.
+  \item Communicate all the time: not really a VCS thing, but it is a
+    must for any project with multiple developers. IRC, meetings,
+    email, whatever.
+  \item Each logical change should be its own commit.
+  \item (Depending on workflow) commits should not result in a broken
+    system.
+  \item (Depending on workflow) have a good testsuite, and run
+    it before every commit. Perhaps even have your VCS do this
+    automatically and reject broken commits.
+\end{itemize}
+
+Really, all the problems that you may face when working in a team that
+would not have arisen if you were working individually can be solved
+with good communication and planning. If you get that right,
+everything will naturally fall into place.
 
 \end{document}
