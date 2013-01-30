@@ -159,7 +159,35 @@ differ.
 If you're going to join us in working on the DDNS project, we shall be
 using Git and GitHub extensively.
 
+\pagebreak
 \section{Using Git}
+
+This is just going to be a quick command reference, if you want more
+details, you can read the manpages or look online.
+
+\begin{description}
+  \item[\texttt{git init}] Initialise a new git repository in the
+    current directory.
+  \item[\texttt{git add}] Tell git about a changed file or directory.
+  \item[\texttt{git mv}] Move a file
+  \item[\texttt{git rm}] Delete a file
+  \item[\texttt{git commit}] Commit a set of changes
+  \item[\texttt{git log}] Look at the git history
+  \item[\texttt{git checkout}] Create and change branches
+  \item[\texttt{git remote}] Manage remote repositories
+    (\textit{e.g.} your github repo)
+  \item[\texttt{git push}] Push commits to a remote
+  \item[\texttt{git fetch}] Fetch (but do not merge) changes from a
+    remote
+  \item[\texttt{git merge}] Merge another branch (including things
+    fetched from a remote).
+  \item[\texttt{git tag}] Give a name (\textit{e.g.} a version
+    number) to the latest commit.
+\end{description}
+
+Now, we're going to look at two workflows common with git, which you
+use depends on both personal preference and how the project you are
+working on is structured.
 
 \subsection{Git Flow}
 
