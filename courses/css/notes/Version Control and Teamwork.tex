@@ -91,6 +91,50 @@ which is them merged into the development branch when complete.
 
 \subsection{Distributed vs. Centralised}
 
+There are two approaches when it comes to designing version control
+systems, and which one your system uses will drastically affect how
+you work with it. These approaches are distributed (or decentralised)
+and centralised systems.
+
+\begin{description}
+  \item[Centralised] systems have one central server which houses the
+    repository. If you commit something, it is sent to the server, if
+    you lose access for a period of time you can't keep working and
+    deploy your commits later. Despite this downside, because everyone
+    is working off the same copy of the code, conflicts when merging
+    may be reduced.
+  \item[Distributed] systems do not have a central server. If you
+    commit something, it is saved on your local machine. When you
+    deploy your commits, that simply consists of you sending them to
+    another user, who merges them into their copy. As there is no
+    server to lose access to, you can keep working at all
+    times. However, because everyone has their own version of the
+    code, which may have many commits difference with someone else,
+    merge conflicts may be more common.
+\end{description}
+
+In practice, distributed systems are much more convenient to use than
+centralised systems, and the potential problem of very inconsistent
+repositories is not often realised. Furthermore, users typically use a
+hybrid of the two approaches, a distributed system with one
+``canonical'' version of the code, which may be guarded by one
+privileged user. There may even be multiple levels of this canonical
+code, forming a tree structure with trusted users at each level
+accepting things from the level below which pass the quality checks,
+possibly doing some more work of their own, and then pushing their
+code up the tree to be reviewed by the next person. This sort of
+structure is often used in large open source projects, for example,
+the Linux kernel. Linus Torvalds has control over the canonical kernel
+code, and reviews all commits to it and either accepts or denies.
+
+A typical workflow for distributed systems is to have an account on a
+service like GitHub, which provides a globally-accessible repository
+which you can push your code to. This allows you to work anywhere even
+if you didn't bring your local copy of the code with you, provides
+free backup of all of your commits, and enables people working with
+you to frequently merge your commits and so reduce potential
+conflicts.
+
 \subsection{Some popular VCS tools}
 
 \section{Using Git}
