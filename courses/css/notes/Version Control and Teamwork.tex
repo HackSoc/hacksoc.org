@@ -191,6 +191,124 @@ working on is structured.
 
 \subsection{Git Flow}
 
+\href{http://nvie.com/posts/a-successful-git-branching-model/}{Git
+  Flow} is a method of development with Git for projects that have a
+clear release schedule, where one branch is to be used to contain the
+production-ready code. It is a good methodology to use when working
+with a lot of other people, or on some large or important system, as
+it is very strict about how development and releases are done.
+
+There are two main branches that always are present:
+
+\begin{description}
+  \item[master] the main branch, containing production-ready
+    code. Every commit should be a new release.
+  \item[develop] the main development branch, containing code for the
+    next release.
+\end{description}
+
+\texttt{develop} is, of course, almost always ahead of
+\texttt{master}. When the code in \texttt{develop} reaches a point
+suitable for a new release, it is merged into \texttt{master}.
+
+Git Flow uses a number of support branches: feature branches, release
+branches, and hotfix branches. Each one can only be branched off from
+certain branches and can only merge back into certain other
+branches. This rigid structure helps to ensure development progresses
+smoothly.
+
+\subsubsection{Feature branches}
+
+These can only branch off from \texttt{develop} and can only be merged
+back into \texttt{develop}.
+
+These are used to develop features for some future release, although
+which release may be unknown. The idea is that once a feature is done,
+it will be merged into \texttt{develop} when it is desired to go into
+the next release (it will wait until that time) or, if the feature
+doesn't work out, the branch will just be deleted.
+
+A feature branch is created by branching from \texttt{develop}:
+
+\begin{verbatim}
+$ git checkout -b FEATURE develop
+\end{verbatim}
+
+And, when finished, will be merged back into \texttt{develop}:
+
+\begin{verbatim}
+$ git checkout develop
+$ git merge --no-ff FEATURE
+$ git branch -d FEATURE
+$ git push origin develop
+\end{verbatim}
+
+The flag \texttt{--no-ff} causes the merge to be stored as a new
+commit, even when this is unnecessary. The reason for this is that it
+is easier to see in the history when a feature branch starts and when
+it stops, which makes removing a feature (if necessary) much easier.
+
+\subsubsection{Release branches}
+
+These can only branch off from \texttt{develop} and must merge back
+into both \texttt{develop} and \texttt{master}.
+
+These are used to prepare a new release. When the code in
+\texttt{develop} is in a suitable state, a release branch is created
+and the first commit to the branch is updating the version
+number. After that, there may be some number of commits to finalise
+the code for release. Once it has been finalised, it is merged into
+\texttt{master} (creating a new release) and \texttt{develop}.
+
+A release branch is created by branching from \texttt{develop}:
+
+\begin{verbatim}
+$ git checkout -b release-VERSION develop
+update the version number
+$ git commit -a -m "Updated the version number to VERSION"
+\end{verbatim}
+
+And, when finished, will be merged into both \texttt{master} and
+\texttt{develop}:
+
+\begin{verbatim}
+$ git checkout master
+$ git merge --no-ff release-VERSION
+$ git tag -a VERSION
+$ git checkout develop
+$ git merge --no-ff release-VERSION
+$ git branch -d release-VERSION
+\end{verbatim}
+
+\subsubsection{Hotfix branches}
+
+These can only branch off from \texttt{master} and must merge back
+into both \texttt{develop} and \texttt{master}.
+
+A hotfix branch is like a release branch, however it is used to create
+an emergency new release to fix an urgent bug in the production code
+that cannot wait until the next release.
+
+A release branch is created by branching from \texttt{master}:
+
+\begin{verbatim}
+$ git checkout -b hotfix-VERSION master
+update the version number
+$ git commit -a -m "Updated the version number to VERSION"
+\end{verbatim}
+
+Then, some commits are made to fix the bug, and it is merged into both
+\texttt{master} and \texttt{develop}:
+
+\begin{verbatim}
+$ git checkout master
+$ git merge --no-ff hotfix-VERSION
+$ git tag -a VERSION
+$ git checkout develop
+$ git merge --no-ff hotfix-VERSION
+$ git branch -d hotfix-VERSION
+\end{verbatim}
+
 \subsection{Github Flow}
 
 \section{Some Best Practices for Teamwork}
