@@ -311,6 +311,38 @@ $ git branch -d hotfix-VERSION
 
 \subsection{Github Flow}
 
+\href{http://scottchacon.com/2011/08/31/github-flow.html}{GitHub Flow}
+was designed for projects that deploy very frequently, perhaps even
+multiple times a day. As a result, it is a much simpler system that
+Git Flow (and may be less suitable for projects with a more fixed
+release schedule).
+
+There are four ``rules'' in the system:
+
+\begin{itemize}
+  \item Everything in \texttt{master} is deployable, and either is
+    deployed or will be shortly.
+  \item When working on something new, create a descriptively-named
+    branch from \texttt{master}.
+  \item Push your changes to the server constantly.
+  \item Use GitHub's Pull Request system as a code review tool.
+\end{itemize}
+
+And so, say you wanted to make a feature named ``foo'', this is how
+you would do it:
+
+\begin{enumerate}
+  \item \texttt{git checkout -b foo master}
+  \item Do some commits, pushing after every few commits to
+    \texttt{origin/foo}.
+  \item Open a pull request to merge \texttt{foo} to \texttt{master}.
+  \item Make any changes which are discovered to be necessary in the
+    resultant code review, until the code is ready.
+  \item Merge \texttt{foo} to \texttt{master} and push.
+  \item Deploy \texttt{master} to the production system ASAP.
+  \item \texttt{git branch -d foo}
+\end{enumerate}
+
 \section{Some Best Practices for Teamwork}
 
 \end{document}
