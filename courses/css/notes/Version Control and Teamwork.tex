@@ -38,7 +38,7 @@ The work-flow for version control is a bit different:
   \item[Commit] your changes, that is, tell the VCS which files you
     have changed and (usually) enter a short message explaining what
     you did.
-  \item[Deploy] your commits, that is, send your commits to a server,
+  \item[Push] your commits, that is, send your commits to a server,
     or some other user. If you're the sole user of the VCS for your
     project, this may not be necessary (but can still be good---more
     on that later).
@@ -100,12 +100,12 @@ and centralised systems.
   \item[Centralised] systems have one central server which houses the
     repository. If you commit something, it is sent to the server, if
     you lose access for a period of time you can't keep working and
-    deploy your commits later. Despite this downside, because everyone
+    push your commits later. Despite this downside, because everyone
     is working off the same copy of the code, conflicts when merging
     may be reduced.
   \item[Distributed] systems do not have a central server. If you
     commit something, it is saved on your local machine. When you
-    deploy your commits, that simply consists of you sending them to
+    push your commits, that simply consists of you sending them to
     another user, who merges them into their copy. As there is no
     server to lose access to, you can keep working at all
     times. However, because everyone has their own version of the
