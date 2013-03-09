@@ -29,6 +29,8 @@ header { padding: 20px 50px 15px 50px; border-bottom: dotted #ccc 3px; }
 header h2 { margin: 10px 0 0 60px; }
 nav { float: right; margin: -25px 40px 0 0; }
 
+nav.subnav { float: none; margin: 15px auto; text-align: center; font-size: 1.2em;}
+
 #main { padding: 10px 50px 20px 50px; }
 #main p { width: 800px; }
 #main h2 { margin: 15px 0 0 0; }
