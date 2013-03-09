@@ -46,3 +46,7 @@ blockquote header { padding: 0; border: 0; text-align: left; font-size: 14px;}
 blockquote h2 { font-family: Verdana, sans-serif; font-weight: bold; font-size: 14px; display: inline; padding: 0; margin: 0;}
 blockquote .aside { font-style: italic; font-size: 0.8em; text-align: right; position: relative; top:-25px; height: 0;}
 cite { font-style: italic; }
+
+dl { margin: 0 3em; }
+dt { font-weight: bold; margin-top: 1em}
+dd { margin-left: 2em; }
