@@ -37,3 +37,5 @@ a:link, a:visited {color: #0A5D99; text-decoration: none;}
 a:active, a:hover {color: #609B11; text-decoration: underline;}
 
 .alert {color: #AA0000; font-weight: bold; text-align: center;}
+
+iframe { display: block; margin: 0 auto;}
