@@ -41,3 +41,8 @@ a:active, a:hover {color: #609B11; text-decoration: underline;}
 .alert {color: #AA0000; font-weight: bold; text-align: center;}
 
 iframe { display: block; margin: 0 auto;}
+
+blockquote header { padding: 0; border: 0; text-align: left; font-size: 14px;}
+blockquote h2 { font-family: Verdana, sans-serif; font-weight: bold; font-size: 14px; display: inline; padding: 0; margin: 0;}
+blockquote .aside { font-style: italic; font-size: 0.8em; text-align: right; position: relative; top:-25px; height: 0;}
+cite { font-style: italic; }
