@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+{% if page.title %}
+    <title>{{page.title}} - HackSoc - the computer enthusiast society</title>
+{% else %}
+    <title>HackSoc - the computer enthusiast society</title>
+{% endif %}
+
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Sanchez|Quando' rel='stylesheet' type='text/css'>
+    <link href="{{site.url}}style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1><a href="{{site.url}}" title="HackSoc">HackSoc</a></h1>
+        <h2>the computer enthusiast society</h2>
+        <nav>
+          <a href="http://www.github.com/hacksoc/" title="HackSoc @ github">github</a> &middot;
+          <a href="http://webchat.freenode.net?channels=cs-york">irc</a> &middot;
+          <a href="{{site.url}}activities.html">activities</a>
+        </nav> 
+      </header>
+
+      <div id="main">
+        {{content}}
+      </div>
+    </div>
+  </body>
+</html>
+
