@@ -1,55 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>DDNS - Projects - HackSoc - the computer enthusiast society</title>
-    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Sanchez|Quando' rel='stylesheet' type='text/css' />
-    <link href="../../style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <div id="container">
-      <header>
-        <h1><a href="/" title="HackSoc">HackSoc</a></h1>
-        <h2>the computer enthusiast society</h2>
-        <nav>
-          <a href="http://www.github.com/hacksoc/" title="HackSoc @ github">github</a> &middot;
-          <a href="http://webchat.freenode.net?channels=cs-york">irc</a> &middot;
-          <a href="/activities.html">activities</a>
-        </nav> 
-      </header>
+---
+layout: wrapper
+title:  DDNS - Projects
+---
+<h2>Distributed Domain Name System</h2>
+<h3>Project Overview</h3>
+<p>We aim to implement a distributed domain name system using public key cryptography and a web of trust for security, with the Kademlia distributed hash table as a backing store for the data. The first version will consist of a simple distributed hosts file, and this will be extended to consist of a distributed tree structure once we've figured everything out for the simple case.</p>
+<p>Programming shall be in Java 7, as it is widely-known and very easy to use.</p>
 
-      <div id="main">
-        <h2>Distributed Domain Name System</h2>
-        <h3>Project Overview</h3>
-        <p>We aim to implement a distributed domain name system using public key cryptography and a web of trust for security, with the Kademlia distributed hash table as a backing store for the data. The first version will consist of a simple distributed hosts file, and this will be extended to consist of a distributed tree structure once we've figured everything out for the simple case.</p>
-        <p>Programming shall be in Java 7, as it is widely-known and very easy to use.</p>
+<h3>Events</h3>
+<h4>Standardisation Meeting</h4>
+<p><strong>G/013</strong> at <strong>20:15</strong> on <strong>Thursday</strong> of <strong>Week 5</strong></p>
+<p>We need to crack out some standards so we know what to do in sufficient detail to actually do it, the goal of this session will be to produce RFCs on some or all of the following topics:</p>
+<ul>
+  <li>Overall system architecture</li>
+  <li>The encoding of DNS into a hash table</li>
+  <li>Protocol and encryption</li>
+  <li>Integration of public/private keys</li>
+</ul>
 
-        <h3>Events</h3>
-        <h4>Standardisation Meeting</h4>
-        <p><strong>G/013</strong> at <strong>20:15</strong> on <strong>Thursday</strong> of <strong>Week 5</strong></p>
-        <p>We need to crack out some standards so we know what to do in sufficient detail to actually do it, the goal of this session will be to produce RFCs on some or all of the following topics:</p>
-        <ul>
-          <li>Overall system architecture</li>
-          <li>The encoding of DNS into a hash table</li>
-          <li>Protocol and encryption</li>
-          <li>Integration of public/private keys</li>
-        </ul>
+<h3>Resources</h3>
+<ul>
+  <li><a href="https://github.com/Barrucadu/ddns">Main project github repository</a></li>
+  <li><a href="http://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf">Kademlia: A Peer-to-peer information system based on the XOR Metric.</a></li>
+</ul>
 
-        <h3>Resources</h3>
-        <ul>
-          <li><a href="https://github.com/Barrucadu/ddns">Main project github repository</a></li>
-          <li><a href="http://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf">Kademlia: A Peer-to-peer information system based on the XOR Metric.</a></li>
-        </ul>
+<h3>Contact</h3>
+<p>For general discussion and announcements, there is a mailing list at <strong>hacksoc-ddns-list</strong> (<strong>hacksoc-ddns-list+subscribe@yusu.org</strong>). If you want to contact us privately, this project is being run by,</p>
 
-        <h3>Contact</h3>
-        <p>For general discussion and announcements, there is a mailing list at <strong>hacksoc-ddns-list</strong> (<strong>hacksoc-ddns-list+subscribe@yusu.org</strong>). If you want to contact us privately, this project is being run by,</p>
-
-        <ul>
-          <li><strong>Dan Turner</strong> (irc: <strong>Tinned_Tuna</strong>) (yorkmail: <strong>dan.turner</strong>)</li>
-          <li><strong>Michael Walker</strong> (irc: <strong>barrucadu</strong>) (yorkmail: <strong>msw504</strong>)</li>
-        </ul>
-      </div>
-    </div>
-  </body>
-</html>
-
+<ul>
+  <li><strong>Dan Turner</strong> (irc: <strong>Tinned_Tuna</strong>) (yorkmail: <strong>dan.turner</strong>)</li>
+  <li><strong>Michael Walker</strong> (irc: <strong>barrucadu</strong>) (yorkmail: <strong>msw504</strong>)</li>
+</ul>
