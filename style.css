@@ -50,3 +50,6 @@ cite { font-style: italic; }
 dl { margin: 0 3em; }
 dt { font-weight: bold; margin-top: 1em}
 dd { margin-left: 2em; }
+
+article { padding: 10px }
+article header { padding: 0 0 6px 0 }
