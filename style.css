@@ -55,3 +55,5 @@ article header { padding: 0 0 6px 0 }
 .container { width: 100% }
 .box { float: left; width: 25% }
 .box ol { list-style-type: none; margin: 0; padding: 0 }
+p.nothing { font-style: italic }
+p.meta { font-size: 0.8em }
