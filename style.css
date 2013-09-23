@@ -62,7 +62,5 @@ article header { padding: 0 0 6px 0 }
 p.nothing { font-style: italic }
 p.meta { font-size: 0.8em }
 
-hr { height: 1px; background: #CCC; width: 100%; border: none; margin: 2em 0 }
-
 .infobox { width: 66%; clear: both; margin-bottom: 32px; /*border: 1px solid #000*/ }
 .alternate { float: right; text-align: right }
