@@ -27,7 +27,12 @@ li { padding:0.2em;}
 
 header { padding: 20px 50px 15px 50px; border-bottom: dotted #ccc 3px; }
 header h2 { margin: 10px 0 0 60px; }
-nav { float: right; margin: -25px 40px 0 0; }
+
+nav { position: absolute; top: 0; right: 0 }
+nav ul { list-style-type: none; padding: 0; margin: 0 }
+nav ul li { display: block; float: left; text-align: center; margin: 0 6px }
+nav ul li a { display: block; padding: 0.75em 0.5em }
+nav ul li a:hover { border: 1px solid #ddd; position: relative; top: -6px }
 
 #main { padding: 10px 50px 20px 50px; }
 #main h2 { margin: 15px 0 0 0; }
