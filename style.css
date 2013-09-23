@@ -30,7 +30,6 @@ header h2 { margin: 10px 0 0 60px; }
 nav { float: right; margin: -25px 40px 0 0; }
 
 #main { padding: 10px 50px 20px 50px; }
-#main p { width: 800px; }
 #main h2 { margin: 15px 0 0 0; }
 
 a:link, a:visited {color: #0A5D99; text-decoration: none;}
@@ -57,3 +56,8 @@ article header { padding: 0 0 6px 0 }
 .box ol { list-style-type: none; margin: 0; padding: 0 }
 p.nothing { font-style: italic }
 p.meta { font-size: 0.8em }
+
+hr { height: 1px; background: #CCC; width: 100%; border: none; margin: 2em 0 }
+
+.infobox { width: 66%; clear: both; margin-bottom: 32px; /*border: 1px solid #000*/ }
+.alternate { float: right; text-align: right }
