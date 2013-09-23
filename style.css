@@ -27,6 +27,7 @@ li { padding:0.2em;}
 
 header { padding: 20px 50px 15px 50px; border-bottom: dotted #ccc 3px; }
 header h2 { margin: 10px 0 0 60px; }
+header p { float: right; margin: -16px 0; font-style: italic }
 
 nav { position: absolute; top: 0; right: 0 }
 nav ul { list-style-type: none; padding: 0; margin: 0 }
