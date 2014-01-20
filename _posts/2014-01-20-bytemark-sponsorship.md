@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HackSoc Sponsored by Bytemark
-date: 2014-01-20 18:00:00
+date: 2014-01-20 18:00:00 +0000
 ---
 
 As you may know, over the Christmas break, [Bytemark][] very kindly
