@@ -36,7 +36,6 @@ nav ul li a { border: 1px solid #fff; display: block; padding: 0.75em 0.5em }
 nav ul li a:hover { border: 1px solid #ddd; position: relative; top: -6px }
 
 #main { padding: 10px 50px 20px 50px; }
-#main h2 { margin: 15px 0 0 0; }
 
 a:link, a:visited {color: #0A5D99; text-decoration: none;}
 a:active, a:hover {color: #609B11; text-decoration: underline;}
@@ -63,5 +62,9 @@ article header { padding: 0 0 6px 0 }
 p.nothing { font-style: italic }
 p.meta { font-size: 0.8em }
 
-.infobox { width: 66%; clear: both; margin-bottom: 32px; /*border: 1px solid #000*/ }
+.infobox { width: 66%; clear: both; margin-top: 15px; margin-bottom: 32px; /*border: 1px solid #000*/ }
 .alternate { float: right; text-align: right }
+
+.posts { padding-bottom: 12px; border-bottom: 1px solid black }
+.post-entry { margin-top: 3px }
+.posts-list { padding-bottom: 12px }
