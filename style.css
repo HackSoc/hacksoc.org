@@ -68,3 +68,10 @@ p.meta { font-size: 0.8em }
 .posts { padding-bottom: 12px; border-bottom: 1px solid black }
 .post-entry { margin-top: 3px }
 .posts-list { padding-bottom: 12px }
+
+/* Why can't CSS make "I want a footer at the bottom of my page" easy? */
+html, body, #container { height: 100%; }
+body > #container { height: auto; min-height: 100%; }
+#stupid-end-marker { padding-bottom: 3em; }
+footer { clear: both; position: relative; height: 3em; margin-top: -3em; padding: 0 32px }
+footer h2 { font-size: 1em }
