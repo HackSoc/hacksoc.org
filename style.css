@@ -27,7 +27,8 @@ li { padding:0.2em;}
 
 header { padding: 20px 50px 15px 50px; border-bottom: dotted #ccc 3px; }
 header h2 { margin: 10px 0 0 60px; }
-header p { float: right; margin: -16px 0; font-style: italic }
+header #uni { float: right; margin: -16px 0; font-style: italic }
+header p { height: 0 }
 
 nav { position: absolute; top: 0; right: 0 }
 nav ul { list-style-type: none; padding: 0; margin: 0 }
@@ -60,7 +61,8 @@ article header { padding: 0 0 6px 0 }
 .box { float: left; width: 25% }
 .box ol { list-style-type: none; margin: 0; padding: 0 }
 p.nothing { font-style: italic }
-p.meta { font-size: 0.8em }
+
+#server_list, #calendar_links { font-size: 0.8em }
 
 .infobox { width: 66%; clear: both; margin-top: 15px; margin-bottom: 32px; /*border: 1px solid #000*/ }
 .alternate { float: right; text-align: right }
