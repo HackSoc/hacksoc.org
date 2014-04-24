@@ -20,4 +20,4 @@ And we have a new committee, which is almost exactly the same as the old one,
  - Lauren Tomasello remained Crockery Officer.
  - Shivam Mistry remained Society Crier.
  - Michael Mokrysz became Diplomat.
- - Charles Piggott and Dr. Ian Benest remained Ordinary Members.
+ - Charles Pigott and Dr. Ian Benest remained Ordinary Members.
