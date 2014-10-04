@@ -86,3 +86,5 @@ tr + tr { border-top: 1px solid #ccc }
 
 code { font-family: Inconsolata, monospace; font-size: 13px }
 .noticebox { padding: 1em; margin: 0 10em; border: 1px solid #bbb; background-color: #e9e9e9; text-align: center }
+
+.important { text-align: center; font-weight: bold; }
