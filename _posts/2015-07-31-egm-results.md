@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 title: EGM results
 data: 2015-07-31 00:00:00 +0000
 ---
