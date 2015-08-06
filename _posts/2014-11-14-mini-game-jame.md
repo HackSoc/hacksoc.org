@@ -5,9 +5,7 @@ date: 2014-11-14 18:12:00 +0000
 ---
 
 
-## Theme: Hold The Line
-
-
+Theme: Hold The Line
 
 Today we are having a mini "game jam". The idea is to give people a
 chance to get used to some of the tools and techniques they might need
