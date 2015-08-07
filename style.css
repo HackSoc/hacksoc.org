@@ -64,9 +64,14 @@ p.nothing { font-style: italic }
 .infobox { width: 66%; clear: both; margin-top: 15px; margin-bottom: 32px; /*border: 1px solid #000*/ }
 .alternate { float: right; text-align: right }
 
-.posts { padding-bottom: 12px; border-bottom: 1px solid black }
-.post-entry { margin-top: 3px }
-.posts-list { padding-bottom: 12px }
+#posts { padding-bottom: 12px; border-bottom: 1px solid black }
+.entries, .entries li { list-style-type: none; margin-left: 0.5em; padding-left: 0 }
+.entries a { font-weight: bold }
+.entries p { margin-left: 0; padding-left: 0 }
+.meta { font-style: italic; font-size: 0.8em; color: #777 }
+.pages { list-style-type: none; margin-left: 0; padding-left: 0 }
+.pages li { display: inline }
+.pages li.active { font-weight: bold }
 
 /* Why can't CSS make "I want a footer at the bottom of my page" easy? */
 html, body, #container { height: 100%; }
