@@ -24,7 +24,7 @@ ul, ol { margin-left:4em; }
 li { padding:0.2em;}
 #container { width: 960px; margin: 0 auto; } 
 
-header { padding: 20px 50px 15px 50px; border-bottom: dotted #ccc 3px; }
+header { padding: 20px 50px 15px 50px; border-bottom: dotted #ccc 3px; margin-bottom: 16px }
 header h2 { margin: 10px 0 0 60px; }
 header #uni { float: right; margin: -16px 0; font-style: italic }
 header p { height: 0 }
@@ -34,8 +34,6 @@ nav ul { list-style-type: none; padding: 0; margin: 0 }
 nav ul li { display: block; float: left; text-align: center; margin: 0 6px }
 nav ul li a { border: 1px solid #fff; display: block; padding: 0.75em 0.5em }
 nav ul li a:hover { border: 1px solid #ddd; position: relative; top: -6px }
-
-#main { padding: 10px 50px 20px 50px; }
 
 a:link, a:visited {color: #0A5D99; text-decoration: none;}
 a:active, a:hover {color: #609B11; text-decoration: underline;}
