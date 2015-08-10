@@ -48,8 +48,8 @@ blockquote .aside { font-style: italic; font-size: 0.8em; margin-bottom: 1em;}
 cite { font-style: italic; }
 
 dl { margin: 0 3em; }
-dt { font-weight: bold; display: inline-block; width: 175px; }
-dd { margin-left: 2em; display: inline-block; }
+dt { font-weight: bold }
+dd { margin-left: 2em }
 
 article { padding: 10px }
 article header { padding: 0 0 6px 0 }
