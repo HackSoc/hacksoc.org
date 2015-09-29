@@ -8,7 +8,7 @@ h1,h2 { font-size:100%; font-weight:normal; }
 h2 { font-family: 'Sanchez', serif; margin-top: 16px; color: #404854; font-size: 2em }
 
 p { padding: 5px 5px 5px 20px; line-height: 23px; }
-body { font-family: 'Bitstream Vera Sans', sans-serif; font-size: 14px; color: #212121; background-color: #ffd9cc }
+body { font-family: 'Bitstream Vera Sans', sans-serif; font-size: 14px; color: #212121; background-color: #fff }
 
 ul, ol { margin-left:4em; }
 li { padding:0.2em;}
