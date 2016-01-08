@@ -3,24 +3,24 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-{% if page.title %}
-    <title>{{page.title}} - HackSoc - the computer science society</title>
-{% else %}
+$if(title)$
+    <title>$title$ - HackSoc - the computer science society</title>
+$else$
     <title>HackSoc - the computer science society</title>
-{% endif %}
+$endif$
 
     <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700|Sanchez|Inconsolata:400,700" rel="stylesheet" type="text/css">
-    <link href="{{site.url}}style.css" rel="stylesheet" type="text/css">
+    <link href="/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <div id="container">
       <header>
-        <h1><a href="{{site.url}}" title="HackSoc"><img src="{{site.url}}logo.png" id="logo" alt="HackSoc: the computer science society"></a></h1>
+        <h1><a href="/" title="HackSoc"><img src="/logo.png" id="logo" alt="HackSoc: the computer science society"></a></h1>
         <nav>
           <ul>
-            <li><a href="{{site.url}}about.html">about us</a></li>
+            <li><a href="/about.html">about us</a></li>
             <li><a href="//www.github.com/hacksoc/">github</a></li>
-            <li><a href="{{site.url}}irc.html">irc</a></li>
+            <li><a href="/irc.html">irc</a></li>
             <li><a href="//twitter.com/HackSoc">twitter</a></li>
             <li><a href="//www.facebook.com/groups/hacksoc">facebook</a></li>
           </ul>
@@ -35,7 +35,7 @@
         <p id="uni">At the University of York</p>
       </header>
 
-      {{content}}
+     $body$
 
       <div id="stupid-end-marker"></div>
     </div>

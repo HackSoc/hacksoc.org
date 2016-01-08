@@ -1,7 +1,3 @@
----
-layout: wrapper
----
-
 <iframe src="https://www.google.com/calendar/embed?title=HackSoc%20Activites&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23fff9f0&amp;src=hack%40yusu.org&amp;color=%23212121&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="900" height="600" frameborder="0" scrolling="no"></iframe>
 
 <p id="calendar_links">
@@ -19,28 +15,27 @@ layout: wrapper
 
 <div id="posts">
   <ol class="entries">
-    {% for post in paginator.posts %}
+    $for(entries)$
       <li>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        <span class="meta">&mdash;{{ post.date | date_to_string }}</span>
-        {{ post.excerpt }}
+        <a href="$url$">$title$</a>
+        <span class="meta">&mdash;$date$</span>
+        $if(excerpt)$
+          $excerpt$
+        $else$
+          $body$
+        $endif$
       </li>
-    {% endfor %}
+    $endfor$
   </ol>
 
-  {% if paginator.total_pages > 1 %}
-    <ol class="pages">
-      {% for page in (1..paginator.total_pages) %}
-        {% if page == paginator.page %}
-          <li class="active">{{ page }}</li>
-        {% elsif page == 1 %}
-          <li><a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a></li>
-        {% else %}
-          <li><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li>
-        {% endif %}
-      {% endfor %}
-    </ol>
-  {% endif %}
+  <ol class="pages">
+    $if(previousPageNum)$
+      <li><a href="$previousPageUrl$">◀ Newer Entries</a></li>
+    $endif$
+    $if(nextPageNum)$
+      <li><a href="$nextPageUrl$">Older Entries ▶</a></li>
+    $endif$
+  </ol>
 </div>
 
 <div class="infobox">

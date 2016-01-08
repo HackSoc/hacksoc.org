@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Mini Game Jam
 date: 2014-11-14 18:12:00 +0000
 ---

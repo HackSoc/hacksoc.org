@@ -1,5 +1,4 @@
 ---
-layout: post
 title: AGM Update
 date: 2014-01-29 00:00:00 +0000
 ---
