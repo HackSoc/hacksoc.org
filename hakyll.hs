@@ -2,6 +2,7 @@
 
 module Main where
 
+import Control.Applicative (Alternative(empty))
 import Data.Monoid ((<>))
 import Hakyll
 
@@ -28,7 +29,8 @@ main = hakyllWith defaultConfiguration $ do
     route idRoute
     compile $ do
       entries <- recentFirst =<< loadAll pattern
-      let ctx = paginateContext paginator pageNum <>
+      let ctx = dropField "title" $
+            paginateContext paginator pageNum <>
             listField "entries" (excerptField "content" <> defaultContext) (return entries) <>
             defaultContext
       makeItem ""
@@ -59,3 +61,8 @@ excerptField snapshot = field "excerpt" $ \item -> do
   case lines (trim body) of
     (excerpt:_) -> return excerpt
     [] -> fail $ "excerptField: no excerpt defined for " ++ show (itemIdentifier item)
+
+-- | Drop a field from a context.
+dropField :: String -> Context a -> Context a
+dropField field (Context f) = Context $ \k a i ->
+  if k == field then empty else f k a i
