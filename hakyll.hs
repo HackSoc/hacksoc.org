@@ -11,6 +11,11 @@ main = hakyllWith defaultConfiguration $ do
   -- Load templates
   match "templates/*" $ compile templateCompiler
 
+  -- Copy static files
+  match "static/**" $ do
+    route $ gsubRoute "static/" (const "")
+    compile copyFileCompiler
+
   -- Build news posts
   match "news/*" $ do
     route $ setExtension ".html"
@@ -44,15 +49,6 @@ main = hakyllWith defaultConfiguration $ do
     compile $ pandocCompiler
       >>= loadAndApplyTemplate "templates/wrapper.html" defaultContext
       >>= relativizeUrls
-
-  -- Copy files
-  match "images" $ do
-    route idRoute
-    compile copyFileCompiler
-
-  match "*.*" $ do
-    route idRoute
-    compile copyFileCompiler
 
 -- | Extract the first non-blank line from a news post.
 excerptField :: Snapshot -> Context String
