@@ -8,7 +8,7 @@ After an exciting committee election at the AGM, we have elected a new committee
 - **Chair:** Daniel Bailey (*danieljabailey*)
 - **Secretary:** Samuel Hand (*sdhand*)
 - **Treasurer:** Samantha Eastwood (*eep*)
-- **Careers:** Michael Mokrysz (*_46bit*)
+- **Careers:** Michael Mokrysz (*\_46bit*)
 - **Infrastructure:** Charles Pigott (*LordAro*)
 
 And the **Ordinary Members**:
