@@ -1,6 +1,6 @@
 ---
 title: AGM results
-date: 2015-02-26 00:00:00 +0000
+date: 2015-02-26
 ---
 
 The committee is dead, long live the committee!
