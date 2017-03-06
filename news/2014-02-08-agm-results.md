@@ -1,6 +1,5 @@
 ---
 title: AGM Results
-date: 2014-02-08 00:00:00 +0000
 ---
 
 Same bat-committee, same bat-society.

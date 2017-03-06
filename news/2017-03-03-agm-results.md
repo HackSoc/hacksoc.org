@@ -1,6 +1,5 @@
 ---
 title: AGM Results 2017!
-date: 2017-03-03
 ---
 
 After an exciting committee election at the AGM, we have elected a new committee of HackSoc!
