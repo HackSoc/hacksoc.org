@@ -1,6 +1,6 @@
 ---
 title: HackSoc Sponsored by Bytemark
-date: 2014-01-20 18:00:00 +0000
+date: 2014-01-20
 ---
 
 As you may know, over the Christmas break, [Bytemark][] very kindly

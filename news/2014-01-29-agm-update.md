@@ -1,6 +1,6 @@
 ---
 title: AGM Update
-date: 2014-01-29 00:00:00 +0000
+date: 2014-01-29
 ---
 
 **The AGM will be held on Friday the 7th of February, at 19:30, in
