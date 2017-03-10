@@ -21,8 +21,8 @@ main = hakyllWith defaultConfiguration $ do
     route $ setExtension ".html"
     compile $ pandocCompiler
       >>= saveSnapshot "content"
-      >>= loadAndApplyTemplate "templates/news.html"    defaultContext
-      >>= loadAndApplyTemplate "templates/wrapper.html" defaultContext
+      >>= loadAndApplyTemplate "templates/news.html"    postContext
+      >>= loadAndApplyTemplate "templates/wrapper.html" postContext
       >>= relativizeUrls
 
   -- Build index page with paginated news list
@@ -36,7 +36,7 @@ main = hakyllWith defaultConfiguration $ do
       entries <- recentFirst =<< loadAll pattern
       let ctx = dropField "title" $
             paginateContext paginator pageNum <>
-            listField "entries" (excerptField "content" <> defaultContext) (return entries) <>
+            listField "entries" (excerptField "content" <> postContext) (return entries) <>
             defaultContext
       makeItem ""
         >>= loadAndApplyTemplate "templates/newslist.html" ctx
@@ -49,6 +49,10 @@ main = hakyllWith defaultConfiguration $ do
     compile $ pandocCompiler
       >>= loadAndApplyTemplate "templates/wrapper.html" defaultContext
       >>= relativizeUrls
+
+-- | Context for rendering posts: infer the date from the filename.
+postContext :: Context String
+postContext = dateField "date" "%B %e, %Y" <> defaultContext
 
 -- | Extract the first non-blank line from a news post.
 excerptField :: Snapshot -> Context String

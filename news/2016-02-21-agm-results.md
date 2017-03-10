@@ -1,6 +1,5 @@
 ---
 title: AGM Results
-date: 2016-02-21
 ---
 
 We held the AGM on Friday, and have a new committee! We'll be having a
