@@ -8,6 +8,8 @@ h1,h2 { font-size:100%; font-weight:normal; }
 h2 { font-family: 'Sanchez', serif; margin-top: 16px; color: #404854; font-size: 2em }
 
 span.maintitle{font-family:roboto_slabregular;color:#444444;}
+span.largetitle{font-size:8em;}
+span.subtitle{font-size:2em;}
 a.maintitle:hover{text-decoration:none;}
 
 p { padding: 5px 5px 5px 20px; line-height: 23px; }
@@ -19,7 +21,7 @@ li { padding:0.2em;}
 
 header { padding: 20px 50px 15px 50px; border-bottom: dotted #212121 3px; margin-bottom: 16px }
 header #logo { width: 600px; height: 150px; }
-header #uni { float: right; margin: -16px 0; font-style: italic; color: #545454; }
+header #uni { float: right; font-style: italic; color: #545454; }
 header p { height: 0 }
 
 nav { position: absolute; top: 0; right: 0 }
@@ -44,7 +46,7 @@ dd { margin-left: 2em }
 
 #server_list, #calendar_links { font-size: 0.8em }
 
-.infobox { width: 66%; clear: both; margin-top: 15px; margin-bottom: 32px; /*border: 1px solid #000*/ }
+.infobox { width: 630px; clear: both; margin-top: 15px; margin-bottom: 32px; /*border: 1px solid #000*/ }
 .infobox h2 { margin-top: 0 }
 .alternate { float: right; text-align: right }
 
@@ -75,4 +77,61 @@ code { font-family: Inconsolata, monospace; font-size: 13px }
   font-style: normal;
   font-weight: 400;
   src: local('Bitstream Vera Sans'), url(/BitstreamVeraSans.ttf) format('ttf');
+}
+
+nav#small{
+    width:100%;
+    background-color:#dddddd;
+    max-height:40px;
+    overflow:hidden;
+    transition:all .3s ease;
+    position:relative;
+}
+nav#small > ul > li{
+    width:90%;
+    margin:4px 5% 0 5%;
+    background-color:#f3f2f4;
+    padding:0;
+}
+nav#small.expanded{
+    max-height:310px;
+    padding-bottom:5vw;
+}
+div.smallnav{
+    padding: 10px 5px 10px 5px;
+    height:20px;
+}
+
+
+/* Media queries for small screens (mobile) */
+@media screen and (max-width: 960px) {
+    div#container{width:100%}
+    iframe#calendar{width:100%}
+}
+@media screen and (max-width: 700px) {
+    /* Stop alternating the infoboxes below 700px, just centre align them */
+    .infobox{width:100%;text-align:center}
+}
+@media screen and (min-width: 740px) {
+    img#logo{width:150px;height:150px;display:inline-block;}
+}
+@media screen and (max-width: 740px) {
+    /* Logo space becomes scarce at 740 px*/
+    img#logo{display:none;}
+    span.largetitle{font-size:20vw;}
+    span.subtitle{font-size:5vw;}
+    header{padding:20px 10px 15px 10px;}
+    h1.titleheading{width:100%;text-align:center;}
+}
+    nav#large{display:inline-block;}
+    nav#small{display:none;}
+@media screen and (max-width: 480px) {
+    /* 480 is about as much as the top nav bar can bare */
+    nav#large{display:none;}
+    nav#small{display:inline-block;}
+    header { padding: 0px 0px 20px 0px; }
+}
+@media screen and (max-width: 390px) {
+    header #uni {width:100%;text-align:center;margin-bottom:12px;}
+    header {padding: 0px 0px 40px 0px;}
 }
