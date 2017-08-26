@@ -122,11 +122,14 @@ div.smallnav{
     span.subtitle{font-size:5vw;}
     header{padding:20px 10px 15px 10px;}
     h1.titleheading{width:100%;text-align:center;}
+    h2{width:100%;text-align:center;font-size:1.4em;}
+    .noticebox{margin:0;padding:2px;}
+    img#bm{margin-left:auto;margin-right:auto;display:block;}
 }
     nav#large{display:inline-block;}
     nav#small{display:none;}
-@media screen and (max-width: 480px) {
-    /* 480 is about as much as the top nav bar can bare */
+@media screen and (max-width: 490px) {
+    /* 490 is about as much as the top nav bar can bare */
     nav#large{display:none;}
     nav#small{display:inline-block;}
     header { padding: 0px 0px 20px 0px; }
