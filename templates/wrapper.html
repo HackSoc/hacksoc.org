@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 $if(title)$
     <title>$title$ - HackSoc - the computer science society</title>
@@ -12,14 +13,14 @@ $endif$
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
 
-    <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700|Sanchez|Inconsolata:400,700" rel="stylesheet" type="text/css" />
+    <link href="//fonts.googleapis.com/css?family=Sanchez|Inconsolata:400,700" rel="stylesheet" type="text/css" />
+    <link href="/fonts/robotoslab_regular_macroman/stylesheet.css" rel="stylesheet" type="text/css" />
     <link href="/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <div id="container">
       <header>
-        <h1><a href="/" title="HackSoc"><img src="/logo.png" id="logo" alt="HackSoc: the computer science society"></a></h1>
-        <nav>
+       <nav id="large">
           <ul>
             <li><a href="/about.html">about us</a></li>
             <li><a href="//www.github.com/hacksoc/">github</a></li>
@@ -28,14 +29,31 @@ $endif$
             <li><a href="//www.facebook.com/groups/hacksoc">facebook</a></li>
           </ul>
         </nav>
-
+        <nav id="small" onclick="this.classList.toggle('expanded')">
+           <div class="smallnav">&#9698; menu</div>
+           <ul>
+            <li><a href="/about.html">about us</a></li>
+            <li><a href="//www.github.com/hacksoc/">github</a></li>
+            <li><a href="/irc.html">Slack/IRC chat</a></li>
+            <li><a href="//twitter.com/HackSoc">twitter</a></li>
+            <li><a href="//www.facebook.com/groups/hacksoc">facebook</a></li>
+          </ul>
+        </nav>
+        <img id="logo" src="logo2017.png"/>
+        <h1 class="titleheading" style="display:inline-block;">
+            <a href="/" title="HackSoc" class="maintitle">
+                <span class="maintitle"><span class="largetitle">HackSoc</span><br><span class="subtitle">the <span style="color:#443752">computer science</span> society</span></span>
+            </a>
+        </h1>
+        <!-- empty div to force p tags to flow underneath title -->
+        <div></div>
+        <p id="uni">At the University of York</p>
         <p id="server_list">
           <strong>Servers:</strong>
           <a href="http://runciman.hacksoc.org">runciman</a> &middot;
           <a href="http://klaxon.hacksoc.org">klaxon</a>
         </p>
 
-        <p id="uni">At the University of York</p>
       </header>
 
      $body$
@@ -46,7 +64,7 @@ $endif$
     <footer>
       <h2>Sponsored by</h2>
       <a href="//www.bytemark.co.uk/r/hacksoc" title="Bytemark Hosting">
-        <img src="/images/bytemark.png" alt="Bytemark Hosting">
+        <img id="bm" src="/images/bytemark.png" alt="Bytemark Hosting">
       </a>
     </footer>
   </body>
