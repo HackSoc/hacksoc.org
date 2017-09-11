@@ -7,9 +7,9 @@ h1,h2 { font-size:100%; font-weight:normal; }
 
 h2 { font-family: 'Sanchez', serif; margin-top: 16px; color: #404854; font-size: 2em }
 
-span.maintitle{font-family:roboto_slabregular;color:#444444;}
-span.largetitle{font-size:8em;}
-span.subtitle{font-size:2em;}
+span.maintitle{font-family:roboto_slabregular;color:#444444;line-height:1;}
+span.largetitle{font-size:7em;}
+span.subtitle{font-size:2em;padding-left:5px;}
 a.maintitle:hover{text-decoration:none;}
 
 p { padding: 5px 5px 5px 20px; line-height: 23px; }
@@ -102,6 +102,15 @@ div.smallnav{
     height:20px;
 }
 
+img#logo{
+    float:left;
+    padding-right:14px;
+}
+
+h1.titleheading{
+    padding-top:10px;
+    padding-bottom:30px;
+}
 
 /* Media queries for small screens (mobile) */
 @media screen and (max-width: 960px) {
@@ -123,7 +132,7 @@ div.smallnav{
     span.largetitle{font-size:20vw;}
     span.subtitle{font-size:5vw;}
     header{padding:20px 10px 15px 10px;}
-    h1.titleheading{width:100%;text-align:center;}
+    h1.titleheading{width:100%;text-align:center;padding-bottom:0;}
     .noticebox{margin:0;padding:2px;}
     img#bm{margin-left:auto;margin-right:auto;display:block;}
     blockquote{margin:10px 5px 10px 5px}
