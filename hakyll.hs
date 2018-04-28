@@ -5,6 +5,7 @@ module Main where
 import Control.Applicative (Alternative(empty))
 import Data.Monoid ((<>))
 import Hakyll
+import System.FilePath (takeBaseName)
 
 main :: IO ()
 main = hakyllWith defaultConfiguration $ do
@@ -21,8 +22,8 @@ main = hakyllWith defaultConfiguration $ do
     route $ setExtension ".html"
     compile $ pandocCompiler
       >>= saveSnapshot "content"
-      >>= loadAndApplyTemplate "templates/news.html"    postContext
-      >>= loadAndApplyTemplate "templates/wrapper.html" postContext
+      >>= loadAndApplyTemplate "templates/news.html"    pageContext
+      >>= loadAndApplyTemplate "templates/wrapper.html" pageContext
       >>= relativizeUrls
 
   -- Build index page with paginated news list
@@ -36,8 +37,8 @@ main = hakyllWith defaultConfiguration $ do
       entries <- recentFirst =<< loadAll pattern
       let ctx = dropField "title" $
             paginateContext paginator pageNum <>
-            listField "entries" (excerptField "content" <> postContext) (return entries) <>
-            defaultContext
+            listField "entries" (excerptField "content" <> pageContext) (return entries) <>
+            pageContext
       makeItem ""
         >>= loadAndApplyTemplate "templates/newslist.html" ctx
         >>= loadAndApplyTemplate "templates/wrapper.html"  ctx
@@ -47,12 +48,22 @@ main = hakyllWith defaultConfiguration $ do
   match "*.html" $ do
     route idRoute
     compile $ pandocCompiler
-      >>= loadAndApplyTemplate "templates/wrapper.html" defaultContext
+      >>= loadAndApplyTemplate "templates/wrapper.html" pageContext
       >>= relativizeUrls
 
--- | Context for rendering posts: infer the date from the filename.
-postContext :: Context String
-postContext = dateField "date" "%B %e, %Y" <> defaultContext
+-- | Context for rendering normal pages.
+pageContext :: Context String
+pageContext = bodyField "body"
+    <> metadataField
+    <> dateField "date" "%B %e, %Y"
+    <> urlField "url"
+    <> pathField "path"
+    <> titleField "title"
+    <> mapContext (toTitle . takeBaseName) (pathField "file_title")
+    <> missingField
+  where
+    -- drop a "yyyy-mm-dd-" prefix and turn underscores into spaces
+    toTitle = map (\c -> if c == '_' then ' ' else c) . drop 11
 
 -- | Extract the first non-blank line from a news post.
 excerptField :: Snapshot -> Context String
