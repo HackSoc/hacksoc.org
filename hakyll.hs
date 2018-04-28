@@ -44,7 +44,19 @@ main = hakyllWith defaultConfiguration $ do
         >>= loadAndApplyTemplate "templates/wrapper.html"  ctx
         >>= relativizeUrls
 
-  -- Build pages
+  -- Build minutes page
+  match "special/minutes.html" $ do
+    route $ gsubRoute "special/" (const "")
+    compile $ do
+      minutes <- recentFirst =<< loadAll "static/minutes/*.pdf"
+      mtpl    <- loadBody "templates/minute.html"
+      mlist   <- applyTemplateList mtpl (baseContext :: Context CopyFile) minutes
+      getResourceBody
+        >>= applyAsTemplate (constField "minutes" mlist <> pageContext)
+        >>= loadAndApplyTemplate "templates/wrapper.html" pageContext
+        >>= relativizeUrls
+
+  -- Build normal pages
   match "*.html" $ do
     route idRoute
     compile $ pandocCompiler
@@ -53,8 +65,11 @@ main = hakyllWith defaultConfiguration $ do
 
 -- | Context for rendering normal pages.
 pageContext :: Context String
-pageContext = bodyField "body"
-    <> metadataField
+pageContext = bodyField "body" <> baseContext
+
+-- | Basic context for things with dates in the filename.
+baseContext :: Context a
+baseContext = metadataField
     <> dateField "date" "%B %e, %Y"
     <> urlField "url"
     <> pathField "path"
