@@ -1,6 +1,7 @@
 const Handlebars = require('handlebars');
 const fse = require('fs-extra');
 const path = require('path');
+const yaml = require('js-yaml');
 
 const outDir = 'html'; // TODO cannonicalize
 
@@ -9,7 +10,7 @@ fse.emptyDirSync(outDir);
 
 compileTemplate = template => Handlebars.compile(template.toString('UTF-8'));
 
-function regularDir(dirname, wrapperTemplate) {
+function regularDir(dirname, wrapperTemplate, globalContext) {
     return fse.readdir(dirname).then(listing => {
         /**
          * {String[]} listing: filenames in regular/
@@ -20,13 +21,15 @@ function regularDir(dirname, wrapperTemplate) {
                 .then(content => {
                     /**
                      * Takes content and applies the wraper template to it
+                     * content begins with a YAML header
                      * {Buffer} content: contents of `filename`
                      */
-                    // TODO seperate YAML header
-                    return wrapperTemplate({
+                    
+
+                    return wrapperTemplate(Object.assign({ // Merge this object with the properties in context.yaml
                         body: content.toString('UTF-8'),
                         title: filename.replace(/\.html$/i,'') // TODO title from YAML
-                    })
+                    }, globalContext))
                 })
                 .then(html => fse.writeFile(path.join(outDir, filename), html))
             );
@@ -35,13 +38,27 @@ function regularDir(dirname, wrapperTemplate) {
     })
 }
 
-Promise.resolve(
-    fse.readFile('templates/wrapper.handlebars') // Read the template
-        .then(compileTemplate) // compile it
-        .then(wrapperTemplate => regularDir('regular', wrapperTemplate)) // pass it to the Promise to apply it to all in regular/
-).then(() => {console.log(`Writen regular files!`)})
-.catch(console.error);
+function getGlobalContext() {
+    return fse.readFile('templates/context.yaml')
+        .then(contents => {
+            /**
+             * {Buffer} contents: the contents of the YAML file
+             */
+            return yaml.safeLoad(contents.toString('UTF-8'));
+        })
+}
 
-fse.copySync('static', path.join(outDir, 'static'))
-console.log(`Copied static/ directory!`)
+getGlobalContext().then(globalContext => {
+    
+    Promise.resolve(
+        fse.readFile('templates/wrapper.handlebars') // Read the template
+            .then(compileTemplate) // compile it
+            .then(wrapperTemplate => regularDir('regular', wrapperTemplate,globalContext)) // pass it to the Promise to apply it to all in regular/
+    ).then(() => {console.log(`Writen regular files!`)})
+    .catch(console.error);
+    
+    fse.copySync('static', path.join(outDir, 'static'))
+    console.log(`Copied static/ directory!`)
+
+})
 

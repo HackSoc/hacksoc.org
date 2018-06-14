@@ -1,0 +1,18 @@
+servers:
+  - name: Runciman
+    href: https://runciman.hacksoc.org
+  - name: Klaxon
+    href: http://klaxon.hacksoc.org
+nav:
+  - text: about us
+    href: /about.html
+  - text: minutes
+    href: /minutes.html
+  - text: github
+    href: //www.github.com/HackSoc/
+  - text: slack/irc chat
+    href: /irc.html
+  - text: twitter
+    href: //twitter.com/HackSoc
+  - text: facebook
+    href: //www.facebook.com/groups/hacksoc

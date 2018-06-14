@@ -18,6 +18,7 @@
   "homepage": "https://github.com/LukeMoll/hacksoc.org-rewrite#readme",
   "dependencies": {
     "fs-extra": "^6.0.1",
-    "handlebars": "^4.0.11"
+    "handlebars": "^4.0.11",
+    "js-yaml": "^3.12.0"
   }
 }
