@@ -1,0 +1,23 @@
+{
+  "name": "hacksoc.org",
+  "version": "0.1.0",
+  "description": "Replacement generator for static pages on HackSoc.org",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LukeMoll/hacksoc.org-rewrite.git"
+  },
+  "author": "Luke Moll",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LukeMoll/hacksoc.org-rewrite/issues"
+  },
+  "homepage": "https://github.com/LukeMoll/hacksoc.org-rewrite#readme",
+  "dependencies": {
+    "fs-extra": "^6.0.1",
+    "handlebars": "^4.0.11"
+  }
+}

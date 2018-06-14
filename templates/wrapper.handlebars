@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    
+    {{#if title}}
+        <title>{{title}} &endash; HackSoc &endash; the computer science society</title>
+    {{else}}
+        <title>&endash; HackSoc &endash; the computer science society</title>
+    {{/if}}
+
+    <link rel="icon" type="image/png" href="/static/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/static/favicon-32x32.png" sizes="32x32" />
+
+    <link href="//fonts.googleapis.com/css?family=Sanchez|Inconsolata:400,700" rel="stylesheet" type="text/css" />
+    <link href="/static/fonts/robotoslab_regular_macroman/stylesheet.css" rel="stylesheet" type="text/css" />
+    <link href="/static/style_2017.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="container">
+      <header>
+       <nav id="large">
+          <ul>
+            {{#each nav}}
+                <li><a href="{{href}}">{{text}}</a></li>
+            {{/each}}
+          </ul>
+        </nav>
+        <nav id="small" onclick="this.classList.toggle('expanded')">
+           <div class="smallnav">&#9698; menu</div>
+           <ul>
+            {{#each nav}}
+                <li><a href="{{href}}">{{text}}</a></li>
+            {{/each}}
+          </ul>
+        </nav>
+        <img id="logo" src="/static/logo2017.svg"/>
+        <h1 class="titleheading" style="display:inline-block;">
+            <a href="/" title="HackSoc" class="maintitle">
+                <span class="maintitle"><span class="largetitle">HackSoc</span><br><span class="subtitle">the <span style="color:#443752">computer science</span> society</span></span>
+            </a>
+        </h1>
+        <!-- empty div to force p tags to flow underneath title -->
+        <div></div>
+        <p id="uni">At the University of York</p>
+        <p id="server_list">
+          <strong>Servers:</strong>
+          {{#each servers}}
+            <a href="{{href}}">{{name}}</a> 
+          {{/each}}
+          {{!-- TODO need to put &middot; after each <a> except last in the CSS --}}
+        </p>
+
+      </header>
+
+     {{{body}}}
+
+      <div id="stupid-end-marker"></div>
+    </div>
+
+    <footer>
+      <h2>Sponsored by</h2>
+      <a href="//www.bytemark.co.uk/r/hacksoc" title="Bytemark Hosting">
+        <img id="bm" src="/static/images/bytemark.png" alt="Bytemark Hosting">
+      </a>
+    </footer>
+  </body>
+</html>
