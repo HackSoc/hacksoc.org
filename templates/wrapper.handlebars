@@ -4,12 +4,10 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    
-    {{#if title}}
-        <title>{{title}} &endash; HackSoc &endash; the computer science society</title>
-    {{else}}
-        <title>&endash; HackSoc &endash; the computer science society</title>
-    {{/if}}
+
+    <title>
+        {{#if title}}{{title}} &ndash; {{/if}}HackSoc &ndash; the computer science society
+    </title>
 
     <link rel="icon" type="image/png" href="/static/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="/static/favicon-32x32.png" sizes="32x32" />

@@ -2,7 +2,6 @@ const Handlebars = require('handlebars');
 const fse = require('fs-extra');
 const path = require('path');
 
-const wrapper_t = Handlebars.compile(wrapper);
 const outDir = 'html'; // TODO cannonicalize
 
 fse.mkdirpSync(outDir);
