@@ -2,6 +2,7 @@ const Handlebars = require('handlebars');
 const fse = require('fs-extra');
 const path = require('path');
 const yaml = require('js-yaml');
+const docmatter = require('docmatter');
 
 const outDir = 'html'; // TODO cannonicalize
 
@@ -21,15 +22,16 @@ function regularDir(dirname, wrapperTemplate, globalContext) {
                 .then(content => {
                     /**
                      * Takes content and applies the wraper template to it
-                     * content begins with a YAML header
+                     * content begins with a YAML header.
                      * {Buffer} content: contents of `filename`
                      */
-                    
+
+                    let matter = docmatter(content.toString('UTF-8'));
 
                     return wrapperTemplate(Object.assign({ // Merge this object with the properties in context.yaml
-                        body: content.toString('UTF-8'),
+                        body: matter.body,
                         title: filename.replace(/\.html$/i,'') // TODO title from YAML
-                    }, globalContext))
+                    }, globalContext, yaml.safeLoad(matter.header)))
                 })
                 .then(html => fse.writeFile(path.join(outDir, filename), html))
             );
