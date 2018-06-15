@@ -1,0 +1,18 @@
+<div id="posts">
+  <ol class="entries">
+    {{#each entries}}
+      <li>
+        <a href="{{url}}">{{title}}</a>
+        <span class="meta">&nbsp;&mdash;&nbsp;{{date}}</span>
+        {{#if excerpt}}
+            {{{excerpt}}}
+        {{#else}}
+            {{{body}}}
+        {{/if}}
+      </li>
+    {{/each}}
+  </ol>
+
+    {{!-- We can add pagination later if required --}}
+
+</div>

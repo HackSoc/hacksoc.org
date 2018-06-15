@@ -59,7 +59,7 @@ function minutes(dirname, filename, wrapperTemplate, minuteTemplate, globalConte
                         .map(fn => {
                             let m = /^(\d{4}-\d\d-\d\d)-([a-z0-9 ]+)\.pdf$/i.exec(fn);
                             return {
-                                url: path.join(filename, fn),
+                                url: path.join(dirname, fn),
                                 meeting: m[2],
                                 date: m[1],
                                 date_t: new Date(m[1])
@@ -76,6 +76,25 @@ function minutes(dirname, filename, wrapperTemplate, minuteTemplate, globalConte
         ).then(fse.copy(dirname, path.join(outDir, dirname)))
     })
 }
+
+/**
+ * @param {Object} results any previous results that this object carries on
+ */
+function readNews(results) {
+    return new Promise((resolve, reject) => {
+        let obj = {}
+        
+        /* TODO
+         * read news/
+         * foreach:
+         *   map listing => content => news object
+         * return under news
+         */
+
+        resolve(Object.assign(obj,results));
+    });
+}
+
 
 /**
  * @returns {Promise<Object>} Resolves to the global context object
@@ -104,12 +123,14 @@ let p_contextAndTemplates = Promise.all(
     [
         getGlobalContext(),
         fse.readFile('templates/wrapper.handlebars').then(compileTemplate),
-        fse.readFile('templates/minutes.handlebars').then(compileTemplate)
+        fse.readFile('templates/minutes.handlebars').then(compileTemplate),
+        fse.readFile('templates/newslist.handlebars').then(compileTemplate)
     ])
     .then(results => ({
         globalContext: results[0],
         wrapperTemplate: results[1],
-        minutesTemplate: results[2]
+        minutesTemplate: results[2],
+        newslistTemplate: results[3]
     }))
 
     
@@ -119,5 +140,7 @@ let p_contextAndTemplates = Promise.all(
     p_contextAndTemplates.then(obj => minutes('minutes', 'minutes.html', obj.wrapperTemplate, obj.minutesTemplate, obj.globalContext))
         .then(()=>console.log("Written minutes files!"))
         .catch(console.log);
+
+    
 
 p_mkOutDir.then(() => p_contextAndTemplates);
