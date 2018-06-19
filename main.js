@@ -3,6 +3,9 @@ const fse = require('fs-extra');
 const path = require('path');
 const yaml = require('js-yaml');
 const docmatter = require('docmatter');
+const Markdown = new require('markdown-it')({
+    html: true
+});
 
 const outDir = 'html'; // TODO cannonicalize
 
@@ -42,6 +45,38 @@ function regularDir(dirname, wrapperTemplate, globalContext) {
                 .then(html => fse.writeFile(path.join(outDir, filename), html))
             );
         return Promise.all(promises)
+    })
+}
+
+/**
+ * 
+ * @param {string} dirname name to find Markdown source files
+ * @param {Handbars.TemplateDelegate} serverTemplate Handlebars template to make the page
+ * @param {Object} globalContext Misc context (navbar, servers, etc)
+ * @returns {Promise} wraps around a Promise.all for each file in `dirname`
+ */
+function servers(dirname, serverTemplate, globalContext) {
+    return fse.readdir(dirname).then(listing => {
+        /**
+         * {String[]} listing: filenames in servers/
+         */
+        let promises = listing.map(filename => 
+                fse.readFile(path.join(dirname,filename))
+                .then(content => {
+                    /**
+                     * {Buffer} content: contents of `filename`
+                     */
+                    let matter = docmatter(content.toString('UTF-8'));
+
+                    return serverTemplate(
+                        Object.assign({
+                            body: Markdown.render(matter.body)
+                        }, globalContext, yaml.safeLoad(matter.header))
+                    );
+                }).then(html => fse.writeFile(path.join(outDir, dirname, filename.replace(/\.md$/i,".html")), html))
+                
+            )
+        return fse.mkdirp(path.join(outDir, dirname)).then(Promise.all(promises));
     })
 }
 
@@ -87,7 +122,7 @@ function readNews(results) {
         /* TODO
          * read news/
          * foreach:
-         *   map listing => content => news object
+         *   map listing => content => html => news object
          * return under news
          */
 
@@ -124,13 +159,15 @@ let p_contextAndTemplates = Promise.all(
         getGlobalContext(),
         fse.readFile('templates/wrapper.handlebars').then(compileTemplate),
         fse.readFile('templates/minutes.handlebars').then(compileTemplate),
-        fse.readFile('templates/newslist.handlebars').then(compileTemplate)
+        fse.readFile('templates/newslist.handlebars').then(compileTemplate),
+        fse.readFile('templates/server.handlebars').then(compileTemplate)
     ])
     .then(results => ({
         globalContext: results[0],
         wrapperTemplate: results[1],
         minutesTemplate: results[2],
-        newslistTemplate: results[3]
+        newslistTemplate: results[3],
+        serverTemplate: results[4]
     }))
 
     
@@ -140,6 +177,10 @@ let p_contextAndTemplates = Promise.all(
     p_contextAndTemplates.then(obj => minutes('minutes', 'minutes.html', obj.wrapperTemplate, obj.minutesTemplate, obj.globalContext))
         .then(()=>console.log("Written minutes files!"))
         .catch(console.log);
+
+    p_contextAndTemplates.then(obj => servers('servers', obj.serverTemplate, obj.globalContext))
+        .then(()=>console.log("Written server files!"))
+        .catch(console.log)
 
     
 
