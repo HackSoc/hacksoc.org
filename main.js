@@ -4,8 +4,8 @@ const path = require('path');
 const yaml = require('js-yaml');
 const docmatter = require('docmatter');
 const Markdown = new require('markdown-it')({
-    html: true
-});
+    html: true, // enable HTML in Markdown
+}).use(require('markdown-it-highlightjs'), {auto: true, code: false})
 
 const outDir = 'html'; // TODO cannonicalize
 
@@ -153,7 +153,9 @@ let p_copyStatic = fse.copy('static', path.join(outDir, 'static'))
     
     p_mkOutDir.then(() => p_copyStatic);
 
-    
+    let hljsStylesheet = 'solarized-light';
+    p_copyStatic.then(() => fse.copyFile(`node_modules/highlight.js/styles/${hljsStylesheet}.css`, path.join(outDir, 'static', 'highlight.css')));
+
 let p_contextAndTemplates = Promise.all(
     [
         getGlobalContext(),
