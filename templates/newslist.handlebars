@@ -1,12 +1,12 @@
 <div id="posts">
   <ol class="entries">
-    {{#each entries}}
+    {{#each this}}
       <li>
         <a href="{{url}}">{{title}}</a>
         <span class="meta">&nbsp;&mdash;&nbsp;{{date}}</span>
         {{#if excerpt}}
             {{{excerpt}}}
-        {{#else}}
+        {{else}}
             {{{body}}}
         {{/if}}
       </li>

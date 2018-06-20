@@ -5,6 +5,7 @@ const yaml = require('js-yaml');
 const docmatter = require('docmatter');
 const Markdown = new require('markdown-it')({
     html: true, // enable HTML in Markdown
+    typographer: true // have some nice pretty quotes
 }).use(require('markdown-it-highlightjs'), {auto: true, code: false})
 
 const outDir = 'html'; // TODO cannonicalize
@@ -114,22 +115,76 @@ function minutes(dirname, filename, wrapperTemplate, minuteTemplate, globalConte
 
 /**
  * @param {Object} results any previous results that this object carries on
+ * @param {String} dirname directory to search for news
  */
-function readNews(results) {
+function readNews(results, dirname='news') {
+    const re_date = /^(\d{4})-([01]\d)-([0-3]\d)/;
+    // TODO need date attribute on news object
     return new Promise((resolve, reject) => {
-        let obj = {}
-        
-        /* TODO
-         * read news/
-         * foreach:
-         *   map listing => content => html => news object
-         * return under news
-         */
+        fse.readdir(dirname).then(listing => {
+            let promises = listing.map(fn => fse.readFile(path.join(dirname,fn))
+                .then(content => {
+                    let matter = docmatter(content.toString('UTF-8'));
+                    let header = yaml.safeLoad(matter.header);
+                    let match_date = re_date.exec(fn);
 
-        resolve(Object.assign(obj,results));
+                    let htBody = Markdown.render(matter.body);
+                    let htMatch = /^(<p>[^]*?<\/p>)/i.exec(htBody.trim());
+                    
+                    return {
+                        body: htBody,
+                        title: header.title,
+                        date: match_date[0],
+                        date_t: new Date(match_date[0]),
+                        url: `${dirname}/${fn.replace(/\.md$/i,'.html')}`,
+                        excerpt: htMatch[1]
+                    };
+                })
+            );
+            return Promise.all(promises).then(news => {
+                let obj = {
+                    news: news
+                };
+                let finalResult = Object.assign(obj, results)
+                resolve(finalResult);
+            })
+        })
     });
 }
 
+function writeNews(results, dirname='news') {
+    // console.log(`writeNews: ${JSON.stringify(results,null,3)}`);
+    const monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+      ];
+    // huh, stuff gets real simple when it's sync 🤔
+    fse.mkdirpSync(path.join(outDir, dirname));
+
+    let promises = results.news.map(newsObj =>
+        fse.writeFile(path.join(outDir, newsObj.url), 
+            results.wrapperTemplate(
+                Object.assign({
+                    body: results.articleTemplate({
+                        title: newsObj.title,
+                        date: `${monthNames[newsObj.date_t.getMonth()]} ${newsObj.date_t.getDate()}, ${newsObj.date_t.getFullYear()}`,
+                        body: newsObj.body
+                    }),
+                    title: newsObj.title,                    
+                }, results.globalContext)
+            )
+        )
+    )
+    promises.push(fse.writeFile(path.join(outDir, 'news.html'),
+        results.wrapperTemplate(Object.assign({
+            title: "News",
+            body: results.newslistTemplate(results.news)
+        }, results.globalContext))
+    ))
+    return Promise.all(promises);
+}
 
 /**
  * @returns {Promise<Object>} Resolves to the global context object
@@ -150,7 +205,7 @@ let p_mkOutDir = fse.mkdirp(outDir)
 
 let p_copyStatic = fse.copy('static', path.join(outDir, 'static'))
     .then(console.log("Copied static files!"));
-    
+     
     p_mkOutDir.then(() => p_copyStatic);
 
     let hljsStylesheet = 'solarized-light';
@@ -162,14 +217,16 @@ let p_contextAndTemplates = Promise.all(
         fse.readFile('templates/wrapper.handlebars').then(compileTemplate),
         fse.readFile('templates/minutes.handlebars').then(compileTemplate),
         fse.readFile('templates/newslist.handlebars').then(compileTemplate),
-        fse.readFile('templates/server.handlebars').then(compileTemplate)
+        fse.readFile('templates/server.handlebars').then(compileTemplate),
+        fse.readFile('templates/article.handlebars').then(compileTemplate)
     ])
     .then(results => ({
         globalContext: results[0],
         wrapperTemplate: results[1],
         minutesTemplate: results[2],
         newslistTemplate: results[3],
-        serverTemplate: results[4]
+        serverTemplate: results[4],
+        articleTemplate: results[5]
     }))
 
     
@@ -184,6 +241,10 @@ let p_contextAndTemplates = Promise.all(
         .then(()=>console.log("Written server files!"))
         .catch(console.log)
 
+    p_contextAndTemplates.then(obj => {
+        let p_news = readNews(obj, 'news');
+        p_news.then(writeNews).then(()=>console.log("Writen news!"));
+    });
     
 
 p_mkOutDir.then(() => p_contextAndTemplates);

@@ -1,7 +1,7 @@
 servers:
-  - name: Runciman
+  - name: runciman
     href: https://runciman.hacksoc.org
-  - name: Klaxon
+  - name: klaxon
     href: http://klaxon.hacksoc.org
 nav:
   - text: about us
