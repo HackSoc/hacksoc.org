@@ -119,7 +119,6 @@ function minutes(dirname, filename, wrapperTemplate, minuteTemplate, globalConte
  */
 function readNews(results, dirname='news') {
     const re_date = /^(\d{4})-([01]\d)-([0-3]\d)/;
-    // TODO need date attribute on news object
     return new Promise((resolve, reject) => {
         fse.readdir(dirname).then(listing => {
             let promises = listing.map(fn => fse.readFile(path.join(dirname,fn))
@@ -143,7 +142,7 @@ function readNews(results, dirname='news') {
             );
             return Promise.all(promises).then(news => {
                 let obj = {
-                    news: news
+                    news: {posts: news.sort((a,b) => Math.sign(b.date_t - a.date_t))}
                 };
                 let finalResult = Object.assign(obj, results)
                 resolve(finalResult);
@@ -163,7 +162,7 @@ function writeNews(results, dirname='news') {
     // huh, stuff gets real simple when it's sync 🤔
     fse.mkdirpSync(path.join(outDir, dirname));
 
-    let promises = results.news.map(newsObj =>
+    let promises = results.news.posts.map(newsObj =>
         fse.writeFile(path.join(outDir, newsObj.url), 
             results.wrapperTemplate(
                 Object.assign({
@@ -184,6 +183,20 @@ function writeNews(results, dirname='news') {
         }, results.globalContext))
     ))
     return Promise.all(promises);
+}
+
+function writeIndex(results) {
+    return fse.writeFile(path.join(outDir, 'index.html'), results.wrapperTemplate(
+        Object.assign({
+            body: results.indexTemplate(Object.assign({
+                newslist: results.newslistTemplate({
+                    posts: results.news.posts.slice(0,5),
+                    link: true
+                }) // first 5 news articles (if present)
+            }, results.globalContext))
+            // no title, handled by wrapper.handlebars
+        }, results.globalContext)
+    ));
 }
 
 /**
@@ -218,7 +231,8 @@ let p_contextAndTemplates = Promise.all(
         fse.readFile('templates/minutes.handlebars').then(compileTemplate),
         fse.readFile('templates/newslist.handlebars').then(compileTemplate),
         fse.readFile('templates/server.handlebars').then(compileTemplate),
-        fse.readFile('templates/article.handlebars').then(compileTemplate)
+        fse.readFile('templates/article.handlebars').then(compileTemplate),
+        fse.readFile('templates/index.handlebars').then(compileTemplate)
     ])
     .then(results => ({
         globalContext: results[0],
@@ -226,7 +240,8 @@ let p_contextAndTemplates = Promise.all(
         minutesTemplate: results[2],
         newslistTemplate: results[3],
         serverTemplate: results[4],
-        articleTemplate: results[5]
+        articleTemplate: results[5],
+        indexTemplate: results[6]
     }))
 
     
@@ -244,6 +259,7 @@ let p_contextAndTemplates = Promise.all(
     p_contextAndTemplates.then(obj => {
         let p_news = readNews(obj, 'news');
         p_news.then(writeNews).then(()=>console.log("Writen news!"));
+        p_news.then(writeIndex).then(()=>console.log("Writen index!"));
     });
     
 

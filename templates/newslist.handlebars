@@ -1,6 +1,6 @@
 <div id="posts">
   <ol class="entries">
-    {{#each this}}
+    {{#each posts}}
       <li>
         <a href="{{url}}">{{title}}</a>
         <span class="meta">&nbsp;&mdash;&nbsp;{{date}}</span>
@@ -12,7 +12,11 @@
       </li>
     {{/each}}
   </ol>
+  {{!-- We can add pagination later if required --}}
 
-    {{!-- We can add pagination later if required --}}
-
+  {{#if link}}
+  <ol class="pages">
+      <li><a href="/news.html">More news ▶</a></li>
+  </ol>
+  {{/if}}
 </div>
