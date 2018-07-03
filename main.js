@@ -81,6 +81,16 @@ function servers(dirname, serverTemplate, globalContext) {
     })
 }
 
+function formatDate(date) {
+    const monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+      ];
+    return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+}
+
 /**
  * Generates an index of a directories PDF files, and copies them to the HTML folder.
  * @param {string} dirname Directory to find .PDF files in
@@ -94,6 +104,7 @@ function minutes(dirname, filename, wrapperTemplate, minuteTemplate, globalConte
         let minutes = listing.filter(l => /\.pdf$/.test(l))
                         .map(fn => {
                             let m = /^(\d{4}-\d\d-\d\d)-([a-z0-9 ]+)\.pdf$/i.exec(fn);
+
                             return {
                                 url: path.join(dirname, fn),
                                 meeting: m[2],
@@ -129,12 +140,12 @@ function readNews(results, dirname='news') {
 
                     let htBody = Markdown.render(matter.body);
                     let htMatch = /^(<p>[^]*?<\/p>)/i.exec(htBody.trim());
-                    
+                    let date_t = new Date(match_date[0])
                     return {
                         body: htBody,
                         title: header.title,
-                        date: match_date[0],
-                        date_t: new Date(match_date[0]),
+                        date: formatDate(date_t),
+                        date_t: date_t,
                         url: `${dirname}/${fn.replace(/\.md$/i,'.html')}`,
                         excerpt: htMatch[1]
                     };
@@ -152,13 +163,6 @@ function readNews(results, dirname='news') {
 }
 
 function writeNews(results, dirname='news') {
-    // console.log(`writeNews: ${JSON.stringify(results,null,3)}`);
-    const monthNames = [
-        "January", "February", "March",
-        "April", "May", "June", "July",
-        "August", "September", "October",
-        "November", "December"
-      ];
     // huh, stuff gets real simple when it's sync 🤔
     fse.mkdirpSync(path.join(outDir, dirname));
 
@@ -168,7 +172,7 @@ function writeNews(results, dirname='news') {
                 Object.assign({
                     body: results.articleTemplate({
                         title: newsObj.title,
-                        date: `${monthNames[newsObj.date_t.getMonth()]} ${newsObj.date_t.getDate()}, ${newsObj.date_t.getFullYear()}`,
+                        date: newsObj.date,
                         body: newsObj.body
                     }),
                     title: newsObj.title,                    
