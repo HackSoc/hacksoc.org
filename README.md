@@ -1,7 +1,7 @@
 HackSoc.org rewrite
 ===
 
-This build system is based on [Node.js][nodejs] and [Handlebars]. It replaces the previous system ([Hackyll]), which used Haskell.
+This build system is based on [Node.js][nodejs] and [Handlebars]. It replaces the [previous system][Hakyll], which used Haskell and Hakyll.
 
 ## Writing content
 
