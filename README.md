@@ -46,11 +46,11 @@ You'll need [Node.js][nodejs] (with npm) to install and run this.
 <!-- maybe add a quick link to install scripts? -->
 ### 1. Clone this repo:
 ```
-$ git clone https://github.com/LukeMoll/hacksoc.org-rewrite.git
+$ git clone git@github.com:HackSoc/HackSoc.org
 ```
 ### 2. Install dependencies
 ```
-$ cd hacksoc.org-rewrite/
+$ cd hacksoc.org/
 $ npm i
 ```
 ### 3. Run
@@ -64,5 +64,4 @@ This builds the site to the output folder `html/`, you need to run this command 
 [nodejs]: https://nodejs.org/en/
 [Handlebars]: https://handlebarsjs.com/
 [Markdown]: https://daringfireball.net/projects/markdown/syntax
-[Hackyll]: https://github.com/HackSoc/hacksoc.org/tree/master
-<!-- TODO add tag before migration and link here -->
+[Hakyll]: https://github.com/HackSoc/hacksoc.org/tree/hakyll-last
