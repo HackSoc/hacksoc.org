@@ -81,6 +81,11 @@ function servers(dirname, serverTemplate, globalContext) {
     })
 }
 
+/**
+ * Formats a date "Month DD, YYYY"
+ * @param {Date} date
+ * @returns {String} 
+ */
 function formatDate(date) {
     const monthNames = [
         "January", "February", "March",
@@ -162,6 +167,11 @@ function readNews(results, dirname='news') {
     });
 }
 
+/**
+ * Writes news.html and news articles from news object
+ * @param {Object} results object including globalContext, news, and template objects
+ * @param {String} dirname folder to write news to
+ */
 function writeNews(results, dirname='news') {
     // huh, stuff gets real simple when it's sync 🤔
     fse.mkdirpSync(path.join(outDir, dirname));
@@ -189,6 +199,10 @@ function writeNews(results, dirname='news') {
     return Promise.all(promises);
 }
 
+/**
+ * Writes the index page
+ * @param {Object} results object including globalContext, news, and template objects.
+ */
 function writeIndex(results) {
     return fse.writeFile(path.join(outDir, 'index.html'), results.wrapperTemplate(
         Object.assign({
@@ -216,7 +230,7 @@ function getGlobalContext() {
         })
 }
 
-// Main stuff here.       
+// Main stuff here.
 let p_mkOutDir = fse.mkdirp(outDir)
     .then(() => fse.emptyDir(outDir));
 
