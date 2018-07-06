@@ -1,0 +1,9 @@
+:root {
+    --background-color: rgb(243,242,244);
+    --text-color: rgb(33,33,33);
+    --heading-color: rgb(64, 72, 84);
+    --emphasis-color: rgb(38, 78, 135);
+    --de-emphasis-color: rgb(84, 84, 84);
+    --logo-text-color: rgb(68, 68, 68);
+    --logo-emphasis-color: rgb(68, 55, 82);
+}

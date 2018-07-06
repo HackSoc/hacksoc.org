@@ -5,23 +5,24 @@ cite,code { font-style:normal; font-weight:normal; }
 h1,h2 { font-size:100%; font-weight:normal; }
 /* end normalize*/
 
-h2 { font-family: 'Sanchez', serif; margin-top: 16px; color: #404854; font-size: 2em }
+h2 { font-family: 'Sanchez', serif; margin-top: 16px; color: var(--heading-color); font-size: 2em }
 
-span.maintitle{font-family:roboto_slabregular;color:#444444;line-height:1;}
+span.maintitle{font-family:roboto_slabregular;color: var(--logo-text-color);line-height:1;}
 span.largetitle{font-size:7em;}
 span.subtitle{font-size:2em;padding-left:5px;}
+span.subtitle .highlight{color: var(--logo-emphasis-color);}
 a.maintitle:hover{text-decoration:none;}
 
 p { padding: 5px 5px 5px 20px; line-height: 23px; }
-body { font-family: 'Bitstream Vera Sans', sans-serif; font-size: 14px; color: #212121; background-color: #f3f2f4 }
+body { font-family: 'Bitstream Vera Sans', sans-serif; font-size: 14px; color: var(--text-color); background-color: var(--background-color); }
 
 ul, ol { margin-left:4em; }
 li { padding:0.2em;}
 #container { width: 960px; margin: 0 auto; }
 
-header { padding: 20px 50px 15px 50px; border-bottom: dotted #212121 3px; margin-bottom: 16px }
+header { padding: 20px 50px 15px 50px; border-bottom: dotted var(--text-color) 3px; margin-bottom: 16px }
 header #logo { width: 600px; height: 150px; }
-header #uni { float: right; font-style: italic; color: #545454; }
+header #uni { float: right; font-style: italic; color: var(--de-emphasis-color); }
 header p { height: 0 }
 
 nav { position: absolute; top: 0; right: 0 }
@@ -30,8 +31,8 @@ nav ul li { display: block; float: left; text-align: center; margin: 0 6px }
 nav ul li a { display: block; padding: 0.75em 0.5em }
 nav ul li a:hover { position: relative; top: -1px }
 
-a:link, a:visited {color: #264e87; text-decoration: none;}
-a:active, a:hover {color: #264e87; text-decoration: underline;}
+a:link, a:visited {color: var(--emphasis-color); text-decoration: none;}
+a:active, a:hover {color: var(--emphasis-color); text-decoration: underline;}
 
 iframe { display: block; margin: 0 auto }
 
@@ -69,7 +70,7 @@ footer { clear: both; position: relative; height: 3em; margin-top: -3em; padding
 footer h2 { font-size: 1em }
 
 code { font-family: Inconsolata, monospace; font-size: 13px }
-.noticebox { padding: 1em; margin: 0 10em; border: 1px solid #545454; background-color: #dfc9bc; text-align: center }
+.noticebox { padding: 1em; margin: 0 10em; border: 1px solid var(--de-emphasis-color); background-color: #dfc9bc; text-align: center }
 
 .important { text-align: center; font-weight: bold; }
 
@@ -92,7 +93,7 @@ nav#small{
 nav#small > ul > li{
     width:90%;
     margin:4px 5% 0 5%;
-    background-color:#f3f2f4;
+    background-color: var(--background-color);
     padding:0;
 }
 nav#small.expanded{
