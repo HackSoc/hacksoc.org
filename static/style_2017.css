@@ -78,7 +78,7 @@ code { font-family: Inconsolata, monospace; font-size: 13px }
   font-family: 'Bitstream Vera Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Bitstream Vera Sans'), url(/BitstreamVeraSans.ttf) format('ttf');
+  src: local('Bitstream Vera Sans'), url(/static/BitstreamVeraSans.ttf) format('opentype');
 }
 
 nav#small{
