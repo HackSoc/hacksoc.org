@@ -8,7 +8,7 @@ const Markdown = new require('markdown-it')({
     typographer: true // have some nice pretty quotes
 }).use(require('markdown-it-highlightjs'), {auto: true, code: false})
 
-const outDir = 'html'; // TODO cannonicalize
+const outDir = 'html'; // TODO canonicalise?
 
 fse.mkdirpSync(outDir);
 fse.emptyDirSync(outDir);
@@ -16,7 +16,7 @@ fse.emptyDirSync(outDir);
 compileTemplate = template => Handlebars.compile(template.toString('UTF-8'));
 
 /**
- * 
+ * Wraps HTML documents found in dirname with wrapperTemplate and writes them to outDir
  * @param {string} dirname The directory to read HTML content from
  * @param {Handlebars.TemplateDelegate} wrapperTemplate Handlebars template to apply to the content
  * @param {Object} globalContext Context to use for every page
@@ -46,11 +46,13 @@ function regularDir(dirname, wrapperTemplate, globalContext) {
                 .then(html => fse.writeFile(path.join(outDir, filename), html))
             );
         return Promise.all(promises)
-    })
+    }).catch(err => {
+        console.log(`Error processing regular directory ${dirname}/ - ${err}`);
+    });
 }
 
 /**
- * 
+ * Renders Markdown server READMEs found in dirname, wrap with template and write to outDir/dirname/
  * @param {string} dirname name to find Markdown source files
  * @param {Handbars.TemplateDelegate} serverTemplate Handlebars template to make the page
  * @param {Object} globalContext Misc context (navbar, servers, etc)
@@ -78,7 +80,9 @@ function servers(dirname, serverTemplate, globalContext) {
                 
             )
         return fse.mkdirp(path.join(outDir, dirname)).then(Promise.all(promises));
-    })
+    }).catch(err => {
+        console.log(`Error processing server directory ${dirname}/ - ${err}`);
+    });
 }
 
 /**
@@ -87,13 +91,7 @@ function servers(dirname, serverTemplate, globalContext) {
  * @returns {String} 
  */
 function formatDate(date) {
-    const monthNames = [
-        "January", "February", "March",
-        "April", "May", "June", "July",
-        "August", "September", "October",
-        "November", "December"
-      ];
-    return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    return date.toLocaleDateString("en-UK", {month:"long", day:"2-digit", year:"numeric"});
 }
 
 /**
@@ -126,12 +124,16 @@ function minutes(dirname, filename, wrapperTemplate, minuteTemplate, globalConte
                 title: "Minutes"
             }, globalContext))
         ).then(fse.copy(dirname, path.join(outDir, dirname)))
-    })
+    }).catch(err => {
+        console.log(`Error processing minutes directory ${dirname}/ - ${err}`);
+    });
 }
 
 /**
+ * Reads Markdown news articles from dirname and returns an array of news objects
  * @param {Object} results any previous results that this object carries on
  * @param {String} dirname directory to search for news
+ * @return {Promise<Object>} `results` joined with news: {posts: Object[]}
  */
 function readNews(results, dirname='news') {
     const re_date = /^(\d{4})-([01]\d)-([0-3]\d)/;
@@ -163,7 +165,9 @@ function readNews(results, dirname='news') {
                 let finalResult = Object.assign(obj, results)
                 resolve(finalResult);
             })
-        })
+        }).catch(err => {
+            console.log(`Error processing news directory ${dirname}/ - ${err}`);
+        });
     });
 }
 
@@ -173,7 +177,7 @@ function readNews(results, dirname='news') {
  * @param {String} dirname folder to write news to
  */
 function writeNews(results, dirname='news') {
-    // huh, stuff gets real simple when it's sync 🤔
+    // huh, stuff gets real simple when it's sync
     fse.mkdirpSync(path.join(outDir, dirname));
 
     let promises = results.news.posts.map(newsObj =>
@@ -218,6 +222,7 @@ function writeIndex(results) {
 }
 
 /**
+ * Reads context.yaml and returns its contents as an object
  * @returns {Promise<Object>} Resolves to the global context object
  */
 function getGlobalContext() {

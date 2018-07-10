@@ -55,7 +55,7 @@ $ npm i
 ```
 ### 3. Run
 ```
-$ node .
+$ npm start
 ```
 This builds the site to the output folder `html/`, you need to run this command every time the content updates in order to keep the web version up-to-date.
 
