@@ -12,35 +12,15 @@
   <p>Pay in person or <a href="http://www.yusu.org/opportunities/societies/hacksoc">online</a>. All events are open to non-members too!</p>
 </div>
 
-<div id="posts">
-  <ol class="entries">
-    $for(entries)$
-      <li>
-        <a href="$url$">$title$</a>
-        <span class="meta">&mdash;$date$</span>
-        $if(excerpt)$
-          $excerpt$
-        $else$
-          $body$
-        $endif$
-      </li>
-    $endfor$
-  </ol>
+{{{newslist}}}
 
-  <ol class="pages">
-    $if(previousPageNum)$
-      <li><a href="$previousPageUrl$">◀ Newer Entries</a></li>
-    $endif$
-    $if(nextPageNum)$
-      <li><a href="$nextPageUrl$">Older Entries ▶</a></li>
-    $endif$
-  </ol>
-</div>
-
+{{!-- TODO make these alternate with CSS3 nth-child --}}
+{{!-- also TODO put these in context.yaml and add a Handlebars helper --}}
 <div class="infobox">
   <h2>Boardgames and Cake</h2>
   <p>In one of the oldest and noblest traditions of HackSoc, we descend upon a room, play many boardgames, and eat much cake. Both boardgames and cake are brought along by members, so if you do enjoy the events, please consider bringing something along.</p>
 </div>
+
 
 <div class="infobox alternate">
   <h2>CoffeeScript</h2>
