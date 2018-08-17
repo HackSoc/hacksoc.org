@@ -25,7 +25,7 @@ To prevent abuse, accounts are restricted. There are three tiers, which currentl
 All new accounts start out small, but if you need more resources, and can explain why, you may be able to get an upgrade.
 
 <!-- BM AUP 404's - TODO find updated link -->
-All users with shell accounts are required to have read the Bytemark [Acceptable Usage Policy](https://www.bytemark.co.uk/support/terms/aup/). Any users who we (or Bytemark) believe to be in violation of this, or who are otherwise causing any problem which affects other users, will receive a warning, and may lose their account
+All users with shell accounts are required to have read the Bytemark [Acceptable Usage Policy](https://www.bytemark.co.uk/support/terms/aup/). Any users who we (or Bytemark) believe to be in violation of this, or who are otherwise causing any problem which affects other users, will receive a warning, and may lose their account.
 
 ## Hosting
 <!-- this is just plain inaccurate, README.webspace is more up-to-date -->
