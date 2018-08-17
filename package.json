@@ -4,7 +4,8 @@
   "description": "Replacement generator for static pages on HackSoc.org",
   "main": "main.js",
   "scripts": {
-    "mkdir": "mkdir -p minutes html"
+    "mkdir": "mkdir -p minutes news regular servers static html",
+    "start": "npm run mkdir && node ."
   },
   "repository": {
     "type": "git",

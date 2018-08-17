@@ -8,7 +8,7 @@ const Markdown = new require('markdown-it')({
     typographer: true // have some nice pretty quotes
 }).use(require('markdown-it-highlightjs'), {auto: true, code: false})
 
-const outDir = 'html'; // TODO cannonicalize
+const outDir = 'html'; //TODO: canonicalise?
 
 fse.mkdirpSync(outDir);
 fse.emptyDirSync(outDir);
@@ -16,7 +16,7 @@ fse.emptyDirSync(outDir);
 compileTemplate = template => Handlebars.compile(template.toString('UTF-8'));
 
 /**
- * 
+ * Wraps HTML documents found in dirname with wrapperTemplate and writes them to outDir
  * @param {string} dirname The directory to read HTML content from
  * @param {Handlebars.TemplateDelegate} wrapperTemplate Handlebars template to apply to the content
  * @param {Object} globalContext Context to use for every page
@@ -46,11 +46,13 @@ function regularDir(dirname, wrapperTemplate, globalContext) {
                 .then(html => fse.writeFile(path.join(outDir, filename), html))
             );
         return Promise.all(promises)
-    })
+    }).catch(err => {
+        console.log(`Error processing regular directory ${dirname}/ - ${err}`);
+    });
 }
 
 /**
- * 
+ * Renders Markdown server READMEs found in dirname, wrap with template and write to outDir/dirname/
  * @param {string} dirname name to find Markdown source files
  * @param {Handbars.TemplateDelegate} serverTemplate Handlebars template to make the page
  * @param {Object} globalContext Misc context (navbar, servers, etc)
@@ -68,17 +70,25 @@ function servers(dirname, serverTemplate, globalContext) {
                      * {Buffer} content: contents of `filename`
                      */
                     let matter = docmatter(content.toString('UTF-8'));
-
-                    return serverTemplate(
-                        Object.assign({
-                            body: Markdown.render(matter.body)
-                        }, globalContext, yaml.safeLoad(matter.header))
-                    );
+                    if( typeof matter.header !== "undefined" && 
+                        typeof matter.body !== "undefined" && 
+                        matter.body.trim().length > 0 ) {
+                        return serverTemplate(
+                            Object.assign({
+                                body: Markdown.render(matter.body)
+                            }, globalContext, yaml.safeLoad(matter.header))
+                        );
+                    }
+                    else {
+                        console.log(`[warn]\t${filename} has empty content; skipping.`);
+                    }
                 }).then(html => fse.writeFile(path.join(outDir, dirname, filename.replace(/\.md$/i,".html")), html))
                 
             )
         return fse.mkdirp(path.join(outDir, dirname)).then(Promise.all(promises));
-    })
+    }).catch(err => {
+        console.log(`Error processing server directory ${dirname}/ - ${err}`);
+    });
 }
 
 /**
@@ -87,13 +97,7 @@ function servers(dirname, serverTemplate, globalContext) {
  * @returns {String} 
  */
 function formatDate(date) {
-    const monthNames = [
-        "January", "February", "March",
-        "April", "May", "June", "July",
-        "August", "September", "October",
-        "November", "December"
-      ];
-    return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    return date.toLocaleDateString("en-UK", {month:"long", day:"2-digit", year:"numeric"});
 }
 
 /**
@@ -109,14 +113,21 @@ function minutes(dirname, filename, wrapperTemplate, minuteTemplate, globalConte
         let minutes = listing.filter(l => /\.pdf$/.test(l))
                         .map(fn => {
                             let m = /^(\d{4}-\d\d-\d\d)-([a-z0-9 ]+)\.pdf$/i.exec(fn);
-
-                            return {
-                                url: path.join(dirname, fn),
-                                meeting: m[2],
-                                date: m[1],
-                                date_t: new Date(m[1])
+                            if(m) {
+                                return {
+                                    url: path.join(dirname, fn),
+                                    meeting: m[2],
+                                    date: m[1],
+                                    date_t: new Date(m[1]) // Impossible dates (31st Feb) approximated by Date (-> 2nd Mar)
+                                }
                             }
-                        }).sort((f1, f2) => Math.sign(f1.date_t - f2.date_t));
+                            else {
+                                console.log(`[warn]\t${fn} has invalid filename; skipping.`)
+                                return null;
+                            }
+                        })
+                        .filter(m => !!m) // null return is falsy
+                        .sort((f1, f2) => Math.sign(f1.date_t - f2.date_t));
                         // Has the potential to have meeting on the same date in the wrong order
                         // Cross that bridge when etc
 
@@ -126,12 +137,16 @@ function minutes(dirname, filename, wrapperTemplate, minuteTemplate, globalConte
                 title: "Minutes"
             }, globalContext))
         ).then(fse.copy(dirname, path.join(outDir, dirname)))
-    })
+    }).catch(err => {
+        console.log(`Error processing minutes directory ${dirname}/ - ${err}`);
+    });
 }
 
 /**
+ * Reads Markdown news articles from dirname and returns an array of news objects
  * @param {Object} results any previous results that this object carries on
  * @param {String} dirname directory to search for news
+ * @return {Promise<Object>} `results` joined with news: {posts: Object[]}
  */
 function readNews(results, dirname='news') {
     const re_date = /^(\d{4})-([01]\d)-([0-3]\d)/;
@@ -140,30 +155,47 @@ function readNews(results, dirname='news') {
             let promises = listing.map(fn => fse.readFile(path.join(dirname,fn))
                 .then(content => {
                     let matter = docmatter(content.toString('UTF-8'));
-                    let header = yaml.safeLoad(matter.header);
-                    let match_date = re_date.exec(fn);
-
-                    let htBody = Markdown.render(matter.body);
-                    let htMatch = /^(<p>[^]*?<\/p>)/i.exec(htBody.trim());
-                    let date_t = new Date(match_date[0])
-                    return {
-                        body: htBody,
-                        title: header.title,
-                        date: formatDate(date_t),
-                        date_t: date_t,
-                        url: `${dirname}/${fn.replace(/\.md$/i,'.html')}`,
-                        excerpt: htMatch[1]
-                    };
+                    if( typeof matter.header !== "undefined" && 
+                        typeof matter.body !== "undefined" && 
+                        matter.body.trim().length > 0 ) {
+                                
+                        let header = yaml.safeLoad(matter.header);
+                        let match_date = re_date.exec(fn);
+                        if(match_date) {
+                            let htBody = Markdown.render(matter.body);
+                            let htMatch = /^(<p>[^]*?<\/p>)/i.exec(htBody.trim());
+                            let date_t = new Date(match_date[0])
+                            return {
+                                body: htBody,
+                                title: header.title,
+                                date: formatDate(date_t),
+                                date_t: date_t,
+                                url: `${dirname}/${fn.replace(/\.md$/i,'.html')}`,
+                                excerpt: htMatch?htMatch[1]:htBody
+                            };
+                        }
+                        else {
+                            console.log(`[warn]\t${fn} has invalid filename; skipping.`);
+                            return null;
+                        }
+                    }
+                    else {
+                        console.log(`[warn]\t${fn} has empty content; skipping.`);
+                        // if we move to a proper logging solution this can be warn or info level.
+                        return null
+                    }
                 })
             );
-            return Promise.all(promises).then(news => {
+            return Promise.all(promises).then(posts => {
                 let obj = {
-                    news: {posts: news.sort((a,b) => Math.sign(b.date_t - a.date_t))}
+                    news: {posts: posts.filter(p=>!!p).sort((a,b) => Math.sign(b.date_t - a.date_t))}
                 };
                 let finalResult = Object.assign(obj, results)
                 resolve(finalResult);
             })
-        })
+        }).catch(err => {
+            console.log(`Error processing news directory ${dirname}/ - ${err}`);
+        });
     });
 }
 
@@ -173,7 +205,7 @@ function readNews(results, dirname='news') {
  * @param {String} dirname folder to write news to
  */
 function writeNews(results, dirname='news') {
-    // huh, stuff gets real simple when it's sync 🤔
+    // huh, stuff gets real simple when it's sync
     fse.mkdirpSync(path.join(outDir, dirname));
 
     let promises = results.news.posts.map(newsObj =>
@@ -218,6 +250,7 @@ function writeIndex(results) {
 }
 
 /**
+ * Reads context.yaml and returns its contents as an object
  * @returns {Promise<Object>} Resolves to the global context object
  */
 function getGlobalContext() {
@@ -251,15 +284,23 @@ let p_contextAndTemplates = Promise.all(
         fse.readFile('templates/server.handlebars').then(compileTemplate),
         fse.readFile('templates/article.handlebars').then(compileTemplate),
         fse.readFile('templates/index.handlebars').then(compileTemplate)
-    ])
-    .then(results => ({
-        globalContext: results[0],
-        wrapperTemplate: results[1],
-        minutesTemplate: results[2],
-        newslistTemplate: results[3],
-        serverTemplate: results[4],
-        articleTemplate: results[5],
-        indexTemplate: results[6]
+    ]) 
+    .then(([ // Take array of results
+        globalContext,
+        wrapperTemplate,
+        minutesTemplate,
+        newslistTemplate,
+        serverTemplate,
+        articleTemplate,
+        indexTemplate
+    ]) => ({ // Map to object with named keys
+        globalContext,
+        wrapperTemplate,
+        minutesTemplate,
+        newslistTemplate,
+        serverTemplate,
+        articleTemplate,
+        indexTemplate
     }))
 
     
