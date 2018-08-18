@@ -6,7 +6,7 @@ This build system is based on [Node.js][nodejs] and [Handlebars]. It replaces th
 ## Writing content
 
 ### Index/home page
-As this includes the most recent news articles, editing the homepage is done through `index.handlebars`. The 5 most recent news articles are rendered via `newslist.handlebars`, then `index.handlebars` itself is rendered, and finally passed to `wrapper.handlebars`. Note when adding events that every other `div.infobox` must also have the `alternate` attribute.
+As this includes the most recent news articles, editing the homepage is done through `index.handlebars`. The 5 most recent news articles are rendered via `newslist.handlebars`, then `index.handlebars` itself is rendered, and finally passed to `wrapper.handlebars`.
 
 ### 'Regular' pages
 These can be found in `regular/`, and consist of a YAML header and a HTML body, which is inserted into the template `wrapper.handlebars`.
