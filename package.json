@@ -1,6 +1,6 @@
 {
   "name": "hacksoc.org",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "description": "Replacement generator for static pages on HackSoc.org",
   "main": "main.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/HackSoc/hacksoc.org.git"
   },
   "author": "Luke Moll",
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/HackSoc/hacksoc.org/issues"
   },

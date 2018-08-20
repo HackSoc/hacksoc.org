@@ -7,6 +7,20 @@ const Markdown = new require('markdown-it')({
     html: true, // enable HTML in Markdown
     typographer: true // have some nice pretty quotes
 }).use(require('markdown-it-highlightjs'), {auto: true, code: false})
+const exec = require('child_process').exec;
+
+function cmd(command) {
+    return new Promise((resolve,reject) => {
+        exec(command, (err, stdout, stderr) => {
+            if(err) {
+                reject(err);
+            }
+            else {
+                resolve([stdout,stderr])
+            }
+        });
+    });
+}
 
 const outDir = 'html'; //TODO: canonicalise?
 
@@ -254,13 +268,24 @@ function writeIndex(results) {
  * @returns {Promise<Object>} Resolves to the global context object
  */
 function getGlobalContext() {
-    return fse.readFile('templates/context.yaml')
+    return Promise.all([
+        fse.readFile('templates/context.yaml')
         .then(contents => {
             /**
              * {Buffer} contents: the contents of the YAML file
              */
             return yaml.safeLoad(contents.toString('UTF-8'));
-        })
+        }),
+        cmd("git rev-parse HEAD").then(([stdout,stderr]) => {
+            return {commit:stdout.trim()};
+        }),
+        Promise.resolve({builddate: new Date().toString()})
+    ]).then(([yamlContext,gitResult,builddate]) => {
+        return Object.assign(yamlContext,gitResult,builddate);
+    }).catch(err => {
+        console.log(`Error getting global context: ${err}`);
+    })
+    
 }
 
 // Main stuff here.
