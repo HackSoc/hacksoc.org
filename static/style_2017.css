@@ -7,7 +7,7 @@ h1,h2 { font-size:100%; font-weight:normal; }
 
 h2 { font-family: 'Sanchez', serif; font-display: swap; margin-top: 16px; color: var(--heading-color); font-size: 2em }
 
-span.maintitle{font-family:roboto_slabregular; font-display: block; color: var(--logo-text-color);line-height:1;}
+span.maintitle{font-family:roboto_slabregular; font-display: swap; color: var(--logo-text-color);line-height:1;}
 span.largetitle{font-size:7em;}
 span.subtitle{font-size:2em;padding-left:5px;}
 span.subtitle .highlight{color: var(--logo-emphasis-color);}
