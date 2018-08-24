@@ -276,7 +276,7 @@ function getGlobalContext() {
              */
             return yaml.safeLoad(contents.toString('UTF-8'));
         }),
-        cmd("git rev-parse HEAD").then(([stdout,stderr]) => {
+        cmd(`git log -1 --format=format:"Commit: %H%nAuthor: %an%nCommit date: %cd%nMessage: %s%n%b"`).then(([stdout,stderr]) => {
             return {commit:stdout.trim()};
         }),
         Promise.resolve({builddate: new Date().toString()})
