@@ -151,6 +151,12 @@ ul.minutes > li iframe {
     height: 700px;
 }
 
+p.no-minutes {
+    font-style: italic;
+    text-align: center;
+    color: #555;
+}
+
 /* Media queries for small screens (mobile) */
 @media screen and (max-width: 960px) {
     div#container{width:100%}

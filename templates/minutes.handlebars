@@ -1,4 +1,5 @@
 
+{{#if this}}
 <ul class="minutes">
     {{#each this}}
         <li>
@@ -10,3 +11,6 @@
         </li>
     {{/each}}
 </ul>
+{{else}}
+<p class="no-minutes">No minutes to display</p>
+{{/if}}
