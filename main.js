@@ -342,8 +342,8 @@ let p_contextAndTemplates = Promise.all(
 
     p_contextAndTemplates.then(obj => {
         let p_news = readNews(obj, 'news');
-        p_news.then(writeNews).then(()=>console.log("Writen news!"));
-        p_news.then(writeIndex).then(()=>console.log("Writen index!"));
+        p_news.then(writeNews).then(()=>console.log("Written news!"));
+        p_news.then(writeIndex).then(()=>console.log("Written index!"));
     });
     
 
