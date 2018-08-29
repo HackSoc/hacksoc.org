@@ -50,7 +50,7 @@ dd { margin-left: 2em }
 #server_list a:last-child::after { content: "" }
 
 .infobox { width: 630px; clear: both; margin-top: 15px; margin-bottom: 32px; /*border: 1px solid #000*/ }
-.infobox:nth-child(odd) {float: right; text-align: right}
+.infobox:nth-child(even) {float: right; text-align: right}
 .infobox h2 { margin-top: 0 }
 
 #posts { padding-bottom: 12px; border-bottom: 1px solid black }
