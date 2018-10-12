@@ -14,6 +14,8 @@ Storage shares are available to paid members of the society*, in order to reques
 Storage shares are **50GB** per member.  
 Storing pornographic material or content that infringes copyright is stricly forbidden; members found to be in breach of these rules will have their account removed (including other HackSoc accounts), and may be reported to the University.
 
+**users must also be current members of the university.*
+
 ## Connecting
 Mounting shares is done over SSH. There is no shell access (see [runciman] server).
 
