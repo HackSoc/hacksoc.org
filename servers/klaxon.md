@@ -95,3 +95,8 @@ function build() {
 ```
 
 This is a source distribution of z3, so it needs to be compiled first. If you're not sure how to compile something, check if there is an Arch package in the [repositories](https://www.archlinux.org/packages) or the [AUR](https://aur.archlinux.org/). Arch PKGBUILD files are easy to read and somebody else has already figured out all the build system quirks for you.
+
+## Sponsorship
+This server has been very kindly given to us by Bytemark, who are a wonderful company and you should definitely check them out.
+
+[![Bytemark](https://runciman.hacksoc.org/bytemark_logo_411_x_31.png)](https://www.bytemark.co.uk/r/hacksoc)
