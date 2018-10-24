@@ -1,12 +1,13 @@
 ---
 hostname: latona
-fqdn: latonahacksoc.york.ac.uk
+fqdn: latona.hacksoc.org
 name: Storage Server
+uoy: yes
 ---
 
 <!-- name is temporary before names are voted on -->
 
-Latona is a storage server maintained by [HackSoc](https://www.hacksoc.org) for the use of members of the society. 
+Latona <!-- let's go away--> is a storage server maintained by [HackSoc](https://www.hacksoc.org) for the use of members of the society. 
 
 ## Storage
 Storage shares are available to paid members of the society*, in order to request one either speak to a member of the committee or email [hack@yusu.org](mailto:hack@yusu.org).
