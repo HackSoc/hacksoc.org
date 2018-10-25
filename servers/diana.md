@@ -1,5 +1,5 @@
 ---
-hostname: Diana
+hostname: diana
 fqdn: diana.hacksoc.org
 name: General-purpose server
 uoy: yes

@@ -1,5 +1,5 @@
 ---
-hostname: Apollo
+hostname: apollo
 fqdn: apollo.hacksoc.org
 name: General-purpose server
 uoy: yes
