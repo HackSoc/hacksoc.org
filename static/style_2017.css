@@ -29,7 +29,6 @@ nav { position: absolute; top: 0; right: 0 }
 nav ul { list-style-type: none; padding: 0; margin: 0 }
 nav ul li { display: block; float: left; text-align: center; margin: 0 6px }
 nav ul li a { display: block; padding: 0.75em 0.5em }
-nav ul li a:hover { position: relative; top: -1px }
 
 a:link, a:visited {color: var(--emphasis-color); text-decoration: none;}
 a:active, a:hover {color: var(--emphasis-color); text-decoration: underline;}
