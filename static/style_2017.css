@@ -1,11 +1,13 @@
 /* normalize */
-body,div,dl,dt,dd,ul,ol,li,h1,h2,pre,p { margin:0; padding:0; }
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,pre,p { margin:0; padding:0; }
 img { border:0; }
 cite,code { font-style:normal; font-weight:normal; }
-h1,h2 { font-size:100%; font-weight:normal; }
+h1,h2,h3 { font-size:100%; font-weight:normal; }
 /* end normalize*/
 
-h2 { font-family: 'Sanchez', serif; font-display: swap; margin-top: 16px; color: var(--heading-color); font-size: 2em }
+h2, h3 { font-family: 'Sanchez', serif; font-display: swap; margin-top: 16px; color: var(--heading-color);}
+h2 {font-size: 2em;}
+h3 {font-size: 1.5em; margin-left: 5px;}
 
 span.maintitle{font-family:roboto_slabregular; font-display: swap; color: var(--logo-text-color);line-height:1;}
 span.largetitle{font-size:7em;}
@@ -125,7 +127,9 @@ h1.titleheading{
     .infobox:nth-child(odd), .infobox {width:100%;text-align:center;} 
     /* overly verbose selector because cascading isn't working properly */
     .infobox >p{padding:5px 5px 5px 5px;}
-    h2{width:100%;text-align:center;font-size:1.4em;}
+    h2,h3{width:100%;text-align:center;}
+    h2{font-size:1.4em;}
+    h3{font-size: 1.2em;}
 }
 @media screen and (min-width: 740px) {
     img#logo{width:150px;height:150px;display:inline-block;}
