@@ -27,7 +27,7 @@ sshfs <hacksocuser>@latonahacksoc: <mountpoint>
 ```
 Where `<hacksocuser>` is your HackSoc username, and `<mountpoint>` is the folder on the local computer you want to mount your share to. This must be an empty directory. You may run into issues if you are using a computer managed by ITS (eg `csteach1` or a lab PC) and try to mount to a folder in your home directory, as your home directory itself is mounted from another server. The most robust method is to create a folder in `/tmp` to mount to, and then optionally create a symlink in your home directory.
 
-## Off-campus
+### Off-campus
 Latona is hosted in the University Data Center, which means it is behind the campus firewall. In order to access it off-campus, use the uni [SSH service]. Once registered with the SSH service, you can use a command like the following to mount Latona.
 
 ```
