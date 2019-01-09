@@ -10,7 +10,7 @@ uoy: yes
 Latona <!-- let's go away--> is a storage server maintained by [HackSoc](https://www.hacksoc.org) for the use of members of the society. 
 
 ## Storage
-Storage shares are available to paid members of the society*, in order to request one either speak to a member of the committee or email [hack@yusu.org](mailto:hack@yusu.org).
+Storage shares are available to paid members of the society*, in order to request one either message your [infrastructure officer][about] or email [hack@yusu.org](mailto:hack@yusu.org).
 
 Storage shares are **50GB** per member.  
 Storing pornographic material or content that infringes copyright is stricly forbidden; members found to be in breach of these rules will have their account removed (including other HackSoc accounts), and may be reported to the University.
@@ -36,5 +36,6 @@ sshfs <hacksocuser>@latonahacksoc: <mountpoint> -o ProxyJump=<itsuser>@ssh.york.
 Where `<hacksocuser>` is your HackSoc username, `<mountpoint>` is the mount point on your computer (as before), and `<itsuser>` is your IT Services username (same as your student email address).  
 The SSH service accepts public key authentication, so you may wish to add your public keys to `~/.ssh/known_hosts` on your university account to speed up this step.
 
+[about]: https://hacksoc.org/about.html
 [runciman]: https://runciman.hacksoc.org
 [SSH service]: https://www.york.ac.uk/it-services/services/ssh/
