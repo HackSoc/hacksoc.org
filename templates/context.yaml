@@ -2,7 +2,13 @@ servers:
   - name: runciman
     href: https://runciman.hacksoc.org
   - name: klaxon
-    href: http://klaxon.hacksoc.org
+    href: https://klaxon.hacksoc.org
+  - name: latona
+    href: https://latona.hacksoc.org
+  - name: apollo
+    href: https://apollo.hacksoc.org
+  - name: diana
+    href: https://diana.hacksoc.org
 nav:
   - text: about us
     href: /about.html
