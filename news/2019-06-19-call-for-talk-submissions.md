@@ -17,7 +17,7 @@ you'd like to talk about, and an abstract.
 If you'd like to do a talk, then please sign up
 [with this Google Form](https://docs.google.com/forms/d/1VOwHCRijffDxy6qvQ47_Gbn3fFod0sIPxhWxJt7e0CQ/edit?ts=5d08c2b9)!
 
-The deadline for this call for talks is the 15th of September. We will be doing
+The deadline for this call for talks is the 15th of August. We will be doing
 a second call for abstracts in the autumn term.
 
 We'd love to see plenty of interesting submissions!
