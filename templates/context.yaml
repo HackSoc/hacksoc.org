@@ -14,6 +14,8 @@ nav:
     href: /about.html
   - text: minutes
     href: /minutes.html
+  - text: talks
+    href: /talks.html
   - text: github
     href: //www.github.com/HackSoc/
   - text: slack/irc chat
