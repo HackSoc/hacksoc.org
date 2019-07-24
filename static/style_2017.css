@@ -80,7 +80,7 @@ code { font-family: Inconsolata, monospace; font-display: swap; font-size: 13px 
   font-family: 'Bitstream Vera Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Bitstream Vera Sans'), url(/static/BitstreamVeraSans.ttf) format('opentype');
+  src: local('Bitstream Vera Sans'), url(/static/fonts/BitstreamVeraSans.ttf) format('opentype');
 }
 
 nav#small{
