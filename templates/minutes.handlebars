@@ -1,5 +1,16 @@
-<ul>
+
+{{#if this}}
+<ul class="minutes">
     {{#each this}}
-        <li><a href="{{url}}">{{date}} {{meeting}}</a> (url: <code>{{url}}</code>)   </li>
+        <li>
+            <span onclick="this.parentElement.classList.toggle('open')">{{date}} {{meeting}}</span>
+            (url: <a href="{{url}}" target="#">{{url}}</a>)
+            <div class="hidden">
+                <iframe src="/{{url}}"></iframe>
+            </div>
+        </li>
     {{/each}}
 </ul>
+{{else}}
+<p class="no-minutes">No minutes to display</p>
+{{/if}}
