@@ -276,7 +276,7 @@ function getGlobalContext() {
              */
             return yaml.safeLoad(contents.toString('UTF-8'));
         }),
-        cmd("git rev-parse HEAD").then(([stdout,stderr]) => {
+        cmd(`git log -1 --format=format:"Commit: %H%nAuthor: %an%nCommit date: %cd%nMessage: %s%n%b"`).then(([stdout,stderr]) => {
             return {commit:stdout.trim()};
         }),
         Promise.resolve({builddate: new Date().toString()})
@@ -342,8 +342,8 @@ let p_contextAndTemplates = Promise.all(
 
     p_contextAndTemplates.then(obj => {
         let p_news = readNews(obj, 'news');
-        p_news.then(writeNews).then(()=>console.log("Writen news!"));
-        p_news.then(writeIndex).then(()=>console.log("Writen index!"));
+        p_news.then(writeNews).then(()=>console.log("Written news!"));
+        p_news.then(writeIndex).then(()=>console.log("Written index!"));
     });
     
 
