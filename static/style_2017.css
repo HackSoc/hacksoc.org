@@ -135,9 +135,8 @@ ul.minutes > li::before {
     padding-right: 5px;
 }
 
-ul.minutes > li > span:hover{
-    text-decoration: underline;
-}
+ul.minutes > li > a:first-of-type { color: var(--text-color); }
+
 ul.minutes > li div.hidden {display: none;}
 
 ul.minutes > li.open::before {content: "-";}
@@ -149,9 +148,10 @@ ul.minutes > li.open div.hidden {
 ul.minutes > li iframe {
     width: 500px;
     height: 700px;
+    margin: 0;
 }
 
-p.no-minutes {
+p.minutes-help {
     font-style: italic;
     text-align: center;
     color: #555;
