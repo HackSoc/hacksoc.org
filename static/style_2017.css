@@ -116,6 +116,48 @@ h1.titleheading{
     padding-bottom:30px;
 }
 
+
+/* Style for minutes */
+ul.minutes {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+ul.minutes > li {
+    padding-left: 1em;
+    text-indent: -1em;
+}
+
+ul.minutes > li::before {
+    content: "+";
+    font-family: monospace;
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+ul.minutes > li > a:first-of-type { color: var(--text-color); }
+
+ul.minutes > li div.hidden {display: none;}
+
+ul.minutes > li.open::before {content: "-";}
+ul.minutes > li.open div.hidden {
+    display: block;
+    padding-left: 1em;
+}
+
+ul.minutes > li iframe {
+    width: 500px;
+    height: 700px;
+    margin: 0;
+}
+
+p.minutes-help {
+    font-style: italic;
+    text-align: center;
+    color: #555;
+}
+
 /* Media queries for small screens (mobile) */
 @media screen and (max-width: 960px) {
     div#container{width:100%}
