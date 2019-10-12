@@ -2,6 +2,7 @@
     width: 100%;
     --cal-border: #444;
     --cal-cell-default: white;
+    --cal-cell-today: #a491b8;
     --cal-cell-disabled: #888;
     --cal-date-header: #443752;
     --cal-cover: #00000055;
@@ -43,6 +44,7 @@
     padding: 0;
 }
 #calendar table td.disabled { background-color: var(--cal-cell-disabled); }
+#calendar table td.today { background-color: var(--cal-cell-today) }
 #calendar table td .date-header {
     height: 14px;
     background-color: var(--cal-date-header);

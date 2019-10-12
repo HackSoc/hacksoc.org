@@ -73,11 +73,13 @@ async function loadCalendar(year, month) {
             // Populate top of cell with date
             tableCell.querySelector('.date-header').innerHTML = dataCell.day;
 
-            // Disable the cell if it's not part of this month
-            if (dataCell.in_month) {
-                tableCell.classList.remove('disabled');
-            } else {
+            // Style the cell
+            tableCell.classList.remove('today');
+            tableCell.classList.remove('disabled');
+            if (!dataCell.in_month) {
                 tableCell.classList.add('disabled');
+            } else if (dataCell.date == new Date().toISOString().slice(0, 10)) {
+                tableCell.classList.add('today');
             }
 
             // Reset events text and add each event
