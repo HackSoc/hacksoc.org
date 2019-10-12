@@ -1,8 +1,12 @@
 <div id="calendar">
   <h2>Events</h2>
   <div id="calendar-controls">
-    <button onclick="calendarPreviousMonth()">Previous</button>
-    <button onclick="calendarNextMonth()">Next</button>
+    <button onclick="calendarPreviousMonth()">&lt;</button>
+    <button onclick="calendarNextMonth()">&gt;</button>
+    <h3 id="calendar-current-date">X</h3>
+  </div>
+  <div style="position: relative; width: 0; height: 0;">
+    <div id="calendar-loading-cover"></div>
   </div>
   <table cellspacing="0">
     <thead>

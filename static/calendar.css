@@ -4,6 +4,16 @@
     --cal-cell-default: white;
     --cal-cell-disabled: #888;
     --cal-date-header: #443752;
+    --cal-cover: #00000055;
+}
+#calendar #calendar-controls #calendar-current-date {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+#calendar #calendar-loading-cover {
+    position: absolute;
+    background-color: var(--cal-cover);
 }
 #calendar table {
     width: 100%;

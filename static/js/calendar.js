@@ -4,10 +4,29 @@
  * @param {Number} month The month for the calendar, between 1 and 12.
  */
 async function loadCalendar(year, month) {
+    coverCalendar();
+
     // Write data attributes for next/previous month
     const calendarElement = document.getElementById('calendar');
     calendarElement.dataset.month = month;
     calendarElement.dataset.year = year;
+
+    // Write title
+    const months = {
+        1: 'January',
+        2: 'February',
+        3: 'March',
+        4: 'April',
+        5: 'May',
+        6: 'June',
+        7: 'July',
+        8: 'August',
+        9: 'September',
+        10: 'October',
+        11: 'November',
+        12: 'December'
+    }
+    document.getElementById('calendar-current-date').innerHTML = `${months[month]} ${year}`
     
     // Load data from API
     // https://api.hacksoc.org/calendar
@@ -69,6 +88,8 @@ async function loadCalendar(year, month) {
             }); 
         }
     }
+
+    uncoverCalendar();
 };
 
 /**
@@ -103,6 +124,23 @@ async function calendarPreviousMonth() {
     }
 
     await loadCalendar(newYear, newMonth);
+}
+
+function coverCalendar() {
+    const tbody = document.querySelector('#calendar tbody');
+    const cover = document.getElementById('calendar-loading-cover');
+    cover.setAttribute('style', `
+        display: block;
+        top: ${tbody.offsetTop}px;
+        left: ${tbody.offsetLeft}px;
+        height: ${tbody.clientHeight}px;
+        width: ${tbody.clientWidth}px;
+    `);
+}
+
+function uncoverCalendar() {
+    const cover = document.getElementById('calendar-loading-cover');
+    cover.setAttribute('style', 'display: none;');
 }
 
 loadCalendar(new Date().getFullYear(), new Date().getMonth() + 1);
