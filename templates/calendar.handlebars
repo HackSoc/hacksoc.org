@@ -1,0 +1,32 @@
+<div id="calendar">
+  <h2>Events</h2>
+  <div id="calendar-controls">
+    <button onclick="calendarPreviousMonth()">Previous</button>
+    <button onclick="calendarNextMonth()">Next</button>
+  </div>
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+        <th>Sun</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#times 6}}
+      <tr>
+        {{#times 7}}
+        <td>
+          <div class="date-header"></div>
+          <div class="events"></div>
+        </td>
+        {{/times}}
+      </tr>
+      {{/times}}
+    </tbody>
+  </table>
+</div>

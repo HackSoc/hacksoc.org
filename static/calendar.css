@@ -1,0 +1,43 @@
+#calendar {
+    width: 100%;
+    --cal-border: #444;
+    --cal-cell-default: white;
+    --cal-cell-disabled: #888;
+    --cal-date-header: #443752;
+}
+#calendar table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+#calendar table tr.hidden { display: none; }
+#calendar table td {
+    border: 1px solid var(--cal-border);
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: var(--cal-cell-default);
+    overflow: hidden;
+
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    height: 80px;
+    /*
+    HACK: not actually obeyed by good browsers due to table-layout, but still
+    required to trigger it and make all the columns the same width
+    */
+    width: 14%;
+    vertical-align: top;
+    padding: 0;
+}
+#calendar table td.disabled { background-color: var(--cal-cell-disabled); }
+#calendar table td .date-header {
+    height: 14px;
+    background-color: var(--cal-date-header);
+    color: white;
+    padding: 1px;
+    width: calc(100% - 2px);
+    font-size: 12px;
+}
