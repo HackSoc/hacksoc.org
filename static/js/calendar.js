@@ -1,4 +1,15 @@
 /**
+ * Determines whether a given date string represents today's date.
+ * @param {String} date A date string, in the format YYYY-MM-DD.
+ * @returns True if the given date is today.
+ */
+function isDateStringToday(date) {
+    const today = new Date();
+    [year, month, day] = date.split('-').map(x => parseInt(x));
+    return today.getFullYear() == year && today.getMonth() + 1 == month && today.getDate() == day;
+}
+
+/**
  * Reloads the HTML calendar.
  * @param {Number} year The year for the calendar.
  * @param {Number} month The month for the calendar, between 1 and 12.
@@ -78,7 +89,7 @@ async function loadCalendar(year, month) {
             tableCell.classList.remove('disabled');
             if (!dataCell.in_month) {
                 tableCell.classList.add('disabled');
-            } else if (dataCell.date == new Date().toISOString().slice(0, 10)) {
+            } else if (isDateStringToday(dataCell.date)) {
                 tableCell.classList.add('today');
             }
 
