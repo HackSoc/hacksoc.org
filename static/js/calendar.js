@@ -195,7 +195,7 @@ function displayInfoPanel(target, event) {
 
     document.getElementById('calendar-info-title').innerText = event.summary;
     document.getElementById('calendar-info-when').innerText =
-        `${event.when_human.start_time}—${event.when_human.end_time} ${event.when_human.long_start_date}`
+        `${event.when_human.start_time}–${event.when_human.end_time} ${event.when_human.long_start_date}`
 
     const desc = document.getElementById('calendar-info-description');
     desc.innerHTML = event.description;
