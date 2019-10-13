@@ -32,7 +32,7 @@
 }
 
 #calendar table {
-    width: 100%;
+    width: calc(100% - 1px);
     table-layout: fixed;
     border-collapse: collapse;
     border-spacing: 0;
