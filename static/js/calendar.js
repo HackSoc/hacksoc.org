@@ -184,13 +184,13 @@ function displayInfoPanel(target, event) {
     target.parentElement.appendChild(infoPanelContainer);
     infoPanelContainer.classList.add('showing');
 
+    infoPanel.setAttribute("style", "");
+
     // Check that the box is inside the calendar horizontally, and translate it
     // if not
     if (infoPanel.getBoundingClientRect().right > calendar.getBoundingClientRect().right) {
         const difference = infoPanel.getBoundingClientRect().right - calendar.getBoundingClientRect().right;
         infoPanel.setAttribute("style", `transform: translateX(-${difference}px);`);
-    } else {
-        infoPanel.setAttribute("style", "");
     }
 
     document.getElementById('calendar-info-title').innerText = event.summary;
