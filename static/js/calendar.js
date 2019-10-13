@@ -15,6 +15,7 @@ function isDateStringToday(date) {
  * @param {Number} month The month for the calendar, between 1 and 12.
  */
 async function loadCalendar(year, month) {
+    closeInfoPanel();
     coverCalendar();
 
     // Write data attributes for next/previous month
@@ -202,7 +203,10 @@ function displayInfoPanel(target, event) {
  * Close the event info panel. The panel stays where it was in DOM.
  */
 function closeInfoPanel() {
-    document.getElementById('calendar-info-container').classList.remove('showing');
+    const calendar = document.getElementById('calendar');
+    const infoPanelContainer = document.getElementById('calendar-info-container');
+    infoPanelContainer.classList.remove('showing');
+    calendar.appendChild(infoPanelContainer);
 }
 
 loadCalendar(new Date().getFullYear(), new Date().getMonth() + 1);
