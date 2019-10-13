@@ -7,22 +7,27 @@
     --cal-date-header: #443752;
     --cal-cover: #00000055;
 }
+
 #calendar #calendar-controls #calendar-current-date {
     display: inline;
     padding: 0;
     margin: 0;
 }
+
 #calendar #calendar-loading-cover {
     position: absolute;
     background-color: var(--cal-cover);
 }
+
 #calendar table {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 #calendar table tr.hidden { display: none; }
+
 #calendar table td {
     border: 1px solid var(--cal-border);
     border-collapse: collapse;
@@ -43,12 +48,15 @@
     vertical-align: top;
     padding: 0;
 }
+
 #calendar table td a {
     text-decoration: none;
     color: var(--text-color);
 }
+
 #calendar table td.disabled { background-color: var(--cal-cell-disabled); }
-#calendar table td.today { background-color: var(--cal-cell-today) }
+#calendar table td.today    { background-color: var(--cal-cell-today); }
+
 #calendar table td .date-header {
     height: 14px;
     background-color: var(--cal-date-header);
@@ -57,14 +65,17 @@
     width: calc(100% - 2px);
     font-size: 12px;
 }
+
 #calendar #calendar-info-container {
     position: absolute;
     filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
     display: none;
 }
+
 #calendar #calendar-info-container.showing {
     display: block;
 }
+
 #calendar #calendar-info {
     position: absolute;
     width: 300px;
@@ -75,15 +86,18 @@
     word-wrap: break-word;
     white-space: normal;
 }
+
 #calendar #calendar-info #calendar-info-close {
     float: right;
     font-weight: bold;
 }
+
 #calendar #calendar-info h3 {
     padding: 0;
     padding-right: 20px;
     margin: 0;
 }
+
 #calendar #calendar-info #calendar-info-description {
     padding-top: 10px;
 }
