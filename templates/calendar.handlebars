@@ -1,8 +1,16 @@
 <div id="calendar">
   <h2>Events</h2>
   <div id="calendar-controls">
-    <button onclick="calendarPreviousMonth()" aria-label="Previous Month">⯇</button>
-    <button onclick="calendarNextMonth()" aria-label="Next Month">⯈</button>
+    <button onclick="calendarPreviousMonth()" aria-label="Previous Month">
+      <svg height="16" width="16">
+        <polygon points="16,0 16,16, 0,8" style="fill:white;" />
+      </svg> 
+    </button>
+    <button onclick="calendarNextMonth()" aria-label="Next Month">
+      <svg height="16" width="16">
+        <polygon points="0,0 0,16, 16,8" style="fill:white;" />
+      </svg>
+    </button>
     <h3 id="calendar-current-date">X</h3>
   </div>
   <div style="position: relative; width: 0; height: 0;">

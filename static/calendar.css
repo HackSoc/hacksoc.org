@@ -13,9 +13,7 @@
     padding: 5px;
     margin-right: 5px;
     background-color: var(--cal-primary);
-    color: white;
     border: 0;
-    font-size: 18px;
     line-height: 0.8;
     cursor: pointer;
 }
