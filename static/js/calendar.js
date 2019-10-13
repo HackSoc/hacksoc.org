@@ -97,7 +97,7 @@ async function loadCalendar(year, month) {
             tableCell.querySelector('.events').innerHTML = '';
             dataCell.events.forEach(event => {
                 const link = document.createElement("a");
-                link.innerHTML = `<b>${event.when_human.start_time}</b> <br/>${event.summary}`;
+                link.innerHTML = `<b>${event.when_human.start_time}</b> <br class="time-sep" />${event.summary}`;
                 link.href = "#";
                 link.onclick = (e) => {
                     e.preventDefault();

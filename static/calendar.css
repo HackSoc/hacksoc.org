@@ -59,7 +59,7 @@
     padding: 0;
 }
 
-#calendar table td br {
+#calendar table td br.time-sep {
     display: none;
 }
 
@@ -118,7 +118,7 @@
 }
 
 @media screen and (max-width: 740px) {
-    #calendar table td br {
+    #calendar table td br.time-sep {
         display: inline;
     }
 }
