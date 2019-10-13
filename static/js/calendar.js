@@ -178,9 +178,20 @@ function uncoverCalendar() {
  * @param {Object} event 
  */
 function displayInfoPanel(target, event) {
-    const infoPanel = document.getElementById('calendar-info-container');
-    target.parentElement.appendChild(infoPanel);
-    infoPanel.classList.add('showing');
+    const calendar = document.getElementById('calendar');
+    const infoPanelContainer = document.getElementById('calendar-info-container');
+    const infoPanel = document.getElementById('calendar-info');
+    target.parentElement.appendChild(infoPanelContainer);
+    infoPanelContainer.classList.add('showing');
+
+    // Check that the box is inside the calendar horizontally, and translate it
+    // if not
+    if (infoPanel.getBoundingClientRect().right > calendar.getBoundingClientRect().right) {
+        const difference = infoPanel.getBoundingClientRect().right - calendar.getBoundingClientRect().right;
+        infoPanel.setAttribute("style", `transform: translateX(-${difference}px);`);
+    } else {
+        infoPanel.setAttribute("style", "");
+    }
 
     document.getElementById('calendar-info-title').innerText = event.summary;
     document.getElementById('calendar-info-when').innerText =
