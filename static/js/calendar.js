@@ -94,10 +94,20 @@ async function loadCalendar(year, month) {
             }
 
             // Reset events text and add each event
-            tableCell.querySelector('.events').innerHTML = '';
+            while (tableCell.querySelector('.events').firstChild) {
+                tableCell.removeChild(firstChild);
+            }
             dataCell.events.forEach(event => {
-                tableCell.querySelector('.events').innerHTML +=
-                    `<b>${event.when_human.start_time}</b> ${event.summary}<br/>`;
+                const link = document.createElement("a");
+                link.innerHTML = `<b>${event.when_human.start_time}</b> ${event.summary}`;
+                link.href = "#";
+                link.onclick = (e) => {
+                    e.preventDefault();
+                    displayInfoPanel(link, event);
+                    return false;
+                };
+
+                tableCell.querySelector('.events').appendChild(link);
             }); 
         }
     }
@@ -154,6 +164,27 @@ function coverCalendar() {
 function uncoverCalendar() {
     const cover = document.getElementById('calendar-loading-cover');
     cover.setAttribute('style', 'display: none;');
+}
+
+/**
+ * Shows the event info panel. The panel is moved in the DOM to the parent of
+ * the given target.
+ * @param {HTMLElement} target 
+ * @param {Object} event 
+ */
+function displayInfoPanel(target, event) {
+    const infoPanel = document.getElementById('calendar-info-container');
+    target.parentElement.appendChild(infoPanel);
+    infoPanel.classList.add('showing');
+
+    document.getElementById('calendar-info-title').innerText = event.summary;
+    document.getElementById('calendar-info-when').innerText =
+        `${event.when_human.start_time}—${event.when_human.end_time} ${event.when_human.long_start_date}`
+    document.getElementById('calendar-info-description').innerHTML = event.description;
+}
+
+function closeInfoPanel() {
+    document.getElementById('calendar-info-container').classList.remove('showing');
 }
 
 loadCalendar(new Date().getFullYear(), new Date().getMonth() + 1);
