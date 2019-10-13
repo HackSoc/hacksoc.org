@@ -61,6 +61,10 @@
     padding: 0;
 }
 
+#calendar table td br {
+    display: none;
+}
+
 #calendar table td a {
     text-decoration: none;
     color: var(--text-color);
@@ -113,4 +117,10 @@
 
 #calendar #calendar-info #calendar-info-description {
     padding-top: 10px;
+}
+
+@media screen and (max-width: 740px) {
+    #calendar table td br {
+        display: inline;
+    }
 }
