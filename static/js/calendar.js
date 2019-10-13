@@ -40,7 +40,6 @@ async function loadCalendar(year, month) {
     document.getElementById('calendar-current-date').innerHTML = `${months[month]} ${year}`
     
     // Load data from API
-    // https://api.hacksoc.org/calendar
     const calendarJson = await fetch(`https://api.hacksoc.org/calendar/events/${year}/${month}/calendar`);
     const calendar = await calendarJson.json();
 
@@ -149,6 +148,9 @@ async function calendarPreviousMonth() {
     await loadCalendar(newYear, newMonth);
 }
 
+/**
+ * Covers the calendar's table for when it is loading.
+ */
 function coverCalendar() {
     const tbody = document.querySelector('#calendar tbody');
     const cover = document.getElementById('calendar-loading-cover');
@@ -161,6 +163,9 @@ function coverCalendar() {
     `);
 }
 
+/**
+ * Removes the calendar's cover for when it is done loading.
+ */
 function uncoverCalendar() {
     const cover = document.getElementById('calendar-loading-cover');
     cover.setAttribute('style', 'display: none;');
@@ -183,6 +188,9 @@ function displayInfoPanel(target, event) {
     document.getElementById('calendar-info-description').innerHTML = event.description;
 }
 
+/**
+ * Close the event info panel. The panel stays where it was in DOM.
+ */
 function closeInfoPanel() {
     document.getElementById('calendar-info-container').classList.remove('showing');
 }
