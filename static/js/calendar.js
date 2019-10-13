@@ -107,6 +107,7 @@ async function loadCalendar(year, month) {
                 };
 
                 tableCell.querySelector('.events').appendChild(link);
+                tableCell.querySelector('.events').appendChild(document.createElement('br'));
             }); 
         }
     }
