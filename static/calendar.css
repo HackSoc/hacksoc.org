@@ -96,6 +96,7 @@
     padding: 0;
     padding-right: 20px;
     margin: 0;
+    text-align: unset;
 }
 
 #calendar #calendar-info #calendar-info-description {
