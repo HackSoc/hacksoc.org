@@ -93,9 +93,7 @@ async function loadCalendar(year, month) {
             }
 
             // Reset events text and add each event
-            while (tableCell.querySelector('.events').firstChild) {
-                tableCell.removeChild(firstChild);
-            }
+            tableCell.querySelector('.events').innerHTML = '';
             dataCell.events.forEach(event => {
                 const link = document.createElement("a");
                 link.innerHTML = `<b>${event.when_human.start_time}</b> ${event.summary}`;
