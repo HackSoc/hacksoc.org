@@ -122,3 +122,10 @@
         display: inline;
     }
 }
+
+@media screen and (max-width: 700px) {
+    /* The h3 centering that happens at this size causes horizontal scrolling */
+    #calendar #calendar-info h3 {
+        padding-right: 0;
+    }
+}
