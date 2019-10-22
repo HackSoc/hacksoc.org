@@ -263,7 +263,9 @@ function writeIndex(results) {
                 calendar: results.calendarTemplate()
             }, results.globalContext))
             // no title, handled by wrapper.handlebars
-        }, results.globalContext)
+        }, 
+        {css: ['/static/calendar.css']},
+        results.globalContext)
     ));
 }
 

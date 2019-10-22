@@ -39,6 +39,13 @@
     <link href="/static/fonts/robotoslab_regular_macroman/stylesheet.css" rel="stylesheet" type="text/css" />
     <link href="/static/hacksoc-colors.css" rel="stylesheet" type="text/css" />
     <link href="/static/style_2017.css" rel="stylesheet" type="text/css" />
+    {{#if css}}
+    <!-- page-specific CSS sheets -->
+    {{#each css}}
+    <link href="{{this}}" rel="stylesheet" type="text/css">
+    {{/each}}
+    <!-- end specific CSS -->
+    {{/if}}
   </head>
   <body>
     <div id="container">
