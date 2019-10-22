@@ -200,7 +200,6 @@ function coverCalendar() {
     const tbody = document.querySelector('#calendar tbody');
     const cover = document.getElementById('calendar-loading-cover');
     cover.setAttribute('style', `
-        display: block;
         top: ${tbody.offsetTop}px;
         left: ${tbody.offsetLeft}px;
         height: ${tbody.clientHeight}px;
