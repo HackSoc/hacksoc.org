@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'DejaVu Sans Condensed';
+    font-style: normal;
+    font-weight: 400;
+    src: local('DejaVu Sans Condensed'), url(/static/fonts/DejaVuSansCondensed.ascii.ttf) format('opentype');
+}
+
 #calendar {
     width: 100%;
     --cal-border: #444;
@@ -6,6 +13,8 @@
     --cal-cell-disabled: #CCC;
     --cal-primary: #443752;
     --cal-cover: #00000055;
+
+    font-size: 14px;
 }
 
 #calendar #calendar-controls button {
@@ -45,7 +54,8 @@
     background-color: var(--cal-cell-default);
     overflow: hidden;
 
-    font-size: 12px;
+    font-family: 'DejaVu Sans Condensed', 'Bitstream Vera Sans', sans-serif;
+    font-size: 14px;
     white-space: nowrap;
     text-overflow: ellipsis;
 
@@ -78,6 +88,10 @@
     padding: 1px;
     width: calc(100% - 2px);
     font-size: 12px;
+}
+
+#calendar table td .events {
+    padding: 0 2px 0 2px;
 }
 
 #calendar #calendar-info-container {
