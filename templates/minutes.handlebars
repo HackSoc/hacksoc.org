@@ -1,10 +1,13 @@
 
 {{#if this}}
+<p class="minutes-help">
+    Click on the titles to expand a preview of minutes. Click [pdf] to download or open the full minutes in a new tab.
+</p>
 <ul class="minutes">
     {{#each this}}
         <li>
-            <span onclick="this.parentElement.classList.toggle('open')">{{date}} {{meeting}}</span>
-            (url: <a href="{{url}}" target="#">{{url}}</a>)
+            <a href="javascript:void()" onclick="this.parentElement.classList.toggle('open')">{{date}} <strong>{{meeting}}</strong></a>
+            [<a href="{{url}}" target="#">pdf</a>]
             <div class="hidden">
                 <iframe src="/{{url}}"></iframe>
             </div>
@@ -12,5 +15,5 @@
     {{/each}}
 </ul>
 {{else}}
-<p class="no-minutes">No minutes to display</p>
+<p class="minutes-help">No minutes to display</p>
 {{/if}}
