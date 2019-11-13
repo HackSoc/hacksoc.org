@@ -98,7 +98,6 @@
     background-color: var(--cal-primary);
     color: white;
     padding: 1px;
-    width: calc(100% - 2px);
     font-size: 12px;
 }
 
