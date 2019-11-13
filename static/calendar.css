@@ -139,6 +139,11 @@
     text-align: unset;
 }
 
+#calendar #calendar-info #calendar-info-where, #calendar #calendar-info #calendar-info-when {
+    display: inline-block;
+    margin-top: 5px;
+}
+
 #calendar #calendar-info #calendar-info-description {
     padding-top: 10px;
 }
