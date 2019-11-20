@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "mkdir": "mkdir -p minutes news regular servers static html",
-    "start": "npm run mkdir && node ."
+    "start": "npm run mkdir && node .",
+    "test": "http-server -a 'localhost' -d false -i true -o -c-1 html/"
   },
   "repository": {
     "type": "git",
@@ -20,10 +21,13 @@
   "dependencies": {
     "docmatter": "^1.1.0",
     "fs-extra": "^6.0.1",
-    "handlebars": "^4.1.2",
+    "handlebars": "^4.5.3",
     "highlight.js": "^9.15.8",
     "js-yaml": "^3.13.1",
     "markdown-it": "^8.4.2",
     "markdown-it-highlightjs": "^3.0.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1"
   }
 }
