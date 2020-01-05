@@ -9,9 +9,66 @@ title: Talks
   Attending talks is a great way to get a diverse look at what a degree in computer science can be, whether it's more focused on industry or academia. 
 </p>
 <br>
-<h2>Autumn Term talks</h2>
+<h2>Spring Term talks</h2>
+<h3><em>Building Applications at Planet Scale - Developing for the Cloud</em> by Daniel Vaughan</h3>
+<b>January 23rd (Spring Week 3)</b>
+<p> 
+<u>Abstract:</u> Cloud-Native Computing has drastically changed the speed and efficiency with which developers can deploy their applications. This talk will demonstrate how technologies like Docker & Kubernetes make use of abstraction, isolation & orchestration to improve the developer experience. Participants will learn about the issues of traditional application deployment, and go on a journey through containerisation, automation & scalability to learn how to build a modern application in the cloud. This presentation is interactive - get ready to stress-test a website! 
+</p>
 <br>
-<h3><em>git --intro: A Primer on Version Control</em> by Josh Holland</h3>
+<h3><em>What's Python really doing?</em> by Aaron Christiansen</h3>
+<b>January 30th (Spring Week 4)</b>
+<p>
+<u>Abstract:</u> Python is one of the most well-known programming languages around. Its simplicity, elegant syntax, and huge range of libraries has propelled it to popularity. But what is actually happening when you run your Python code?
+</p><p>
+Underneath its minimalistic syntax, Python has a huge amount of complex heavily-optimised machinery. In this talk, I'll be taking you on a detailed tour of how Python's internals work, all the way from parsing your code through to executing it as bytecode.
+</p>
+<br>
+<h3><em>AUTOSAR, in my CAR?!?! It’s more likely than you think.</em> by Jacob Allen</h3>
+<b>February 6th (Spring Week 5)</b>
+<p>
+<u>Abstract:</u> Cars are everywhere, and while we may think of them as the single, complete, deadly high-speed tin-cans they appear to be, underneath lies a much more complex system. A car is not a single unit, but a massively complex distributed real-time system with hundreds of computers, all connected together. How did it get this way? And how does it even function with so much complexity?
+</p><p>
+In this talk I will touch on the past, present and future of automotive software, with particular focus on the standard which dominates the automotive software industry today: AUTOSAR.
+</p>
+<br>
+<h3><em>"The program counter is always off by 2" and other strange computer design choices.</em> by Daniel Bailey</h3>
+<b>February 13th (Spring Week 6)</b>
+<p>
+<u>Abstract:</u> When people design CPUs and software interfaces, they make decisions. Decisions that cut costs, simplify hardware, provide backwards compatibility, or shave a few cycles off a time consuming task. This talk will be a fun and [hopefully] insightful tour of some decisions that, in hindsight, were a little bit ... "funky".
+Excitement includes:
+<ul>
+ <li> Why is the PC value always off by 2? </li>
+ <li> What!? A reboot is triggered by deliberately causing three unrecoverable faults in a row? </li>
+ <li> Setting this bit to 0 makes every instruction cause an unrecoverable fault </li>
+</ul>
+</p>
+<br>
+<h3><em>AI and Searle's Chinese Room</em> by Rach Arnold</h3>
+<b>February 20th (Spring Week 7)</b>
+<p>
+<u>Abstract:</u> Imagine there’s a sealed room where you can post questions, written in Chinese, into the room and receive the answers / responses back (also in Chinese). The natural assumption is that, the person in the sealed room who is responding to your questions, is able to understand what they are responding to (i.e. they can read and understand Chinese). However, in actual fact, inside the sealed room is a person with a basket full of Chinese symbols and a rule book; the rule book contains a series of instructions for the person inside the room. For example, if someone posts X symbol to the person, then he or she needs to post back Y symbol, even though the person in the room does not understand the symbols in question. This is Searle’s Chinese Room. This famous analogy brings into question the status of Artificial Intelligence and whether such a thing is possible. In my talk, I will be discussing the significance of Searle’s Chinese Room, how it links to AI, and possible responses to Searle’s conclusion. 
+</p>
+<br>
+<h3><em>"git is not an SCM", and other git trivia</em> by Josh Holland</h3>
+<b>February 27th (Spring Week 8)</b>
+<p>
+<u>Abstract:</u> You might have heard of git, the "distributed version-control system". You might have used git yourself; you might even have come to the talk about git I gave last term. But did you know that, according to git's author, it's not a version-control system at all?
+</p><p>
+In this talk, I'll explain git's internals – how it actually works under the covers, talking about heads, refs, tree-ishes, @, and various other git concepts. We'll briefly cover git's origins, and the design decisions that made it stand out from other version-control systems, along with a smattering of "interesting" facts about git which you might not have known.
+</p><p>
+NB: this talk doesn't assume that you know anything about git, but I won't be explaining how to use it. You'll get more out of the talk if you already have some experience of working with git.
+</p>
+<br>
+<h3><em>What Happens When You Don't Leave Academia</em> by Matt Windsor</h3>
+<b>March 5th (Spring Week 9)</b>
+<p>
+<u>Abstract:</u> At my previous talk, I was asked 'what even is a PhD?'  By convoluted way of answer, this talk tries to condense the last 5 or so years of my life into 30 minutes of discourse about: PhDs, why you should do one, why you shouldn't do one, life after the PhD, the good and bad sides of not self-yeeting out of academia after the undergraduate degree, and the constant never-ending quest for caffeination. 
+</p>
+<br>
+<h2>Past talks</h2>
+<h3>Autumn Term 2019</h3>
+<h4><em>git --intro: A Primer on Version Control</em> by Josh Holland</h4>
 <b>October 3rd (Autumn Week 1)</b>
 <p> 
 <u>Abstract:</u> Have you ever wanted to travel through time? Maybe you've wanted to see what your code looked like half an hour ago, *before* you broke the tests? Or have you ever needed to collaborate with multiple people on one codebase, even without an internet connection? Version control can help with these problems and more. 
@@ -20,7 +77,7 @@ title: Talks
 This talk will cover the version-control system git, which has now been the most widely-used version control system amongst software developers for over five years. In no particular order, we'll cover why you might want to use git, how to get started, and (at least conceptually) how git actually works.
 </p>
 <br>
-<h3><em>Behind the scenes of GOV.UK</em> by Michael Walker</h3>
+<h4><em>Behind the scenes of GOV.UK</em> by Michael Walker</h4>
 <b>October 10 (Autumn Week 2) <em>in RCH/248+250 (The Lakehouse)</em></b>
 <p>
 <u>Abstract:</u> GOV.UK is the single website for government to communicate with the public.  But how do over 3000 government publishers distribute information to over 60 million users?  Behind the scenes GOV.UK is a Ruby on Rails powered, microservice-using, highly-available,  distributed publishing system.  Come along to learn about just how big GOV.UK is, what it looks like behind the scenes, some neat public APIs you can use, and why GOV.UK developers talk about badgers, seals, and spaniels.
@@ -29,7 +86,7 @@ This talk will cover the version-control system git, which has now been the most
 <em>At the request of the speaker, this talk will not be recorded.</em>
 </p>
 <br>
-<h3><em>Break a Hacker's Mind - Web Application Vulnerabilities Exposed</em> by Morgan Stanley</h3>
+<h4><em>Break a Hacker's Mind - Web Application Vulnerabilities Exposed</em> by Morgan Stanley</h4>
 <b>October 17 (Autumn Week 3) <em>in RCH/248+250 (The Lakehouse)</em></b>
 <p>
 <u>Abstract:</u> Join us for a special interactive guest lecture on Cyber Security with the Security Architecture team at Morgan Stanley.<br>
@@ -41,13 +98,13 @@ This talk has also been delivered at industry forums, universities and even the 
 <em>At the request of the speaker, this talk will not be recorded.</em>
 </p>
 <br>
-<h3><em>The History of LEGO Video Games</em> by David Norman</h3>
+<h4><em>The History of LEGO Video Games</em> by David Norman</h4>
 <b>October 24th (Autumn Week 4)</b>
 <p>
 <u>Abstract:</u> In the past 22 years, LEGO Video Games have become an important and rather unique genre in themselves. In this talk, we will look at how they have changed over time, the different styles and directions that have been attempted, and their cultural impact.
 </p>
 <br>
-<h3><em>Can computers compile complex code correctly?</em> by Matt Windsor</h3>
+<h4><em>Can computers compile complex code correctly?</em> by Matt Windsor</h4>
 <b>November 7th (Autumn Week 6)</b>
 <p>
 <u>Abstract:</u> Concurrent programs that make use of C11-style atomic actions are hard to reason about, with the formal statement of the behaviours such programs can exhibit -- the C11 memory model -- being notoriously unwieldy and permissive.  Worse, CPU architectures have their own memory models, so compilers must map from C to machine code in a way that preserves the original program's C11 guarantees inside the machine model.
@@ -56,7 +113,7 @@ This talk has also been delivered at industry forums, universities and even the 
 In this talk, I explore the above situation, then discuss and demonstrate ACT, a toolbox for investigating whether C11 compilers such as gcc and clang actually do this mapping correctly.
 </p>
 <br>
-<h3><em>Communicate! Pair Programming, sketchnotes and compassion</em> by Miki Mokrysz</h3>
+<h4><em>Communicate! Pair Programming, sketchnotes and compassion</em> by Miki Mokrysz</h4>
 <b>November 21st (Autumn Week 8)</b>
 <p>
 <b><em>This talk will not take place this term. We apologise for the inconvenience and are trying to reschedule it</em>.</b>
@@ -67,7 +124,7 @@ In this talk, I explore the above situation, then discuss and demonstrate ACT, a
 This talk gives you ways to communicate technical topics without tiresome documents or formality. We'll look at the joys and perils of pair programming. We'll try out sketchnoting (drawing systems to explain them.) And we'll cover how to empathise with what other people need.
 </p>
 <br>
-<h3><em>Where it all went wrong (or why programming sucks)</em> by Sam Hand</h3>
+<h4><em>Where it all went wrong (or why programming sucks)</em> by Sam Hand</h4>
 <b>December 5th (Autumn Week 10)</b>
 <p>
 <u>Abstract:</u> The word “programmer” usually refers to a person who instructs a computer through the use of some textual formal language. 
