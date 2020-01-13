@@ -11,6 +11,7 @@
     --cal-cell-default: white;
     --cal-cell-today: #a491b8;
     --cal-cell-disabled: #CCC;
+    --cal-cell-today-disabled: #b0a8b9;
     --cal-primary: #443752;
     --cal-cover: #000000ad;
 
@@ -90,8 +91,9 @@
     color: var(--text-color);
 }
 
-#calendar table td.disabled { background-color: var(--cal-cell-disabled); }
-#calendar table td.today    { background-color: var(--cal-cell-today); }
+#calendar table td.disabled       { background-color: var(--cal-cell-disabled); }
+#calendar table td.today          { background-color: var(--cal-cell-today); }
+#calendar table td.today.disabled { background-color: var(--cal-cell-today-disabled); }
 
 #calendar table td .date-header {
     height: 14px;

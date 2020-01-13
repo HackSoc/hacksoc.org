@@ -131,11 +131,12 @@ async function loadCalendar(year, month) {
 
             // Style the cell
             tableCell.classList.remove('today');
+            if (isDateStringToday(dataCell.date)) {
+                tableCell.classList.add('today');
+            }
             tableCell.classList.remove('disabled');
             if (!dataCell.in_month) {
                 tableCell.classList.add('disabled');
-            } else if (isDateStringToday(dataCell.date)) {
-                tableCell.classList.add('today');
             }
 
             // Reset events text and add each event
