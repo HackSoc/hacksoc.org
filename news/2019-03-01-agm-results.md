@@ -8,10 +8,10 @@ We had another AGM!
 
  - **Chair**: Jacob Allen
  - **Secretary**: Adam Birtles
- - **Treasurer**: Josh Holland
+ - **Treasurer**: Ash Holland
  - **Press and Publicity Officer**: Aaron Christiansen
  - **Academic Events Offcier**: Charlotte Wringe
- - **Social Secretary**: Emma Holwill
+ - **Social Secretary**: Emmet Holwill
  - **Infrastructure Officer**: Luke Moll
  - **Ordinary Members**:
    - Ezekiel Bethel
@@ -30,7 +30,7 @@ All positions were voted on using the Alternative Vote method, with the exceptio
 |------------------|------------------|
 | **Jacob Allen**  | 13 (54.2%)       |
 | Neel Chotai      | 11 (45.8%)       |
-| Emma Holwill     | -                |
+| Emmet Holwill    | -                |
 | RON              | -                |
 
 24 valid votes were cast.
@@ -46,10 +46,10 @@ All positions were voted on using the Alternative Vote method, with the exceptio
 
 ### Treasurer
 
-| Candidate name   | Votes (Total 23) |
-|------------------|------------------|
-| **Josh Holland** | 22 (95.7%)       |
-| RON              | 1 (4.3%)         |
+| Candidate name  | Votes (Total 23) |
+|-----------------|------------------|
+| **Ash Holland** | 22 (95.7%)       |
+| RON             | 1 (4.3%)         |
 
 23 valid votes were cast, 1 abstention.
 
@@ -73,11 +73,11 @@ All positions were voted on using the Alternative Vote method, with the exceptio
 
 ### Social Secretary
 
-|  Candidate name  | Votes (total 20) |
-|------------------|------------------|
-| **Emma Holwill** | 11 (55.0%)       |
-| Sam Hand         | 9 (45.0%)        |
-| RON              | -                |
+|  Candidate name   | Votes (total 20) |
+|-------------------|------------------|
+| **Emmet Holwill** | 11 (55.0%)       |
+| Sam Hand          | 9 (45.0%)        |
+| RON               | -                |
 
 20 valid votes were cast, 4 abstentions
 
