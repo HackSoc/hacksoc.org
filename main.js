@@ -231,6 +231,7 @@ function writeNews(results, dirname='news') {
                         date: newsObj.date,
                         body: newsObj.body
                     }),
+                    excerpt: newsObj.excerpt,
                     title: newsObj.title,                    
                 }, results.globalContext)
             )
