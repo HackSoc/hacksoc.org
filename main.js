@@ -29,6 +29,9 @@ fse.emptyDirSync(outDir);
 
 compileTemplate = template => Handlebars.compile(template.toString('UTF-8'));
 
+// Count-based iteration helper for Handlebars. Used for generating the rows of the calendar.
+Handlebars.registerHelper('times', (n, block) => [...Array(n).keys()].map(i => block.fn(i)).join(''))
+
 /**
  * Wraps HTML documents found in dirname with wrapperTemplate and writes them to outDir
  * @param {string} dirname The directory to read HTML content from
@@ -257,10 +260,13 @@ function writeIndex(results) {
                 newslist: results.newslistTemplate({
                     posts: results.news.posts.slice(0,5),
                     link: true
-                }) // first 5 news articles (if present)
+                }), // first 5 news articles (if present)
+                calendar: results.calendarTemplate()
             }, results.globalContext))
             // no title, handled by wrapper.handlebars
-        }, results.globalContext)
+        }, 
+        {css: ['/static/calendar.css']},
+        results.globalContext)
     ));
 }
 
@@ -309,6 +315,7 @@ let p_contextAndTemplates = Promise.all(
         fse.readFile('templates/newslist.handlebars').then(compileTemplate),
         fse.readFile('templates/server.handlebars').then(compileTemplate),
         fse.readFile('templates/article.handlebars').then(compileTemplate),
+        fse.readFile('templates/calendar.handlebars').then(compileTemplate),
         fse.readFile('templates/index.handlebars').then(compileTemplate)
     ]) 
     .then(([ // Take array of results
@@ -318,6 +325,7 @@ let p_contextAndTemplates = Promise.all(
         newslistTemplate,
         serverTemplate,
         articleTemplate,
+        calendarTemplate,
         indexTemplate
     ]) => ({ // Map to object with named keys
         globalContext,
@@ -326,6 +334,7 @@ let p_contextAndTemplates = Promise.all(
         newslistTemplate,
         serverTemplate,
         articleTemplate,
+        calendarTemplate,
         indexTemplate
     }))
 

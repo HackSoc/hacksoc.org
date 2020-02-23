@@ -1,0 +1,56 @@
+<div id="calendar">
+  <h2>Events</h2>
+  <div id="calendar-controls">
+    <button onclick="calendarPreviousMonth()" aria-label="Previous Month">
+      <svg height="16" width="16">
+        <polygon points="16,0 16,16, 0,8" style="fill:white;" />
+      </svg> 
+    </button>
+    <button onclick="calendarNextMonth()" aria-label="Next Month">
+      <svg height="16" width="16">
+        <polygon points="0,0 0,16, 16,8" style="fill:white;" />
+      </svg>
+    </button>
+    <h3 id="calendar-current-date">X</h3>
+  </div>
+  <div style="position: relative; width: 0; height: 0;">
+    <div id="calendar-loading-cover">
+      <img src="/static/images/calendar-loader.svg" class="loader" />
+    </div>
+  </div>
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+        <th>Sun</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#times 6}}
+      <tr>
+        {{#times 7}}
+        <td>
+          <div class="date-header"></div>
+          <div class="events"></div>
+        </td>
+        {{/times}}
+      </tr>
+      {{/times}}
+    </tbody>
+  </table>
+  <div id="calendar-info-container">
+    <div id="calendar-info">
+      <a href="javascript:closeInfoPanel()" aria-label="Close Event Info Panel" id="calendar-info-close">&times;</a>
+      <h3 id="calendar-info-title"></h4>
+      <b id="calendar-info-when"></b>
+      <br>
+      <b id="calendar-info-where"></b>
+      <div id="calendar-info-description"></div>
+    </div>
+  </div>
+</div>
