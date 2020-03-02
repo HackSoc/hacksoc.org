@@ -8,6 +8,7 @@ const Markdown = new require('markdown-it')({
     typographer: true // have some nice pretty quotes
 }).use(require('markdown-it-highlightjs'), {auto: true, code: false})
 const exec = require('child_process').exec;
+require("handlebars-helpers")();
 
 function cmd(command) {
     return new Promise((resolve,reject) => {
@@ -31,9 +32,6 @@ compileTemplate = template => Handlebars.compile(template.toString('UTF-8'));
 
 // Count-based iteration helper for Handlebars. Used for generating the rows of the calendar.
 Handlebars.registerHelper('times', (n, block) => [...Array(n).keys()].map(i => block.fn(i)).join(''))
-
-// Helper to roughly strip HTML out of text. This is NOT designed to be secure!
-Handlebars.registerHelper('strip-tags', str => str.replace(/<[^>]*>?/gm, ""));
 
 /**
  * Wraps HTML documents found in dirname with wrapperTemplate and writes them to outDir
