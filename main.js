@@ -32,6 +32,9 @@ compileTemplate = template => Handlebars.compile(template.toString('UTF-8'));
 // Count-based iteration helper for Handlebars. Used for generating the rows of the calendar.
 Handlebars.registerHelper('times', (n, block) => [...Array(n).keys()].map(i => block.fn(i)).join(''))
 
+// Helper to roughly strip HTML out of text. This is NOT designed to be secure!
+Handlebars.registerHelper('strip-tags', str => str.replace(/<[^>]*>?/gm, ""));
+
 /**
  * Wraps HTML documents found in dirname with wrapperTemplate and writes them to outDir
  * @param {string} dirname The directory to read HTML content from
