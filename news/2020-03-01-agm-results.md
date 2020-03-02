@@ -124,5 +124,5 @@ Therefore the Droop Quota was 6.
 | **Charlotte Carrington**  | **6 (Elected)** |             |              |              |                    |
 | **Jacob Allen**           | **8 (Elected)** |             |              |              |                    |
 | Jamie Quigley             | 3               | 3.5         | 3.5          | 3.5          | **Excluded**       |
-| **Mahir Rahman**          | 3               | 3.75        | 3.5          | 4.25         | **6.75 (Elected)** |
+| **Mahir Rahman**          | 3               | 3.75        | 3.75         | 4.25         | **6.75 (Elected)** |
 | Re-Open Nominations (RON) | 0               | 0           | **Excluded** |              |                    |
