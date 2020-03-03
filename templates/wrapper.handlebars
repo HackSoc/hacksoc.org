@@ -20,7 +20,7 @@
     <meta property="og:title"                       content="{{#if title}}{{title}}{{else}}HackSoc &ndash; the computer science society{{/if}}">
 
     {{#if excerpt}} 
-      <meta property="og:description"               content="{{excerpt}}">  
+      <meta property="og:description"               content="{{sanitize excerpt}}">  
       <meta property="og:type"                      content="article">
     {{else}}
       <meta property="og:type"                      content="website">
