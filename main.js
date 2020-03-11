@@ -8,7 +8,7 @@ const Markdown = new require('markdown-it')({
     typographer: true // have some nice pretty quotes
 }).use(require('markdown-it-highlightjs'), {auto: true, code: false})
 const exec = require('child_process').exec;
-require("handlebars-helpers")();
+require("handlebars-helpers").html();
 
 function cmd(command) {
     return new Promise((resolve,reject) => {
