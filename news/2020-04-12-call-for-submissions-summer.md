@@ -7,7 +7,7 @@ Submissions for our Summer Term talks are now open!
 Do you have a niche interest you enjoy talking about? Then why not come give a
 talk for us; we welcome a range of topics and would be glad to have you!
 
-The call is for a half hour talk, followed by fifteen minutes of questions. Talks will take place on Thursdays of every week, between 7:00 and 8:00. You don't have to have the talk written already - give us a general idea of what you'd like to talk about, and an abstract.
+The call is for a half hour talk, followed by fifteen minutes of questions. Talks will take place on Thursdays of every week, between 7:00pm and 8:00pm. You don't have to have the talk written already - give us a general idea of what you'd like to talk about, and an abstract.
 
 Due to COVID-19, our talks won't be taking place in person this term. Instead
 we will ask the speaker to pre-record their talk, which members will then watch
