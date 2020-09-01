@@ -2,7 +2,8 @@
 title: The 2020 Fresher's Fair
 ---
 
-YUSU have released [a statement](https://www.yorkvision.co.uk/news/exclusive/01/09/2020) about how Freshers' Fair will go forth this year. We have opinions.
+YUSU have released [a statement][vision] about how Freshers' Fair will
+go forth this year. We have opinions.
 
 Going into this academic year, during the current unprecedented times,
 we were, as a student society, aware that there would be sacrifices.
@@ -58,3 +59,5 @@ members more than we value the membership fees they may bring, as, we
 would hope, do all societies. Societies are, after all, groups for 
 the betterment of our members. We hoped that the same was true of 
 YUSU, it would seem not.
+
+[vision]: https://www.yorkvision.co.uk/news/exclusive/01/09/2020
