@@ -2,6 +2,8 @@
 title: The 2020 Fresher's Fair
 ---
 
+YUSU have released [a statement](https://www.yorkvision.co.uk/news/exclusive/01/09/2020) about how Freshers' Fair will go forth this year. We have opinions.
+
 Going into this academic year, during the current unprecedented times,
 we were, as a student society, aware that there would be sacrifices.
 Our new student takeup and retention were likely to be lower, our 
@@ -10,7 +12,12 @@ other considerations. We planned for these as best we could, and where
 we couldn’t make things work, we reformed them or cut them.
 
 One of our biggest concessions to the current times has been, and will
-continue to be for quite some time, in-person events. Our society revolves around the knowledge and enthusiasm of our members, and our members’ willingness to involve others, both in our academic events and our social ones, and this is harder online than it is in person. In the end, however, the safety of the members of our society comes before our need for members, or our want for physical events.
+continue to be for quite some time, in-person events. Our society 
+revolves around the knowledge and enthusiasm of our members, and our 
+members’ willingness to involve others, both in our academic events 
+and our social ones, and this is harder online than it is in person. 
+In the end, however, the safety of the members of our society comes 
+before our need for members, or our want for physical events.
 
 Given our outlook, an outlook shared by other societies we’re sure, 
 we were more than a bit shocked to see YUSU choosing to go ahead with
@@ -18,6 +25,7 @@ plans for an in-person Freshers’ Fair. We were even more shocked to
 learn about the plans from York Vision, rather than from YUSU directly.
 It seems YUSU cares more about publicity than the societies it 
 represents being well informed.
+
 On face value the plans for an in-person Freshers’ Fair make 
 reasonable accommodations for the current situation, and aim to 
 protect freshers, which they do to a reasonable degree. Even going
