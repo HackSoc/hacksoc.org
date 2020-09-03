@@ -11,7 +11,7 @@ We had another AGM!
  - **Treasurer**: Ash Holland
  - **Press and Publicity Officer**: Aaron Christiansen
  - **Academic Events Offcier**: Charlotte Wringe
- - **Social Secretary**: Emmet Holwill
+ - **Social Secretary**: Ethan Holwill
  - **Infrastructure Officer**: Luke Moll
  - **Ordinary Members**:
    - Ezekiel Bethel
@@ -30,7 +30,7 @@ All positions were voted on using the Alternative Vote method, with the exceptio
 |------------------|------------------|
 | **Jacob Allen**  | 13 (54.2%)       |
 | Neel Chotai      | 11 (45.8%)       |
-| Emmet Holwill    | -                |
+| Ethan Holwill    | -                |
 | RON              | -                |
 
 24 valid votes were cast.
@@ -75,7 +75,7 @@ All positions were voted on using the Alternative Vote method, with the exceptio
 
 |  Candidate name   | Votes (total 20) |
 |-------------------|------------------|
-| **Emmet Holwill** | 11 (55.0%)       |
+| **Ethan Holwill** | 11 (55.0%)       |
 | Sam Hand          | 9 (45.0%)        |
 | RON               | -                |
 

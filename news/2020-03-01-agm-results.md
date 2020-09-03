@@ -50,7 +50,7 @@ More details will follow once the minutes are written out in full.
 
 All positions were voted on using the Single Transferable Vote (STV) method, which is equivalent to the Alternative Vote (AV) method for positions with one seat. 23 people voted, including 3 by proxy, exceeding our required quorum of 13. All positions have the option to Re-Open Nominations (RON).
 
-All voting was done by paper ballot, hand-counted by the Returning Officer (Emmet Holwill), and verified by the Outgoing-Chair (Jacob Allen). The initial calculation for the positions of Ordinary Member was done electronically, then verified by hand.
+All voting was done by paper ballot, hand-counted by the Returning Officer (Ethan Holwill), and verified by the Outgoing-Chair (Jacob Allen). The initial calculation for the positions of Ordinary Member was done electronically, then verified by hand.
 
 ### Chair
 
