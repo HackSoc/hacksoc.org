@@ -14,7 +14,7 @@ We had this year's AGM!
  - **Academic Events Officer**: Tara Harley
  - **Infrastructure Officer**: Luke Moll & Ezekiel Bethel
  - **Ordinary Members**:
-   - Charlotte Carrington
+   - Charlotte Lloyd
    - Jacob Allen
    - Mahir Rahman
 
@@ -121,7 +121,7 @@ Therefore the Droop Quota was 6.
 | **Candidate Name**        | **Round 1**     | **Round 2** | **Round 3**  | **Round 4**  | **Round 5**        |
 | ------------------------- | --------------- | ----------- | ------------ | ------------ | ------------------ |
 | Abir Rizwanullah          | 0               | 0.5         | 0.5          | **Excluded** |                    |
-| **Charlotte Carrington**  | **6 (Elected)** |             |              |              |                    |
+| **Charlotte Lloyd**       | **6 (Elected)** |             |              |              |                    |
 | **Jacob Allen**           | **8 (Elected)** |             |              |              |                    |
 | Jamie Quigley             | 3               | 3.5         | 3.5          | 3.5          | **Excluded**       |
 | **Mahir Rahman**          | 3               | 3.75        | 3.75         | 4.25         | **6.75 (Elected)** |
