@@ -20,6 +20,7 @@ Written in [Markdown], with a YAML header:
  - **title**: the title of the article, put into the `<title>` and `<h1>` elements and shown in the list of news articles.
 
 The first paragraph of the article is shown as an excerpt in the news article list, Markdown requires a blank line (not just a single newline) to indicate a new paragraph.
+
 ### Minutes
 For the moment, minutes are in PDF form and are put into `minutes/`. These are copied into the web directory, along with an index page which lists all the minutes in the directory. The filename format is `YYYY-MM-DD-meeting name.pdf`. Regular committee meetings are simply `YYYY-MM-DD-Minutes n.pdf`. The minutes page sorts these in ascending date order based on the filename, so omitting the date will cause this to fail.
 
@@ -46,7 +47,7 @@ To keep a consistent style, the following rules are used:
  - Line length: text in news/ should not exceed 70 characters per line (the odd 71 is okay). Otherwise, documents should NOT use hard wrapping, and instead use your editor's soft wrap setting to display long lines of text.
 
 #### Years of study
-[about.html](html/about.html) contains information about the committee, including their current year of study. The first two years are given as "first year" and "second year" respectively. For courses without a year in industry, the remaining years are given as "third year" and "fourth year", depending on the length of the course. For courses with a year in industry, the committee member is listed as "currently on year in industry" until they return to normal study, where years are counted **including the year away**. For example, if a committee member takes a year in industry after their second year, when they return they will be in their "fourth year".
+[about.html](regular/about.html) contains information about the committee, including their current year of study. The year given should be the 'stage' that the committee member is in. When a member is on a year in industry, they should not be listed as being in any year and instead as "currently on year in industry". If the year in industry is in between stages two and three, they will return as a "third year".
 
 More guides may be added so always check this section when authoring new content!
 
