@@ -63,6 +63,8 @@ dd { margin-left: 2em }
 .pages li { display: inline }
 .pages li.active { font-weight: bold }
 
+summary h3 {display: inline-block;}
+
 /* Why can't CSS make "I want a footer at the bottom of my page" easy? */
 html, body, #container { height: 100%; }
 body > #container { height: auto; min-height: 100%; }
