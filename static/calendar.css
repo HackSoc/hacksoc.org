@@ -91,6 +91,10 @@
     color: var(--text-color);
 }
 
+#calendar table td #calendar-info-description a {
+    color: var(--emphasis-color);
+}
+
 #calendar table td.disabled       { background-color: var(--cal-cell-disabled); }
 #calendar table td.today          { background-color: var(--cal-cell-today); }
 #calendar table td.today.disabled { background-color: var(--cal-cell-today-disabled); }
