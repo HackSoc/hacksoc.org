@@ -86,13 +86,9 @@
     display: none;
 }
 
-#calendar table td a {
+#calendar table td a.event-link {
     text-decoration: none;
     color: var(--text-color);
-}
-
-#calendar table td #calendar-info-description a {
-    color: var(--emphasis-color);
 }
 
 #calendar table td.disabled       { background-color: var(--cal-cell-disabled); }
