@@ -18,6 +18,8 @@ The new committee is:
    - Adam Birtles
    - Jamie Quigley
 
+Candidates met on Google Meet to present their manifesti, while the meeting was streamed using our in-house RTMP service with a latency of around 10 seconds, and our brand-new Lightspeed service with less than a second of delay. Questions from members were taken via Slack. Frequent pauses were given to allow any livestream delay to catch up before moving on to the next item.
+
 ## Amendments
 
 Two amendments were presented to the society, both of which were accepted. The passing of an amendment required the support of two-thirds of the members voting. You can learn more about the amendments in the linked GitHub issues.
@@ -27,6 +29,7 @@ Two amendments were presented to the society, both of which were accepted. The p
    - **Passed**
  - [Common Practice of the Committee](https://github.com/HackSoc/constitution/pull/11)
    - **Final vote:** 17 for (100%), 0 against, 0 abstaining
+   - **Passed**
 
 ## Committee Election Results
 
@@ -43,7 +46,6 @@ Voters were given access to a Google Form for each election, which required them
 | Spoiled and Empty Ballots | 0                 |
 
 ### Secretary
-<!-- One unpaid member, subject to verification -->
 
 | Candidate                             | Votes (Total: 15) |
 |---------------------------------------|-------------------|
@@ -52,7 +54,6 @@ Voters were given access to a Google Form for each election, which required them
 | Spoiled and Empty Ballots             | 0                 |
  
 ### Treasurer
-<!-- One unpaid member, subject to verification -->
 
 | Candidate                 | Votes (Total: 13) |
 |---------------------------|-------------------|
@@ -61,7 +62,6 @@ Voters were given access to a Google Form for each election, which required them
 | Spoiled and Empty Ballots | 0                 |
 
 ### Social Secretary
-<!-- One unpaid member, subject to verification -->
 
 | Candidate                 | Votes (Total: 16) |
 |---------------------------|-------------------|
@@ -70,7 +70,6 @@ Voters were given access to a Google Form for each election, which required them
 | Spoiled and Empty Ballots | 0                 |
 
 ### Press & Publicity Officer
-<!-- One unpaid member, subject to verification -->
 
 | Candidate                 | Votes (Total: 15) |
 |---------------------------|-------------------|
@@ -79,16 +78,15 @@ Voters were given access to a Google Form for each election, which required them
 | Spoiled and Empty Ballots | 0                 |
 
 ### Academic Events Officer
-<!-- Two unpaid members, subject to verification -->
 
 | Candidate                 | Votes (Total: 17) |
 |---------------------------|-------------------|
-| **Aaron Christiansen**    | **17**            |
+| **Aaron Christiansen**    | **16**            |
 | Re-Open Nominations (RON) | 0                 |
 | Spoiled and Empty Ballots | 0                 |
+| Ineligible to vote        | 1                 |
 
 ### Infrastructure Officer
-<!-- One unpaid member, subject to verification -->
 
 | Candidate                 | Votes (Total: 13) |
 |---------------------------|-------------------|
@@ -97,7 +95,6 @@ Voters were given access to a Google Form for each election, which required them
 | Spoiled and Empty Ballots | 0                 |
 
 ### Ordinary Members
-<!-- One unpaid member, subject to verification -->
 
 | Total Ballots                 | 15 |
 |-------------------------------|----|
