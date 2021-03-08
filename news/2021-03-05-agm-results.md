@@ -1,5 +1,5 @@
 ---
-title: AGM 2020 Results
+title: AGM 2021 Results
 ---
 
 It'll take more than a global pandemic to stop the HackSoc AGM!
