@@ -33,7 +33,7 @@ Two amendments were presented to the society, both of which were accepted. The p
 
 ## Committee Election Results
 
-All positions were voted on using the Single Transferable Vote (STV) method, which is equivalent to the Alternative Vote (AV) method for positions with one seat (all positions except Ordinary Members). All positions had the option to Re-Open Nominations (RON).  
+All positions were voted on using the Single Transferable Vote (STV) method, which is equivalent to the Alternative Vote (AV) method for positions with one seat (all positions except Ordinary Members). All positions had the option to Re-Open Nominations (RON). Quorum was **12** based on our membership count at the time, which was achieved for all elections.
 
 Voters were given access to a Google Form for each election, which required them to be signed into their University account, and allowed paid members to cast at most one vote per election. The elections were open for ten minutes at a time, then closed to prevent further submissions. The results of the Google Forms were collected into a spreadsheet, which was then used to count the votes manually, or electronically in the case of the Ordinary Member election. Voters email addresses were compared against a list of HackSoc members, to ensure that all voters were eligible to vote. All votes will later be verified manually. 
 
