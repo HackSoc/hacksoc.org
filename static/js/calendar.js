@@ -145,6 +145,7 @@ async function loadCalendar(year, month) {
                 const link = document.createElement("a");
                 link.innerHTML = `<b>${event.when_human.start_time}</b> <br class="time-sep" />${event.summary}`;
                 link.href = "#";
+                link.className = "event-link";
                 link.onclick = (e) => {
                     e.preventDefault();
                     displayInfoPanel(link, event);
