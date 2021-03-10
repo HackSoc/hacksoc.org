@@ -249,6 +249,16 @@ function displayInfoPanel(target, event) {
     while (desc.firstChild.nodeName.toLowerCase() == "br") {
         desc.removeChild(desc.firstChild);
     }
+
+    // Only show the "Join Meeting" box if there's a meeting to join, and set
+    // the correct href
+    const meetingButton = document.getElementById('calendar-join-button');
+    if (event.meeting_link) {
+        meetingButton.href = event.meeting_link;
+        meetingButton.classList.remove("hidden");
+    } else {
+        meetingButton.classList.add("hidden");
+    }
 }
 
 /**
