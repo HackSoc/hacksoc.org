@@ -244,6 +244,14 @@ function displayInfoPanel(target, event) {
         `${event.when_human.start_time}–${event.when_human.end_time} ${event.when_human.long_start_date}`
     document.getElementById('calendar-info-where').innerText = event.location;
 
+    // If there's no "where", hide the line break between "when" and "where"
+    // so we don't have a useless break
+    if (!event.location || event.location.trim() == '') {
+        document.getElementById('calendar-info-br').style.display = 'none';
+    } else {
+        document.getElementById('calendar-info-br').style.display = 'initial';
+    }
+
     const desc = document.getElementById('calendar-info-description');
     desc.innerHTML = event.description;
     while (desc.firstChild.nodeName.toLowerCase() == "br") {
