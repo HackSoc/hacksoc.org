@@ -14,6 +14,7 @@
     --cal-cell-today-disabled: #b0a8b9;
     --cal-primary: #443752;
     --cal-cover: #000000ad;
+    --cal-info-padding: 10px;
 
     font-size: 14px;
 }
@@ -122,7 +123,7 @@
     width: 300px;
     background-color: white;
     border: 1px solid black;
-    padding: 10px;
+    padding: var(--cal-info-padding);
     z-index: 999;
     word-wrap: break-word;
     white-space: normal;
@@ -138,6 +139,23 @@
     padding-right: 20px;
     margin: 0;
     text-align: unset;
+}
+
+#calendar #calendar-info #calendar-join-button {
+    display: block;
+    margin-top: 10px;
+    padding: 5px;
+    text-align: center;
+
+    /* width: 100% will spill over the right padding, so use ✨calc magic✨ */
+    width: calc(100% - var(--cal-info-padding));
+
+    background-color: var(--cal-primary);
+    color: white;
+}
+
+#calendar #calendar-info #calendar-join-button.hidden {
+    display: none;
 }
 
 #calendar #calendar-info #calendar-info-where, #calendar #calendar-info #calendar-info-when {
