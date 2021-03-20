@@ -7,7 +7,7 @@ It'll take more than a global pandemic to stop the HackSoc AGM!
 The new committee is:
 
  - **Chair**: Ash Holland
- - **Secretary**: Marks Polakovs & Daniel Scoffin
+ - **Secretary**: Marks Polakovs & Iris Scoffin
  - **Treasurer**: Morgan McKay
  - **Social Secretary**: C Lloyd
  - **Press and Publicity Officer**: Chester Wringe
@@ -49,7 +49,7 @@ Voters were given access to a Google Form for each election, which required them
 
 | Candidate                             | Votes (Total: 15) |
 |---------------------------------------|-------------------|
-| **Daniel Scoffin and Marks Polakovs** | **15**            |
+| **Iris Scoffin and Marks Polakovs** | **15**            |
 | Re-Open Nominations (RON)             | 0                 |
 | Spoiled and Empty Ballots             | 0                 |
  
