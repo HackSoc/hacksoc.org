@@ -41,7 +41,12 @@ title: HackSoc Code of Conduct
     <li>Committee reserve the right to remove messages if they are in violation of the codes of conduct and you have been asked to stop by a moderator</li>
     <li>Committee reserve the right to kick humans or bots at any time</li>
     <li>Committee reserve the right to delete channels</li>
-    <li>Committee reserves the right to delete any content, for example NSFW content</li>
+    <li>
+        Committee reserves the right to delete any content
+        <ul>
+            <li>e.g. NSFW content</li>
+        </ul>
+    </li>
 </ul>
 </p>
 <h3>GitHub</h3>
@@ -60,53 +65,61 @@ title: HackSoc Code of Conduct
     These are a series of conventions that are usually followed on our chat platforms, which might be helpful to know. None of these are necessary, and all of them are possible to pick up organically after a while, but if you’re confused, here’s a primer
 </p>
 <h3>Bridging</h3>
-<p>HackSoc’s primary chat platform is Slack. While it is not perfect, we have not yet found a suitable alternative. A summary of the alternatives as well as their pros and cons can be found <a href="https://wiki.hacksoc.org/wiki/Chat/Alternatives" target="_blank">here</a>. We additionally have two other main chat platforms, that are bridged to various channels on Slack. </p>
-<p>The HackSoc Discord server is primarily used for virtual events, although it is also frequently used by members as a way to hang out virtually outside of events. It is bridged to the our Slack via two bridges: #general, #food, and #bridge-testing are bridged using <a href="https://github.com/sersorrel/sosig" target="_blank">sosig</a>. #gaming is bridged using <a href="https://github.com/HackSoc/slack-discord-bridge" target="_blank">slack-discord-bridge</a>.</p>
-<p>Additionally, we have a few IRC channels: #hacksoc is bridged to #general, #hacksoc-bottest is linked to #bot-testing, and #hacksoc-committee (a locked channel) is bridged to #committee. The bridge used is <a href="https://github.com/LukeMoll/slack-irc" target="_blank">slack-irc</a>. These channels are mostly used by alumni, and also contain Mathison, a bot that makes things easier for people on irc, which can be found <a href="https://github.com/HackSoc/csbot" target="blank">here</a>. </p>
+<p>
+    HackSoc’s primary chat platform is Slack. While it is not perfect, we have not yet found a suitable alternative. A summary of the alternatives as well as their pros and cons can be found <a href="https://wiki.hacksoc.org/wiki/Chat/Alternatives" target="_blank">here</a>. We additionally have two other main chat platforms, that are bridged to various channels on Slack.
+</p>
+<p>
+    The HackSoc Discord server is primarily used for virtual events, although it is also frequently used by members as a way to hang out virtually outside of events. It is bridged to the our Slack via two bridges: #general, #food, and #bridge-testing are bridged using <a href="https://github.com/sersorrel/sosig" target="_blank">sosig</a>. #gaming is bridged using <a href="https://github.com/HackSoc/slack-discord-bridge" target="_blank">slack-discord-bridge</a>.
+</p>
+<p>
+    Additionally, we have a few IRC channels: irc#hacksoc is bridged to slack#general, irc#hacksoc-bottest is linked to slack#bot-testing, and irc#hacksoc-committee (a locked channel) is bridged to slack#committee (a private channel). The bridge used is <a href="https://github.com/LukeMoll/slack-irc" target="_blank">slack-irc</a>. These channels are mostly used by alumni, and also contain Mathison, a bot that makes things easier for people on irc, which can be found <a href="https://github.com/HackSoc/csbot" target="blank">here</a>.
+</p>
 <p>
     To make everything extra fun, different bridges bridge different things:
-<table cellspacing="10">
-    <thead>
-        <tr>
-            <th></th>
-            <th>slack-discord-bridge</th>
-            <th>sosig</th>
-            <th>slack-irc</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>joins, leaves</td>
-            <td>yes</td>
-            <td>yes</td>
-            <td>no</td>
-        </tr>
-        <tr>
-            <td>bots (e.g. slackbot)</td>
-            <td>yes</td>
-            <td>yes</td>
-            <td>no</td>
-        </tr>
-        <tr>
-            <td>threads</td>
-            <td>yes</td>
-            <td>no</td>
-            <td>yes</td>
-        </tr>
-        <tr>
-            <td>thread replies to channel</td>
-            <td>yes</td>
-            <td>yes</td>
-            <td>no</td>
-        </tr>
-    </tbody>
-</table>
+    <table cellspacing="10">
+        <thead>
+            <tr>
+                <th></th>
+                <th>slack-discord-bridge</th>
+                <th>sosig</th>
+                <th>slack-irc</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>joins, leaves</td>
+                <td>yes</td>
+                <td>yes</td>
+                <td>no</td>
+            </tr>
+            <tr>
+                <td>bots (e.g. slackbot)</td>
+                <td>yes</td>
+                <td>yes</td>
+                <td>no</td>
+            </tr>
+            <tr>
+                <td>threads</td>
+                <td>yes</td>
+                <td>no</td>
+                <td>yes</td>
+            </tr>
+            <tr>
+                <td>thread replies to channel</td>
+                <td>yes</td>
+                <td>yes</td>
+                <td>no</td>
+            </tr>
+        </tbody>
+    </table>
 </p>
 <p>
     Eventually, the aim is to have everything bridged using sosig. If you want to be sure something won’t be bridged elsewhere, post it in #random.
 </p>
 <h3>Content Warnings</h3>
-<p>When posting topics that might be sensitive or upsetting to some people, we like to use Slack’s threads as a type of content warning. The first message is the content warning in brackets, while the actual message would be in the thread replies. Because of the aforementioned bridge situation, this is generally done in unbridged channels like #random or #politics.</p>
+<p>
+    When posting topics that might be sensitive or upsetting to some people, we like to use Slack’s threads as a type of content warning. The first message is the content warning in brackets, while the actual message would be in the thread replies. Because of the aforementioned bridge situation, this is generally done in unbridged channels like #random or #politics.
+</p>
 <p>
     There is no hard rule about what topics should be CWed, but some topics you might want to consider warning for are:
 <ul>
