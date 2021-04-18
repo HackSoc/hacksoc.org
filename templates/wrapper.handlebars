@@ -12,6 +12,10 @@
     {{!-- having maxiumum-scale 1.0 here disables pinch-zoom, which fails an a11y audit--}}
     <meta name="theme-color" content="#443752"/>
 
+    {{#if redirect}}
+      <meta http-equiv="refresh" content="0;url={{redirect}}">
+    {{/if}}
+
     <title>
         {{#if title}}{{title}} &ndash; {{/if}}HackSoc &ndash; the computer science society
     </title>
@@ -88,9 +92,13 @@
 
       </header>
 
-    <main>
-     {{{body}}}
-    </main>
+      <main>
+        {{#if redirect}}
+          <p>You are being redirected to <a href="{{redirect}}">{{redirect}}</a>...</p>
+        {{else}}
+          {{{body}}}
+        {{/if}}
+      </main>
 
       <div id="stupid-end-marker"></div>
     </div>
