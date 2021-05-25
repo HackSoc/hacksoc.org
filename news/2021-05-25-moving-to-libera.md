@@ -1,6 +1,7 @@
 ---
-title: \#hacksoc Is Moving To libera.chat
+title: HackSoc's IRC Channels Are Moving To libera.chat
 ---
+We're moving!
 
 Due to recent events at Freenode, as summarised [here][summary], 
 HackSoc will be moving all its irc channels from Freenode to 
@@ -15,9 +16,10 @@ usually hang out there.
 Libera Chat does not yet have a webchat. If you haven't got an irc 
 client, then we recommend using [The Lounge][thelounge]. This does 
 not require any special program. If you want an account, please 
-contact us at hack@yusu.org, or poke the infrastructure officer. 
+contact us at [hack@yusu.org](mailto:hack@yusu.org), or poke the 
+infrastructure officer. 
 
 [summary]: 
-(https://gist.github.com/aaronmdjones/1a9a93ded5b7d162c3f58bdd66b8f491)
-[libera]: (https://libera.chat/)
-[thelounge]: (https://thelounge.hacksoc.org/)
+https://gist.github.com/aaronmdjones/1a9a93ded5b7d162c3f58bdd66b8f491
+[libera]: https://libera.chat/
+[thelounge]: https://thelounge.hacksoc.org/
