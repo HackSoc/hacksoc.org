@@ -13,13 +13,16 @@ the same way as the current Freenode channel is.
 #cs-york also has a channel on Libera Chat, with the same people as 
 usually hang out there. 
 
-Libera Chat does not yet have a webchat. If you haven't got an irc 
-client, then we recommend using [The Lounge][thelounge]. This does 
-not require any special program. If you want an account, please 
-contact us at [hack@yusu.org](mailto:hack@yusu.org), or poke the 
-infrastructure officer. 
+<del>Libera Chat does not yet have a webchat.</del> <ins>Update: this is
+no longer true! You can access the webchat [at this
+link][webchat].</ins> If you haven't got an irc client, then we
+recommend using [The Lounge][thelounge]. This does not require any
+special program. If you want an account, please contact us at
+[hack@yusu.org](mailto:hack@yusu.org), or poke the infrastructure
+officer. 
 
 [summary]: 
 https://gist.github.com/aaronmdjones/1a9a93ded5b7d162c3f58bdd66b8f491
 [libera]: https://libera.chat/
 [thelounge]: https://thelounge.hacksoc.org/
+[webchat]: https://web.libera.chat/?channel=#hacksoc
