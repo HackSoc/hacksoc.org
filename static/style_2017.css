@@ -39,7 +39,7 @@ iframe { display: block; margin: 0 auto }
 
 blockquote header { padding: 0; border: 0; text-align: left; font-size: 14px;}
 blockquote h2 { font-family: 'Bistream Vera Sans', sans-serif; font-display: swap; font-weight: bold; font-size: 14px; display: inline; padding: 0; margin: 0;}
-blockquote .aside { font-style: italic; font-size: 0.8em; margin-bottom: 1em;}
+blockquote ol, blockquote ul { margin-left: 3em; }
 cite { font-style: italic; }
 
 dl { margin: 0 3em; }
