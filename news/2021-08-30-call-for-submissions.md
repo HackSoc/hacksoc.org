@@ -20,7 +20,9 @@ Q&A!
 
 Please bear in mind that, if the COVID situation worsens such that running
 in-person talks is not safe, we may have to cancel in-person talks for this
-term. See the form linked below for more information.
+term. We are also only currently accepting in-person talk submissions from those
+who already live close to campus and would not need to travel. See the form
+linked below for more information.
 
 If you'd like to do a talk, then please sign up with
 [this Google Form](https://forms.gle/C2hnR8efhQ8iXCvJ6)!
