@@ -12,11 +12,15 @@ Talks will take place on Thursdays of every week, between 7:00pm and 8:00pm.
 You don't have to have the talk written already - give us a general idea of what
 you'd like to talk about, and an abstract.
 
-For the first time since the pandemic began, this term we will be running a
-mixture of in-person and online talks! We will allocate a split between talks
+For the first time since the pandemic began, this term we will be hoping to run
+a mixture of in-person and online talks! We will allocate a split between talks
 running on campus in-person, and talks which are pre-recorded and live-streamed
 using YouTube Premiere. Talks in both formats will be followed by an interactive
-Q&A! (See the form linked below for more information.)
+Q&A!
+
+Please bear in mind that, if the COVID situation worsens such that running
+in-person talks is not safe, we may have to cancel in-person talks for this
+term. See the form linked below for more information.
 
 If you'd like to do a talk, then please sign up with
 [this Google Form](https://forms.gle/C2hnR8efhQ8iXCvJ6)!
