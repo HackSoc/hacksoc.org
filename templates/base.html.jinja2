@@ -1,6 +1,7 @@
 <!--
     TODO: commit info
   -->
+{% import "utils.html.jinja2" as utils %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,12 +19,12 @@
             {% block title %}
             {% endblock title %}
         {% endset %}
-        {% if title %}{{title}} &ndash; {% endif %}
+        {% if title|trim|length > 0 %}{{title}} &ndash; {% endif %}
         HackSoc &ndash; the computer science society
     </title>
 
     {# opengraph metadata for Facebook & Twitter #}
-    <meta property="og:title"                       content="{%if title%}{{title}}{%else%}HackSoc &ndash; the computer science society{%endif%}}">
+    <meta property="og:title"                       content="{%if title%}{{title}}{%else%}HackSoc &ndash; the computer science society{%endif%}">
 
     {% if excerpt %} 
       <meta property="og:description"               content="{{excerpt}}">  
@@ -49,13 +50,8 @@
     <link href="/static/fonts/robotoslab_regular_macroman/stylesheet.css" rel="stylesheet" type="text/css" />
     <link href="/static/hacksoc-colors.css" rel="stylesheet" type="text/css" />
     <link href="/static/style_2017.css" rel="stylesheet" type="text/css" />
-    {# {%if css%} #} 
-    {# <!-- page-specific CSS sheets --> #}
-    {# {each css} #}
-    {# <link href="{{this}}" rel="stylesheet" type="text/css"> #}
-    {# {{/each}} #}
-    {# <!-- end specific CSS -->  #}
-    {# {%endif%} #}
+    {% block stylesheets %}
+    {% endblock stylesheets %}
   </head>
   <body>
     <div id="container">

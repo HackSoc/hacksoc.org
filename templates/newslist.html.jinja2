@@ -1,0 +1,26 @@
+{% macro newslist(start=0, items=-1, link=False) %}
+    {% if news %}
+        <div id="posts">
+            <ol class="entries">
+                {% for post in news|paginate(start, count) %}
+                    <li>
+                        <a href="{{post.url}}">{{post.title}}</a>
+                        <span class="meta">&nbsp;&mdash;&nbsp;{{post.date}}</span>
+                        {% if post.excerpt %}
+                        <span class="excerpt">{{excerpt}}</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    {% else %}
+        <span>There is no news to display</span>
+    {% endif %}
+
+    {% if link %}
+    <ol class="pages">
+        <li><a href="/news.html">More news ▶</a></li>
+    </ol>
+    {% endif%}
+
+{% endmacro %}

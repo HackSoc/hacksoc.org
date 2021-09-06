@@ -1,0 +1,5 @@
+{% macro times(n) %}
+    {% for x in range(n) %}
+        {{caller()}}
+    {% endfor %}
+{% endmacro %}

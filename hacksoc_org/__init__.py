@@ -18,4 +18,4 @@ from hacksoc_org.routes import blueprint, root_dir
 app.register_blueprint(blueprint)
 
 with open(path.join(root_dir, "templates", "context.yaml")) as fd:
-    app.jinja_env.globals = dict(yaml.safe_load(fd))
+    app.jinja_env.globals.update(dict(yaml.safe_load(fd)))

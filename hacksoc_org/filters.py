@@ -4,4 +4,9 @@ from hacksoc_org import app
 def example_filter(value):
     return "Hello, " + str(value) + "!"
 
-# TODO: to use this in a jinja template, 
+@app.template_filter()
+def paginate(start, count, indexable):
+    if count > 0:
+        return indexable[start:start+count]
+    else:
+        return indexable[start:]

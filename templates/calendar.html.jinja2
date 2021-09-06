@@ -31,16 +31,16 @@
       </tr>
     </thead>
     <tbody>
-      {{#times 6}}
+      {% call utils.times(6) %}
       <tr>
-        {{#times 7}}
+        {% call utils.times(7) %}
         <td>
           <div class="date-header"></div>
           <div class="events"></div>
         </td>
-        {{/times}}
+        {% endcall %}
       </tr>
-      {{/times}}
+      {% endcall %}
     </tbody>
   </table>
   <div id="calendar-info-container">
