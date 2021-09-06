@@ -4,7 +4,6 @@ import flask
 
 app = flask.Flask(__name__, static_folder=None, template_folder=None)
 # these folders are defined in the Blueprint anyway
-app.debug = True
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 app.jinja_env.add_extension("jinja2.ext.do")

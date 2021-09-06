@@ -1,1 +1,2 @@
 FLASK_APP=hacksoc_org
+FLASK_DEBUG=true

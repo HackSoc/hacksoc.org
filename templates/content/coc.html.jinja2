@@ -1,0 +1,175 @@
+{% extends "base.html.jinja2" %}
+
+{% block title %}Code of Conduct{% endblock title %}
+
+{% block body %}
+<h2>Values Statement</h2>
+<p>
+    HackSoc aims to be an inclusive space for all, and this code of conduct aims to reflect that. We are not able to cover every single behaviour in this code of conduct, so do not take it as a bullet pointed list of what you can and cannot do. Please follow the spirit of this code as well as the letter. 
+</p>
+<p>
+    If you see behaviour that is unacceptable and the person committing it doesn’t stop when asked, please reach out to a committee member, either in a channel or privately. (Your confidentiality will be respected if you reach out privately.)
+</p>
+<p>
+    We will not tolerate any use of this code of conduct as a hammer against marginalised people speaking out against harassment or microaggressions, or enforcing reasonable boundaries. 
+</p>
+<h2>Rules</h2>
+<h3>General</h3>
+<p>
+<ul>
+    <li>No sexism, racism, ableism, queerphobia, xenophobia, casteism, antisemitism or discrimination of any kind</li>
+    <li>No advocating, even in jest, for Nazis/white supremacy etc</li>
+    <li>Be wary of “dog whistles”, or innocuous-seeming words or images that have another meaning to a specific audience (the <a href="https://www.adl.org/hate-symbols" target="_blank">Anti-Defamation League</a> has a list of (mainly white supremacist) hate symbols which may be used as dog whistles)</li>
+    <li>Avoid making fun of other people’s spelling, word choices, phrasing etc. – if you’re making a joke, think for a few seconds about why it’s funny first</li>
+    <li>Committee may ask you to stop any behaviour that is not explicitly disallowed here</li>
+    <li>No harassment: if someone asks you to stop interacting with them, do not use our spaces to circumvent this</li>
+    <li>This Code of Conduct applies to all HackSoc spaces, online or physical, public or private</li>
+    <li>As a YUSU society, our members are also bound by the <a href="https://yusu.org/about-us/documents/by-laws" target="_blank">YUSU Code of Conduct</a></li>
+</ul>
+</p>
+<h3>Chat Platforms</h3>
+<p>
+<ul>
+    <li>
+        No spam
+        <ul>
+            <li>e.g. using excessive numbers of animated emoji</li>
+        </ul>
+    </li>
+    <li>Bots are welcome, so long as they don’t produce spam</li>
+    <li>Follow the content requirements of those who host us</li>
+    <li>You may be asked to stop a conversation by committee</li>
+    <li>Committee reserve the right to remove messages if they are in violation of the codes of conduct and you have been asked to stop by a committee member</li>
+    <li>Committee reserve the right to kick humans or bots at any time</li>
+    <li>Committee reserve the right to delete channels</li>
+    <li>
+        Committee reserves the right to delete any content
+        <ul>
+            <li>e.g. NSFW content</li>
+        </ul>
+    </li>
+</ul>
+</p>
+<h3>GitHub</h3>
+<p>
+<ul>
+    <li>Not everyone is at the same level. Do not mock, humiliate, or insult someone over the contents of a pull request.</li>
+    <li>Issues, pull requests, and the contents of files pushed to HackSoc repositories are all covered by this Code of Conduct</li>
+</ul>
+</p>
+<h3>Our Servers</h3>
+<p>
+    Our servers are hosted by various third parties (including <a href="https://go.bigv.io/terms/aup/" target="_blank">Bytemark</a> and the <a href="https://www.york.ac.uk/about/organisation/governance/governance-documents/ordinances-and-regulations/regulation-11/" target="_blank">University of York</a>) – please use them in accordance with the acceptable use policy associated with the relevant host.
+</p>
+<h2>Guidelines and Conventions</h2>
+<p>
+    These are a series of conventions that are usually followed on our chat platforms, which might be helpful to know. None of these are necessary, and all of them are possible to pick up organically after a while, but if you’re confused, here’s a primer
+</p>
+<h3>Bridging</h3>
+<p>
+    HackSoc’s primary chat platform is Slack. While it is not perfect, we have not yet found a suitable alternative. A summary of the alternatives as well as their pros and cons can be found <a href="https://wiki.hacksoc.org/wiki/Chat/Alternatives" target="_blank">here</a>. We additionally have two other main chat platforms, that are bridged to various channels on Slack.
+</p>
+<p>
+    The HackSoc Discord server is primarily used for virtual events, although it is also frequently used by members as a way to hang out virtually outside of events. It is bridged to the our Slack via two bridges: #general, #food, and #bridge-testing are bridged using <a href="https://github.com/sersorrel/sosig" target="_blank">sosig</a>. #gaming is bridged using <a href="https://github.com/HackSoc/slack-discord-bridge" target="_blank">slack-discord-bridge</a>.
+</p>
+<p>
+    Additionally, we have a few IRC channels: irc#hacksoc is bridged to slack#general, irc#hacksoc-bottest is linked to slack#bot-testing, and irc#hacksoc-committee (a locked channel) is bridged to slack#committee (a private channel). The bridge used is <a href="https://github.com/LukeMoll/slack-irc" target="_blank">slack-irc</a>. These channels are mostly used by alumni, and also contain Mathison, a bot that makes things easier for people on irc, which can be found <a href="https://github.com/HackSoc/csbot" target="blank">here</a>.
+</p>
+<p>
+    To make everything extra fun, different bridges bridge different things:
+    <table cellspacing="10">
+        <thead>
+            <tr>
+                <th></th>
+                <th>slack-discord-bridge</th>
+                <th>sosig</th>
+                <th>slack-irc</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>joins, leaves</td>
+                <td>yes</td>
+                <td>yes</td>
+                <td>no</td>
+            </tr>
+            <tr>
+                <td>bots (e.g. slackbot)</td>
+                <td>yes</td>
+                <td>yes</td>
+                <td>only slackbot reminders</td>
+            </tr>
+            <tr>
+                <td>threads</td>
+                <td>yes</td>
+                <td>no</td>
+                <td>yes</td>
+            </tr>
+            <tr>
+                <td>thread replies to channel</td>
+                <td>yes</td>
+                <td>yes</td>
+                <td>no</td>
+            </tr>
+        </tbody>
+    </table>
+</p>
+<p>
+    Eventually, the aim is to have everything bridged using sosig. If you want to be sure something won’t be bridged elsewhere, post it in #random.
+</p>
+<h3>Content Warnings</h3>
+<p>
+    When posting topics that might be sensitive or upsetting to some people, we like to use Slack’s threads as a type of content warning. The first message is the content warning in brackets, while the actual message would be in the thread replies. Because of the aforementioned bridge situation, this is generally done in unbridged channels like #random or #politics.
+</p>
+<p>
+    There is no hard rule about what topics should be CWed, but some topics you might want to consider warning for are:
+<ul>
+    <li>homophobia/transphobia/other types of queerphobia</li>
+    <li>ableism</li>
+    <li>racism</li>
+    <li>COVID-19</li>
+    <li>references to suicide or self harm</li>
+</ul>
+</p>
+<p>
+    Some topics that people might not want to deal with, like food or politics, have their own channels, and efforts should be made to keep those topics to those channels.  
+</p>
+<p>
+    It is helpful if CWs are fairly descriptive, as some people will want to know about, say, policies that might affect them personally, but not be able to deal with seeing random hate against them. For example, one might have the following CWs for transphobia:
+</p>
+<blockquote>
+    [reference to transphobic policy, funny]<br />
+    <i>a gallows humour tweet about a new policy</i>
+</blockquote>
+<blockquote>
+    [transphobic policy, new development]<br />
+    <i>a new update about said transphobic policy</i>
+</blockquote>
+<blockquote>
+    [transphobia, bad take]<br />
+    <i>a link to a bad tweet</i>
+</blockquote>
+<p>
+    When talking about a specific event, person or group, you may want to include them in the CW, like so:
+</p>
+<blockquote>
+    [rms, ecofascism, bad take]
+</blockquote>
+<p>
+    That said, if simply reposting a bad take, please consider whether it’s necessary - bear in mind that repeating lies (even by condemning them) makes it more likely that people will believe them, and the people affected by the take are quite likely to have already seen it. Also, there are certain topics that may be very traumatic to some people even if accompanied by a content warning, so think carefully whether it should be posted at all.
+</p>
+<p>
+    Some people choose to put ranting/talking about being upset behind content warnings. While this might be useful for some people, it is not a requirement, nor should be apologised for if one forgets to do it.
+</p>
+<h3>IRC interlopers</h3>
+<p>
+    Sometimes people join our chat that may not be familiar with us, or may not be students at the University of York altogether. This can happen because anyone with an @york.ac.uk email can join the Slack, but also because anyone can join the IRC and our website is somehow one of the top Google results for “computer science irc”. Be nice and welcoming to them.
+</p>
+<p>
+    Sometimes they may ask us to do their homework or ask an oddly specific CS question that’s clearly an assignment. Feel free to point them in the right direction, but consider not doing their homework for them. Not only can it be a violation of York’s academic misconduct policy or their institution’s honour code, but part of learning CS is learning how to solve problems, which someone solving it for you doesn’t teach. (Incidentally, if you’ve stumbled upon this page via Google, hi! Feel free to join and chat, but please don’t ask us to do your homework.)
+</p>
+<h3>Profiles</h3>
+<p>
+    Some people put their pronouns under “what I do” on Slack, or in their nickname on Discord. This is useful for others, but not required. Consider occasionally checking people’s profiles to see if their pronouns have changed.
+</p>
+{% endblock body %}
