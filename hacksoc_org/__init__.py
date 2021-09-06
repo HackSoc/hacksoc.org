@@ -1,4 +1,6 @@
 import flask
+import yaml
+from os import path
 
 # flask app is constructed here
 
@@ -12,5 +14,8 @@ app.jinja_env.add_extension("jinja2.ext.do")
 import hacksoc_org.filters
 # importing to trigger execution; decorated functions will add themselves to the app.
 
-from hacksoc_org.routes import blueprint
+from hacksoc_org.routes import blueprint, root_dir
 app.register_blueprint(blueprint)
+
+with open(path.join(root_dir, "templates", "context.yaml")) as fd:
+    app.jinja_env.globals = dict(yaml.safe_load(fd))
