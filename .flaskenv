@@ -1,0 +1,1 @@
+FLASK_APP=hacksoc_org
