@@ -1,3 +1,6 @@
 flask
 python-dotenv # For supporting .flaskenv environment variables
 pyyaml
+markdown2
+pygments
+python-frontmatter

@@ -1,0 +1,8 @@
+{% extends "base.html.jinja2" %}
+{% from "newslist.html.jinja2" import newslist %}
+
+{% block title %}News{% endblock title %}
+
+{% block body %}
+    {{ newslist() }}
+{% endblock body %}
