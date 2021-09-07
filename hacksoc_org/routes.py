@@ -69,4 +69,4 @@ def render_minutes():
 
 @blueprint.route("/news/<string:article>.html")
 def render_news(article):
-    return render_template(f"content/news/{article}.html.jinja2")
+    return render_template(f"content/news/{article}.html.jinja2", date=date.fromisoformat(article[:10]))
