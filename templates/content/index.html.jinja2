@@ -4,10 +4,11 @@
     <link href="{{url_for('.static', filename='calendar.css')}}" rel="stylesheet" type="text/css">
 {% endblock stylesheets %}
 
-{% block body %}
+{% block body -%}
 
+    <!-- begin calendar -->
     {% include "calendar.html.jinja2" %}
-
+    <!-- end calendar -->
     {% import "newslist.html.jinja2" as newslist %}
 
     <p id="calendar_links">
@@ -46,5 +47,4 @@
     </div>
 
     <script src="/static/js/calendar.js"></script>
-
-{% endblock body %}
+{%- endblock body %}

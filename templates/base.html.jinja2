@@ -15,19 +15,19 @@
     {% endif %}
 
     <title>
-        {% set title %}
+        {% set title | trim%}
             {% block title %}
             {% endblock title %}
         {% endset %}
-        {% if title|trim|length > 0 %}{{title}} &ndash; {% endif %}
+        {% if title|length > 0 %}{{title}} &ndash; {% endif %}
         HackSoc &ndash; the computer science society
     </title>
 
     {# opengraph metadata for Facebook & Twitter #}
-    <meta property="og:title"                       content="{%if title%}{{title}}{%else%}HackSoc &ndash; the computer science society{%endif%}">
+    <meta property="og:title"                       content="{% if title|length>0 %}{{title}}{% else %}HackSoc &ndash; the computer science society{% endif %}">
 
-    {% if excerpt %} 
-      <meta property="og:description"               content="{{excerpt}}">  
+    {% if lede %} 
+      <meta property="og:description"               content="{{lede|trim}}">  
       <meta property="og:type"                      content="article">
     {% else %}
       <meta property="og:type"                      content="website">
@@ -58,7 +58,7 @@
       <header>
        <nav id="large">
           <ul>
-            {% for ele in nav %}
+            {% for ele in nav -%}
                 <li><a href="{{ele.href}}">{{ele.text}}</a></li>
             {% endfor %}
           </ul>
@@ -66,7 +66,7 @@
         <nav id="small" onclick="this.classList.toggle('expanded')">
            <div class="smallnav">&#9698; menu</div>
            <ul>
-            {% for ele in nav %}
+            {% for ele in nav -%}
                 <li><a href="{{ele.href}}">{{ele.text}}</a></li>
             {% endfor %}
           </ul>
@@ -82,10 +82,10 @@
         <p id="uni">At the University of York</p>
         <p id="server_list">
           <strong>Servers:</strong>
-          {% for ele in servers %}
+          {% for ele in servers -%}
             <a href="{{ele.href}}">{{ele.name}}</a> 
           {% endfor %}
-          {# TODO: need to put &middot; after each <a> except last in the CSS #}
+          {#- TODO: need to put &middot; after each <a> except last in the CSS #}
         </p>
 
       </header>
