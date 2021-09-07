@@ -12,11 +12,9 @@ class MarkdownNewsLoader(BaseLoader):
 
     def __init__(self, path) -> None:
         self.path = path
-        print(__name__, f"{path=}")
         super().__init__()
 
     def get_source(self, environment: Environment, template: str) -> Tuple[str, str, Optional[Callable]]:
-        print(f"{template=}")
         filename = os.path.join(
             self.path,
             template.removesuffix(".html.jinja2") + ".md"
@@ -27,25 +25,19 @@ class MarkdownNewsLoader(BaseLoader):
                 # NB: readlines() returns a list of lines WITH \n at the end
                 # TODO: frontematter parse here
                 title = metadata['title']
-                lede = "Lede!"
 
-
-            source = """{% extends "article.html.jinja2" %}
+            source = """
+            {% extends "article.html.jinja2" %}
             {% block title %}""" + title + """{% endblock title %}
-
-            {% filter markdown() %}
-            {% block lede %}""" + lede + """{% endblock lede %}
-            {% block text %}
-            """ + content + """
-            {% endblock text %}
-            {% endfilter %}
+            {% set parts | split_lede %}{% filter markdown() %}""" + content + """{% endfilter %}{% endset %}
+            {% block lede %}{{ parts.lede }}{% endblock lede %}
+            {% block text %}{{ parts.text }}{% endblock text %}
             """
-            pp(source)
-            
+
             return (source, filename, None)
             # TODO: add 3rd tuple argument for autoreloading
         else:
-            raise TemplateNotFound()
+            raise TemplateNotFound(template)
 
 lede_re = re.compile(r"(P=<lede>.*\w.*)(?:\r?\n){2,}(P=<body>.*)")
 def split_lede(markdown_src : str) -> Tuple[str,str]:

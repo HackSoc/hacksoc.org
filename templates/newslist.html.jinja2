@@ -1,13 +1,15 @@
-{% macro newslist(start=0, items=-1, link=False) %}
-    {% if news %}
+{% macro newslist(start=0, count=-1, link=False) %}
+    {% set news = get_news() %}
+
+    {% if news|length > 0 %}
         <div id="posts">
             <ol class="entries">
                 {% for post in news|paginate(start, count) %}
                     <li>
                         <a href="{{post.url}}">{{post.title}}</a>
                         <span class="meta">&nbsp;&mdash;&nbsp;{{post.date}}</span>
-                        {% if post.excerpt %}
-                        <span class="excerpt">{{excerpt}}</span>
+                        {% if post.lede %}
+                        <span class="excerpt">{{post.lede}}</span>
                         {% endif %}
                     </li>
                 {% endfor %}
