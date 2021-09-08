@@ -6,24 +6,27 @@ from jinja2.exceptions import TemplateNotFound
 import frontmatter
 
 import os
-from pprint import pp
 
 class MarkdownNewsLoader(BaseLoader):
 
-    def __init__(self, path) -> None:
-        self.path = path
+    def __init__(self, searchpath, prefix_allow=None) -> None:
+        self.prefix_allowlist = prefix_allow
+        self.searchpath = searchpath
         super().__init__()
 
     def get_source(self, environment: Environment, template: str) -> Tuple[str, str, Optional[Callable]]:
+        if not template.startswith(self.prefix_allowlist):
+            raise TemplateNotFound(template)
+            
         filename = os.path.join(
-            self.path,
+            self.searchpath,
             template.removesuffix(".html.jinja2") + ".md"
         )
         if os.path.exists(filename):
             with open(filename) as fd:
                 metadata, content = frontmatter.parse(fd.read())
                 # NB: readlines() returns a list of lines WITH \n at the end
-                # TODO: frontematter parse here
+
                 title = metadata['title']
 
             source = """
@@ -38,7 +41,3 @@ class MarkdownNewsLoader(BaseLoader):
             # TODO: add 3rd tuple argument for autoreloading
         else:
             raise TemplateNotFound(template)
-
-lede_re = re.compile(r"(P=<lede>.*\w.*)(?:\r?\n){2,}(P=<body>.*)")
-def split_lede(markdown_src : str) -> Tuple[str,str]:
-    pass

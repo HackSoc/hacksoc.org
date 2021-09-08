@@ -1,3 +1,4 @@
+from hacksoc_org.server_loader import MarkdownServerLoader
 from flask import Blueprint, render_template, url_for, current_app, get_template_attribute
 from jinja2 import FileSystemLoader
 
@@ -13,6 +14,7 @@ from pprint import pprint as pp
 import jinja2
 
 root_dir = path.join(path.dirname(__file__), path.pardir)
+template_dir = path.join(root_dir, "templates")
 # dirname(__file__) is the hacksoc_org python module folder
 # its parent is the git repository root, directly under which the static/, and template/ folders lie
 
@@ -24,8 +26,9 @@ blueprint = Blueprint(
 )
 
 blueprint.jinja_loader = jinja2.ChoiceLoader([
-    FileSystemLoader(path.join(root_dir, "templates/")),
-    MarkdownNewsLoader(path.join(root_dir, "templates/"))
+    FileSystemLoader(template_dir),
+    MarkdownNewsLoader(template_dir, prefix_allow=os.path.join("content", "news")),
+    MarkdownServerLoader(template_dir, prefix_allow=os.path.join("content", "servers"))
 ])
 
 @blueprint.route("/<string:page>.html")
@@ -38,7 +41,8 @@ def index():
 
 @blueprint.route("/servers/<string:page>.html")
 def render_server_page(page: str):
-    raise NotImplemented
+    print(__name__,f"{page=}")
+    return render_template(f"content/servers/{page}.html.jinja2")
 
 @blueprint.route("/minutes.html")
 def render_minutes():
@@ -68,5 +72,5 @@ def render_minutes():
     return render_template(f"content/minutes.html.jinja2", minutes=minutes_listing)
 
 @blueprint.route("/news/<string:article>.html")
-def render_news(article):
+def render_news(article: str):
     return render_template(f"content/news/{article}.html.jinja2", date=date.fromisoformat(article[:10]))
