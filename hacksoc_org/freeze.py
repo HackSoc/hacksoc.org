@@ -26,7 +26,7 @@ def get_all_routes() -> List[str]:
 
 
 @freezer.register_generator
-def get_static_routes() -> Generator[str]:
+def get_static_routes() -> Generator[str, None, None]:
     top = os.path.join(root_dir, "static")
     for (dirpath, dirnames, filenames) in os.walk(top):
         for filename in filenames:
@@ -34,7 +34,7 @@ def get_static_routes() -> Generator[str]:
             yield route
 
 @freezer.register_generator
-def get_server_page_routes() -> Generator[str]:
+def get_server_page_routes() -> Generator[str, None, None]:
     for filename in os.listdir(os.path.join(root_dir, "templates", "content", "servers")):
         yield "/servers/" + filename.removesuffix(".html.jinja2").removesuffix(".md") + ".html"
 
