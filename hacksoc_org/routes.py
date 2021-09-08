@@ -13,7 +13,7 @@ from pprint import pprint as pp
 
 import jinja2
 
-root_dir = path.join(path.dirname(__file__), path.pardir)
+root_dir = path.abspath(path.join(path.dirname(__file__), path.pardir))
 template_dir = path.join(root_dir, "templates")
 # dirname(__file__) is the hacksoc_org python module folder
 # its parent is the git repository root, directly under which the static/, and template/ folders lie
@@ -23,6 +23,7 @@ blueprint = Blueprint(
     __name__,
     template_folder=None,
     static_folder=path.join(root_dir, "static"),
+    static_url_path='/static'
 )
 
 blueprint.jinja_loader = jinja2.ChoiceLoader([
@@ -41,7 +42,6 @@ def index():
 
 @blueprint.route("/servers/<string:page>.html")
 def render_server_page(page: str):
-    print(__name__,f"{page=}")
     return render_template(f"content/servers/{page}.html.jinja2")
 
 @blueprint.route("/minutes.html")
@@ -63,8 +63,8 @@ def render_minutes():
             })
         except ValueError as e:
             print(f"Error while parsing {filename}:")
-            print(e)
-            print("Document will be skipped.")
+            print("", e)
+            print(" Document will be skipped.")
             continue
     
     minutes_listing.sort(key=itemgetter('date'))

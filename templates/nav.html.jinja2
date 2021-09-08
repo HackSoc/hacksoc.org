@@ -1,0 +1,40 @@
+{% set nav|from_yaml %}
+{# TODO: documentation needed here #}
+  - text: about us
+    page: about
+  - text: minutes
+    page: minutes
+  - text: talks
+    page: talks
+  - text: github
+    href: //www.github.com/HackSoc/
+  - text: slack/irc chat
+    page: irc
+  - text: twitter
+    href: //twitter.com/HackSoc
+  - text: youtube
+    href: //youtube.com/hacksoc
+{% endset %}
+
+{% macro to_href(ele) -%}
+{%- if ele.href -%}
+    {{ele.href}}
+{%- else -%}
+    {{url_for('.render_page', page=ele.page)}}
+{%- endif -%}
+{%- endmacro%}
+
+{% macro nav_inner() %}
+    <ul>
+    {% for ele in nav -%}
+        <li><a href="{{to_href(ele)}}">{{ele.text}}</a></li>
+    {% endfor %}
+    </ul>
+{% endmacro %}
+
+<nav id="large">{{ nav_inner() }}</nav>
+
+<nav id="small" onclick="this.classList.toggle('expanded')">
+    <div class="smallnav">&#9698; menu</div>
+    {{ nav_inner() }}
+</nav>

@@ -23,10 +23,6 @@ class MarkdownServerLoader(BaseLoader):
             template.removesuffix(".html.jinja2") + ".md"
         )
 
-        print(__name__, f"{self.path=}")
-        print(__name__, f"{template=}")
-        print(__name__, f"{filename=}")
-
         if os.path.exists(filename):
             with open(filename) as fd:
                 metadata, markdown = frontmatter.parse(fd.read())

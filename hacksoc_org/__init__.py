@@ -14,6 +14,8 @@ app.jinja_env.add_extension("jinja2.ext.do")
 from hacksoc_org.routes import blueprint, root_dir
 app.register_blueprint(blueprint)
 
+app.config["FREEZER_DESTINATION"] = path.join(root_dir, "build")
+
 import hacksoc_org.filters
 # importing to trigger execution; decorated functions will add themselves to the app.
 

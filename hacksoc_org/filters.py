@@ -1,18 +1,19 @@
-from datetime import date
-from logging import root
-import re
-from typing import Dict
-
-from flask.helpers import url_for
-from hacksoc_org import app, root_dir
-
-from hacksoc_org.markdown import render_markdown
-
 from flask import get_template_attribute
+from flask.helpers import url_for
 
+import yaml
+
+from datetime import date
+import re
 import os
 from pprint import pformat
 from operator import itemgetter
+
+from typing import Dict
+
+from hacksoc_org import app, root_dir
+from hacksoc_org.markdown import render_markdown
+
 
 @app.template_filter()
 def example_filter(value):
@@ -40,7 +41,7 @@ def get_news():
             'title': title.strip(),
             'lede': lede.strip(),
             'date': published,
-            'url': url_for('.render_news', article=filename.removesuffix(".md").removesuffix(".html.jinja2"))
+            'article_name': filename.removesuffix(".md").removesuffix(".html.jinja2")
         })
         if len(lede) == 0:
             print("No lede found for", filename)
@@ -54,6 +55,10 @@ def pretty(arg):
 @app.template_filter()
 def markdown(caller):
     return render_markdown(caller)
+
+@app.template_filter()
+def from_yaml(caller):
+    return yaml.safe_load(caller)
 
 @app.template_filter()
 def split_lede(caller) -> Dict[str,str]:

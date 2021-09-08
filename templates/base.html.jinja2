@@ -56,21 +56,7 @@
   <body>
     <div id="container">
       <header>
-       <nav id="large">
-          <ul>
-            {% for ele in nav -%}
-                <li><a href="{{ele.href}}">{{ele.text}}</a></li>
-            {% endfor %}
-          </ul>
-        </nav>
-        <nav id="small" onclick="this.classList.toggle('expanded')">
-           <div class="smallnav">&#9698; menu</div>
-           <ul>
-            {% for ele in nav -%}
-                <li><a href="{{ele.href}}">{{ele.text}}</a></li>
-            {% endfor %}
-          </ul>
-        </nav>
+       {% include "nav.html.jinja2" %}
         <img id="logo" src="/static/images/logo2017.svg"/>
         <h1 class="titleheading" style="display:inline-block;">
             <a href="/" title="HackSoc" class="maintitle">
