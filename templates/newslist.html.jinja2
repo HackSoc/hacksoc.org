@@ -16,7 +16,7 @@
             </ol>
             {% if link %}
             <ol class="pages">
-                <li><a href="/news.html">More news ▶</a></li>
+                <li><a href="{{url_for('.render_page', page='news')}}">More news ▶</a></li>
             </ol>
             {% endif%}
         </div>
