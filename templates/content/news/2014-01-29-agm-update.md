@@ -24,7 +24,7 @@ society!** You may, however, pay at the AGM (before running or
 voting).
 
 Full details of the positions up for election can be found in the
-[previous post]({% post_url 2014-01-22-agm %}), but to summarise:
+[previous post](/news/2014-01-22-agm.html), but to summarise:
 
 Current committee positions (names in parentheses are IRC nicks):
 
