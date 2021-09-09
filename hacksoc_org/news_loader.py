@@ -29,13 +29,15 @@ class MarkdownNewsLoader(BaseLoader):
 
                 title = metadata['title']
 
-            source = """
+            source = ("""
             {% extends "article.html.jinja2" %}
             {% block title %}""" + title + """{% endblock title %}
-            {% set parts | split_lede %}{% filter markdown() %}""" + content + """{% endfilter %}{% endset %}
+            {% set parts | split_lede %}{% filter markdown() %}{% raw -%}"""
+          + content
+          + """{% endraw %}{% endfilter %}{% endset %}
             {% block lede %}{{ parts.lede }}{% endblock lede %}
             {% block text %}{{ parts.text }}{% endblock text %}
-            """
+            """)
 
             return (source, filename, None)
             # TODO: add 3rd tuple argument for autoreloading

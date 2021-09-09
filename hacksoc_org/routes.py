@@ -46,7 +46,8 @@ def render_server_page(page: str):
 
 @blueprint.route("/minutes.html")
 def render_minutes():
-    # TODO: check flask priority resolution -- does render_page need to go below this?
+    # this could be put into a get_minutes() function in filters.py, similar to 
+    # get_news.    
 
     re_filename = re.compile(r"^(\d{4}-[01]\d-[0123]\d)-(.*)\.pdf$")
 
