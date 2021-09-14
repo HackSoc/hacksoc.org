@@ -16,10 +16,6 @@ from hacksoc_org.markdown import render_markdown
 
 
 @app.template_filter()
-def example_filter(value):
-    return "Hello, " + str(value) + "!"
-
-@app.template_filter()
 def paginate(indexable,start, count):
     if count > 0:
         return indexable[start:start+count]

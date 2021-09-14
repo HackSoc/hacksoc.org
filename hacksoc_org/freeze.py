@@ -47,6 +47,3 @@ def freeze():
 
     # this seemingly useless method is used to provide a stable API if the freeze provider changes in the future
     freezer.freeze()
-
-if __name__ == "__main__":
-    freeze()
