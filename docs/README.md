@@ -1,6 +1,6 @@
 # Website and build system documentation
 
-Documentation is never complete; if you see a section that's missing information, make an issue. If over the course of working with the website you discover something that might not be immediately clear to everyone, consider making a pull request adding it to the documentation so fewer people get tripped up on it in the future!
+Documentation is never complete; if you see a section that's missing information, please make an issue. If over the course of working with the website you discover something that might not be immediately clear to everyone, consider making a pull request adding it to the documentation so fewer people get tripped up on it in the future!
 
 ## What you need to read
 
