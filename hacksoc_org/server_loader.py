@@ -6,7 +6,7 @@ import frontmatter
 import os
 from typing import Tuple, Optional, Callable
 
-
+from hacksoc_org.util import removesuffix
 class MarkdownServerLoader(BaseLoader):
 
     def __init__(self, path, prefix_allow=None) -> None:
@@ -20,7 +20,7 @@ class MarkdownServerLoader(BaseLoader):
             
         filename = os.path.join(
             self.path,
-            template.removesuffix(".html.jinja2") + ".md"
+            removesuffix(template,".html.jinja2") + ".md"
         )
 
         if os.path.exists(filename):

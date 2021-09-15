@@ -13,7 +13,7 @@ from typing import Dict
 
 from hacksoc_org import app, root_dir
 from hacksoc_org.markdown import render_markdown
-
+from hacksoc_org.util import removesuffix, removeprefix
 
 @app.template_filter()
 def paginate(indexable,start, count):
@@ -27,7 +27,7 @@ def get_news():
     news = []
     for filename in os.listdir(os.path.join(root_dir, "templates", "content", "news")):
         if filename.endswith(".md"):
-            template_name = os.path.join("content","news",filename.removesuffix(".md") + ".html.jinja2")
+            template_name = os.path.join("content","news", removesuffix(filename,".md") + ".html.jinja2")
         else:
             template_name = os.path.join("content","news",filename)
         title = get_template_attribute(template_name, "title")
@@ -37,7 +37,7 @@ def get_news():
             'title': title.strip(),
             'lede': lede.strip(),
             'date': published,
-            'article_name': filename.removesuffix(".md").removesuffix(".html.jinja2")
+            'article_name': removesuffix(removesuffix(filename, ".md"), ".html.jinja2")
         })
         if len(lede) == 0:
             print("No lede found for", filename)

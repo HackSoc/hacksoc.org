@@ -7,6 +7,8 @@ import frontmatter
 
 import os
 
+from hacksoc_org.util import removesuffix
+
 class MarkdownNewsLoader(BaseLoader):
 
     def __init__(self, searchpath, prefix_allow=None) -> None:
@@ -20,7 +22,7 @@ class MarkdownNewsLoader(BaseLoader):
             
         filename = os.path.join(
             self.searchpath,
-            template.removesuffix(".html.jinja2") + ".md"
+            removesuffix(template,".html.jinja2") + ".md"
         )
         if os.path.exists(filename):
             with open(filename) as fd:
