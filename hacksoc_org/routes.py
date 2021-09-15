@@ -1,3 +1,8 @@
+"""
+    Defines Flask URL route handlers. Exports `blueprint` to be mounted by app
+    onto the root.
+"""
+
 from hacksoc_org.server_loader import MarkdownServerLoader
 from flask import Blueprint, render_template, url_for, current_app, get_template_attribute
 from jinja2 import FileSystemLoader
@@ -34,10 +39,25 @@ blueprint.jinja_loader = jinja2.ChoiceLoader([
 
 @blueprint.route("/<string:page>.html")
 def render_page(page : str):
-    return render_template(f"content/{page}.html.jinja2") # TODO: .jinja2
+    """Renders a simple page, with no additional context passed.
+
+    Serves `content/foo.html.jinja2` at `/foo.html`
+
+    Args:
+        page (str): name of the page (with no extension)
+
+    Returns:
+        str: Full HTML page
+    """
+    return render_template(f"content/{page}.html.jinja2")
 
 @blueprint.route("/")
 def index():
+    """Handles / serving index.html
+
+    Returns:
+        str: Full HTML page
+    """
     return render_page("index")
 
 @blueprint.route("/servers/<string:page>.html")
@@ -46,8 +66,15 @@ def render_server_page(page: str):
 
 @blueprint.route("/minutes.html")
 def render_minutes():
+    """Special case for minutes.html, which enumerates minutes documents and provides as context
+
+    Returns:
+        str: Full HTML page
+    """
+
     # this could be put into a get_minutes() function in filters.py, similar to 
-    # get_news.    
+    # get_news. This function could be removed and minutes.html handled by 
+    # render_page
 
     re_filename = re.compile(r"^(\d{4}-[01]\d-[0123]\d)-(.*)\.pdf$")
 
@@ -74,4 +101,12 @@ def render_minutes():
 
 @blueprint.route("/news/<string:article>.html")
 def render_news(article: str):
+    """Renders a news article, providing the template with the publishing date
+
+    Args:
+        article (str): article basename (no extension or path)
+
+    Returns:
+        str: Full HTML page
+    """
     return render_template(f"content/news/{article}.html.jinja2", date=date.fromisoformat(article[:10]))

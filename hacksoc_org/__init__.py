@@ -1,3 +1,12 @@
+"""
+    hacksoc_org: build system for the hacksoc.org website.
+
+    This module contains the Flask and Jinja boilerplate, HackSoc-specific
+    customisations for pages, and user convenience functionality for local 
+    testing.
+"""
+
+
 import flask
 import yaml
 from os import path
@@ -26,9 +35,13 @@ from hacksoc_org.serve import serve
 
 @app.cli.command("freeze")
 def do_freeze():
+    """Called on `flask freeze`. Renders the site to HTML in the build/ 
+    directory"""
     freeze()
 
 @app.cli.command("serve")
 def static_serve():
+    """Called on `flask serve`. Freezes the site and starts a local server. 
+    Should be near-indistinguishable from `flask run`."""
     freeze()
     serve(path.join(root_dir, "build"))
