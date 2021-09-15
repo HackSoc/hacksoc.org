@@ -57,6 +57,8 @@ The website uses fonts from Google Fonts and Roboto Slab, hosted directly. The l
 
 `style_2017.css` contains the styles for everything else on the site. Where appropriate, it references colour variables from the visual identity.
 
+`pygments.css` supports syntax highlighting for [markdown2](https://github.com/trentm/python-markdown2/wiki/fenced-code-blocks). It was generated with `pygmentize -S solarized-light -f html -a .codehilite > static/pygments.css`.
+
 There's also the `stylesheets` Jinja block where pages can add their own inline or external stylesheets. A similar block could be added for `<script>` tags if needed in the future. 
 
 ### "Body"

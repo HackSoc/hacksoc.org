@@ -6,6 +6,7 @@ uoy: yes
 ---
 
 <!-- name is temporary before names are voted on -->
+<!-- this aged well -->
 
 Latona <!-- let's go away--> is a storage server maintained by [HackSoc](https://www.hacksoc.org) for the use of members of the society. 
 
