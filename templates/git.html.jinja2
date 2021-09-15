@@ -1,0 +1,8 @@
+{% set commit = git_head() -%}
+<!--
+    Commit info:
+    ID: {{ commit.id }} ({{ commit.short_id }})
+    Author: {{ commit.author.name }}
+    Date: {{ (commit|git_date).isoformat() }}
+    Message: {{ commit.message|trim}}
+-->

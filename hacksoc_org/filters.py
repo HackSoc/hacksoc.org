@@ -5,11 +5,12 @@
     time. This file must be imported after hacksoc_org.app is defined.
 """
 
+import datetime
 from flask import get_template_attribute
 
 import yaml
 
-from datetime import date
+from datetime import date, timedelta, tzinfo
 import re
 import os
 from pprint import pformat
@@ -20,6 +21,9 @@ from typing import Any, Dict, List, Union
 from hacksoc_org import app, root_dir
 from hacksoc_org.markdown import render_markdown
 from hacksoc_org.util import removesuffix
+
+from pygit2 import Commit
+from hacksoc_org.git import repo
 
 @app.template_filter()
 def paginate(indexable, start : int, count : int):
@@ -192,3 +196,37 @@ def format_date(d : date):
         return str(d)
     else:
         return f"{months[d.month-1]} {d.day:02d}, {d.year}"
+
+@app.template_global()
+def git_head() -> Commit:
+    """Returns the commit at HEAD
+
+    https://www.pygit2.org/objects.html#commits
+    Returns:
+        Commit: pygit2 Commit object
+    """
+    return repo[repo.head.target]
+
+@app.template_filter()
+def git_date(commit: Commit) -> datetime.datetime:
+    """Wrangles a datetime out of a Commit.
+
+    Args:
+        commit (Commit): PyGit2 Commit object
+
+    Returns:
+        datetime: Commit time.
+    """
+    return datetime.datetime.fromtimestamp(commit.commit_time, datetime.timezone(timedelta(minutes=commit.commit_time_offset)))
+
+@app.template_filter()
+def commit_to_url(full_commit_hash : str) -> str:
+    """Provides a remote URL (eg. for GitHub) for a given commit ID
+
+    Args:
+        full_commit_hash (str): commit ID
+
+    Returns:
+        str: URL
+    """
+    return f"https://github.com/hacksoc/hacksoc.org/commit/{full_commit_hash}"
