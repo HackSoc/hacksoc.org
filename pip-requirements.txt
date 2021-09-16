@@ -6,3 +6,4 @@ markdown2
 pygments
 python-frontmatter
 pygit2
+black

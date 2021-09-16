@@ -10,7 +10,7 @@ from flask import get_template_attribute
 
 import yaml
 
-from datetime import date, timedelta, tzinfo
+from datetime import date, timedelta
 import re
 import os
 from pprint import pformat
@@ -25,8 +25,9 @@ from hacksoc_org.util import removesuffix
 from pygit2 import Commit
 from hacksoc_org.git import repo
 
+
 @app.template_filter()
-def paginate(indexable, start : int, count : int):
+def paginate(indexable, start: int, count: int):
     """Splits `indexable` into chunks of `count` elements starting with the
     `start`th element.
 
@@ -39,9 +40,10 @@ def paginate(indexable, start : int, count : int):
         up to `count` elements from indexable starting at `start`.
     """
     if count > 0:
-        return indexable[start:start+count]
+        return indexable[start : start + count]
     else:
         return indexable[start:]
+
 
 @app.template_global()
 def get_news() -> List[Dict[str, Any]]:
@@ -52,41 +54,47 @@ def get_news() -> List[Dict[str, Any]]:
             `title` (str): article title (plain text)
             `lede` (str): article lede (HTML)
             `date` (datetime.date): date of initial publication
-            `article_name`: filename of the article file (Jinja or Markdown) 
+            `article_name`: filename of the article file (Jinja or Markdown)
             with the extension removed.
     """
     news = []
     for filename in os.listdir(os.path.join(root_dir, "templates", "content", "news")):
         if filename.endswith(".md"):
-            template_name = os.path.join("content","news", removesuffix(filename,".md") + ".html.jinja2")
+            template_name = os.path.join(
+                "content", "news", removesuffix(filename, ".md") + ".html.jinja2"
+            )
         else:
-            template_name = os.path.join("content","news",filename)
+            template_name = os.path.join("content", "news", filename)
         title = get_template_attribute(template_name, "title")
         lede = get_template_attribute(template_name, "lede")
         published = date.fromisoformat(filename[:10])
-        news.append({
-            'title': title.strip(),
-            'lede': lede.strip(),
-            'date': published,
-            'article_name': removesuffix(removesuffix(filename, ".md"), ".html.jinja2")
-        })
+        news.append(
+            {
+                "title": title.strip(),
+                "lede": lede.strip(),
+                "date": published,
+                "article_name": removesuffix(removesuffix(filename, ".md"), ".html.jinja2"),
+            }
+        )
         if len(lede) == 0:
             print("No lede found for", filename)
     news.sort(key=itemgetter("date"), reverse=True)
     return news
 
+
 @app.template_filter()
-def pretty(arg : Any) -> str:
+def pretty(arg: Any) -> str:
     """Returns `arg` as it would be printed by `pprint`
 
     Args:
-        arg (any): 
+        arg (any):
 
     Returns:
         str: pretty-print representation of `arg`. Useful for debugging, often
         looks best in monospace/preformatted blocks.
     """
     return pformat(arg)
+
 
 @app.template_filter()
 def markdown(caller):
@@ -101,25 +109,24 @@ def markdown(caller):
     """
     return render_markdown(caller)
 
+
 @app.template_filter()
-def from_yaml(caller : str) -> Union[List, Dict]:
-    """Parses the argument as YAML. Useful for quickly defining data to pass to 
-    Jinja macros to template. 
+def from_yaml(caller: str) -> Union[List, Dict]:
+    """Parses the argument as YAML. Useful for quickly defining data to pass to Jinja macros to
+    template.
 
     ```
     {% set events | from_yaml %}
         - name: Boardgames and Cake
-          desc: > 
-            In one of the oldest and noblest traditions of HackSoc, we descend 
-            upon a room, play many boardgames, and eat much cake. Both 
-            boardgames and cake are brought along by members, so if you do enjoy
-            the events, please consider bringing something along.
+          desc: >
+            In one of the oldest and noblest traditions of HackSoc, we descend upon a room, play
+            many boardgames, and eat much cake. Both boardgames and cake are brought along by
+            members, so if you do enjoy the events, please consider bringing something along.
         - name: CoffeeScript
           desc: >
-            An unprecedented case of joviality and camaraderie has struck 
-            HackSoc, and we have responded with a weekly social over in the Ron 
-            Cooke Hub cafe on Hes East. Come for lunch, a chat, and maybe a 
-            small game or two.
+            An unprecedented case of joviality and camaraderie has struck HackSoc, and we have
+            responded with a weekly social over in the Ron Cooke Hub cafe on Hes East. Come for
+            lunch, a chat, and maybe a small game or two.
     {% endset %}
 
     {% for item in events %}
@@ -131,28 +138,27 @@ def from_yaml(caller : str) -> Union[List, Dict]:
     ```
 
     Args:
-        caller (str): YAML source, usually from a Jinja block (eg block 
-        assignment or macro call block)
+        caller (str): YAML source, usually from a Jinja block (eg block assignment or macro call
+        block)
 
     Returns:
-        Union[List, Dict]: YAML supports top-level lists or dictionaries
-        (objects).
+        Union[List, Dict]: YAML supports top-level lists or dictionaries (objects).
     """
     return yaml.safe_load(caller)
 
+
 @app.template_filter()
-def split_lede(caller) -> Dict[str,str]:
+def split_lede(caller) -> Dict[str, str]:
     """Parses HTML with regular expressions.
 
-    Splits the first paragraph of a news article from the rest of the article.
-    Assumes that caller starts with a <p> block and no other (non-whitespace)
-    characters.
+    Splits the first paragraph of a news article from the rest of the article. Assumes that caller
+    starts with a <p> block and no other (non-whitespace) characters.
 
     Args:
         caller (str): HTML source beginning with a <p> block
 
     Returns:
-        Dict[str,str]: 
+        Dict[str,str]:
             `lede`: First <p> of `caller`, **excluding** the surrounding tags
             `text`: Rest of the article (everything after the first </p>)
     """
@@ -161,9 +167,10 @@ def split_lede(caller) -> Dict[str,str]:
 
     if match is None:
         print(caller)
-        return {'lede': '', 'text': caller}
+        return {"lede": "", "text": caller}
     else:
-        return {'lede': match[1], 'text': caller[match.end(0):]}
+        return {"lede": match[1], "text": caller[match.end(0) :]}
+
 
 months = [
     "January",
@@ -177,11 +184,12 @@ months = [
     "September",
     "October",
     "November",
-    "December"
+    "December",
 ]
 
+
 @app.template_filter()
-def format_date(d : date):
+def format_date(d: date):
     """Formats dates as "January 02, 2021"
 
     Args:
@@ -190,12 +198,14 @@ def format_date(d : date):
     Returns:
         str: formatted date
     """
-    if not isinstance(d,date):
+    if not isinstance(d, date):
         # this can happen when calling get_template_attribute on an article
-        # since the date doesn't get passed to the template at that point, only in the render_article route.
+        # since the date doesn't get passed to the template at that point, only in the
+        # render_article route.
         return str(d)
     else:
         return f"{months[d.month-1]} {d.day:02d}, {d.year}"
+
 
 @app.template_global()
 def git_head() -> Commit:
@@ -207,6 +217,7 @@ def git_head() -> Commit:
     """
     return repo[repo.head.target]
 
+
 @app.template_filter()
 def git_date(commit: Commit) -> datetime.datetime:
     """Wrangles a datetime out of a Commit.
@@ -217,10 +228,13 @@ def git_date(commit: Commit) -> datetime.datetime:
     Returns:
         datetime: Commit time.
     """
-    return datetime.datetime.fromtimestamp(commit.commit_time, datetime.timezone(timedelta(minutes=commit.commit_time_offset)))
+    return datetime.datetime.fromtimestamp(
+        commit.commit_time, datetime.timezone(timedelta(minutes=commit.commit_time_offset))
+    )
+
 
 @app.template_filter()
-def commit_to_url(full_commit_hash : str) -> str:
+def commit_to_url(full_commit_hash: str) -> str:
     """Provides a remote URL (eg. for GitHub) for a given commit ID
 
     Args:

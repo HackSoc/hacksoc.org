@@ -1,9 +1,8 @@
 """
     hacksoc_org: build system for the hacksoc.org website.
 
-    This module contains the Flask and Jinja boilerplate, HackSoc-specific
-    customisations for pages, and user convenience functionality for local 
-    testing.
+    This module contains the Flask and Jinja boilerplate, HackSoc-specific customisations for pages,
+    and user convenience functionality for local testing.
 """
 
 
@@ -20,11 +19,13 @@ app.jinja_env.add_extension("jinja2.ext.do")
 # adds support for the jinja "do" statement
 
 from hacksoc_org.routes import blueprint, root_dir
+
 app.register_blueprint(blueprint)
 
 app.config["FREEZER_DESTINATION"] = path.join(root_dir, "build")
 
 import hacksoc_org.filters
+
 # importing to trigger execution; decorated functions will add themselves to the app.
 
 with open(path.join(root_dir, "templates", "context.yaml")) as fd:
@@ -33,15 +34,16 @@ with open(path.join(root_dir, "templates", "context.yaml")) as fd:
 from hacksoc_org.freeze import freeze
 from hacksoc_org.serve import serve
 
+
 @app.cli.command("freeze")
 def do_freeze():
-    """Called on `flask freeze`. Renders the site to HTML in the build/ 
-    directory"""
+    """Called on `flask freeze`. Renders the site to HTML in the build/ directory"""
     freeze()
+
 
 @app.cli.command("serve")
 def static_serve():
-    """Called on `flask serve`. Freezes the site and starts a local server. 
-    Should be near-indistinguishable from `flask run`."""
+    """Called on `flask serve`. Freezes the site and starts a local server. Should be
+    near-indistinguishable from `flask run`."""
     freeze()
     serve(path.join(root_dir, "build"))

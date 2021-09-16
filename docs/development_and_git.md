@@ -85,8 +85,18 @@ No matter what change you've made, build the website and check that it's applied
 
 ## 5. Go back and fix it
 
-## 6. Commit changes
-Once that bit's working, now's a good time to commit your work. A **commit** is like a checkpoint, so you can fearlessly make changes knowing that you can get back to the last time it was working.
+## 6. Format code and commit changes
+Once that bit's working, now's a good time to commit your work. First run the code formatter:
+
+```
+black hacksoc_org/
+# if you've got the venv activated already
+
+venv/bin/venv hacksoc_org/
+# otherwise
+```
+
+Next, it's time to make a commit! A **commit** is like a checkpoint, so you can fearlessly make changes knowing that you can get back to the last time it was working.
 
 ### Add (stage) files
 You can use `git status` to show you all the **unstaged** files (changed files but won't be committed) and **untracked** files (new files that also won't be committed). To turn these into **staged** files (that *will* be committed), use `git add`:

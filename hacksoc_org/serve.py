@@ -7,9 +7,9 @@ from http.server import test, SimpleHTTPRequestHandler
 
 import functools
 
-def serve(basedir : str):
-    """Starts a local HTTP server on port 5000, such that `basedir` + index.html
-    appears at '/'
+
+def serve(basedir: str):
+    """Starts a local HTTP server on port 5000, such that `basedir` + index.html appears at '/'
 
     Args:
         basedir (str): Path to the web root directory

@@ -42,7 +42,14 @@ Equivalent to running `flask serve` followed by `cd build/ && python3 -m http.se
 
 ## Style guide
 To keep a consistent style, the following rules are used:
- - Line length: text in news/ should not exceed 70 characters per line (the odd 71 is okay). Otherwise, documents should NOT use hard wrapping, and instead use your editor's soft wrap setting to display long lines of text.
+
+### Line length
+ - **Markdown** files:
+   - News articles should not exceed **70 characters** per line
+ - **Python** files:
+   - **100 characters** per line (use `black hacksoc_org` to apply formatting automatically)
+
+Otherwise, there is no line length limit, and you are encouraged to use "soft wrap" features in your editor.
 
 ### Years of study
 [about.html](templates/content/about.html.jinja2) contains information about the committee, including their current year of study. The year given should be the 'stage' that the committee member is in. When a member is on a year in industry, they should not be listed as being in any year and instead as "currently on year in industry". If the year in industry is in between stages two and three, they will return as a "third year".
