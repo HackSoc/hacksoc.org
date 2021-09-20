@@ -92,7 +92,7 @@ Once that bit's working, now's a good time to commit your work. First run the co
 black hacksoc_org/
 # if you've got the venv activated already
 
-venv/bin/venv hacksoc_org/
+venv/bin/black hacksoc_org/
 # otherwise
 ```
 
