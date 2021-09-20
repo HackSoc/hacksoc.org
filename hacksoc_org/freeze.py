@@ -16,7 +16,7 @@ freezer = Freezer(app)
 
 
 def get_all_routes() -> List[str]:
-    """Provided for future contigency but currently unused; explicitly provides
+    """Provided for future contingency but currently unused; explicitly provides
     a list of all URL routes (including static routes) that flask_frozen can
     call without relying on discovery via url_for
 
