@@ -39,6 +39,10 @@ class MarkdownServerLoader(BaseLoader):
                 `is_uptodate` (if provided) is used for template reloading; if it returns `False`
                 then the template is reloaded.
         """
+        template = template.replace("/", os.sep)
+        # `template` (as given in arguments) is a Jinja path (/ on all paths)
+        # from hereon we can assume it is an OS-compatible path.
+
         if self.prefix_allowlist is None or not template.startswith(self.prefix_allowlist):
             raise TemplateNotFound(template)
 
