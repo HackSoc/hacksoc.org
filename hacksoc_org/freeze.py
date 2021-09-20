@@ -54,7 +54,8 @@ def get_static_routes() -> Generator[str, None, None]:
     top = os.path.join(root_dir, "static")
     for (dirpath, dirnames, filenames) in os.walk(top):
         for filename in filenames:
-            route = "/static" + removeprefix(dirpath, top) + "/" + filename
+            route = "/static" + removeprefix(dirpath, top).replace(os.sep, "/") + "/" + filename
+            # `filename` is an OS-specific path (using `os.sep`); output is a URL route (using /)
             yield route
 
 
@@ -66,7 +67,10 @@ def get_server_page_routes() -> Generator[str, None, None]:
         Generator[str, None, None]: URL routes
     """
     for filename in os.listdir(os.path.join(root_dir, "templates", "content", "servers")):
-        yield "/servers/" + removesuffix(removesuffix(filename, ".html.jinja2"), ".md") + ".html"
+        yield "/servers/" + removesuffix(removesuffix(filename, ".html.jinja2"), ".md").replace(
+            os.sep, "/"
+        ) + ".html"
+        # see `get_static_routes`
 
 
 def freeze():
