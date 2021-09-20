@@ -39,7 +39,7 @@ class MarkdownServerLoader(BaseLoader):
                 `is_uptodate` (if provided) is used for template reloading; if it returns `False`
                 then the template is reloaded.
         """
-        if not template.startswith(self.prefix_allowlist):
+        if self.prefix_allowlist is None or not template.startswith(self.prefix_allowlist):
             raise TemplateNotFound(template)
 
         filename = os.path.join(self.path, removesuffix(template, ".html.jinja2") + ".md")

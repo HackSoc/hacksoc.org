@@ -108,7 +108,7 @@ If the majority of the article can be written in Markdown, but you still want th
 ### Some markdown tips
 Although HackSoc prefers the "fenced" code block style, Markdown also supports
 code blocks simply by indenting them 4 spaces. That means that if you indent the
-markdown filter 4 (or more) spaces, it will put the whole input in a &lt;pre&gt;
+markdown filter 4 (or more) spaces, it will put the whole input in a `<pre>`
 block. So remember to start markdown input with no indentation whatsoever.
 {% endfilter %}
 

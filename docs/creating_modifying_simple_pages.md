@@ -9,7 +9,7 @@ In this context, *simple* pages are ones where the content is mostly HTML and re
 
 All pages must include three things:
  - `{% extends "base.html.jinja2" %}`
- - `title` block &ndash; this is put into the `&lt;title&gt;` element in `&lt;head&gt;`.
+ - `title` block &ndash; this is put into the `<title>` element in `<head>`.
    - This title will be followed by `| HackSoc - the computer science society`, so you don't need to mention "HackSoc" in your title.
    - **Avoid:** `HackSoc events`, `Society events`
    - **Prefer:** `Our events`, `events`

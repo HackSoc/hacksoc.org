@@ -66,6 +66,14 @@ def index():
 
 @blueprint.route("/servers/<string:page>.html")
 def render_server_page(page: str):
+    """Handles server READMEs (not part of main website but copied off by each server)
+
+    Args:
+        page (str): server hostname (eg runciman)
+
+    Returns:
+        str: Full HTML page
+    """
     return render_template(f"content/servers/{page}.html.jinja2")
 
 
