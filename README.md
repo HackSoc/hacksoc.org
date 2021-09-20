@@ -60,7 +60,7 @@ More style guidance may be added so always check this section when authoring new
 
 ## Installation
 
-After you've clone the repository, create a new **virtual environment** with the following:
+After you've cloned the repository, create a new **virtual environment** with the following:
 ```
 python3.7 -m venv venv/
 ```
@@ -68,7 +68,15 @@ Note that the **minimum supported version is Python 3.7**; if possible, try not 
 
 Next install dependencies
 ```
+# For Linux/MacOS and Windows Subsystem for Linux (WSL) users
 source venv/bin/activate
+
+# Windows users using cmd.exe
+venv\Scripts\activate.bat
+
+# Windows users using PowerShell
+venv\Scripts\Activate.ps1
+
 pip install -r pip-requirements.txt
 ```
 
