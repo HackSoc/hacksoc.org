@@ -20,6 +20,7 @@ Documentation can be found in [`docs/`](docs/)`, including topics such as:
 Preferred way to run is through the `flask` command. It can be executed with the venv (see [Installation](#installation)) activated by just running `flask` or otherwise at `venv/bin/flask`:
 
 ### Starting a development server
+While you're developing, you probably want to use:
 ```
 flask run
 venv/bin/flask run
@@ -27,6 +28,7 @@ venv/bin/flask run
 Pages are served directly from the Flask routes; you shouldn't need to restart the server when changes are made, but web pages will not automatically refresh. Open your browser to [`http://localhost:5000/`](http://localhost:5000/) to see the results.
 
 ### Freezing to HTML
+To produce a folder full of static HTML and assets (images, CSS, JS, fonts), the site must be *frozen*. The resulting folder can then be used with a regular webserver (like nginx), and should look exactly the same as when running with `flask run`. You probably want to use this or `flask serve` at least once before you create a pull request.
 ```
 flask run
 venv/bin/flask freeze
@@ -38,7 +40,7 @@ The HTTP root directory is `build/`.
 flask serve
 venv/bin/flask serve
 ```
-Equivalent to running `flask serve` followed by `cd build/ && python3 -m http.server 5000`. If all goes well, you should always see the same as `flask run`.
+Starts a local HTTP server from the `build/` directory. Equivalent to running `flask freeze` followed by `cd build/ && python3 -m http.server 5000`. If all goes well, you should always see the same as `flask run`.
 
 ## Style guide
 To keep a consistent style, the following rules are used:

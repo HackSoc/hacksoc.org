@@ -1,4 +1,4 @@
-# Writing articles
+# Writing news articles
 
 | **You should know** |                                                          |
 |---------------------|----------------------------------------------------------|
@@ -64,16 +64,16 @@ given in the text. Otherwise, or if the same link is repeated, use
 ```
 
 ## Using HTML & Jinja
-More complex articles can be written directly in HTML. These articles can also leverage the Jinja templating system. You can use any HTML elements that are appropriate.
+More complex news articles can be written directly in HTML. These articles can also leverage the Jinja templating system. You can use any HTML elements that are appropriate. This might be helpful when the news article contains more than just formatted text. For instance, you could leverage Jinja macros to vastly simplify writing up the results of an AGM.
 
 ### File naming
-The same rules apply, except that the file should end in `.html.jinja2` rather than `.md`
+The same rules apply, except that the file should end in `.html.jinja2` rather than `.md`.
 
 ### Templating
 Any Jinja article should include these four things:
  - `{% extends "article.html.jinja2" %}`
  - `title` block with the article title
- - `lede` block with the first sentence or paragraph of the article
+ - `lede` block with the first sentence or par`ag`raph of the article
  - `body` block with the rest of the article
 
 ### Markdown in Jinja
