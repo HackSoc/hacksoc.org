@@ -18,18 +18,18 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.jinja_env.add_extension("jinja2.ext.do")
 # adds support for the jinja "do" statement
 
-from hacksoc_org.routes import blueprint, root_dir
+from hacksoc_org.routes import blueprint, ROOT_DIR
 
 app.register_blueprint(blueprint)
 
-app.config["FREEZER_DESTINATION"] = path.join(root_dir, "build")
+app.config["FREEZER_DESTINATION"] = path.join(ROOT_DIR, "build")
 
 import hacksoc_org.filters
 
 # importing to trigger execution; decorated functions will add themselves to the app.
 
 # random global values are put in context.yaml and will be available to all templates
-with open(path.join(root_dir, "templates", "context.yaml")) as fd:
+with open(path.join(ROOT_DIR, "templates", "context.yaml")) as fd:
     app.jinja_env.globals.update(dict(yaml.safe_load(fd)))
 
 from hacksoc_org.freeze import freeze
@@ -47,4 +47,4 @@ def static_serve():
     """Called on `flask serve`. Freezes the site and starts a local server. Should be
     near-indistinguishable from `flask run`."""
     freeze()
-    serve(path.join(root_dir, "build"))
+    serve(path.join(ROOT_DIR, "build"))

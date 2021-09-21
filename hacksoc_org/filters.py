@@ -18,12 +18,12 @@ from operator import itemgetter
 
 from typing import Any, Dict, List, Union
 
-from hacksoc_org import app, root_dir
+from hacksoc_org import app, ROOT_DIR
 from hacksoc_org.markdown import render_markdown
 from hacksoc_org.util import removesuffix
 
 from pygit2 import Commit
-from hacksoc_org.git import repo
+from hacksoc_org.git import REPO
 
 
 @app.template_filter()
@@ -58,7 +58,7 @@ def get_news() -> List[Dict[str, Any]]:
             with the extension removed.
     """
     news = []
-    for filename in os.listdir(os.path.join(root_dir, "templates", "content", "news")):
+    for filename in os.listdir(os.path.join(ROOT_DIR, "templates", "content", "news")):
         if filename.endswith(".md"):
             template_name = os.path.join(
                 "content", "news", removesuffix(filename, ".md") + ".html.jinja2"
@@ -172,7 +172,7 @@ def split_lede(caller) -> Dict[str, str]:
         return {"lede": match[1], "text": caller[match.end(0) :]}
 
 
-months = [
+MONTHS = [
     "January",
     "February",
     "March",
@@ -204,7 +204,7 @@ def format_date(d: date):
         # render_article route.
         return str(d)
     else:
-        return f"{months[d.month-1]} {d.day:02d}, {d.year}"
+        return f"{MONTHS[d.month-1]} {d.day:02d}, {d.year}"
 
 
 @app.template_global()
@@ -215,7 +215,7 @@ def git_head() -> Commit:
     Returns:
         Commit: pygit2 Commit object
     """
-    return repo[repo.head.target]
+    return REPO[REPO.head.target]
 
 
 @app.template_filter()

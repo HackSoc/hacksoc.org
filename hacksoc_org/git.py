@@ -2,6 +2,6 @@
 from pygit2 import discover_repository, Repository
 import os
 
-path = discover_repository(os.path.dirname(__file__))
-repo = Repository(path)
+PATH = discover_repository(os.path.dirname(__file__))
+REPO = Repository(PATH)
 # https://www.pygit2.org/repository.html

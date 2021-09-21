@@ -5,7 +5,7 @@
 
 import os
 from typing import Generator, List
-from hacksoc_org import root_dir, app
+from hacksoc_org import ROOT_DIR, app
 
 from hacksoc_org.util import removesuffix, removeprefix
 
@@ -26,11 +26,11 @@ def get_all_routes() -> List[str]:
     # not currently used
     routes = []
 
-    for filename in os.listdir(os.path.join(root_dir, "templates", "content")):
+    for filename in os.listdir(os.path.join(ROOT_DIR, "templates", "content")):
         if filename.endswith(".html.jinja2"):
             routes.append("/" + removesuffix(filename, ".jinja2"))
 
-    for filename in os.listdir(os.path.join(root_dir, "templates", "content", "news")):
+    for filename in os.listdir(os.path.join(ROOT_DIR, "templates", "content", "news")):
         routes.append(
             "/news/" + removesuffix(removesuffix(filename, ".html.jinja2"), ".md") + ".html"
         )
@@ -51,7 +51,7 @@ def get_static_routes() -> Generator[str, None, None]:
     Yields:
         Generator[str, None, None]: URL routes for static assets
     """
-    top = os.path.join(root_dir, "static")
+    top = os.path.join(ROOT_DIR, "static")
     for (dirpath, _, filenames) in os.walk(top):
         for filename in filenames:
             route = "/static" + removeprefix(dirpath, top).replace(os.sep, "/") + "/" + filename
@@ -66,7 +66,7 @@ def get_server_page_routes() -> Generator[str, None, None]:
     Yields:
         Generator[str, None, None]: URL routes
     """
-    for filename in os.listdir(os.path.join(root_dir, "templates", "content", "servers")):
+    for filename in os.listdir(os.path.join(ROOT_DIR, "templates", "content", "servers")):
         yield "/servers/" + removesuffix(removesuffix(filename, ".html.jinja2"), ".md").replace(
             os.sep, "/"
         ) + ".html"

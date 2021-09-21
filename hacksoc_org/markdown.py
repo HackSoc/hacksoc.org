@@ -5,7 +5,7 @@
 
 import markdown2
 
-markdowner = markdown2.Markdown(
+__markdowner__ = markdown2.Markdown(
     extras=[
         "fenced-code-blocks",
         "cuddled-lists",
@@ -26,4 +26,4 @@ def render_markdown(markdown_src: str) -> str:
     Returns:
         str: HTML text
     """
-    return markdowner.convert(markdown_src)
+    return __markdowner__.convert(markdown_src)

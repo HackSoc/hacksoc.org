@@ -14,8 +14,8 @@ from operator import itemgetter
 
 import jinja2
 
-root_dir = path.abspath(path.join(path.dirname(__file__), path.pardir))
-template_dir = path.join(root_dir, "templates")
+ROOT_DIR = path.abspath(path.join(path.dirname(__file__), path.pardir))
+TEMPLATE_DIR = path.join(ROOT_DIR, "templates")
 # dirname(__file__) is the hacksoc_org python module folder
 # its parent is the git repository root, directly under which the static/, and template/ folders lie
 
@@ -23,15 +23,15 @@ blueprint = Blueprint(
     "routes",
     __name__,
     template_folder=None,
-    static_folder=path.join(root_dir, "static"),
+    static_folder=path.join(ROOT_DIR, "static"),
     static_url_path="/static",
 )
 
 blueprint.jinja_loader = jinja2.ChoiceLoader(
     [
-        FileSystemLoader(template_dir),
-        MarkdownNewsLoader(template_dir, prefix_allow=os.path.join("content", "news")),
-        MarkdownServerLoader(template_dir, prefix_allow=os.path.join("content", "servers")),
+        FileSystemLoader(TEMPLATE_DIR),
+        MarkdownNewsLoader(TEMPLATE_DIR, prefix_allow=os.path.join("content", "news")),
+        MarkdownServerLoader(TEMPLATE_DIR, prefix_allow=os.path.join("content", "servers")),
     ]
 )
 
@@ -88,7 +88,7 @@ def render_minutes():
     re_filename = re.compile(r"^(\d{4}-[01]\d-[0123]\d)-(.*)\.pdf$")
 
     minutes_listing = []
-    for filename in os.listdir(path.join(root_dir, "static", "minutes")):
+    for filename in os.listdir(path.join(ROOT_DIR, "static", "minutes")):
         match = re_filename.match(filename)
         if match is None:
             continue
