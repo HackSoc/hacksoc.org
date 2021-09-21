@@ -53,6 +53,12 @@ To keep a consistent style, the following rules are used:
 
 Otherwise, there is no line length limit, and you are encouraged to use "soft wrap" features in your editor.
 
+### Code style
+Python files should roughly follow [PEP 8](https://www.python.org/dev/peps/pep-0008/), formatted with `black`. 
+
+Note that although constants should be in uppercase, PEP 8 does not strictly define what counts as a constant. Some variables in `hacksoc_org` are assigned once and should never be reassigned, but are mutated often and generally don't behave like constants (for example `app`, `blueprint` from Flask). When considering whether to name a variable as a constant, think about the following:
+ - Could the variable be replaced with its literal value?
+ - Does the value of the variable ever change? (this includes mutations rather than just reassignments)
 ### Years of study
 [about.html](templates/content/about.html.jinja2) contains information about the committee, including their current year of study. The year given should be the 'stage' that the committee member is in. When a member is on a year in industry, they should not be listed as being in any year and instead as "currently on year in industry". If the year in industry is in between stages two and three, they will return as a "third year".
 
