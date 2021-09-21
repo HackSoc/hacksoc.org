@@ -4,7 +4,7 @@
 """
 
 import os
-from typing import Generator, List, cast
+from typing import Generator, List
 from hacksoc_org import root_dir, app
 
 from hacksoc_org.util import removesuffix, removeprefix
@@ -52,7 +52,7 @@ def get_static_routes() -> Generator[str, None, None]:
         Generator[str, None, None]: URL routes for static assets
     """
     top = os.path.join(root_dir, "static")
-    for (dirpath, dirnames, filenames) in os.walk(top):
+    for (dirpath, _, filenames) in os.walk(top):
         for filename in filenames:
             route = "/static" + removeprefix(dirpath, top).replace(os.sep, "/") + "/" + filename
             # `filename` is an OS-specific path (using `os.sep`); output is a URL route (using /)

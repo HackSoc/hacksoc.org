@@ -3,7 +3,7 @@
 """
 
 from hacksoc_org.server_loader import MarkdownServerLoader
-from flask import Blueprint, render_template, url_for, current_app, get_template_attribute
+from flask import Blueprint, render_template, url_for
 from jinja2 import FileSystemLoader
 
 from hacksoc_org.news_loader import MarkdownNewsLoader
@@ -13,7 +13,6 @@ from os import path
 import re
 from datetime import date
 from operator import itemgetter
-from pprint import pprint as pp
 
 import jinja2
 
@@ -112,7 +111,7 @@ def render_minutes():
 
     minutes_listing.sort(key=itemgetter("date"))
 
-    return render_template(f"content/minutes.html.jinja2", minutes=minutes_listing)
+    return render_template("content/minutes.html.jinja2", minutes=minutes_listing)
 
 
 @blueprint.route("/news/<string:article>.html")

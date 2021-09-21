@@ -1,7 +1,7 @@
 """
     Function definitions for custom Jinja filters and functions.
 
-    Functions are decorated and add themselves to the Flask context at import 
+    Functions are decorated and add themselves to the Flask context at import
     time. This file must be imported after hacksoc_org.app is defined.
 """
 

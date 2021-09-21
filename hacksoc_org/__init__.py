@@ -28,6 +28,7 @@ import hacksoc_org.filters
 
 # importing to trigger execution; decorated functions will add themselves to the app.
 
+# random global values are put in context.yaml and will be available to all templates
 with open(path.join(root_dir, "templates", "context.yaml")) as fd:
     app.jinja_env.globals.update(dict(yaml.safe_load(fd)))
 

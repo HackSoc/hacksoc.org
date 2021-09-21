@@ -1,4 +1,3 @@
-import re
 from typing import Callable, Optional, Tuple
 from jinja2 import BaseLoader, Environment
 from jinja2.exceptions import TemplateNotFound
