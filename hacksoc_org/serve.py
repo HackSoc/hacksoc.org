@@ -2,16 +2,19 @@
     Provides a simple static HTTP server for local testing
 """
 
-# http.server doesn't export `test`, this may be a bit dodgy to rely on
-from http.server import test, SimpleHTTPRequestHandler
-
+import http.server
 import functools
 
 
-def serve(basedir: str):
+def serve(basedir: str, port=5000):
     """Starts a local HTTP server on port 5000, such that `basedir` + index.html appears at '/'
 
     Args:
         basedir (str): Path to the web root directory
     """
-    test(HandlerClass=functools.partial(SimpleHTTPRequestHandler, directory=basedir), port=5000)
+
+    print(f"Serving {basedir} at http://127.0.0.1:{port}/ ...")
+
+    handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=basedir)
+    server = http.server.HTTPServer(('localhost', port), RequestHandlerClass=handler)
+    server.serve_forever()

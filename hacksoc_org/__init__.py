@@ -47,4 +47,5 @@ def static_serve():
     """Called on `flask serve`. Freezes the site and starts a local server. Should be
     near-indistinguishable from `flask run`."""
     freeze()
+    print()
     serve(path.join(ROOT_DIR, "build"))
