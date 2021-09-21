@@ -2,11 +2,9 @@
     Defines Flask URL route handlers. Exports `blueprint` to be mounted by app onto the root.
 """
 
-from hacksoc_org.server_loader import MarkdownServerLoader
+from hacksoc_org.loaders import MarkdownServerLoader, MarkdownNewsLoader
 from flask import Blueprint, render_template, url_for
 from jinja2 import FileSystemLoader
-
-from hacksoc_org.news_loader import MarkdownNewsLoader
 
 import os
 from os import path
