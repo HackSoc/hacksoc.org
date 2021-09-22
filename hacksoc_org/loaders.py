@@ -54,7 +54,7 @@ class MarkdownServerLoader(BaseLoader):
         filename = os.path.join(self.path, removesuffix(template, ".html.jinja2") + ".md")
 
         if os.path.exists(filename):
-            with open(filename) as fd:
+            with open(filename, encoding='utf-8') as fd:
                 metadata, markdown = frontmatter.parse(fd.read())
                 assert isinstance(metadata, dict)
                 source = """
@@ -118,7 +118,7 @@ class MarkdownNewsLoader(BaseLoader):
 
         filename = os.path.join(self.searchpath, removesuffix(template, ".html.jinja2") + ".md")
         if os.path.exists(filename):
-            with open(filename) as fd:
+            with open(filename, encoding='utf-8') as fd:
                 metadata, content = frontmatter.parse(fd.read())
                 # NB: readlines() returns a list of lines WITH \n at the end
 
