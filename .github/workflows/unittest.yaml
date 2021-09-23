@@ -22,7 +22,6 @@ jobs:
       - name: "Create virtualenv"
         run: python -m venv venv/
       - run: Get-ChildItem -Recurse
-      - run: ls venv/bin
       - name: "Activate virtualenv"
         run: venv/Scripts/Activate.ps1
       - name: "Install dependencies"
