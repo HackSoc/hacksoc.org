@@ -8,7 +8,7 @@ jobs:
   unittest:
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest]
         py_ver: ["3.7", "3.8", "3.9"]
     runs-on: ${{ matrix.os }}
     steps:
