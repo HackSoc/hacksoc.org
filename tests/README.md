@@ -1,5 +1,5 @@
 # Tests
-Tests are written with Python's builtin [`unittest`][https://docs.python.org/3/library/unittest.html] library. If you can come up with more helpful tests, please do!
+Tests are written with Python's builtin [`unittest`](https://docs.python.org/3/library/unittest.html) library. If you can come up with more helpful tests, please do!
 
 ## Test methodology
 Currently supported platforms include:
@@ -22,3 +22,6 @@ python -m unittest discover -s tests/
 venv/bin/python -m unittest discover -s tests/
 # otherwise
 ```
+
+## GitHub actions
+A workflow is [set up](../.github/workflows/unittest.yaml) to run the test suite (as above) on all operating systems and Python versions listed above.
