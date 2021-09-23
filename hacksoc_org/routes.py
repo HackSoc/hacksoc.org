@@ -10,7 +10,7 @@ import os
 from os import path
 import re
 from datetime import date
-from operator import itemgetter
+from operator import attrgetter, itemgetter
 
 import jinja2
 
@@ -85,31 +85,46 @@ def render_minutes():
     # this could be put into a get_minutes() function in filters.py, similar to get_news. This
     # function could be removed and minutes.html handled by render_page
 
-    re_filename = re.compile(r"^(\d{4}-[01]\d-[0123]\d)-(.*)\.pdf$")
+    re_filename = re.compile(r"^(\d{4}-[01]\d-[0123]\d)_(.*)\.pdf$")
 
-    minutes_listing = []
-    for filename in os.listdir(path.join(ROOT_DIR, "static", "minutes")):
-        match = re_filename.match(filename)
-        if match is None:
-            continue
+    MINUTES_DIR = path.join(ROOT_DIR, "static", "minutes")
 
-        try:
-            minutes_listing.append(
-                {
-                    "date": date.fromisoformat(match[1]),
-                    "meeting": match[2],
-                    "url": url_for(".static", filename=f"minutes/{filename}"),
-                }
-            )
-        except ValueError as e:
-            print(f"Error while parsing {filename}:")
-            print("", e)
-            print(" Document will be skipped.")
-            continue
+    committees = sorted(
+        list(filter(lambda de: de.is_dir(), os.scandir(MINUTES_DIR))),
+        key=attrgetter("name"),
+        reverse=True,
+    )
 
-    minutes_listing.sort(key=itemgetter("date"))
+    assert len(committees) > 0, "No committee folders detected in /static/minutes!"
 
-    return render_template("content/minutes.html.jinja2", minutes=minutes_listing)
+    minutes_listing = {}
+    for committee_dir in committees:
+        minutes_listing[committee_dir.name] = []
+
+        for filename in os.listdir(path.join(MINUTES_DIR, committee_dir.name)):
+            match = re_filename.match(filename)
+            if match is None:
+                continue
+
+            try:
+                minutes_listing[committee_dir.name].append(
+                    {
+                        "date": date.fromisoformat(match[1]),
+                        "meeting": match[2].replace("_", " "),
+                        "url": url_for(
+                            ".static", filename=f"minutes/{committee_dir.name}/{filename}"
+                        ),
+                    }
+                )
+            except ValueError as e:
+                print(f"Error while parsing {filename}:")
+                print("", e)
+                print(" Document will be skipped.")
+                continue
+
+            minutes_listing[committee_dir.name].sort(key=itemgetter("date"), reverse=True)
+
+    return render_template("content/minutes.html.jinja2", listing=minutes_listing)
 
 
 @blueprint.route("/news/<string:article>.html")

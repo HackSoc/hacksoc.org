@@ -116,6 +116,7 @@ h1.titleheading{
     padding-bottom:30px;
 }
 
+summary h2 {display: inline-block;}
 
 /* Style for minutes */
 ul.minutes {

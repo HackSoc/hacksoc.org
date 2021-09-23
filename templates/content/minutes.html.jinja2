@@ -4,23 +4,35 @@
 
 {% block body %}
 
-
-
-{% if minutes %}
+{% if listing %}
 <p class="minutes-help">
     Click on the titles to expand a preview of minutes. Click [pdf] to download or open the full minutes in a new tab.
 </p>
-<ul class="minutes">
-    {% for item in minutes %}
-        <li>
-            <a href="javascript:void()" onclick="this.parentElement.classList.toggle('open')">{{item.date}} <strong>{{item.meeting}}</strong></a>
-            [<a href="{{item.url}}" target="#">pdf</a>]
-            <div class="hidden">
-                <iframe src="{{item.url}}"></iframe>
-            </div>
-        </li>
-    {% endfor %}
-</ul>
+
+{% for committee, minutes in listing.items() %}
+    {% if loop.first %}
+        <details open>
+    {% else %}
+        <details>
+    {% endif %}
+        <summary><h2>
+            {{committee}}
+            {% if loop.first %}(current){% endif %}
+        </h2></summary>
+        <ul class="minutes">
+            {% for item in minutes %}
+            <li>
+                <a href="javascript:void()" onclick="this.parentElement.classList.toggle('open')">{{item.date}} <strong>{{item.meeting}}</strong></a>
+                [<a href="{{item.url}}" target="#">pdf</a>]
+                <div class="hidden">
+                    <iframe src="{{item.url}}"></iframe>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </details>
+{% endfor %}
+
 {% else %}
 <p class="minutes-help">No minutes to display</p>
 {% endif %}
