@@ -19,8 +19,9 @@ jobs:
         with:
           python-version: ${{ matrix.py_ver }}
       - run: ls ${{ env.pythonLocation }}
+      - run: python --version
       - name: "Create virtualenv"
-        run: python3 -m venv venv/
+        run: python -m venv venv/
       - name: "Install dependencies"
         run: venv/bin/pip install -r pip-requirements.txt
       - name: "Run unit tests"
