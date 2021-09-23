@@ -1,0 +1,28 @@
+{% extends "base.html.jinja2" %}
+
+{% block title %}Minutes{% endblock title %}
+
+{% block body %}
+
+
+
+{% if minutes %}
+<p class="minutes-help">
+    Click on the titles to expand a preview of minutes. Click [pdf] to download or open the full minutes in a new tab.
+</p>
+<ul class="minutes">
+    {% for item in minutes %}
+        <li>
+            <a href="javascript:void()" onclick="this.parentElement.classList.toggle('open')">{{item.date}} <strong>{{item.meeting}}</strong></a>
+            [<a href="{{item.url}}" target="#">pdf</a>]
+            <div class="hidden">
+                <iframe src="{{item.url}}"></iframe>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="minutes-help">No minutes to display</p>
+{% endif %}
+
+{% endblock body %}

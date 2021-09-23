@@ -1,35 +1,36 @@
-<!--
-{{#if commit}}Commit info:
-{{commit}}{{/if}}
-
-{{#if builddate}}Built on {{builddate}}{{/if}}
-  -->
+{% include "git.html.jinja2" %}
+{% import "utils.html.jinja2" as utils %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{!-- having maxiumum-scale 1.0 here disables pinch-zoom, which fails an a11y audit--}}
+    {# having maxiumum-scale 1.0 here disables pinch-zoom, which fails an a11y audit #}
     <meta name="theme-color" content="#443752"/>
 
-    {{#if redirect}}
+    {% if redirect %}
       <meta http-equiv="refresh" content="0;url={{redirect}}">
-    {{/if}}
+    {% endif %}
 
     <title>
-        {{#if title}}{{title}} &ndash; {{/if}}HackSoc &ndash; the computer science society
+        {% set title | trim%}
+            {% block title %}
+            {% endblock title %}
+        {% endset %}
+        {% if title|length > 0 %}{{title}} &ndash; {% endif %}
+        HackSoc &ndash; the computer science society
     </title>
 
-    {{!-- opengraph metadata for Facebook & Twitter --}}
-    <meta property="og:title"                       content="{{#if title}}{{title}}{{else}}HackSoc &ndash; the computer science society{{/if}}">
+    {# opengraph metadata for Facebook & Twitter #}
+    <meta property="og:title"                       content="{% if title|length>0 %}{{title}}{% else %}HackSoc &ndash; the computer science society{% endif %}">
 
-    {{#if excerpt}} 
-      <meta property="og:description"               content="{{sanitize excerpt}}">  
+    {% if lede %} 
+      <meta property="og:description"               content="{{lede|trim}}">  
       <meta property="og:type"                      content="article">
-    {{else}}
+    {% else %}
       <meta property="og:type"                      content="website">
-    {{/if}}
-    {{#if url}}     <meta property="og:url"         content="{{url}}">  {{/if}}
+    {% endif %}
+    {%if url%}     <meta property="og:url"         content="{{url}}">  {% endif %}
     <meta property="og:locale"                      content="en_GB">
     <meta property="og:image"                       content="https://www.hacksoc.org/static/images/logo-social.png">
     <meta property="og:image:type"                  content="image/png">
@@ -46,33 +47,15 @@
     <link href="//fonts.googleapis.com/css?family=Sanchez|Inconsolata:400,700" rel="stylesheet" type="text/css" />
     <link href="/static/fonts/robotoslab_regular_macroman/stylesheet.css" rel="stylesheet" type="text/css" />
     <link href="/static/hacksoc-colors.css" rel="stylesheet" type="text/css" />
+    <link href="/static/pygments.css" rel="stylesheet" type="text/css" />
     <link href="/static/style_2017.css" rel="stylesheet" type="text/css" />
-    {{#if css}}
-    <!-- page-specific CSS sheets -->
-    {{#each css}}
-    <link href="{{this}}" rel="stylesheet" type="text/css">
-    {{/each}}
-    <!-- end specific CSS -->
-    {{/if}}
+    {% block stylesheets %}
+    {% endblock stylesheets %}
   </head>
   <body>
     <div id="container">
       <header>
-       <nav id="large">
-          <ul>
-            {{#each nav}}
-                <li><a href="{{href}}">{{text}}</a></li>
-            {{/each}}
-          </ul>
-        </nav>
-        <nav id="small" onclick="this.classList.toggle('expanded')">
-           <div class="smallnav">&#9698; menu</div>
-           <ul>
-            {{#each nav}}
-                <li><a href="{{href}}">{{text}}</a></li>
-            {{/each}}
-          </ul>
-        </nav>
+       {% include "nav.html.jinja2" %}
         <img id="logo" src="/static/images/logo2017.svg"/>
         <h1 class="titleheading" style="display:inline-block;">
             <a href="/" title="HackSoc" class="maintitle">
@@ -84,20 +67,21 @@
         <p id="uni">At the University of York</p>
         <p id="server_list">
           <strong>Servers:</strong>
-          {{#each servers}}
-            <a href="{{href}}">{{name}}</a> 
-          {{/each}}
-          {{!-- TODO need to put &middot; after each <a> except last in the CSS --}}
+          {% for ele in servers -%}
+            <a href="{{ele.href}}">{{ele.name}}</a> 
+          {% endfor %}
+          {#- TODO: need to put &middot; after each <a> except last in the CSS #}
         </p>
 
       </header>
 
       <main>
-        {{#if redirect}}
+        {%if redirect%}
           <p>You are being redirected to <a href="{{redirect}}">{{redirect}}</a>...</p>
-        {{else}}
-          {{{body}}}
-        {{/if}}
+        {%else%}
+          {% block body %}
+          {% endblock body %}
+        {% endif %}
       </main>
 
       <div id="stupid-end-marker"></div>

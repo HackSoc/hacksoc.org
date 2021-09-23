@@ -1,0 +1,25 @@
+{% extends "base.html.jinja2" %}
+
+{% set title %}
+{% block title %}
+    Article
+{% endblock title %}
+{% endset %}
+
+{% set lede %}
+{% block lede %}{% endblock lede %}
+{% endset %}
+
+{% block body %}
+    <h2>{{self.title()}}</h2>
+    <div class="date">{{date|format_date}}</div>
+
+    <p class="lede">{{self.lede()}}</p>
+
+    {% block text %}
+    
+    {% endblock text %}
+
+{% endblock body %}
+
+

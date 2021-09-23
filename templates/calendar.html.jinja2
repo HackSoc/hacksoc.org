@@ -31,16 +31,19 @@
       </tr>
     </thead>
     <tbody>
-      {{#times 6}}
-      <tr>
-        {{#times 7}}
-        <td>
-          <div class="date-header"></div>
-          <div class="events"></div>
-        </td>
-        {{/times}}
-      </tr>
-      {{/times}}
+      <!-- blank table rows/columns -->
+      {% filter replace('  ', '')|replace('\n','') %}
+        {% call utils.times(6) %}
+        <tr>
+          {% call utils.times(7) %}
+          <td>
+            <div class="date-header"></div>
+            <div class="events"></div>
+          </td>
+          {% endcall %}
+        </tr>
+        {% endcall %}
+      {% endfilter %}
     </tbody>
   </table>
   <div id="calendar-info-container">
