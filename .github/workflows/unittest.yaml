@@ -21,6 +21,7 @@ jobs:
       - run: python --version
       - name: "Create virtualenv"
         run: python -m venv venv/
+      - run: Get-ChildItem -Recurse
       - run: ls venv/bin
       - name: "Install dependencies"
         run: venv/bin/pip install -r pip-requirements.txt
