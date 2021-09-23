@@ -8,25 +8,31 @@ jobs:
   unittest:
     strategy:
       matrix:
-        # os: [ubuntu-latest, macos-latest, windows-latest]
-        os: [windows-latest]
+        os: [ubuntu-latest, macOS-latest, windows-latest]
         # py_ver: ["3.7", "3.8", "3.9"]
         py_ver: ["3.7"]
+      fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
+
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.py_ver }}
-      - run: python --version
+
       - name: "Create virtualenv"
         run: python -m venv venv/
-      - run: Get-ChildItem -Recurse
+
       - name: "Activate virtualenv"
         run: venv/Scripts/Activate.ps1
+        if: ${{ matrix.os == 'windows-latest' }}
+
+      - name: "Activate virtualenv"
+        run: venv/bin/activate
+        if: ${{ matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest' }}
+
       - name: "Install dependencies"
-        # run: venv/bin/pip install -r pip-requirements.txt
         run: pip install -r pip-requirements.txt
+
       - name: "Run unit tests"
-        # run: venv/bin/python -m unittest discover -s tests/
         run: python -m unittest discover -s tests/
