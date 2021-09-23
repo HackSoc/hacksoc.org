@@ -1,0 +1,9 @@
+flask
+python-dotenv # For supporting .flaskenv environment variables
+frozen-flask
+pyyaml
+markdown2
+pygments
+python-frontmatter
+pygit2
+black

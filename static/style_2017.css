@@ -39,7 +39,7 @@ iframe { display: block; margin: 0 auto }
 
 blockquote header { padding: 0; border: 0; text-align: left; font-size: 14px;}
 blockquote h2 { font-family: 'Bistream Vera Sans', sans-serif; font-display: swap; font-weight: bold; font-size: 14px; display: inline; padding: 0; margin: 0;}
-blockquote .aside { font-style: italic; font-size: 0.8em; margin-bottom: 1em;}
+blockquote ol, blockquote ul { margin-left: 3em; }
 cite { font-style: italic; }
 
 dl { margin: 0 3em; }
@@ -167,10 +167,10 @@ p.minutes-help {
 }
 @media screen and (max-width: 700px) {
     /* Stop alternating the infoboxes below 700px, just centre align them */
-    .infobox:nth-child(odd), .infobox {width:100%;text-align:center;} 
+    /* needs both :nth-child's to be sufficiently specific */
+    .infobox:nth-child(odd), .infobox:nth-child(even) {width:100%;text-align:center;} 
     /* overly verbose selector because cascading isn't working properly */
     .infobox >p{padding:5px 5px 5px 5px;}
-    h2,h3{width:100%;text-align:center;}
     h2{font-size:1.4em;}
     h3{font-size: 1.2em;}
 }

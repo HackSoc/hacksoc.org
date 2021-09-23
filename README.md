@@ -1,85 +1,102 @@
-HackSoc.org rewrite
+HackSoc.org
 ===
 
-This build system is based on [Node.js][nodejs] and [Handlebars]. It replaces the [previous system][Hakyll], which used Haskell and Hakyll.
+This build system is written in Python, [Flask](https://flask.palletsprojects.com/en/2.0.x/) and [Jinja](https://jinja.palletsprojects.com/en/3.0.x/). It replaces the [previous system][tag-previous] which used Node.js and [Handlebars](https://handlebarsjs.com/), in turn replacing the [system before it][tag-hackyll] based on Haskell and [Hakyll](https://jaspervdj.be/hakyll/).
 
-## Writing content
-See [Installation Instructions][install] to get set up. Please test your changes locally **before** committing.
+## Documentation
+Documentation can be found in [`docs/`](docs/)`, including topics such as:
 
-### Index/home page
-As this includes the most recent news articles, editing the homepage is done through `index.handlebars`. The 5 most recent news articles are rendered via `newslist.handlebars`, then `index.handlebars` itself is rendered, and finally passed to `wrapper.handlebars`.
+|                                                                                      |
+|--------------------------------------------------------------------------------------|
+| [Writing news articles](writing_articles.md)                                         |
+| [Creating &amp; modifying **simple** pages](creating_modifying_simple_pages.md)      |
+| [Creating &amp; modifying **complex** pages](creating_modifying_complex_pages.md)    |
+| [Adding features in Python &ndash; advanced](adding_features_python.md)              |
+| [Adding meeting minutes](minutes.md)                                                 |
+| [Writing server READMEs](servers.md)                                                 |
+| [Development process and using git &ndash; beginner's guide](development_and_git.md) |
 
-### 'Regular' pages
-These can be found in `regular/`, and consist of a YAML header and a HTML body, which is inserted into the template `wrapper.handlebars`.
+## Running
+Preferred way to run is through the `flask` command. It can be executed with the venv (see [Installation](#installation)) activated by just running `flask` or otherwise at `venv/bin/flask`:
 
-#### YAML fields
- - **title**: put into the `<title>` element of the page.
+### Starting a development server
+While you're developing, you probably want to use:
+```
+flask run
+venv/bin/flask run
+```
+Pages are served directly from the Flask routes; you shouldn't need to restart the server when changes are made, but web pages will not automatically refresh. Open your browser to [`http://localhost:5000/`](http://localhost:5000/) to see the results.
 
-### News articles
-Written in [Markdown], with a YAML header:
- - **title**: the title of the article, put into the `<title>` and `<h1>` elements and shown in the list of news articles.
+### Freezing to HTML
+To produce a folder full of static HTML and assets (images, CSS, JS, fonts), the site must be *frozen*. The resulting folder can then be used with a regular webserver (like nginx), and should look exactly the same as when running with `flask run`. You probably want to use this or `flask serve` at least once before you create a pull request.
+```
+flask run
+venv/bin/flask freeze
+```
+The HTTP root directory is `build/`.
 
-The first paragraph of the article is shown as an excerpt in the news article list, Markdown requires a blank line (not just a single newline) to indicate a new paragraph.
+### Starting a static server
+```
+flask serve
+venv/bin/flask serve
+```
+Starts a local HTTP server from the `build/` directory. Equivalent to running `flask freeze` followed by `cd build/ && python3 -m http.server 5000`. If all goes well, you should always see the same as `flask run`.
 
-### Minutes
-For the moment, minutes are in PDF form and are put into `minutes/`. These are copied into the web directory, along with an index page which lists all the minutes in the directory. The filename format is `YYYY-MM-DD-meeting name.pdf`. Regular committee meetings are simply `YYYY-MM-DD-Minutes n.pdf`. The minutes page sorts these in ascending date order based on the filename, so omitting the date will cause this to fail.
-
-### Templates
-Most of the site is generated through the `wrapper.handlebars` template. This takes the content of the page, the title, plus some global values found in `templates/context.yaml`:
-
- - `servers`: controls the list of servers on the website banner
-    - `name`: name of this server (capitalised, hostname only)
-    - `href`: link to this server's README (typically just `http://<hostname>.hacksoc.org/`).
- - `nav`: links for navbar
-    - `text` and `href`: fairly self-explanatory
-
-
-### Server READMEs
-Written in [Markdown]. Like regular pages, has a YAML header:
- - `hostname`: lowercase hostname of the server
- - `fqdn`: full domain of the server, typically `<hostname>.hacksoc.org`
- - `name`: purpose/subtitle of the server (eg "shell server")
-
-Don't worry about a H1/title, it's generated by the template. All headings in the document should be H2 or below (`##`).
-
-### Style guide
+## Style guide
 To keep a consistent style, the following rules are used:
- - Line length: text in news/ should not exceed 70 characters per line (the odd 71 is okay). Otherwise, documents should NOT use hard wrapping, and instead use your editor's soft wrap setting to display long lines of text.
 
-#### Years of study
-[about.html](regular/about.html) contains information about the committee, including their current year of study. The year given should be the 'stage' that the committee member is in. When a member is on a year in industry, they should not be listed as being in any year and instead as "currently on year in industry". If the year in industry is in between stages two and three, they will return as a "third year".
+### Line length
+ - **Markdown** files:
+   - News articles should not exceed **70 characters** per line
+ - **Python** files:
+   - **100 characters** per line (use `black hacksoc_org` to apply formatting automatically)
 
-More guides may be added so always check this section when authoring new content!
+Otherwise, there is no line length limit, and you are encouraged to use "soft wrap" features in your editor.
+
+### Code style
+Python files should roughly follow [PEP 8](https://www.python.org/dev/peps/pep-0008/), formatted with `black`. 
+
+Note that although constants should be in uppercase, PEP 8 does not strictly define what counts as a constant. Some variables in `hacksoc_org` are assigned once and should never be reassigned, but are mutated often and generally don't behave like constants (for example `app`, `blueprint` from Flask). When considering whether to name a variable as a constant, think about the following:
+ - Could the variable be replaced with its literal value?
+ - Does the value of the variable ever change? (this includes mutations rather than just reassignments)
+### Years of study
+[about.html](templates/content/about.html.jinja2) contains information about the committee, including their current year of study. The year given should be the 'stage' that the committee member is in. When a member is on a year in industry, they should not be listed as being in any year and instead as "currently on year in industry". If the year in industry is in between stages two and three, they will return as a "third year".
+
+More style guidance may be added so always check this section when authoring new content!
 
 ## Installation
-### 0. Prerequisites:
-You'll need [Node.js][nodejs] (with npm) to install and run this. Don't install Node.js from your package manager repositories, it's likely outdated.
-<!-- maybe add a quick link to install scripts? -->
-### 1. Clone this repo:
-```
-$ git clone git@github.com:HackSoc/HackSoc.org
-```
-### 2. Install dependencies
-```
-$ cd hacksoc.org/
-$ npm i
-```
-### 3. Build
-```
-$ npm start
-```
-This builds the site to the output folder `html/`, you need to run this command every time the content updates in order to keep the web version up-to-date.
 
-### 4. Test
+After you've cloned the repository, create a new **virtual environment** with the following:
 ```
-$ npm test
+python3.7 -m venv venv/
 ```
-This will start a web server on your computer and open a browser to `index.html`, so you can test that your changes work correctly.
+Note that the **minimum supported version is Python 3.7**; if possible, try not to introduce code which requires Python 3.8 or higher. If you're using Ubuntu 18.04 LTS, you can use the [deadsnakes](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) PPA to access more recent versions of Python.
 
-## Adding features
+Next install dependencies
+```
+# For Linux/MacOS and Windows Subsystem for Linux (WSL) users
+source venv/bin/activate
 
-[nodejs]: https://nodejs.org/en/
-[Handlebars]: https://handlebarsjs.com/
-[Markdown]: https://daringfireball.net/projects/markdown/syntax
-[Hakyll]: https://github.com/HackSoc/hacksoc.org/tree/hakyll-last
-[install]: #Installation
+# Windows users using cmd.exe
+venv\Scripts\activate.bat
+
+# Windows users using PowerShell
+venv\Scripts\Activate.ps1
+
+pip install -r pip-requirements.txt
+```
+
+See [Running](#running) next.
+
+## License
+Currently this repository has **no license** ([#150](https://github.com/HackSoc/hacksoc.org/issues/150)). This means that the effective license is **All rights reserved**. 
+
+Exceptions to this license include the fonts in `static/fonts`, which are licensed under the Apache license (found at [`static/fonts/Apache License.txt`](static/fonts/Apache%20License.txt)):
+ - Bitstream Vera Sans
+ - DejaVu Sans Condensed
+ - Roboto Slab (Bold and Regular)
+
+The Bytemark name and logo (`static/images/bytemark.png`) are registered trademarks of Bytemark Limited.
+
+[tag-previous]: https://github.com/HackSoc/hacksoc.org/tree/08694ad0fd706c4ff4580303a97031452d73772d
+[tag-hackyll]: https://github.com/HackSoc/hacksoc.org/tree/hakyll-last

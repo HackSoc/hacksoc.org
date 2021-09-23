@@ -1,0 +1,97 @@
+{% include "git.html.jinja2" %}
+{% import "utils.html.jinja2" as utils %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {# having maxiumum-scale 1.0 here disables pinch-zoom, which fails an a11y audit #}
+    <meta name="theme-color" content="#443752"/>
+
+    {% if redirect %}
+      <meta http-equiv="refresh" content="0;url={{redirect}}">
+    {% endif %}
+
+    <title>
+        {% set title | trim%}
+            {% block title %}
+            {% endblock title %}
+        {% endset %}
+        {% if title|length > 0 %}{{title}} &ndash; {% endif %}
+        HackSoc &ndash; the computer science society
+    </title>
+
+    {# opengraph metadata for Facebook & Twitter #}
+    <meta property="og:title"                       content="{% if title|length>0 %}{{title}}{% else %}HackSoc &ndash; the computer science society{% endif %}">
+
+    {% if lede %} 
+      <meta property="og:description"               content="{{lede|trim}}">  
+      <meta property="og:type"                      content="article">
+    {% else %}
+      <meta property="og:type"                      content="website">
+    {% endif %}
+    {%if url%}     <meta property="og:url"         content="{{url}}">  {% endif %}
+    <meta property="og:locale"                      content="en_GB">
+    <meta property="og:image"                       content="https://www.hacksoc.org/static/images/logo-social.png">
+    <meta property="og:image:type"                  content="image/png">
+    <meta property="og:image:width"                 content="1467">
+    <meta property="og:image:height"                content="768">
+
+    <meta property="twitter:site"                   content="@hacksoc">
+    <meta property="twitter:card"                   content="summary">
+    <meta property="twitter:image:alt"              content="HackSoc: the computer science society">
+
+    <link rel="icon" type="image/png" href="/static/images/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/static/images/favicon-32x32.png" sizes="32x32" />
+
+    <link href="//fonts.googleapis.com/css?family=Sanchez|Inconsolata:400,700" rel="stylesheet" type="text/css" />
+    <link href="/static/fonts/robotoslab_regular_macroman/stylesheet.css" rel="stylesheet" type="text/css" />
+    <link href="/static/hacksoc-colors.css" rel="stylesheet" type="text/css" />
+    <link href="/static/pygments.css" rel="stylesheet" type="text/css" />
+    <link href="/static/style_2017.css" rel="stylesheet" type="text/css" />
+    {% block stylesheets %}
+    {% endblock stylesheets %}
+  </head>
+  <body>
+    <div id="container">
+      <header>
+       {% include "nav.html.jinja2" %}
+        <img id="logo" src="/static/images/logo2017.svg"/>
+        <h1 class="titleheading" style="display:inline-block;">
+            <a href="/" title="HackSoc" class="maintitle">
+                <span class="maintitle"><span class="largetitle">HackSoc</span><br><span class="subtitle">the <span class="highlight">computer science</span> society</span></span>
+            </a>
+        </h1>
+        <!-- empty div to force p tags to flow underneath title -->
+        <div></div>
+        <p id="uni">At the University of York</p>
+        <p id="server_list">
+          <strong>Servers:</strong>
+          {% for ele in servers -%}
+            <a href="{{ele.href}}">{{ele.name}}</a> 
+          {% endfor %}
+          {#- TODO: need to put &middot; after each <a> except last in the CSS #}
+        </p>
+
+      </header>
+
+      <main>
+        {%if redirect%}
+          <p>You are being redirected to <a href="{{redirect}}">{{redirect}}</a>...</p>
+        {%else%}
+          {% block body %}
+          {% endblock body %}
+        {% endif %}
+      </main>
+
+      <div id="stupid-end-marker"></div>
+    </div>
+
+    <footer>
+      <h2>Sponsored by</h2>
+      <a href="//www.bytemark.co.uk/r/hacksoc" title="Bytemark Hosting">
+        <img id="bm" src="/static/images/bytemark.png" alt="Bytemark Hosting">
+      </a>
+    </footer>
+  </body>
+</html>
