@@ -9,8 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        # py_ver: ["3.7", "3.8", "3.9"]
-        py_ver: ["3.7"]
+        py_ver: ["3.7", "3.8", "3.9"]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
