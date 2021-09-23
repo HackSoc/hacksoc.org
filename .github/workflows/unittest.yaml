@@ -18,8 +18,8 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.py_ver }}
-      - run: ls ${{ env.pythonLocation }}
       - run: python --version
+      - run: ls venv/bin
       - name: "Create virtualenv"
         run: python -m venv venv/
       - name: "Install dependencies"
