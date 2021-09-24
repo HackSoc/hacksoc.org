@@ -1,6 +1,8 @@
 HackSoc.org
 ===
 
+![Unit test status badge](https://github.com/hacksoc/hacksoc.org/actions/workflows/unittest.yaml/badge.svg)
+
 This build system is written in Python, [Flask](https://flask.palletsprojects.com/en/2.0.x/) and [Jinja](https://jinja.palletsprojects.com/en/3.0.x/). It replaces the [previous system][tag-previous] which used Node.js and [Handlebars](https://handlebarsjs.com/), in turn replacing the [system before it][tag-hackyll] based on Haskell and [Hakyll](https://jaspervdj.be/hakyll/).
 
 ## Documentation
