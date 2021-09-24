@@ -75,6 +75,12 @@ code { font-family: Inconsolata, monospace; font-display: swap; font-size: 13px 
 
 .important { text-align: center; font-weight: bold; }
 
+hr {
+    border: none;
+    border-top: 1px solid var(--de-emphasis-color);
+    width: calc(100% - 2em);
+}
+
 /* Fonts */
 @font-face {
   font-family: 'Bitstream Vera Sans';
@@ -129,22 +135,22 @@ summary::marker {
 
 summary > * {display: inline-block;}
 
-details > :not(summary) {
+details.minutes > :not(summary) {
     margin-left: 2em;
 }
 
 /* Style for minutes */
-ul.minutes {
+.minutes ul {
     list-style: none;
     padding-left: 0;
 }
 
-ul.minutes > li .minutes-name {
+.minutes ul > li .minutes-name {
     font-weight: bold;
     margin-right: .2em;
 }
 
-ul.minutes > li iframe {
+.minutes ul > li iframe {
     width: 500px;
     height: 700px;
     margin: 0;
@@ -155,6 +161,10 @@ p.minutes-help {
     font-style: italic;
     text-align: center;
     color: #555;
+}
+
+.talk-notice {
+    font-weight: bold;
 }
 
 /* Media queries for small screens (mobile) */
