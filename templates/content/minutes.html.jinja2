@@ -2,25 +2,74 @@
 
 {% block title %}Minutes{% endblock title %}
 
+{% block scripts %}
+
+    <script>
+        function minutes_lazy_load(ele) {
+            // <iframe loading="lazy"> not supported in enough browsers yet, especially mobile.
+            // https://caniuse.com/loading-lazy-attr
+            let iframe = ele.parentElement.querySelector("iframe[data-src]");
+            if (iframe !== null) {
+                iframe.src = iframe.getAttribute("data-src");
+                iframe.removeAttribute("data-src");
+                console.log("Loaded!");
+            }
+        }
+    </script>
+
+{% endblock scripts %}
+
 {% block body %}
 
 
 
-{% if minutes %}
-<p class="minutes-help">
+<h2>Constitution</h2>
+<p>
+    The society Constitution can be found <strong><a href="https://github.com/HackSoc/constitution/blob/main/Constitution.md">here</a></strong>, and appendices can be found <strong><a href="https://github.com/HackSoc/constitution/tree/main/appendices">here</a></strong>
+</p>
+
+<h2>Minutes</h2>
+
+{% if listing %}
+<p>
     Click on the titles to expand a preview of minutes. Click [pdf] to download or open the full minutes in a new tab.
 </p>
-<ul class="minutes">
-    {% for item in minutes %}
-        <li>
-            <a href="javascript:void()" onclick="this.parentElement.classList.toggle('open')">{{item.date}} <strong>{{item.meeting}}</strong></a>
-            [<a href="{{item.url}}" target="#">pdf</a>]
-            <div class="hidden">
-                <iframe src="{{item.url}}"></iframe>
-            </div>
-        </li>
-    {% endfor %}
-</ul>
+
+{% for committee, minutes in listing.items() %}
+    {% if loop.first %}
+        <details open>
+    {% else %}
+        <details>
+    {% endif %}
+        <summary><h3>
+            {{committee}}
+            {% if loop.first %}(current){% endif %}
+        </h3></summary>
+        <ul class="minutes">
+            {% for item in minutes %}
+            <li>
+                <details>
+                    <summary onclick="minutes_lazy_load(this)">
+                        <span>
+                            <span class="minutes-name">{{item.meeting}}</span>
+                            <span class="minutes-date">{{item.date|format_date}}</span>
+                        </span>
+                        [<a href="{{item.url}}" target="#">pdf</a>]
+                    </summary>
+                    <iframe src="" data-src="{{item.url}}"></iframe>
+                    {#- 
+                        There's a Chrome bug (Linux v92) that affects iframes
+                         that get hidden and shown (like <details> but not limited to)
+                         with src loaded from localhost;
+                        it doesn't seem to affect src from non-localhost domains
+                    -#}
+                </details>
+            </li>
+            {% endfor %}
+        </ul>
+    </details>
+{% endfor %}
+
 {% else %}
 <p class="minutes-help">No minutes to display</p>
 {% endif %}
