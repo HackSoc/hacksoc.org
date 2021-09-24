@@ -22,7 +22,25 @@ Talks
         so that it has access to {{term}} from the enclosing scope.
       #}
       {% set obj = caller()|from_yaml %}
+      {# 
+          talk()
+          Formats a talk event (past or future) into HTML
+          Use with a Jinja {% call %} block [1] and provide the following fields as YAML:
 
+          title (str, HTML): The title of the talk
+          speaker (str, HTML): The name(s) of the person or organisation giving the talk
+          date (ISO 8601 date): The date that the talk was/will be given on. Should be given *unquoted* in YYYY-MM-DD format
+          week (int): The week number that the talk will be given on. Eg, `week: 6` for Summer Term Week 6.
+          youtube (str): The full URL of the YouTube video, if the talk has been uploaded.
+
+            and ONE of:
+          markdown (str, Markdown): The abstract of the talk, in Markdown formatting. This will be converted to HTML.
+          html (str, HTML): The abstract of the talk, in HTML. No processing will be applied to this. Text must be inside <p> element(s), these are not automatically applied.
+
+          See the instances below for examples.
+
+          [1]: https://jinja.palletsprojects.com/en/3.0.x/templates/#call
+       #}
       <h3><em>{{obj.title}}</em> by {{obj.speaker}}</h3>
 
       {#-
