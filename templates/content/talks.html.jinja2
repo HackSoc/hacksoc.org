@@ -35,6 +35,10 @@ Talks
         <strong>in {{obj.room}}</strong>
       {%- endif %}
 
+      {%- if obj.youtube -%}
+        <a href="{{obj.youtube}}">watch on YouTube</a>
+      {%- endif -%}
+
       {% if obj.notice %}
         <p class="talk-notice">{{obj.notice}}</p>
       {% endif %}
@@ -60,7 +64,7 @@ Talks
 
   {#
    Upcoming talks go here with <h2>Winter Term 2021/22 (Upcoming)</h2>
-   Once the *term* has passed, just move it below the HR, wrap in <details> and remove the (upcoming).
+   Once the *term* has passed, just move it below the HR, and remove the (upcoming).
   #}
 
   <hr>
@@ -74,6 +78,7 @@ Talks
     speaker: Matt Windsor
     date: 2021-05-13
     week: 6
+    youtube: https://www.youtube.com/watch?v=nKmxdTJ7MRk
     markdown: |
       Sonic the Hedgehog™ turns 30 this year, as do I.  Alas, before 2021 I had never actually properly sat down and played a Sonic game.  In fact, I didn't even have a Mega Drive until the mid-10s.  Shocking, I know!
 
@@ -88,6 +93,7 @@ Talks
     speaker: Daphne Preston-Kendal
     date: 2021-05-27
     week: 6
+    youtube: https://www.youtube.com/watch?v=y8qaitWSDW0
     markdown: |
       Scheme is a small but influential dialect of the Lisp programming language which has been standardized in multiple more-or-less compatible versions since its creation in the late 1970s. After decades of being used almost exclusively in teaching and research (with some exceptions), Scheme is now in the throes of a second attempt to expand the standard language to make it practical for use in production environments, R7RS. This talk will give a brief overview of the history of Scheme standardization over the last five decades, compare the initial ‘small’ version of R7RS (intended to carry on the tradition of versions of Scheme intended for use in teaching, research, and embedded environments) to previous standard versions of Scheme and assess its success so far, and review current progress on the ‘Large’ version of the standard (which is intended to be practical for developing large, real-world applications) and the difficulties of standardizing a practical but usable version of ‘the world's most unportable programming language’.
       
@@ -99,6 +105,7 @@ Talks
     speaker: Jacob Allen
     date: 2021-06-09
     week: 9
+    youtube: https://www.youtube.com/watch?v=7hvLd-4hP_E
     markdown: |
       Contrary to many jokes, computers are (on the whole) well behaved and predictable machines that do exactly what you ask them to. This is why it is so much more noteworthy when they do not do what they were asked to, or worse, do exactly what they were asked to but not what was wanted. No better is this shown in what have come to be known as "cursed" parts of computing, such as those shown in the "Cursed computer Iceberg Meme" ([https://suricrasia.online/iceberg/](https://suricrasia.online/iceberg/)).
 
@@ -112,6 +119,7 @@ Talks
     speaker: C Wringe
     date: 2021-06-24
     week: 10
+    youtube: https://www.youtube.com/watch?v=SEUXgnwUfP4
     markdown: |
       Some tasks are too difficult for most robots to complete. And yet, insects perform them with apparent ease.
       
@@ -131,6 +139,7 @@ Talks
     speaker: Matt Windsor
     date: 2021-02-04
     week: 4
+    youtube: https://www.youtube.com/watch?v=LZZoxTnUwOo
     markdown: |
       The 'litmus test' is a de facto standard for lightweight tests of concurrent systems, packaging shared state, initial values, expected final values, and thread bodies into a concise and readable format.  In this talk, I discuss litmus tests, how they are used in testing, the challenges of using them in compiler fuzz testing, and experimental attempts to overcome those challenges.
   {% endcall %}
@@ -156,6 +165,7 @@ Talks
     speaker: Jacob Allen
     date: 2021-03-25
     week: 11
+    youtube: https://www.youtube.com/watch?v=1FJy-ubE7UE
     markdown: |
       As a programmer, computer scientist, computer engineer etc. there are many problems for which an algorithm can easily be determined or pulled from a text book, however, there is a class (or really two classes) of problems for which there are rarely such simple solutions: constraint problems. Luckily there exist powerful constraint programming tools to allow us to solve constraint problems using relatively simple concepts which often mirror how humans would solve the tasks.
 
@@ -173,6 +183,7 @@ Talks
     speaker: Jacob Allen
     date: 2020-10-22
     week: 4
+    youtube: https://www.youtube.com/watch?v=xTHYcUY-45Q
     markdown: |
       Navigation is one of the core challenges of any form of robotics (at least any form which requires movement). There are several problems which must be solved for navigation, two of the core problems being localisation and mapping, that is, knowing where the robot is in a landscape and knowing that landscape. While they are simple tasks for most humans, they are relatively complex and computationally expensive tasks for robots, particularly those with limited sensors or limited computational power.
 
@@ -186,6 +197,7 @@ Talks
     speaker: Abi Sutherland
     date: 2020-10-29
     week: 5
+    youtube: https://www.youtube.com/watch?v=2VUPu0bI41I
     markdown: |
       Tech isn't just about writing code for computers to interpret - you need to write for those pesky humans too. But not everyone gets taught how to write in any structured way. It's usually just "go write something and hand it in".  (Often followed by, “no, not like that!”) Which is a shame, because there are actually specific step-by-step methodologies for writing for humans!
       
@@ -205,6 +217,7 @@ Talks
     speaker: Marks Polakovs
     date: 2020-11-05
     week: 6
+    youtube: https://www.youtube.com/watch?v=zCdW5QiS9xU
     markdown: |
       Fifteen or twenty years ago you'd have been a fool for signing in to your MySpace account on any internet connection except for the one at your home. All your account details were sent unencrypted over the wire, ripe for anyone to steal. Today, however, over 80% of all connections Firefox makes are encrypted, and with every day we get closed and closer to universal encryption. How did we get here?
 
@@ -217,6 +230,7 @@ Talks
     speaker: C Wringe
     date: 2020-11-19
     week: 8
+    youtube: https://www.youtube.com/watch?v=-dM6tx56xEk
     markdown: |
       Ravelry is a (relatively) small site for knitters and crocheters to share patterns, projects, and discussions. Being the main point for a (relatively) small community, there is some tea. At times, it has performed admirably - at others, failed miserably.
 
@@ -230,6 +244,7 @@ Talks
     speaker: Rach Arnold
     date: 2020-11-26
     week: 9
+    youtube: https://www.youtube.com/watch?v=ZH7sCRd0n_4
     markdown: |
       In this talk, I will be exploring an issue regarding psychological continuity and the persistence question (i.e. how do persons persist through time). I will be discussing why fission cases pose a problem for psychological continuity theories, as it presents itself as a logical contradiction. In order to reconcile this issue, I will be drawing upon the work of Derek Parfit and David Lewis to see if there is any plausible way to defend psychological continuity account of personal identity against the issues presented with fission cases.
       
@@ -246,6 +261,7 @@ Talks
     speaker: Marks Polakovs
     date: 2020-06-04
     week: 8
+    youtube: https://www.youtube.com/watch?v=iPWBGuG_SOo
     markdown: |
         For reasons that don't need any elaboration, University Radio York, the UK's oldest legal independent student radio station, couldn't continue broadcasting from its studios for Summer Term this year. The team had a bit of a conundrum - do we shut down, as many others have done, or do we try and find a way to continue broadcasting? URY Computing Team chose the latter. Over the course of five weeks we built WebStudio, an online version of our playout and broadcasting system, letting presenters continue their shows from home with nothing but a laptop. In this talk I'll go over some of the design decisions behind WebStudio, how we implemented it, some of the challenges that we faced (including but not limited to: browser compatibility, Daylight Savings Time, and how to do maintenance during a lockdown with only two people on-site), as well as where we hope to see it in the future.
       
@@ -256,6 +272,7 @@ Talks
     speaker: C Wringe
     date: 2020-06-11
     week: 9
+    youtube: https://www.youtube.com/watch?v=FHgIZB-HOBU
     markdown: |
       Ebooks are simple, right? Just digitise the book. 
 
@@ -269,6 +286,7 @@ Talks
     speaker: Jacob Allen
     date: 2020-06-18
     week: 10
+    youtube: https://www.youtube.com/watch?v=spabcmDE_Hg
     markdown: |
       While most software systems start out simple, software systems can rapidly become complex, whether via increasing scope, misestimation, or many other causes. A common solution to many of the problems of complexity is the introduction of abstractions, that is, providing a more abstract interface to systems, or parts of systems, to simplify interactions with them. However, the introduction of abstractions adds choices and complexities of its own, and often exposes the assumptions and biases of those creating the abstractions.
 
@@ -280,6 +298,7 @@ Talks
     speaker: Rach Arnold
     date: 2020-06-25
     week: 11
+    youtube: https://www.youtube.com/watch?v=KJETYFoGVlc
     markdown: |
       The purpose of this talk is to explore the notion that a mind is like a computer from both a scientist and a philosophical perceptive. I will focus on a number of comparisons between both how the mind and a computer works; however, I ultimately conclude that the mind is more complicated than we give it credit for. Despite the increase in technology and the wondrous development of the computing world, computers will never compare to the splendor that is the human mind. 
       
@@ -290,6 +309,7 @@ Talks
     speaker: Aaron Christiansen
     date: 2020-07-02
     week: 12
+    youtube: https://www.youtube.com/watch?v=_IBJI0wHl2g
     markdown: |
       In software engineering, plenty of time is spent talking about best practices and how to write beautiful, legible code. But what if your language has the tools, methods, and syntax to actively encourage throwing all that out of the window?
 
@@ -438,6 +458,7 @@ Talks
     speaker: David Norman
     date: 2019-10-24
     week: 4
+    youtube: https://www.youtube.com/watch?v=V-ZU8Q2L1Nk
     markdown: |
       In the past 22 years, LEGO Video Games have become an important and rather unique genre in themselves. In this talk, we will look at how they have changed over time, the different styles and directions that have been attempted, and their cultural impact.
       
