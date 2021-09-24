@@ -139,32 +139,16 @@ ul.minutes {
     padding-left: 0;
 }
 
-ul.minutes > li {
-    padding-left: 1em;
-    text-indent: -1em;
-}
-
-ul.minutes > li::before {
-    content: "+";
-    font-family: monospace;
+ul.minutes > li .minutes-name {
     font-weight: bold;
-    padding-right: 5px;
-}
-
-ul.minutes > li > a:first-of-type { color: var(--text-color); }
-
-ul.minutes > li div.hidden {display: none;}
-
-ul.minutes > li.open::before {content: "-";}
-ul.minutes > li.open div.hidden {
-    display: block;
-    padding-left: 1em;
+    margin-right: .2em;
 }
 
 ul.minutes > li iframe {
     width: 500px;
     height: 700px;
     margin: 0;
+    margin-left: 1em;
 }
 
 p.minutes-help {

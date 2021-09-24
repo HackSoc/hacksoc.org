@@ -2,6 +2,23 @@
 
 {% block title %}Minutes{% endblock title %}
 
+{% block scripts %}
+
+    <script>
+        function minutes_lazy_load(ele) {
+            // <iframe loading="lazy"> not supported in enough browsers yet, especially mobile.
+            // https://caniuse.com/loading-lazy-attr
+            let iframe = ele.parentElement.querySelector("iframe[data-src]");
+            if (iframe !== null) {
+                iframe.src = iframe.getAttribute("data-src");
+                iframe.removeAttribute("data-src");
+                console.log("Loaded!");
+            }
+        }
+    </script>
+
+{% endblock scripts %}
+
 {% block body %}
 
 
@@ -31,11 +48,22 @@
         <ul class="minutes">
             {% for item in minutes %}
             <li>
-                <a href="javascript:void()" onclick="this.parentElement.classList.toggle('open')">{{item.date}} <strong>{{item.meeting}}</strong></a>
-                [<a href="{{item.url}}" target="#">pdf</a>]
-                <div class="hidden">
-                    <iframe src="{{item.url}}"></iframe>
-                </div>
+                <details>
+                    <summary onclick="minutes_lazy_load(this)">
+                        <span>
+                            <span class="minutes-name">{{item.meeting}}</span>
+                            <span class="minutes-date">{{item.date|format_date}}</span>
+                        </span>
+                        [<a href="{{item.url}}" target="#">pdf</a>]
+                    </summary>
+                    <iframe src="" data-src="{{item.url}}"></iframe>
+                    {#- 
+                        There's a Chrome bug (Linux v92) that affects iframes
+                         that get hidden and shown (like <details> but not limited to)
+                         with src loaded from localhost;
+                        it doesn't seem to affect src from non-localhost domains
+                    -#}
+                </details>
             </li>
             {% endfor %}
         </ul>
