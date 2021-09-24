@@ -116,12 +116,26 @@ h1.titleheading{
     padding-bottom:30px;
 }
 
-summary h2 {display: inline-block;}
+summary {
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+summary > *:hover {text-decoration: underline;}
+
+summary::marker {
+    font-size: 1.2em;
+    color: var(--heading-color);
+}
+
+summary > * {display: inline-block;}
+
+details > :not(summary) {
+    margin-left: 2em;
+}
 
 /* Style for minutes */
 ul.minutes {
     list-style: none;
-    margin-left: 0;
     padding-left: 0;
 }
 

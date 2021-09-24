@@ -4,13 +4,19 @@
 
 {% block body %}
 
-{% if listing %}
-<p class="minutes-help">
-    Click on the titles to expand a preview of minutes. Click [pdf] to download or open the full minutes in a new tab.
-</p>
+
 
 <h2>Constitution</h2>
-The society Constitution can be found <a href="https://github.com/HackSoc/constitution/blob/master/Constitution.md">here</a>, and appendices can be found <a href="https://github.com/HackSoc/constitution/tree/master/appendices">here</a>
+<p>
+    The society Constitution can be found <strong><a href="https://github.com/HackSoc/constitution/blob/master/Constitution.md">here</a></strong>, and appendices can be found <strong><a href="https://github.com/HackSoc/constitution/tree/master/appendices">here</a></strong>
+</p>
+
+<h2>Minutes</h2>
+
+{% if listing %}
+<p>
+    Click on the titles to expand a preview of minutes. Click [pdf] to download or open the full minutes in a new tab.
+</p>
 
 {% for committee, minutes in listing.items() %}
     {% if loop.first %}
@@ -18,10 +24,10 @@ The society Constitution can be found <a href="https://github.com/HackSoc/consti
     {% else %}
         <details>
     {% endif %}
-        <summary><h2>
+        <summary><h3>
             {{committee}}
             {% if loop.first %}(current){% endif %}
-        </h2></summary>
+        </h3></summary>
         <ul class="minutes">
             {% for item in minutes %}
             <li>
