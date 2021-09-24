@@ -34,9 +34,9 @@ You don't need a GitHub account to download and fiddle with the website, but you
 **Cloning** a repository downloads it from a **remote** (GitHub) into a folder on your computer so that you can work on it.
 
 ### Contributors only: Fork the repository
-If you're not on the committee and haven't been given access to the [Contributors](https://github.com/orgs/HackSoc/teams/contributors) team, you'll need to **fork** the HackSoc repository so that you can work on your own copy. On the [repository page][repo], click the "Fork" button. This will create a new repository at `https://github.com/<yourname>/hacksoc.org` which you have full access to modify. 
+If you're not on the committee and haven't been given access to the [Contributors](https://github.com/orgs/HackSoc/teams/contributors) team, you'll need to **fork** the HackSoc repository so that you can work on your own copy. On the [repository page][repo], click the "Fork" button. This will create a new repository at `https://github.com/<yourname>/hacksoc.org` which you have full access to modify.
 
-If you've done this step previously, then check on your repository page that it's up to date. When the `master` branch is selected (as default), you should see the message "The branch is even with HackSoc:master". Otherwise, click the "Fetch upstream" menu and select "Fetch and merge". 
+If you've done this step previously, then check on your repository page that it's up to date. When the `main` branch is selected (as default), you should see the message "The branch is even with HackSoc:main". Otherwise, click the "Fetch upstream" menu and select "Fetch and merge".
 
 ### Everyone: cloning
 If you've setup SSH, then the command to type is:
@@ -62,15 +62,15 @@ similarly.
 ### If you've clone the repository before
 From **inside the repository folder**, run
 ```
-git pull origin master
+git pull origin main
 ```
 to ensure that your copy is up-to-date.
 
 ## 2. Creating a branch
-Don't commit work onto the `master` branch, even if you're using a forked copy. Instead, create a new branch with a descriptive title. An example might be `2021-03-05_agm-results`, which is a branch with the AGM results around 05/03/2021. Including the year and month is usually more important than the day, especially as the work often takes more than a day or two to complete. To create a new branch and switch to it, type:
+Don't commit work onto the `main` branch, even if you're using a forked copy. Instead, create a new branch with a descriptive title. An example might be `2021-03-05_agm-results`, which is a branch with the AGM results around 05/03/2021. Including the year and month is usually more important than the day, especially as the work often takes more than a day or two to complete. To create a new branch and switch to it, type:
 ```
-git checkout master
-# ensure that we're on master before branching
+git checkout main
+# ensure that we're on main before branching
 git checkout -b 2021-09_your-feature-name
 # -b creates a new branch, checkout switches to the new branch immediately
 ```
@@ -167,7 +167,7 @@ If someone replies to you disrespectfully or in a manner that otherwise breaches
  - contact a committee member on slack (in a channel or via a private message).
 
 ## 11. Making changes from feedback
-Once you've recieved feedback, you can follow the earlier steps: make changes, test, commit, push, and the new commit(s) will appear **in the same PR** &ndash; there's no need to delete your PR and create a new one. Once the reviewers are happy with your PR, they will merge it into the `master` branch. 
+Once you've recieved feedback, you can follow the earlier steps: make changes, test, commit, push, and the new commit(s) will appear **in the same PR** &ndash; there's no need to delete your PR and create a new one. Once the reviewers are happy with your PR, they will merge it into the `main` branch.
 
 
 
