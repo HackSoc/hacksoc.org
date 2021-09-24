@@ -189,11 +189,26 @@ MONTHS = [
 
 
 @app.template_filter()
-def format_date(d: date):
+def with_ordinal_indicator(n: int):
+    if not isinstance(n, int):
+        return n
+    else:
+        # https://leancrew.com/all-this/2020/06/ordinals-in-python/
+        strings = ("th", "st", "nd", "rd") + ("th",) * 10
+        v = n % 100
+        if v > 13:
+            return f"{n}{strings[v%10]}"
+        else:
+            return f"{n}{strings[v]}"
+
+
+@app.template_filter()
+def format_date(d: date, year=True):
     """Formats dates as "January 02, 2021"
 
     Args:
         d (date): Python datetime.date object
+        year (bool): Whether to include the year (default: True)
 
     Returns:
         str: formatted date
@@ -204,7 +219,31 @@ def format_date(d: date):
         # render_article route.
         return str(d)
     else:
-        return f"{MONTHS[d.month-1]} {d.day:02d}, {d.year}"
+        s = f"{with_ordinal_indicator(d.day)} {MONTHS[d.month-1]}"
+        if year:
+            s += f", {d.year}"
+        return s
+
+
+@app.template_filter()
+def from_iso_date(s: str):
+    """Converts an ISO format datestring to a date object
+
+    Args:
+        s (str): YYYY-MM-DD date string
+
+    Returns:
+        date: Python datetime.date object
+    """
+
+    if isinstance(s, date):
+        return s
+    elif s is None:
+        return None
+    else:
+        print(type(s))
+
+    return date.fromisoformat(s)
 
 
 @app.template_global()
