@@ -6,17 +6,17 @@ HackSoc.org
 This build system is written in Python, [Flask](https://flask.palletsprojects.com/en/2.0.x/) and [Jinja](https://jinja.palletsprojects.com/en/3.0.x/). It replaces the [previous system][tag-previous] which used Node.js and [Handlebars](https://handlebarsjs.com/), in turn replacing the [system before it][tag-hackyll] based on Haskell and [Hakyll](https://jaspervdj.be/hakyll/).
 
 ## Documentation
-Documentation can be found in [`docs/`](docs/)`, including topics such as:
+Documentation can be found in [`docs/`](docs/), including topics such as:
 
-|                                                                                      |
-|--------------------------------------------------------------------------------------|
-| [Writing news articles](writing_articles.md)                                         |
-| [Creating &amp; modifying **simple** pages](creating_modifying_simple_pages.md)      |
-| [Creating &amp; modifying **complex** pages](creating_modifying_complex_pages.md)    |
-| [Adding features in Python &ndash; advanced](adding_features_python.md)              |
-| [Adding meeting minutes](minutes.md)                                                 |
-| [Writing server READMEs](servers.md)                                                 |
-| [Development process and using git &ndash; beginner's guide](development_and_git.md) |
+|                                                                                           |
+|-------------------------------------------------------------------------------------------|
+| [Writing news articles](docs/writing_articles.md)                                         |
+| [Creating &amp; modifying **simple** pages](docs/creating_modifying_simple_pages.md)      |
+| [Creating &amp; modifying **complex** pages](docs/creating_modifying_complex_pages.md)    |
+| [Adding features in Python &ndash; advanced](docs/adding_features_python.md)              |
+| [Adding meeting minutes](docs/minutes.md)                                                 |
+| [Writing server READMEs](docs/servers.md)                                                 |
+| [Development process and using git &ndash; beginner's guide](docs/development_and_git.md) |
 
 ## Running
 Preferred way to run is through the `flask` command. It can be executed with the venv (see [Installation](#installation)) activated by just running `flask` or otherwise at `venv/bin/flask`:
