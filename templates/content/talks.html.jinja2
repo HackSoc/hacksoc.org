@@ -3,311 +3,538 @@
 Talks
 {% endblock title %}
 
+{% block stylesheets %}
+<style>
+
+  h3 + strong {
+    margin-left: 1em;
+  }
+    
+  hr {margin-top: 2em;}
+
+  .talk-abstract p:first-child::before {
+    /* This isn't ideal as screen readers will (generally) ignore ::before {content} */
+    content: "Abstract:";
+    margin-right: .5em;
+    text-decoration: underline;
+  }
+
+</style>
+{% endblock stylesheets %}
+
 {% block body %}
+
+  {% macro talk() -%}
+      {# 
+        Because of Jinja's scoping rules, this needs to be defined inside `block body` 
+        so that it has access to {{term}} from the enclosing scope.
+      #}
+      {% set obj = caller()|from_yaml %}
+      {# 
+          talk()
+          Formats a talk event (past or future) into HTML
+          Use with a Jinja {% call %} block [1] and provide the following fields as YAML:
+
+          title (str, HTML): The title of the talk
+          speaker (str, HTML): The name(s) of the person or organisation giving the talk
+          date (ISO 8601 date): The date that the talk was/will be given on. Should be given *unquoted* in YYYY-MM-DD format
+          week (int): The week number that the talk will be given on. Eg, `week: 6` for Summer Term Week 6.
+          youtube (str): The full URL of the YouTube video, if the talk has been uploaded.
+
+            and ONE of:
+          markdown (str, Markdown): The abstract of the talk, in Markdown formatting. This will be converted to HTML.
+          html (str, HTML): The abstract of the talk, in HTML. No processing will be applied to this. Text must be inside <p> element(s), these are not automatically applied.
+
+          See the instances below for examples.
+
+          [1]: https://jinja.palletsprojects.com/en/3.0.x/templates/#call
+       #}
+      <h3><em>{{obj.title}}</em> by {{obj.speaker}}</h3>
+
+      {#-
+       from_iso_date is unneeded here as YAML will automatically intepret YYYY-MM-DD
+       but it doesn't hurt to be safe in case it gets quoted
+       -#}
+      <strong>{{obj.date|from_iso_date|format_date(year=False)}} ({{term}} Week {{obj.week}})</strong>
+
+      {% if obj.room -%}
+        <strong>in {{obj.room}}</strong>
+      {%- endif %}
+
+      {%- if obj.youtube -%}
+        <a href="{{obj.youtube}}">watch on YouTube</a>
+      {%- endif -%}
+
+      {% if obj.notice %}
+        <p class="talk-notice">{{obj.notice}}</p>
+      {% endif %}
+
+      <div class="talk-abstract">
+      {%- if obj.markdown -%}
+      {% filter markdown() %} {{obj.markdown}} {% endfilter %}
+      {%- else -%}
+      {{obj.html}}
+      {%- endif -%}
+      </div>
+  {%- endmacro %}
+
   <p>
-    HackSoc run talks from industry speakers, members and alumni throughout the academic year. These talks take place on YouTube and on our Discord between 7:00 and 8:00 certain Thursdays, followed by a social, unless otherwise specified. Talks are 30 minutes long, followed by 15 minutes of questions. 
+    HackSoc run talks from industry speakers, members and alumni throughout the academic year. These talks take place on YouTube and on our Discord between 7:00 and 8:00 PM certain Thursdays, followed by a social, unless otherwise specified. Talks are 30 minutes long, followed by 15 minutes of questions. 
   </p>
   <p>
     Attending talks is a great way to get a diverse look at what a degree in computer science can be, whether it's more focused on industry or academia. 
   </p>
-  <br>
-  <h2>Summer Term 2020/21</h2>
-  <h3><em>Talk In Which Matt Talks For 30 Minutes about Sonic the Hedgehog™</em> by Matt Windsor</h3>
-  <b>May 13th (Summer Week 4)</b>
-  <p>
-  <u>Abstract:</u> Sonic the Hedgehog™ turns 30 this year, as do I.  Alas, before 2021 I had never actually properly sat down and played a Sonic game.  In fact, I didn't even have a Mega Drive until the mid-10s.  Shocking, I know!
-  </p>
-  <p>
-  In this talk, I'll deep dive into how I went from a washed-up Mario fan to a full-on second childhood with the blue blur, with a goal to become a Sonic CD speedrunner some time this millennium.  I'll try to convince you that, in 2021, Classic Sonic still holds up, and you should definitely try it.  If you try, you can do anything!  (I won't talk about modern Sonic, don't worry.)
-  </p>
-  <p>
-  May or may not contain Knuckles.
-  </p>
-  <h3><em>The Revised<sup>7</sup> Report on the Algorithmic Language Scheme</em> by Daphne Preston-Kendal</h3>
-  <b>May 27th (Summer Week 6)</b>
-  <p>
-  <u>Abstract:</u> Scheme is a small but influential dialect of the Lisp programming language which has been standardized in multiple more-or-less compatible versions since its creation in the late 1970s. After decades of being used almost exclusively in teaching and research (with some exceptions), Scheme is now in the throes of a second attempt to expand the standard language to make it practical for use in production environments, R7RS. This talk will give a brief overview of the history of Scheme standardization over the last five decades, compare the initial ‘small’ version of R7RS (intended to carry on the tradition of versions of Scheme intended for use in teaching, research, and embedded environments) to previous standard versions of Scheme and assess its success so far, and review current progress on the ‘Large’ version of the standard (which is intended to be practical for developing large, real-world applications) and the difficulties of standardizing a practical but usable version of ‘the world's most unportable programming language’.
-  </p>
-  <h3><em>Dispatches from the Computing Titanic</em> by Jacob Allen</h3>
-  <b>June 17th (Summer Week 9)</b>
-  <p>
-  <u>Abstract:</u> Contrary to many jokes, computers are (on the whole) well behaved and predictable machines that do exactly what you ask them to. This is why it is so much more noteworthy when they do not do what they were asked to, or worse, do exactly what they were asked to but not what was wanted. No better is this shown in what have come to be known as "cursed" parts of computing, such as those shown in the "Cursed computer Iceberg Meme" (<a href="https://suricrasia.online/iceberg/">https://suricrasia.online/iceberg/</a>).
-  </p>
-  <p>
-  Join me as, taking inspiration from sources like the "Cursed computer Iceberg Meme", I talk about some of my favourite "cursed" parts of computing! Less serious than my previous talks this talk will focus on some of the more interesting and unexpected areas of "cursed" computing I've come across, and I will attempt to explain why some aren't quite as bad as you'd think, or why some are worse!
-  </p>
-  <h3><em>How Robot Swarms Can Help Solve Hard Problems</em> by C Wringe</h3>
-  <b>June 24th (Summer Week 10)</b>
-  <p>
-  <u>Abstract:</u> Some tasks are too difficult for most robots to complete. And yet, insects perform them with apparent ease.
-  </p>
-  <p>
-  Enter the biologically inspired robot swarm: A group of robots, individually performing simple tasks to create a more complex whole.
-  </p>
-  <p>
-  In this talk, I will go over what a robot swarm is, and the sorts of problems they can solve. I will show what it means for a robot swarm to be scalable, flexible, and robust. Finally, I will go into some of the challenges faced by the field, and areas of current and future work.
-  </p>
-  <h2>Past talks</h2>
-  <h3>Spring Term 2020/21</h3>
-  <h4><em>Can Concurrency Testing Be Liberated From The Litmus Style?</em> by Matt Windsor</h4>
-  <b>February 4th (Spring Week 4)</b>
-  <p>
-  <u>Abstract:</u> The 'litmus test' is a de facto standard for lightweight tests of concurrent systems, packaging shared state, initial values, expected final values, and thread bodies into a concise and readable format.  In this talk, I discuss litmus tests, how they are used in testing, the challenges of using them in compiler fuzz testing, and experimental attempts to overcome those challenges.
-  </p>
-  <br>
-  <h4><em>How Robot Swarms Can Help Solve Hard Problems</em> by C Wringe</h4>
-  <b>February 25th (Spring Week 7)</b>
-  <p>
-  <b><em>This talk will not take place this term. We apologise for the inconvenience and are trying to reschedule it.</em></b>
-  </p><p>
-  <u>Abstract:</u> Some tasks are too difficult for most robots to complete. And yet, insects perform them with apparent ease.
-  </p>
-  <p>
-  Enter the biologically inspired robot swarm: A group of robots, individually performing simple tasks to create a more complex whole.
-  </p>
-  <p>
-  In this talk, I will go over what a robot swarm is, and the sorts of problems they can solve. I will show what it means for a robot swarm to be scalable, flexible, and robust. Finally, I will go into some of the challenges faced by the field, and areas of current and future work.
-  </p>
-  <h4><em>An Introduction to Constraint Programming</em> by Jacob Allen</h4>
-  <b>March 25th (Spring Week 11)</b>
-  <p>
-  <u>Abstract:</u> As a programmer, computer scientist, computer engineer etc. there are many problems for which an algorithm can easily be determined or pulled from a text book, however, there is a class (or really two classes) of problems for which there are rarely such simple solutions: constraint problems. Luckily there exist powerful constraint programming tools to allow us to solve constraint problems using relatively simple concepts which often mirror how humans would solve the tasks.
-  </p>
-  <p>
-  In this talk I will introduce constraint programming and demonstrate how it can be used to solve complex problems efficiently, I will also show some examples of constraint solving programs and outline the simple underlying process by which they work.
-  </p>
-  <br/>
-  <h3>Autumn Term 2020/21</h3>
-  <h4><em>Mapping with Robots</em> by Jacob Allen</h4>
-  <b>October 22nd (Autumn Week 4)</b>
-  <p>
-  <u>Abstract:</u> Navigation is one of the core challenges of any form of robotics (at least any form which requires movement). There are several problems which must be solved for navigation, two of the core problems being localisation and mapping, that is, knowing where the robot is in a landscape and knowing that landscape. While they are simple tasks for most humans, they are relatively complex and computationally expensive tasks for robots, particularly those with limited sensors or limited computational power.
-  </p>
-  <p>
-  In this talk I will introduce the concepts behind mapping in robotics, and by extension some of the concepts behind localisation. I will discuss the state of the art, with particular focus on novel approaches using swarm robotics and sparse data which each pose unique problems for localisation and mapping. Finally, I will show an example and talk about the practical complexities of actually implementing mapping in robotics.
-  </p>
-  <br>
-  <h4><em>Lerning to rite gud!</em> by Abi Sutherland</h4>
-  <b>October 29th (Autumn Week 5)</b>
-  <p>
-  <u>Abstract:</u> Tech isn't just about writing code for computers to interpret - you need to write for those pesky humans too. But not everyone gets taught how to write in any structured way. It's usually just "go write something and hand it in".  (Often followed by, “no, not like that!”) Which is a shame, because there are actually specific step-by-step methodologies for writing for humans!
-  </p>
-  <p>
-  I’m a working information architect, and I’ve been teaching my techie colleagues to write for a couple of years. It’s not about writing perfectly (there isn’t any such thing). It’s about writing better, and feeling less anxious while doing it.
-  </p>
-  <p>
-  My talk will break down the process of writing into three steps, each of which I’ll explain in sensible and approachable terms:
-  </p>
-  <ol>
-    <li>Planning</li>
-    <li>Writing</li>
-    <li>Editing</li>
-  </ol>
-  <p>
-  This talk focuses on technical writing, which covers everything from quite long documents to code comments, but much of it is useful for any context where you need to get information from your brain into someone else’s as easily as possible.
-  </p>
-  <br>
-  <h4><em>The Life And Times Of HTTPS</em> by Marks Polakovs</h4>
-  <b>November 5th (Autumn Week 6)</b>
-  <p>
-  <u>Abstract:</u> Fifteen or twenty years ago you'd have been a fool for signing in to your MySpace account on any internet connection except for the one at your home. All your account details were sent unencrypted over the wire, ripe for anyone to steal. Today, however, over 80% of all connections Firefox makes are encrypted, and with every day we get closed and closer to universal encryption. How did we get here?
-  </p>
-  <p>
-  In this talk I'll build up the HTTPS protocol from first principles and go over the changes it has seen over its life, the neverending battle between attackers and browser vendors, as well as the seismic shifts in the certificate authority landscape that have enabled adoption to more than triple in just the last five years.
-  </p>
-  <br>
-  <h4><em>How To Build and Betray Online Communities: A Ravelry Case Study</em> by C Wringe</h4>
-  <b>November 19th (Autumn Week 8)</b>
-  <p>
-  <u>Abstract:</u> Ravelry is a (relatively) small site for knitters and crocheters to share patterns, projects, and discussions. Being the main point for a (relatively) small community, there is some tea. At times, it has performed admirably - at others, failed miserably.
-  </p>
-  <p>
-  This makes it a great case study for those building platforms for online communities: What to adopt, where to improve, and what to never (oh god never) do.
-  </p>
-  <br>
-  <h4><em>Personal Identity and Fission Cases</em> by Rach Arnold</h4>
-  <b>November 26th (Autumn Week 9)</b>
-  <p>
-  <u>Abstract:</u> In this talk, I will be exploring an issue regarding psychological continuity and the persistence question (i.e. how do persons persist through time). I will be discussing why fission cases pose a problem for psychological continuity theories, as it presents itself as a logical contradiction. In order to reconcile this issue, I will be drawing upon the work of Derek Parfit and David Lewis to see if there is any plausible way to defend psychological continuity account of personal identity against the issues presented with fission cases.
-  </p>
-  <br>
-  <h3>Summer Term 2019/20</h3>
-  <h4><em>How to move a radio station online, in five weeks or less</em> by Marks Polakovs</h4>
-  <b>June 4th (Summer Week 8)</b>
-  <p>
-  <u>Abstract:</u> For reasons that don't need any elaboration, University Radio York, the UK's oldest legal independent student radio station, couldn't continue broadcasting from its studios for Summer Term this year. The team had a bit of a conundrum - do we shut down, as many others have done, or do we try and find a way to continue broadcasting? URY Computing Team chose the latter. Over the course of five weeks we built WebStudio, an online version of our playout and broadcasting system, letting presenters continue their shows from home with nothing but a laptop. In this talk I'll go over some of the design decisions behind WebStudio, how we implemented it, some of the challenges that we faced (including but not limited to: browser compatibility, Daylight Savings Time, and how to do maintenance during a lockdown with only two people on-site), as well as where we hope to see it in the future.
-  </p>
-  <br>
-  <h4><em>Ebooks are a Hard Problem</em> by C Wringe</h4>
-  <b>June 11th (Summer Week 9)</b>
-  <p>
-  <u>Abstract:</u> Ebooks are simple, right? Just digitise the book. 
-  </p>
-  <p>
-  Wrong. Ebooks and the laws surrounding them tend to be ridiculous, due to the monopoly of publishing companies, the horror that is amazon, and practices that just don't translate very well to a digital world.
-  </p>
-  <p>
-  In this talk, I will go over why ebooks are cheap, why libraries have so few of them despite this, why I have an enduring grudge against Macmillan, and perhaps why the Internet Archive's National Emergency Library is misguided at best.
-  </p>
-  <br>
-  <h4><em>Abstraction and Complexity Management</em> by Jacob Allen</h4>
-  <b>June 18th (Summer Week 10)</b>
-  <p>
-  <u>Abstract:</u> While most software systems start out simple, software systems can rapidly become complex, whether via increasing scope, misestimation, or many other causes. A common solution to many of the problems of complexity is the introduction of abstractions, that is, providing a more abstract interface to systems, or parts of systems, to simplify interactions with them. However, the introduction of abstractions adds choices and complexities of its own, and often exposes the assumptions and biases of those creating the abstractions.
-  </p>
-  <p>
-  In this talk I will give a high-level overview of what is meant by abstraction and software complexity in the context of abstraction, then talk about some of the problems and possible solutions to issues of abstraction and complexity, using practical examples across different scale projects and different application areas.
-  </p>
-  <br>
-  <h4><em>How alike are Computers and Minds?</em> by Rach Arnold</h4>
-  <b>June 25th (Summer Week 11)</b>
-  <p>
-  <u>Abstract:</u> The purpose of this talk is to explore the notion that a mind is like a computer from both a scientist and a philosophical perceptive. I will focus on a number of comparisons between both how the mind and a computer works; however, I ultimately conclude that the mind is more complicated than we give it credit for. Despite the increase in technology and the wondrous development of the computing world, computers will never compare to the splendor that is the human mind. 
-  </p>
-  <br>
-  <h4><em>The Power of Cursed Code: A Tour of Ruby</em> by Aaron Christiansen</h4>
-  <b>July 2nd (Summer Week 12)</b>
-  <p>
-  <u>Abstract:</u> In software engineering, plenty of time is spent talking about best practices and how to write beautiful, legible code. But what if your language has the tools, methods, and syntax to actively encourage throwing all that out of the window?
-  </p>
-  <p>
-  Meet Ruby, a dynamic language with the syntax of Perl and the semantics of Smalltalk. With a crossover like that, chaos is bound to ensue! In this talk, I'll discuss the core principles of Ruby, how its flexible design influences the way you build software, and the ridiculous code concoctions this enables. 
-  </p>
-  <br>
-  <h3>Spring Term 2019/20</h3>
-  <h4><em>Building Applications at Planet Scale - Developing for the Cloud</em> by Daniel Vaughan</h4>
-  <b>January 23rd (Spring Week 3)</b>
-  <p> 
-  <u>Abstract:</u> Cloud-Native Computing has drastically changed the speed and efficiency with which developers can deploy their applications. This talk will demonstrate how technologies like Docker & Kubernetes make use of abstraction, isolation & orchestration to improve the developer experience. Participants will learn about the issues of traditional application deployment, and go on a journey through containerisation, automation & scalability to learn how to build a modern application in the cloud. This presentation is interactive - get ready to stress-test a website! 
-  </p>
-  <br>
-  <h4><em>What's Python really doing?</em> by Aaron Christiansen</h4>
-  <b>January 30th (Spring Week 4)</b>
-  <p>
-  <u>Abstract:</u> Python is one of the most well-known programming languages around. Its simplicity, elegant syntax, and huge range of libraries has propelled it to popularity. But what is actually happening when you run your Python code?
-  </p><p>
-  Underneath its minimalistic syntax, Python has a huge amount of complex heavily-optimised machinery. In this talk, I'll be taking you on a detailed tour of how Python's internals work, all the way from parsing your code through to executing it as bytecode.
-  </p>
-  <br>
-  <h4><em>AUTOSAR, in my CAR?!?! It’s more likely than you think.</em> by Jacob Allen</h4>
-  <b>February 6th (Spring Week 5)</b>
-  <p>
-  <u>Abstract:</u> Cars are everywhere, and while we may think of them as the single, complete, deadly high-speed tin-cans they appear to be, underneath lies a much more complex system. A car is not a single unit, but a massively complex distributed real-time system with hundreds of computers, all connected together. How did it get this way? And how does it even function with so much complexity?
-  </p><p>
-  In this talk I will touch on the past, present and future of automotive software, with particular focus on the standard which dominates the automotive software industry today: AUTOSAR.
-  </p>
-  <br>
-  <h4><em>"The program counter is always off by 2" and other strange computer design choices.</em> by Daniel Bailey</h4>
-  <b>February 13th (Spring Week 6)</b>
-  <p>
-  <u>Abstract:</u> When people design CPUs and software interfaces, they make decisions. Decisions that cut costs, simplify hardware, provide backwards compatibility, or shave a few cycles off a time consuming task. This talk will be a fun and [hopefully] insightful tour of some decisions that, in hindsight, were a little bit ... "funky".
-  Excitement includes:
-  <ul>
-  <li> Why is the PC value always off by 2? </li>
-  <li> What!? A reboot is triggered by deliberately causing three unrecoverable faults in a row? </li>
-  <li> Setting this bit to 0 makes every instruction cause an unrecoverable fault </li>
-  </ul>
-  </p>
-  <br>
-  <h4><em>AI and Searle's Chinese Room</em> by Rach Arnold</h4>
-  <b>February 19th (Spring Week 7)</b>
-  <p>
-  <u>Abstract:</u> Imagine there’s a sealed room where you can post questions, written in Chinese, into the room and receive the answers / responses back (also in Chinese). The natural assumption is that, the person in the sealed room who is responding to your questions, is able to understand what they are responding to (i.e. they can read and understand Chinese). However, in actual fact, inside the sealed room is a person with a basket full of Chinese symbols and a rule book; the rule book contains a series of instructions for the person inside the room. For example, if someone posts X symbol to the person, then he or she needs to post back Y symbol, even though the person in the room does not understand the symbols in question. This is Searle’s Chinese Room. This famous analogy brings into question the status of Artificial Intelligence and whether such a thing is possible. In my talk, I will be discussing the significance of Searle’s Chinese Room, how it links to AI, and possible responses to Searle’s conclusion. 
-  </p>
-  <br>
-  <h4><em>"git is not an SCM", and other git trivia</em> by Ash Holland</h4>
-  <b>February 27th (Spring Week 8)</b>
-  <p>
-  <u>Abstract:</u> You might have heard of git, the "distributed version-control system". You might have used git yourself; you might even have come to the talk about git I gave last term. But did you know that, according to git's author, it's not a version-control system at all?
-  </p><p>
-  In this talk, I'll explain git's internals – how it actually works under the covers, talking about heads, refs, tree-ishes, @, and various other git concepts. We'll briefly cover git's origins, and the design decisions that made it stand out from other version-control systems, along with a smattering of "interesting" facts about git which you might not have known.
-  </p><p>
-  NB: this talk doesn't assume that you know anything about git, but I won't be explaining how to use it. You'll get more out of the talk if you already have some experience of working with git.
-  </p>
-  <br>
-  <h4><em>What Happens When You Don't Leave Academia</em> by Matt Windsor</h4>
-  <b>March 5th (Spring Week 9)</b>
-  <p>
-  <u>Abstract:</u> At my previous talk, I was asked 'what even is a PhD?'  By convoluted way of answer, this talk tries to condense the last 5 or so years of my life into 30 minutes of discourse about: PhDs, why you should do one, why you shouldn't do one, life after the PhD, the good and bad sides of not self-yeeting out of academia after the undergraduate degree, and the constant never-ending quest for caffeination. 
-  </p>
-  <br>
-  <h3>Autumn Term 2019/20</h3>
-  <h4><em>git --intro: A Primer on Version Control</em> by Ash Holland</h4>
-  <b>October 3rd (Autumn Week 1)</b>
-  <p> 
-  <u>Abstract:</u> Have you ever wanted to travel through time? Maybe you've wanted to see what your code looked like half an hour ago, *before* you broke the tests? Or have you ever needed to collaborate with multiple people on one codebase, even without an internet connection? Version control can help with these problems and more. 
-  </p>
-  <p>
-  This talk will cover the version-control system git, which has now been the most widely-used version control system amongst software developers for over five years. In no particular order, we'll cover why you might want to use git, how to get started, and (at least conceptually) how git actually works.
-  </p>
-  <br>
-  <h4><em>Behind the scenes of GOV.UK</em> by Michael Walker</h4>
-  <b>October 10 (Autumn Week 2) <em>in RCH/248+250 (The Lakehouse)</em></b>
-  <p>
-  <u>Abstract:</u> GOV.UK is the single website for government to communicate with the public.  But how do over 3000 government publishers distribute information to over 60 million users?  Behind the scenes GOV.UK is a Ruby on Rails powered, microservice-using, highly-available,  distributed publishing system.  Come along to learn about just how big GOV.UK is, what it looks like behind the scenes, some neat public APIs you can use, and why GOV.UK developers talk about badgers, seals, and spaniels.
-  </p>
-  <p>
-  <em>At the request of the speaker, this talk will not be recorded.</em>
-  </p>
-  <br>
-  <h4><em>Break a Hacker's Mind - Web Application Vulnerabilities Exposed</em> by Morgan Stanley</h4>
-  <b>October 17 (Autumn Week 3) <em>in RCH/248+250 (The Lakehouse)</em></b>
-  <p>
-  <u>Abstract:</u> Join us for a special interactive guest lecture on Cyber Security with the Security Architecture team at Morgan Stanley.<br>
-  Together we will work through a web application which is riddled with the common issues through which retail banking applications are compromised.<br>
-  This session will demonstrate how an attacker could exploit software vulnerabilities and explain remediation strategies.<br>
-  This talk has also been delivered at industry forums, universities and even the House of Lords!
-  </p>
-  <p>
-  <em>At the request of the speaker, this talk will not be recorded.</em>
-  </p>
-  <br>
-  <h4><em>The History of LEGO Video Games</em> by David Norman</h4>
-  <b>October 24th (Autumn Week 4)</b>
-  <p>
-  <u>Abstract:</u> In the past 22 years, LEGO Video Games have become an important and rather unique genre in themselves. In this talk, we will look at how they have changed over time, the different styles and directions that have been attempted, and their cultural impact.
-  </p>
-  <br>
-  <h4><em>Can computers compile complex code correctly?</em> by Matt Windsor</h4>
-  <b>November 7th (Autumn Week 6)</b>
-  <p>
-  <u>Abstract:</u> Concurrent programs that make use of C11-style atomic actions are hard to reason about, with the formal statement of the behaviours such programs can exhibit -- the C11 memory model -- being notoriously unwieldy and permissive.  Worse, CPU architectures have their own memory models, so compilers must map from C to machine code in a way that preserves the original program's C11 guarantees inside the machine model.
-  </p>
-  <p>
-  In this talk, I explore the above situation, then discuss and demonstrate ACT, a toolbox for investigating whether C11 compilers such as gcc and clang actually do this mapping correctly.
-  </p>
-  <br>
-  <h4><em>Communicate! Pair Programming, sketchnotes and compassion</em> by Miki Mokrysz</h4>
-  <b>November 21st (Autumn Week 8)</b>
-  <p>
-  <b><em>This talk will not take place this term. We apologise for the inconvenience and are trying to reschedule it</em>.</b>
-  </p><p>
-  <u>Abstract:</u> Communication can be a superpower for engineers, helping you collaborate and problem-solve without even trying. But ineffective communication undermines your work, and draining communication undermines your happiness.
-  </p>
-  <p>
-  This talk gives you ways to communicate technical topics without tiresome documents or formality. We'll look at the joys and perils of pair programming. We'll try out sketchnoting (drawing systems to explain them.) And we'll cover how to empathise with what other people need.
-  </p>
-  <br>
-  <h4><em>Where it all went wrong (or why programming sucks)</em> by Sam Hand</h4>
-  <b>December 5th (Autumn Week 10)</b>
-  <p>
-  <u>Abstract:</u> The word “programmer” usually refers to a person who instructs a computer through the use of some textual formal language. 
-  To this person computation lives inside of a text file, represented purely as a list of instructions.
-  </p>
-  <p>
-  Contrast this to the idea of a “user”; someone who similarly instructs a computer to do their bidding. The user, though, achieves this by dynamically interacting with a varied selection of representations of the system - be they textual, visual, or even auditory. <br>
-  To a user computation takes on a much more rich meaning: it can be represented in a way suitable to the task at hand. However, the power available to them is fundamentally limited. They only have access to the features the programmer of the system chose to include.
-  </p>
-  <p>
-  This talk will explore the reasons behind this power difference, and maybe even suggest how to fix it, without sacrificing usability.
-  </p>
-  <br>
+
   <h2>Giving a talk</h2>
-  <br>
   <div class="noticebox">
-    If you'd like to give a talk in Autumn Term, then please fill in <a href="https://forms.gle/C2hnR8efhQ8iXCvJ6">this Google form</a>. Submissions will close on the <b>20th of September</b>.
+    If you'd like to give a talk in Autumn Term, then please fill in <a href="https://forms.gle/C2hnR8efhQ8iXCvJ6">this Google form</a>. Submissions will close on the <strong>20th of September</strong>.
   </div>
+
+  {#
+   Upcoming talks go here with <h2>Winter Term 2021/22 (Upcoming)</h2>
+   Once the *term* has passed, just move it below the HR, and remove the (upcoming).
+  #}
+
+  <hr>
+
+  <details open>
+  <summary><h2>Summer Term 2020/21</h2></summary>
+  {%- set term="Summer" -%}
+
+  {% call talk() %}
+    title: Talk In Which Matt Talks For 30 Minutes about Sonic the Hedgehog™
+    speaker: Matt Windsor
+    date: 2021-05-13
+    week: 6
+    youtube: https://www.youtube.com/watch?v=nKmxdTJ7MRk
+    markdown: |
+      Sonic the Hedgehog™ turns 30 this year, as do I.  Alas, before 2021 I had never actually properly sat down and played a Sonic game.  In fact, I didn't even have a Mega Drive until the mid-10s.  Shocking, I know!
+
+      In this talk, I'll deep dive into how I went from a washed-up Mario fan to a full-on second childhood with the blue blur, with a goal to become a Sonic CD speedrunner some time this millennium.  I'll try to convince you that, in 2021, Classic Sonic still holds up, and you should definitely try it.  If you try, you can do anything!  (I won't talk about modern Sonic, don't worry.)
+
+      May or may not contain Knuckles.
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: The Revised<sup>7</sup> Report on the Algorithmic Language Scheme
+    speaker: Daphne Preston-Kendal
+    date: 2021-05-27
+    week: 6
+    youtube: https://www.youtube.com/watch?v=y8qaitWSDW0
+    markdown: |
+      Scheme is a small but influential dialect of the Lisp programming language which has been standardized in multiple more-or-less compatible versions since its creation in the late 1970s. After decades of being used almost exclusively in teaching and research (with some exceptions), Scheme is now in the throes of a second attempt to expand the standard language to make it practical for use in production environments, R7RS. This talk will give a brief overview of the history of Scheme standardization over the last five decades, compare the initial ‘small’ version of R7RS (intended to carry on the tradition of versions of Scheme intended for use in teaching, research, and embedded environments) to previous standard versions of Scheme and assess its success so far, and review current progress on the ‘Large’ version of the standard (which is intended to be practical for developing large, real-world applications) and the difficulties of standardizing a practical but usable version of ‘the world's most unportable programming language’.
+      
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: Dispatches from the Computing Titanic
+    speaker: Jacob Allen
+    date: 2021-06-09
+    week: 9
+    youtube: https://www.youtube.com/watch?v=7hvLd-4hP_E
+    markdown: |
+      Contrary to many jokes, computers are (on the whole) well behaved and predictable machines that do exactly what you ask them to. This is why it is so much more noteworthy when they do not do what they were asked to, or worse, do exactly what they were asked to but not what was wanted. No better is this shown in what have come to be known as "cursed" parts of computing, such as those shown in the "Cursed computer Iceberg Meme" ([https://suricrasia.online/iceberg/](https://suricrasia.online/iceberg/)).
+
+      Join me as, taking inspiration from sources like the "Cursed computer Iceberg Meme", I talk about some of my favourite "cursed" parts of computing! Less serious than my previous talks this talk will focus on some of the more interesting and unexpected areas of "cursed" computing I've come across, and I will attempt to explain why some aren't quite as bad as you'd think, or why some are worse!
+      
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: How Robot Swarms Can Help Solve Hard Problems
+    speaker: C Wringe
+    date: 2021-06-24
+    week: 10
+    youtube: https://www.youtube.com/watch?v=SEUXgnwUfP4
+    markdown: |
+      Some tasks are too difficult for most robots to complete. And yet, insects perform them with apparent ease.
+      
+      Enter the biologically inspired robot swarm: A group of robots, individually performing simple tasks to create a more complex whole.
+
+      In this talk, I will go over what a robot swarm is, and the sorts of problems they can solve. I will show what it means for a robot swarm to be scalable, flexible, and robust. Finally, I will go into some of the challenges faced by the field, and areas of current and future work.
+  {% endcall %}
+
+  </details>
+
+  <details>
+  <summary><h2>Spring Term 2020/21</h2></summary>
+  {% set term="Spring" %}
+
+  {% call talk() %}
+    title: Can Concurrency Testing Be Liberated From The Litmus Style?
+    speaker: Matt Windsor
+    date: 2021-02-04
+    week: 4
+    youtube: https://www.youtube.com/watch?v=LZZoxTnUwOo
+    markdown: |
+      The 'litmus test' is a de facto standard for lightweight tests of concurrent systems, packaging shared state, initial values, expected final values, and thread bodies into a concise and readable format.  In this talk, I discuss litmus tests, how they are used in testing, the challenges of using them in compiler fuzz testing, and experimental attempts to overcome those challenges.
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: How Robot Swarms Can Help Solve Hard Problems
+    speaker: C Wringe
+    date: 2021-02-25
+    week: 7
+    notice: This talk will not take place this term. We apologise for the inconvenience and are trying to reschedule it.
+    markdown: |
+      Some tasks are too difficult for most robots to complete. And yet, insects perform them with apparent ease.
+
+      Enter the biologically inspired robot swarm: A group of robots, individually performing simple tasks to create a more complex whole.
+
+      In this talk, I will go over what a robot swarm is, and the sorts of problems they can solve. I will show what it means for a robot swarm to be scalable, flexible, and robust. Finally, I will go into some of the challenges faced by the field, and areas of current and future work.
+  {% endcall %}
   
-  <!-- Once we schedule talks, add a "this term's talks" section. -->
-  <!-- Once there have been talks, add a "previous talks" section with links to videos -->
+  
+  {% call talk() %}
+    title: An Introduction to Constraint Programming
+    speaker: Jacob Allen
+    date: 2021-03-25
+    week: 11
+    youtube: https://www.youtube.com/watch?v=1FJy-ubE7UE
+    markdown: |
+      As a programmer, computer scientist, computer engineer etc. there are many problems for which an algorithm can easily be determined or pulled from a text book, however, there is a class (or really two classes) of problems for which there are rarely such simple solutions: constraint problems. Luckily there exist powerful constraint programming tools to allow us to solve constraint problems using relatively simple concepts which often mirror how humans would solve the tasks.
+
+      In this talk I will introduce constraint programming and demonstrate how it can be used to solve complex problems efficiently, I will also show some examples of constraint solving programs and outline the simple underlying process by which they work.
+  {% endcall %}
+
+  </details>
+
+  <details>
+    <summary><h2>Autumn Term 2020/21</h2></summary>
+    {% set term="Autumn" %}
+  
+  {% call talk() %}
+    title: Mapping with Robots
+    speaker: Jacob Allen
+    date: 2020-10-22
+    week: 4
+    youtube: https://www.youtube.com/watch?v=xTHYcUY-45Q
+    markdown: |
+      Navigation is one of the core challenges of any form of robotics (at least any form which requires movement). There are several problems which must be solved for navigation, two of the core problems being localisation and mapping, that is, knowing where the robot is in a landscape and knowing that landscape. While they are simple tasks for most humans, they are relatively complex and computationally expensive tasks for robots, particularly those with limited sensors or limited computational power.
+
+      In this talk I will introduce the concepts behind mapping in robotics, and by extension some of the concepts behind localisation. I will discuss the state of the art, with particular focus on novel approaches using swarm robotics and sparse data which each pose unique problems for localisation and mapping. Finally, I will show an example and talk about the practical complexities of actually implementing mapping in robotics.
+      
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: Lerning to rite gud!
+    speaker: Abi Sutherland
+    date: 2020-10-29
+    week: 5
+    youtube: https://www.youtube.com/watch?v=2VUPu0bI41I
+    markdown: |
+      Tech isn't just about writing code for computers to interpret - you need to write for those pesky humans too. But not everyone gets taught how to write in any structured way. It's usually just "go write something and hand it in".  (Often followed by, “no, not like that!”) Which is a shame, because there are actually specific step-by-step methodologies for writing for humans!
+      
+      I’m a working information architect, and I’ve been teaching my techie colleagues to write for a couple of years. It’s not about writing perfectly (there isn’t any such thing). It’s about writing better, and feeling less anxious while doing it.
+
+      My talk will break down the process of writing into three steps, each of which I’ll explain in sensible and approachable terms:
+       - Planning
+       - Writing
+       - Editing
+
+      This talk focuses on technical writing, which covers everything from quite long documents to code comments, but much of it is useful for any context where you need to get information from your brain into someone else’s as easily as possible.
+  {% endcall %}
+  
+
+  {% call talk() %}
+    title: The Life And Times Of HTTPS
+    speaker: Marks Polakovs
+    date: 2020-11-05
+    week: 6
+    youtube: https://www.youtube.com/watch?v=zCdW5QiS9xU
+    markdown: |
+      Fifteen or twenty years ago you'd have been a fool for signing in to your MySpace account on any internet connection except for the one at your home. All your account details were sent unencrypted over the wire, ripe for anyone to steal. Today, however, over 80% of all connections Firefox makes are encrypted, and with every day we get closed and closer to universal encryption. How did we get here?
+
+      In this talk I'll build up the HTTPS protocol from first principles and go over the changes it has seen over its life, the neverending battle between attackers and browser vendors, as well as the seismic shifts in the certificate authority landscape that have enabled adoption to more than triple in just the last five years.
+  {% endcall %} 
+  
+  
+  {% call talk() %}
+    title: 'How To Build and Betray Online Communities: A Ravelry Case Study'
+    speaker: C Wringe
+    date: 2020-11-19
+    week: 8
+    youtube: https://www.youtube.com/watch?v=-dM6tx56xEk
+    markdown: |
+      Ravelry is a (relatively) small site for knitters and crocheters to share patterns, projects, and discussions. Being the main point for a (relatively) small community, there is some tea. At times, it has performed admirably - at others, failed miserably.
+
+      This makes it a great case study for those building platforms for online communities: What to adopt, where to improve, and what to never (oh god never) do.
+      
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: Personal Identity and Fission Cases
+    speaker: Rach Arnold
+    date: 2020-11-26
+    week: 9
+    youtube: https://www.youtube.com/watch?v=ZH7sCRd0n_4
+    markdown: |
+      In this talk, I will be exploring an issue regarding psychological continuity and the persistence question (i.e. how do persons persist through time). I will be discussing why fission cases pose a problem for psychological continuity theories, as it presents itself as a logical contradiction. In order to reconcile this issue, I will be drawing upon the work of Derek Parfit and David Lewis to see if there is any plausible way to defend psychological continuity account of personal identity against the issues presented with fission cases.
+      
+  {% endcall %}
+  
+  </details>
+
+  <details>
+  <summary><h2>Summer Term 2019/20</h2></summary>
+  {% set term="Summer" %}
+
+  {% call talk() %}
+    title: How to move a radio station online, in five weeks or less
+    speaker: Marks Polakovs
+    date: 2020-06-04
+    week: 8
+    youtube: https://www.youtube.com/watch?v=iPWBGuG_SOo
+    markdown: |
+        For reasons that don't need any elaboration, University Radio York, the UK's oldest legal independent student radio station, couldn't continue broadcasting from its studios for Summer Term this year. The team had a bit of a conundrum - do we shut down, as many others have done, or do we try and find a way to continue broadcasting? URY Computing Team chose the latter. Over the course of five weeks we built WebStudio, an online version of our playout and broadcasting system, letting presenters continue their shows from home with nothing but a laptop. In this talk I'll go over some of the design decisions behind WebStudio, how we implemented it, some of the challenges that we faced (including but not limited to: browser compatibility, Daylight Savings Time, and how to do maintenance during a lockdown with only two people on-site), as well as where we hope to see it in the future.
+      
+  {% endcall %}
+
+  {% call talk() %}
+    title: Ebooks are a Hard Problem
+    speaker: C Wringe
+    date: 2020-06-11
+    week: 9
+    youtube: https://www.youtube.com/watch?v=FHgIZB-HOBU
+    markdown: |
+      Ebooks are simple, right? Just digitise the book. 
+
+      Wrong. Ebooks and the laws surrounding them tend to be ridiculous, due to the monopoly of publishing companies, the horror that is amazon, and practices that just don't translate very well to a digital world.
+
+      In this talk, I will go over why ebooks are cheap, why libraries have so few of them despite this, why I have an enduring grudge against Macmillan, and perhaps why the Internet Archive's National Emergency Library is misguided at best.
+  {% endcall %}
+  
+  {% call talk() %}
+    title: Abstraction and Complexity Management
+    speaker: Jacob Allen
+    date: 2020-06-18
+    week: 10
+    youtube: https://www.youtube.com/watch?v=spabcmDE_Hg
+    markdown: |
+      While most software systems start out simple, software systems can rapidly become complex, whether via increasing scope, misestimation, or many other causes. A common solution to many of the problems of complexity is the introduction of abstractions, that is, providing a more abstract interface to systems, or parts of systems, to simplify interactions with them. However, the introduction of abstractions adds choices and complexities of its own, and often exposes the assumptions and biases of those creating the abstractions.
+
+      In this talk I will give a high-level overview of what is meant by abstraction and software complexity in the context of abstraction, then talk about some of the problems and possible solutions to issues of abstraction and complexity, using practical examples across different scale projects and different application areas.
+  {% endcall %}
+  
+  {% call talk() %}
+    title: How alike are Computers and Minds?
+    speaker: Rach Arnold
+    date: 2020-06-25
+    week: 11
+    youtube: https://www.youtube.com/watch?v=KJETYFoGVlc
+    markdown: |
+      The purpose of this talk is to explore the notion that a mind is like a computer from both a scientist and a philosophical perceptive. I will focus on a number of comparisons between both how the mind and a computer works; however, I ultimately conclude that the mind is more complicated than we give it credit for. Despite the increase in technology and the wondrous development of the computing world, computers will never compare to the splendor that is the human mind. 
+      
+  {% endcall %}
+
+  {% call talk() %}
+    title: 'The Power of Cursed Code: A Tour of Ruby'
+    speaker: Aaron Christiansen
+    date: 2020-07-02
+    week: 12
+    youtube: https://www.youtube.com/watch?v=_IBJI0wHl2g
+    markdown: |
+      In software engineering, plenty of time is spent talking about best practices and how to write beautiful, legible code. But what if your language has the tools, methods, and syntax to actively encourage throwing all that out of the window?
+
+      Meet Ruby, a dynamic language with the syntax of Perl and the semantics of Smalltalk. With a crossover like that, chaos is bound to ensue! In this talk, I'll discuss the core principles of Ruby, how its flexible design influences the way you build software, and the ridiculous code concoctions this enables. 
+      
+  {% endcall %}
+
+  </details>
+
+  <details>
+    <summary><h2>Spring Term 2019/20</h2></summary>
+    {% set term="Spring" %}
+
+  {% call talk() %}
+    title: Building Applications at Planet Scale - Developing for the Cloud
+    speaker: Daniel Vaughan
+    date: 2020-01-23
+    week: 3
+    markdown: |
+      Cloud-Native Computing has drastically changed the speed and efficiency with which developers can deploy their applications. This talk will demonstrate how technologies like Docker & Kubernetes make use of abstraction, isolation & orchestration to improve the developer experience. Participants will learn about the issues of traditional application deployment, and go on a journey through containerisation, automation & scalability to learn how to build a modern application in the cloud. This presentation is interactive - get ready to stress-test a website! 
+      
+  {% endcall %}
+
+  
+  {% call talk() %}
+    title: What's Python really doing?
+    speaker: Aaron Christiansen
+    date: 2020-01-30
+    week: 4
+    markdown: |
+      Python is one of the most well-known programming languages around. Its simplicity, elegant syntax, and huge range of libraries has propelled it to popularity. But what is actually happening when you run your Python code?
+
+      Underneath its minimalistic syntax, Python has a huge amount of complex heavily-optimised machinery. In this talk, I'll be taking you on a detailed tour of how Python's internals work, all the way from parsing your code through to executing it as bytecode.
+  {% endcall %}
+  
+
+  {% call talk() %}
+    title: AUTOSAR, in my CAR?!?! It’s more likely than you think.
+    speaker: Jacob Allen
+    date: 2020-02-06
+    week: 5
+    markdown: |
+      Cars are everywhere, and while we may think of them as the single, complete, deadly high-speed tin-cans they appear to be, underneath lies a much more complex system. A car is not a single unit, but a massively complex distributed real-time system with hundreds of computers, all connected together. How did it get this way? And how does it even function with so much complexity?
+
+      In this talk I will touch on the past, present and future of automotive software, with particular focus on the standard which dominates the automotive software industry today: AUTOSAR.
+      
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: '"The program counter is always off by 2" and other strange computer design choices.'
+    speaker: Daniel Bailey
+    date: 2020-02-13
+    week: 6
+    markdown: |
+      When people design CPUs and software interfaces, they make decisions. Decisions that cut costs, simplify hardware, provide backwards compatibility, or shave a few cycles off a time consuming task. This talk will be a fun and \[hopefully\] insightful tour of some decisions that, in hindsight, were a little bit ... "funky".
+
+      Excitement includes:
+        - Why is the PC value always off by 2?
+        - What!? A reboot is triggered by deliberately causing three unrecoverable faults in a row?
+        - Setting this bit to 0 makes every instruction cause an unrecoverable fault
+      
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: AI and Searle's Chinese Room
+    speaker: Rach Arnold
+    date: 2020-02-19
+    week: 7
+    markdown: |
+      Imagine there’s a sealed room where you can post questions, written in Chinese, into the room and receive the answers / responses back (also in Chinese). The natural assumption is that, the person in the sealed room who is responding to your questions, is able to understand what they are responding to (i.e. they can read and understand Chinese). However, in actual fact, inside the sealed room is a person with a basket full of Chinese symbols and a rule book; the rule book contains a series of instructions for the person inside the room. For example, if someone posts X symbol to the person, then he or she needs to post back Y symbol, even though the person in the room does not understand the symbols in question. This is Searle’s Chinese Room. This famous analogy brings into question the status of Artificial Intelligence and whether such a thing is possible. In my talk, I will be discussing the significance of Searle’s Chinese Room, how it links to AI, and possible responses to Searle’s conclusion. 
+      
+  {% endcall %}
+  
+
+  {% call talk() %}
+    title: '"git is not an SCM", and other git trivia'
+    speaker: Ash Holland
+    date: 2020-02-27
+    week: 8
+    markdown: |
+      You might have heard of git, the "distributed version-control system". You might have used git yourself; you might even have come to the talk about git I gave last term. But did you know that, according to git's author, it's not a version-control system at all?
+
+      In this talk, I'll explain git's internals – how it actually works under the covers, talking about heads, refs, tree-ishes, @, and various other git concepts. We'll briefly cover git's origins, and the design decisions that made it stand out from other version-control systems, along with a smattering of "interesting" facts about git which you might not have known.
+
+      NB: this talk doesn't assume that you know anything about git, but I won't be explaining how to use it. You'll get more out of the talk if you already have some experience of working with git.
+      
+  {% endcall %}
+  
+  {% call talk() %}
+    title: What Happens When You Don't Leave Academia
+    speaker: Matt Windsor
+    date: 2020-03-05
+    week: 9
+    markdown: |
+      At my previous talk, I was asked 'what even is a PhD?'  By convoluted way of answer, this talk tries to condense the last 5 or so years of my life into 30 minutes of discourse about: PhDs, why you should do one, why you shouldn't do one, life after the PhD, the good and bad sides of not self-yeeting out of academia after the undergraduate degree, and the constant never-ending quest for caffeination. 
+  {% endcall %}
+  
+  </details>
+
+  <details>
+  <summary><h2>Autumn Term 2019/20</h2></summary> 
+  {% set term="Autumn" %}
+
+  {% call talk() %}
+    title: 'git --intro: A Primer on Version Control'
+    speaker: Ash Holland
+    date: 2019-10-03
+    week: 1
+    markdown: |
+      Have you ever wanted to travel through time? Maybe you've wanted to see what your code looked like half an hour ago, \*before\* you broke the tests? Or have you ever needed to collaborate with multiple people on one codebase, even without an internet connection? Version control can help with these problems and more. 
+
+      This talk will cover the version-control system git, which has now been the most widely-used version control system amongst software developers for over five years. In no particular order, we'll cover why you might want to use git, how to get started, and (at least conceptually) how git actually works.
+      
+  {% endcall %}
+
+  {% call talk() %}
+    title: Behind the scenes of GOV.UK
+    speaker: Michael Walker
+    date: 2019-10-10
+    week: 2
+    room: RCH/248+250 (The Lakehouse)
+    notice: At the request of the speaker, this talk will not be recorded.
+    markdown: |
+      GOV.UK is the single website for government to communicate with the public.  But how do over 3000 government publishers distribute information to over 60 million users?  Behind the scenes GOV.UK is a Ruby on Rails powered, microservice-using, highly-available,  distributed publishing system.  Come along to learn about just how big GOV.UK is, what it looks like behind the scenes, some neat public APIs you can use, and why GOV.UK developers talk about badgers, seals, and spaniels.
+      
+  {% endcall %}
+  
+  {% call talk() %}
+    title: Break a Hacker's Mind - Web Application Vulnerabilities Exposed
+    speaker: Morgan Stanley
+    date: 2019-10-17
+    week: 3
+    room: RCH/248+250 (The Lakehouse)
+    notice: At the request of the speaker, this talk will not be recorded.
+    markdown: |
+      Join us for a special interactive guest lecture on Cyber Security with the Security Architecture team at Morgan Stanley.
+      Together we will work through a web application which is riddled with the common issues through which retail banking applications are compromised.
+      This session will demonstrate how an attacker could exploit software vulnerabilities and explain remediation strategies.
+      This talk has also been delivered at industry forums, universities and even the House of Lords!
+  {% endcall %}
+  
+  {% call talk() %}
+    title: The History of LEGO Video Games
+    speaker: David Norman
+    date: 2019-10-24
+    week: 4
+    youtube: https://www.youtube.com/watch?v=V-ZU8Q2L1Nk
+    markdown: |
+      In the past 22 years, LEGO Video Games have become an important and rather unique genre in themselves. In this talk, we will look at how they have changed over time, the different styles and directions that have been attempted, and their cultural impact.
+      
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: Can computers compile complex code correctly?
+    speaker: Matt Windsor
+    date: 2019-11-07
+    week: 6
+    markdown: |
+      Concurrent programs that make use of C11-style atomic actions are hard to reason about, with the formal statement of the behaviours such programs can exhibit -- the C11 memory model -- being notoriously unwieldy and permissive.  Worse, CPU architectures have their own memory models, so compilers must map from C to machine code in a way that preserves the original program's C11 guarantees inside the machine model.
+
+      In this talk, I explore the above situation, then discuss and demonstrate ACT, a toolbox for investigating whether C11 compilers such as gcc and clang actually do this mapping correctly.
+      
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: Communicate! Pair Programming, sketchnotes and compassion
+    speaker: Miki Mokrysz
+    date: 2019-11-21
+    week: 8
+    notice: This talk will not take place this term. We apologise for the inconvenience and are trying to reschedule it
+    markdown: |
+      Communication can be a superpower for engineers, helping you collaborate and problem-solve without even trying. But ineffective communication undermines your work, and draining communication undermines your happiness.
+
+      This talk gives you ways to communicate technical topics without tiresome documents or formality. We'll look at the joys and perils of pair programming. We'll try out sketchnoting (drawing systems to explain them.) And we'll cover how to empathise with what other people need.
+      
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: Where it all went wrong (or why programming sucks)
+    speaker: Sam Hand
+    date: 2019-12-05
+    week: 10
+    markdown: |
+      The word “programmer” usually refers to a person who instructs a computer through the use of some textual formal language. To this person computation lives inside of a text file, represented purely as a list of instructions.
+
+      Contrast this to the idea of a “user”; someone who similarly instructs a computer to do their bidding. The user, though, achieves this by dynamically interacting with a varied selection of representations of the system - be they textual, visual, or even auditory. 
+      To a user computation takes on a much more rich meaning: it can be represented in a way suitable to the task at hand. However, the power available to them is fundamentally limited. They only have access to the features the programmer of the system chose to include.
+
+      This talk will explore the reasons behind this power difference, and maybe even suggest how to fix it, without sacrificing usability.
+      
+  {% endcall %}
+  
+  </details>
+  
 {% endblock body%}

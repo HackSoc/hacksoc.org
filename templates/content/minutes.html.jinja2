@@ -37,15 +37,15 @@
 
 {% for committee, minutes in listing.items() %}
     {% if loop.first %}
-        <details open>
+        <details class="minutes" open>
     {% else %}
-        <details>
+        <details class="minutes">
     {% endif %}
         <summary><h3>
             {{committee}}
             {% if loop.first %}(current){% endif %}
         </h3></summary>
-        <ul class="minutes">
+        <ul>
             {% for item in minutes %}
             <li>
                 <details>

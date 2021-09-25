@@ -10,6 +10,7 @@ Complex pages don't really follow a pattern like simple pages and news articles.
  - [`news.html.jinja2`](../templates/content/news.html.jinja2)
    - Most of the complexity is in `newslist.html.jinja2`, which this imports.
  - [`minutes.html.jinja2`](../templates/content/minutes.html.jinja2)
+ - [talks.html](../templates/content/talks.html.jinja2)
 
 ## Extending, including, importing
 This topic is covered in the [Jinja documentation][jinjadocs] in more depth. TL;DR:
@@ -40,7 +41,7 @@ The code inside the `<title>` tag will always include `HackSoc - the computer sc
 
 In the future, the page title might be included on pages as `<h2>`. In order to do this, you could use `{{ title }}` to get the value of the `title` variable, or `{{ title() }}` to get the content of the `title` block. In this case it doesn't matter since they're equivalent.
 
-### Metadata
+### Metadata for link embedding
 This is a mess of [OpenGraph][ograph] (which most sites support) and [twitter-specific][twittercards] metadata. The main platforms to ensure compatibility and good display on are:
  - [Facebook](https://developers.facebook.com/docs/sharing/webmasters/#markup)
  - [Twitter][twittercards]

@@ -17,6 +17,17 @@ All pages must include three things:
 
 As with news articles, long sections of pages can be written using the `markdown()` filter. Remember that whether in Markdown or HTML, Headings 1 and 2 are already used, so headings within `{% block body%}` should start at Heading 3.
 
+## HTML formatting
+You should know *what* HTML tags are, this list gives some rules of thumb on how they are used in this website:
+ - Any amount of text a sentence or longer should be inside a `<p>` (paragraph) tag.
+ - Avoid `<br>`:
+   - Use multiple `<p>` tags for paragraph breaks in text
+   - Use CSS `margin` and `padding` for spacing between elements.
+   - Use `<pre>` for blocks that need whitespace (newlines and indentations) preserved
+     - You can also use [`white-space`](https://developer.mozilla.org/en-US/docs/Web/CSS/white-space) set to `pre-line` to respect newlines only (ignoring other whitespace as with normal HTML).
+ - Use `<strong>` and `<em>` (emphasis) instead of `<b>` (bold) and `<i>` (italic) inside paragraphs.
+ - Consider using `<span class="descriptive-name">` instead of `<strong>`/`<em>` for other kinds of text (outside of paragraphs); use or create a CSS class that describes the *purpose* of that element (warning, date, subtitle) instead of the formatting. This means that it's easy to change the formatting later, but keep the original intention of the markup.
+
 ## Additional styles
 The site-wide stylesheet will be sufficient for most pages, but if you find yourself needing to add CSS, using the `style` attribute on a HTML element is highly discouraged. Instead add a page-specific stylesheet with the `stylesheets` block.
 
@@ -70,4 +81,3 @@ Pages that count as "simple" currently include:
  - [about.html](../templates/content/about.html.jinja2)
  - [coc.html](../templates/content/coc.html.jinja2)
  - [irc.html](../templates/content/irc.html.jinja2)
- - [talks.html](../templates/content/talks.html.jinja2)

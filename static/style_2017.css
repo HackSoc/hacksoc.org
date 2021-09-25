@@ -75,6 +75,12 @@ code { font-family: Inconsolata, monospace; font-display: swap; font-size: 13px 
 
 .important { text-align: center; font-weight: bold; }
 
+hr {
+    border: none;
+    border-top: 1px solid var(--de-emphasis-color);
+    width: calc(100% - 2em);
+}
+
 /* Fonts */
 @font-face {
   font-family: 'Bitstream Vera Sans';
@@ -129,22 +135,22 @@ summary::marker {
 
 summary > * {display: inline-block;}
 
-details > :not(summary) {
+details.minutes > :not(summary) {
     margin-left: 2em;
 }
 
 /* Style for minutes */
-ul.minutes {
+.minutes ul {
     list-style: none;
     padding-left: 0;
 }
 
-ul.minutes > li .minutes-name {
+.minutes ul > li .minutes-name {
     font-weight: bold;
     margin-right: .2em;
 }
 
-ul.minutes > li iframe {
+.minutes ul > li iframe {
     width: 500px;
     height: 700px;
     margin: 0;
@@ -157,6 +163,10 @@ p.minutes-help {
     color: #555;
 }
 
+.talk-notice {
+    font-weight: bold;
+}
+
 /* Media queries for small screens (mobile) */
 @media screen and (max-width: 960px) {
     div#container{width:100%}
@@ -164,10 +174,10 @@ p.minutes-help {
 }
 @media screen and (max-width: 700px) {
     /* Stop alternating the infoboxes below 700px, just centre align them */
-    .infobox:nth-child(odd), .infobox {width:100%;text-align:center;} 
+    /* needs both :nth-child's to be sufficiently specific */
+    .infobox:nth-child(odd), .infobox:nth-child(even) {width:100%;text-align:center;} 
     /* overly verbose selector because cascading isn't working properly */
     .infobox >p{padding:5px 5px 5px 5px;}
-    h2,h3{width:100%;text-align:center;}
     h2{font-size:1.4em;}
     h3{font-size: 1.2em;}
 }
