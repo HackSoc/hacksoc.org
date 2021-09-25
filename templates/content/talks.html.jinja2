@@ -12,6 +12,12 @@ Talks
     
   hr {margin-top: 2em;}
 
+  .talk-abstract p:first-child::before {
+    content: "Abstract:";
+    margin-right: .5em;
+    text-decoration: underline;
+  }
+
 </style>
 {% endblock stylesheets %}
 
@@ -62,11 +68,13 @@ Talks
         <p class="talk-notice">{{obj.notice}}</p>
       {% endif %}
 
+      <div class="talk-abstract">
       {%- if obj.markdown -%}
       {% filter markdown() %} {{obj.markdown}} {% endfilter %}
       {%- else -%}
       {{obj.html}}
       {%- endif -%}
+      </div>
   {%- endmacro %}
 
   <p>
