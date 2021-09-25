@@ -13,6 +13,7 @@ Talks
   hr {margin-top: 2em;}
 
   .talk-abstract p:first-child::before {
+    /* This isn't ideal as screen readers will (generally) ignore ::before {content} */
     content: "Abstract:";
     margin-right: .5em;
     text-decoration: underline;
