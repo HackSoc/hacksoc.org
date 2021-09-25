@@ -81,4 +81,3 @@ Pages that count as "simple" currently include:
  - [about.html](../templates/content/about.html.jinja2)
  - [coc.html](../templates/content/coc.html.jinja2)
  - [irc.html](../templates/content/irc.html.jinja2)
- - [talks.html](../templates/content/talks.html.jinja2)

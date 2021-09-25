@@ -10,6 +10,7 @@ Complex pages don't really follow a pattern like simple pages and news articles.
  - [`news.html.jinja2`](../templates/content/news.html.jinja2)
    - Most of the complexity is in `newslist.html.jinja2`, which this imports.
  - [`minutes.html.jinja2`](../templates/content/minutes.html.jinja2)
+ - [talks.html](../templates/content/talks.html.jinja2)
 
 ## Extending, including, importing
 This topic is covered in the [Jinja documentation][jinjadocs] in more depth. TL;DR:
