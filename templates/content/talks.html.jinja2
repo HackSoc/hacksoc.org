@@ -39,6 +39,8 @@ Talks
           speaker (str, HTML): The name(s) of the person or organisation giving the talk
           date (ISO 8601 date): The date that the talk was/will be given on. Should be given *unquoted* in YYYY-MM-DD format
           week (int): The week number that the talk will be given on. Eg, `week: 6` for Summer Term Week 6.
+          format (str): How this talk was/will be given. Should be one of "in-person" or "online".
+          room (str): The room in which this talk was/will be given.
           youtube (str): The full URL of the YouTube video, if the talk has been uploaded.
 
             and ONE of:
@@ -56,6 +58,10 @@ Talks
        but it doesn't hurt to be safe in case it gets quoted
        -#}
       <strong>{{obj.date|from_iso_date|format_date(year=False)}} ({{term}} Week {{obj.week}})</strong>
+
+      {%- if obj.format -%}
+        <strong> - {{obj.format}}</strong>
+      {%- endif %}
 
       {% if obj.room -%}
         <strong>in {{obj.room}}</strong>
@@ -79,21 +85,117 @@ Talks
   {%- endmacro %}
 
   <p>
-    HackSoc run talks from industry speakers, members and alumni throughout the academic year. These talks take place on YouTube and on our Discord between 7:00 and 8:00 PM certain Thursdays, followed by a social, unless otherwise specified. Talks are 30 minutes long, followed by 15 minutes of questions. 
+    HackSoc run talks from industry speakers, members and alumni throughout the academic year. We are currently running a mixture of online talks, using YouTube and our Discord server, and in-person talks on Campus East.
+  </p>
+  <p>
+    Talks take place between between 7:00 and 8:00 PM certain Thursdays, and are 30 minutes long, followed by 15 minutes of questions.
   </p>
   <p>
     Attending talks is a great way to get a diverse look at what a degree in computer science can be, whether it's more focused on industry or academia. 
   </p>
 
   <h2>Giving a talk</h2>
+  
+  {#
+   When talk submissions open, fill in the following variables:
+    - `submissions_form` should be a Google Form link.
+    - `submissions_term` should be the term we're collecting submissions for, e.g. "Autumn".
+    - `submissions_close` should be the date (YYYY-MM-DD) when talk submissions close, e.g. "2021-09-20" for 20th September 2021.
+   All variables will need to be given in quotes.
+
+   When talk submissions close, change all variables to None (not in quotes).
+  #}
+  {%- set submissions_form=None %}
+  {%- set submissions_term=None %}
+  {%- set submissions_close=None %}
+
   <div class="noticebox">
-    If you'd like to give a talk in Autumn Term, then please fill in <a href="https://forms.gle/C2hnR8efhQ8iXCvJ6">this Google form</a>. Submissions will close on the <strong>20th of September</strong>.
+    {%- if submissions_form and submissions_term and submissions_close %}
+      If you'd like to give a talk in {{ submissions_term }} Term, then please fill in <a href="{{ submissions_form }}">this Google form</a>. Submissions will close on the <strong>{{ submissions_close|from_iso_date|format_date(year=False) }}</strong>.
+    {%- else %}
+      Submissions for talks are now closed. <a href="{{ mailing_list_signup }}">Subscribe to our mailing list</a> to receive our weekly newsletter and be notified when they open again!
+    {%- endif %}
   </div>
 
   {#
    Upcoming talks go here with <h2>Winter Term 2021/22 (Upcoming)</h2>
    Once the *term* has passed, just move it below the HR, and remove the (upcoming).
   #}
+
+  <h2>Autumn Term 2021/22 (Upcoming)</h2>
+  {%- set term="Autumn" -%}
+
+  {% call talk() %}
+    title: An Incomplete History of High Speed Rail
+    speaker: Iris Scoffin
+    date: 2021-10-14
+    week: 3
+    format: in-person
+    markdown: |
+      An overview of the history of High Speed Rail, focusing primarily on new developments and the technological advancements that made them possible.
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: A (Very) Brief History of the Technology of String
+    speaker: C Wringe
+    date: 2021-10-21
+    week: 4
+    format: online
+    markdown: |
+      Textiles have their history in the field of computer science. From the Jacquard Looms that every first year learns was the inspiration for programmable computers, to the fact that we call sequences of characters strings, we can't seem to escape them. (And if you think you can, just wait until that *one* student brings it up as an example in every. single. seminar. :P)
+
+      Given this, I posit that it is crucial (or, well, at least interesting) for anyone who spends a lot of time thinking about computers to have a rudimentary understanding of the processes that take fluff and turn it into string, and then cloth, as well as the tools that help make it so. 
+
+      So have my half-hour nerd rant. 
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: "You can win the enterprise but lose the world: a recent history of DevOps, k8s and Cloud Foundry"
+    speaker: Miki Mokrysz
+    date: 2021-10-28
+    week: 5
+    format: in-person
+    markdown: |
+      Miki Mokrysz has spent years working on large-scale cloud platforms for the UK government, large enterprise, and small startups. In this talk they'll tell us about the DevOps side of the tech industry, how Kubernetes has gotten so big, and the huge projects like Cloud Foundry that couldn't beat Kubernetes.
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: Talk In Which Matt Talks For 30 Minutes About Speedrunning
+    speaker: Matt Windsor
+    date: 2021-11-11
+    week: 7
+    format: in-person
+    markdown: |
+      I'm Matt, and this year I started learning how to speedrun - a way of playing video games that emphasises trying to do tasks in the game as quickly as possible.  I'll try to convince you that anyone can speedrun, any game can be spedran, and possibly some other things too.  A sort-of sequel to the talk in which Matt talked for 30 minutes about Sonic.
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: RISC-V, and why it isn't as risky as you think
+    speaker: Daniel Allinson
+    date: 2021-11-18
+    week: 8
+    format: online
+    markdown: |
+      RISC-V is a new instruction set architecture created for use in many different types of CPU core.  But what exactly is it?  How does it work?  How does it compare to the instruction set used in our modern computers? 
+  {% endcall %}
+
+
+  {% call talk() %}
+    title: What actually is an Operating System?
+    speaker: Jacob Allen
+    date: 2021-12-02
+    week: 10
+    format: online
+    markdown: |
+      Operating Systems are everywhere. At the core of most computers, be they desktops or embedded systems, an Operating System is running. However, there are a wide gamut of different things we call an Operating System. What, then, makes an Operating System what it is? Why do we even need Operating Systems in the first place?
+
+      In this talk I will explain the origins of Operating Systems and what the roles of Operating Systems are in modern computing. I will also cover what the different forms of Operating System commonly in use are, some of why they are designed the way they are, and give my thought's on what an Operating System actually needs to be an Operating System.
+  {% endcall %}
+  
 
   <hr>
 
