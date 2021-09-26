@@ -100,7 +100,7 @@ Talks
    When talk submissions open, fill in the following variables:
     - `submissions_form` should be a Google Form link.
     - `submissions_term` should be the term we're collecting submissions for, e.g. "Autumn".
-    - `submissions_close` should be the date when talk submissions close, e.g. "20th of September".
+    - `submissions_close` should be the date (YYYY-MM-DD) when talk submissions close, e.g. "2021-09-20" for 20th September 2021.
    All variables will need to be given in quotes.
 
    When talk submissions close, change all variables to None (not in quotes).
@@ -111,7 +111,7 @@ Talks
 
   <div class="noticebox">
     {%- if submissions_form and submissions_term and submissions_close %}
-      If you'd like to give a talk in {{ submissions_term }} Term, then please fill in <a href="{{ submissions_form }}">this Google form</a>. Submissions will close on the <strong>{{ submissions_close }}</strong>.
+      If you'd like to give a talk in {{ submissions_term }} Term, then please fill in <a href="{{ submissions_form }}">this Google form</a>. Submissions will close on the <strong>{{ submissions_close|from_iso_date|format_date(year=False) }}</strong>.
     {%- else %}
       Submissions for talks are now closed. <a href="{{ mailing_list_signup }}">Subscribe to our mailing list</a> to receive our weekly newsletter and be notified when they open again!
     {%- endif %}
