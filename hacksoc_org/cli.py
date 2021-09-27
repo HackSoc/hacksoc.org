@@ -1,48 +1,53 @@
-import click
-
-from hacksoc_org import app, ROOT_DIR
+from typing import Callable, Dict
+from hacksoc_org import app
 from hacksoc_org.consts import *
-
-from os import path
-
-
-@click.group()
-@click.option(
-    "--markdown",
-    type=click.Choice(["markdown2", "cmark"], case_sensitive=False),
-    default="markdown2",
-)
-def main(markdown: str):
-    # this gets executed before every valid command; prime opportunity to do config
-    print("=" * 8, "main()", "=" * 8)
-    app.config[CFG_MARKDOWN_IMPL] = markdown
-    print(f"Using markdown implementation '{markdown}'")
-
-
-@main.command()
-def run():
-    app.run()
-
-
 from hacksoc_org.freeze import freeze
 from hacksoc_org.serve import serve
 
+import argparse
 
-@main.command("freeze")
+subcommand_handlers: Dict[str, Callable] = {}
+
+
+def subcommand(command_str: str) -> Callable[[Callable], Callable]:
+    def inner(fn):
+        subcommand_handlers[command_str] = fn
+        return fn
+
+    return inner
+
+
+def main():
+    parser = argparse.ArgumentParser(allow_abbrev=False)
+
+    parser.add_argument("action", choices=subcommand_handlers.keys())
+    # TODO: add help to prelude/preamble
+
+    parser.add_argument("--markdown", choices=["markdown2", "cmark"], default="markdown2")
+
+    args = parser.parse_args()
+
+    app.config[CFG_MARKDOWN_IMPL] = args.markdown
+
+    subcommand_handlers[args.action]()
+
+
+@subcommand("run")
+def do_run():
+    app.run()
+
+
+@subcommand("freeze")
 def do_freeze():
-    """Called on `flask freeze`. Renders the site to HTML in the build/ directory"""
     freeze()
 
 
-@main.command("serve")
+@subcommand("serve")
 def do_serve():
-    """Called on `flask serve`. Freezes the site and starts a local server. Should be
-    near-indistinguishable from `flask run`."""
     freeze()
     print()
-    serve(path.join(ROOT_DIR, "build"))
+    serve()
 
 
-@main.command()
-def foo():
-    print("Bar")
+if __name__ == "__main__":
+    main()

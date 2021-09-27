@@ -37,8 +37,11 @@ class Markdown2MD(AbstractMarkdown):
         return self.md.convert(markdown_src)
 
 
-# __markdown_cls__ = {"markdown2": Markdown2MD, "cmark": None}[app.config[CFG_MARKDOWN_IMPL]]
-# __markdowner__ = __markdown_cls__()
+def get_markdown_cls():
+    return {"markdown2": Markdown2MD, "cmark": None}[app.config[CFG_MARKDOWN_IMPL]]
+
+
+_markdowner = None
 
 
 def render_markdown(markdown_src: str) -> str:
@@ -50,4 +53,9 @@ def render_markdown(markdown_src: str) -> str:
     Returns:
         str: HTML text
     """
-    return __markdowner__.render_markdown(markdown_src)
+    global _markdowner
+
+    if _markdowner is None:
+        _markdowner = get_markdown_cls()()
+
+    return _markdowner.render_markdown(markdown_src)
