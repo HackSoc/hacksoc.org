@@ -73,6 +73,24 @@ def get_server_page_routes() -> Generator[str, None, None]:
         # see `get_static_routes`
 
 
+@freezer.register_generator
+def get_redirect_page_routes() -> Generator[str, None, None]:
+    """Yields URL routes for pages which exist solely to redirect. We use these similarly to a URL
+    shortener, providing nicer URLs to print or distribute.
+
+    This generator wouldn't be necessary if we used these links from our About pages, but that
+    would add an unnecessary redirect in the middle when coming from those pages.
+    
+    Yields:
+        Generator[str, None, None]: URL routes
+    """
+    yield from [
+        "/newsletter.html",
+        "/slack.html",
+        "/discord.html"
+    ]
+
+
 def freeze():
     """this seemingly useless method is used to provide a stable API if the freeze provider changes
     in the future
