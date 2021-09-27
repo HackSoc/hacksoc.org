@@ -80,6 +80,8 @@ Page redirects are implemented by setting the `redirect` variable. Note that if 
 {% set redirect="/coc.html" %}
 ```
 
+Some pages in the site, such as `newsletter.html`, are provided as redirects which we can print on posters or other media. These aren't linked to within the site itself, so we must tell the freezer about them. If you add a page like this, you should also add its relative link to the list in the `get_redirect_page_routes` function of `freeze.py`.
+
 
 
 [jinjadocs]: https://jinja.palletsprojects.com/en/3.0.x/templates/ "Template designer documentation - Jinja Documentation (3.0.x)"
