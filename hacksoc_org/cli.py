@@ -17,7 +17,7 @@ def subcommand(command_str: str) -> Callable[[Callable], Callable]:
     return inner
 
 
-def main():
+def main(args=None):
     parser = argparse.ArgumentParser(allow_abbrev=False)
 
     parser.add_argument("action", choices=subcommand_handlers.keys())
@@ -25,7 +25,7 @@ def main():
 
     parser.add_argument("--markdown", choices=["markdown2", "cmark"], default="markdown2")
 
-    args = parser.parse_args()
+    args = parser.parse_args(args=args)
 
     app.config[CFG_MARKDOWN_IMPL] = args.markdown
 
