@@ -12,7 +12,16 @@ class TestFreeze(unittest.TestCase):
     """Tests for hacksoc_org.freeze and freezing functionality"""
 
     def setUp(self) -> None:
-        rmtree(BUILD_DIR)
+        try:
+            rmtree(BUILD_DIR)
+        except FileNotFoundError:
+            pass
+
+    def tearDown(self) -> None:
+        try:
+            rmtree(BUILD_DIR)
+        except FileNotFoundError:
+            pass
 
     def test_freeze(self):
         """Very basic test to catch runtime errors; if this fails, then there's an error somewhere!"""
