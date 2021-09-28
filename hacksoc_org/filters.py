@@ -10,7 +10,7 @@ from flask import get_template_attribute
 
 import yaml
 
-from datetime import date, timedelta
+from datetime import date, timedelta, timezone
 import re
 import os
 from pprint import pformat
@@ -223,6 +223,16 @@ def format_date(d: date, year=True):
         if year:
             s += f", {d.year}"
         return s
+
+
+@app.template_global()
+def build_datetime():
+    """Returns the current datetime (to seconds precision)
+
+    Returns:
+        datetime: current Python datetime object
+    """
+    return datetime.datetime.now(timezone.utc).astimezone().replace(microsecond=0)
 
 
 @app.template_filter()

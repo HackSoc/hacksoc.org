@@ -19,30 +19,29 @@ Documentation can be found in [`docs/`](docs/), including topics such as:
 | [Development process and using git &ndash; beginner's guide](docs/development_and_git.md) |
 
 ## Running
-Preferred way to run is through the `flask` command. It can be executed with the venv (see [Installation](#installation)) activated by just running `flask` or otherwise at `venv/bin/flask`:
+Preferred way to run is through the `hacksoc_org` command. It can be executed with the venv (see [Installation](#installation)) activated by just running `hacksoc_org` (all platforms, recommended) or otherwise at `venv/bin/hacksoc_org` on Mac and Linux.
+
+Note that running through `flask run` is **not supported**.
 
 ### Starting a development server
 While you're developing, you probably want to use:
 ```
-flask run
-venv/bin/flask run
+hacksoc_org run
 ```
 Pages are served directly from the Flask routes; you shouldn't need to restart the server when changes are made, but web pages will not automatically refresh. Open your browser to [`http://localhost:5000/`](http://localhost:5000/) to see the results.
 
 ### Freezing to HTML
-To produce a folder full of static HTML and assets (images, CSS, JS, fonts), the site must be *frozen*. The resulting folder can then be used with a regular webserver (like nginx), and should look exactly the same as when running with `flask run`. You probably want to use this or `flask serve` at least once before you create a pull request.
+To produce a folder full of static HTML and assets (images, CSS, JS, fonts), the site must be *frozen*. The resulting folder can then be used with a regular webserver (like nginx), and should look exactly the same as when running with `hacksoc_org run`. You probably want to use this or `hacksoc_org serve` at least once before you create a pull request.
 ```
-flask run
-venv/bin/flask freeze
+hacksoc_org run
 ```
 The HTTP root directory is `build/`.
 
 ### Starting a static server
 ```
-flask serve
-venv/bin/flask serve
+hacksoc_org serve
 ```
-Starts a local HTTP server from the `build/` directory. Equivalent to running `flask freeze` followed by `cd build/ && python3 -m http.server 5000`. If all goes well, you should always see the same as `flask run`.
+Starts a local HTTP server from the `build/` directory. Equivalent to running `hacksoc_org freeze` followed by `cd build/ && python3 -m http.server 5000`. If all goes well, you should always see the same as `hacksoc_org run`.
 
 ## Style guide
 To keep a consistent style, the following rules are used:
@@ -58,7 +57,7 @@ Otherwise, there is no line length limit, and you are encouraged to use "soft wr
 ### Code style
 Python files should roughly follow [PEP 8](https://www.python.org/dev/peps/pep-0008/), formatted with `black`. 
 
-Note that although constants should be in uppercase, PEP 8 does not strictly define what counts as a constant. Some variables in `hacksoc_org` are assigned once and should never be reassigned, but are mutated often and generally don't behave like constants (for example `app`, `blueprint` from Flask). When considering whether to name a variable as a constant, think about the following:
+Note that although constants should be in uppercase, PEP 8 does not strictly define what counts as a constant. Some variables in `hacksoc_org/` are assigned once and should never be reassigned, but are mutated often and generally don't behave like constants (for example `app`, `blueprint` from Flask). When considering whether to name a variable as a constant, think about the following:
  - Could the variable be replaced with its literal value?
  - Does the value of the variable ever change? (this includes mutations rather than just reassignments)
 ### Years of study
@@ -85,8 +84,11 @@ venv\Scripts\activate.bat
 # Windows users using PowerShell
 venv\Scripts\Activate.ps1
 
-pip install -r pip-requirements.txt
+pip install --upgrade pip
+pip install -e .
 ```
+
+On existing installations, if Python throws `ModuleNotFoundError`s, try running `pip install -e .` again as additional dependencies may have been added since your original install.
 
 See [Running](#running) next.
 
