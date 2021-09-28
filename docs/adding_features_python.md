@@ -44,10 +44,25 @@ Currently the website uses [`python-markdown2`][pymd2] and loads the following e
 Since the server READMEs use fenced code blocks and AGMs will often use many tables, any replacment library must support at least these. 
 
 ### Choice of Markdown libraries
-At time of writing, two Markdown libraries are available, creatively named [`markdown`](https://python-markdown.github.io/) and [`markdown2`][pymd2]. While they have a similar featureset, `markdown2` was chosen as its implementation of fenced code blocks uses a nicer syntax for code highlighting (similar to GFM, Discord, etc).
+Choosing a Markdown backend is not straightforward; implementations vary in their interpretation of the spec (Gruber's `markdown.pl` or the less ambiguous CommonMark standard) and their extra features (tables, code block highlighting, smart quotes). Currently [`markdown2`][pymd2] is used, although its non-conformance with CommonMark makes a replacement desireable.
+
+To help test between Markdown backends, non-default backends can be selected with the `--markdown` command-line option. Only [`cmark`](https://github.com/commonmark/cmark) is available (provided through the [`cmarkgfm`](https://github.com/theacodes/cmarkgfm) Python bindings).
+
+```
+# Equivalent; markdown2 is the default backend
+hacksoc_org run
+hacksoc_org run --markdown markdown2
+
+# Use cmark instead
+hacksoc_org run --markdown cmark
+
+# this works with all subcommands
+hacksoc_org freeze --markdown cmark
+```
+
 
 ## Serving Flask in production
-Some of Flask's extra power (handling POST requests, HTTP redirects) require it to be run in production (as opposed to generating HTML files and serving those from a static web server). Currently the [configuration](../.flaskenv) of Flask puts it into debug mode. This is extremely unsafe to run in production. Secondly, `flask run` or `app.run()` should not be used in production as it used Flask's built-in development server, which is not suitable for production use even when debug mode is disabled. Instead, consult [Flask's documentation](https://flask.palletsprojects.com/en/2.0.x/deploying/#self-hosted-options) on options for WSGI and CGI servers.
+Some of Flask's extra power (handling POST requests, HTTP redirects) require it to be run in production (as opposed to generating HTML files and serving those from a static web server). Currently the [configuration](../.flaskenv) of Flask puts it into debug mode. This is extremely unsafe to run in production. Secondly, `hacksoc_org run` or `app.run()` should not be used in production as it used Flask's built-in development server, which is not suitable for production use even when debug mode is disabled. Instead, consult [Flask's documentation](https://flask.palletsprojects.com/en/2.0.x/deploying/#self-hosted-options) on options for WSGI and CGI servers.
 
 
 [pymd2]: https://github.com/trentm/python-markdown2/wiki

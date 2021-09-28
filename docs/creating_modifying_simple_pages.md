@@ -54,7 +54,7 @@ The site-wide stylesheet will be sufficient for most pages, but if you find your
 See [Creating &amp; modifying complex pages](creating_modifying_complex_pages.md).
 
 ## A new page doesn't appear when building the website!
-`frozen-flask` only generates pages which have a `url_for` link pointing to them. Usually pages on the website should have a link from `index.html`, or from another page which is linked from `index.html` (and so on,). If a new page is being written, it's possible that such a link doesn't yet exist. This only happens when running `flask build` or `flask serve`, as `flask run` will find any page, even if it's not been linked to. Make sure to test with `build` or `serve`.
+`frozen-flask` only generates pages which have a `url_for` link pointing to them. Usually pages on the website should have a link from `index.html`, or from another page which is linked from `index.html` (and so on,). If a new page is being written, it's possible that such a link doesn't yet exist. This only happens when running `hacksoc_org build` or `hacksoc_org serve`, as `hacksoc_org run` will find any page, even if it's not been linked to. Make sure to test with `build` or `serve`.
 
 ### Adding a link to the navbar
 The navbar is constructed in [`templates/nav.html.jinja2`](../templates/nav.html.jinja2). The first block, titled `{% set nav|from_yaml %}` contains the items of the navbar:
