@@ -37,8 +37,18 @@ class Markdown2MD(AbstractMarkdown):
         return self.md.convert(markdown_src)
 
 
+class CmarkgfmMD(AbstractMarkdown):
+    def __init__(self) -> None:
+        import cmarkgfm
+
+        self.cmarkgfm = cmarkgfm
+
+    def render_markdown(self, markdown_src: str) -> str:
+        return self.cmarkgfm.github_flavored_markdown_to_html(markdown_src)
+
+
 def get_markdown_cls():
-    return {"markdown2": Markdown2MD, "cmark": None}[app.config[CFG_MARKDOWN_IMPL]]
+    return {"markdown2": Markdown2MD, "cmark": CmarkgfmMD}[app.config[CFG_MARKDOWN_IMPL]]
 
 
 _markdowner = None
