@@ -84,8 +84,10 @@ venv\Scripts\activate.bat
 # Windows users using PowerShell
 venv\Scripts\Activate.ps1
 
-pip install -r pip-requirements.txt
+pip install -e .
 ```
+
+On existing installations, if Python throws `ModuleNotFoundError`s, try running `pip install -e .` again as additional dependencies may have been added since your original install.
 
 See [Running](#running) next.
 
