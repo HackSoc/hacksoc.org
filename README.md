@@ -84,6 +84,7 @@ venv\Scripts\activate.bat
 # Windows users using PowerShell
 venv\Scripts\Activate.ps1
 
+pip install --upgrade pip
 pip install -e .
 ```
 
