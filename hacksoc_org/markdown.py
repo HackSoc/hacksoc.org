@@ -72,12 +72,23 @@ class MistletoeMD(AbstractMarkdown):
         return self.renderer.render(self.Document(markdown_src))
 
 
+class MarkdownItMD(AbstractMarkdown):
+    def __init__(self) -> None:
+        import markdown_it
+
+        self.md = markdown_it.MarkdownIt().enable("table")
+
+    def render_markdown(self, markdown_src: str) -> str:
+        return self.md.render(markdown_src)
+
+
 def get_markdown_cls():
     return {
         "markdown2": Markdown2MD,
         "cmark": CmarkgfmMD,
         "commonmark": CommonMarkMD,
         "mistletoe": MistletoeMD,
+        "markdown-it": MarkdownItMD,
     }[app.config[CFG_MARKDOWN_IMPL]]
 
 

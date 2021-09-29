@@ -50,7 +50,13 @@ SUBCOMMANDS
 
     parser.add_argument(
         "--markdown",
-        choices=["markdown2", "cmark", "commonmark", "mistletoe"],
+        choices=[
+            "markdown2",
+            "cmark",
+            "commonmark",
+            "mistletoe",
+            "markdown-it",
+        ],
         default="markdown2",
         help="Markdown backend to use (default markdown2)",
     )
