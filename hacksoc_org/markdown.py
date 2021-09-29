@@ -42,13 +42,43 @@ class CmarkgfmMD(AbstractMarkdown):
         import cmarkgfm
 
         self.cmarkgfm = cmarkgfm
+        self.options = cmarkgfm.Options.CMARK_OPT_UNSAFE
 
     def render_markdown(self, markdown_src: str) -> str:
-        return self.cmarkgfm.github_flavored_markdown_to_html(markdown_src)
+        return self.cmarkgfm.github_flavored_markdown_to_html(markdown_src, self.options)
+
+
+class CommonMarkMD(AbstractMarkdown):
+    def __init__(self) -> None:
+        import commonmark
+
+        self.parser = commonmark.Parser()
+        self.renderer = commonmark.HtmlRenderer()
+
+    def render_markdown(self, markdown_src: str) -> str:
+        ast = self.parser.parse(markdown_src)
+        return self.renderer.render(ast)
+
+
+class MistletoeMD(AbstractMarkdown):
+    def __init__(self) -> None:
+        import mistletoe
+
+        # code highlighting is possible with Pygments
+        self.renderer = mistletoe.HTMLRenderer()
+        self.Document = mistletoe.Document
+
+    def render_markdown(self, markdown_src: str) -> str:
+        return self.renderer.render(self.Document(markdown_src))
 
 
 def get_markdown_cls():
-    return {"markdown2": Markdown2MD, "cmark": CmarkgfmMD}[app.config[CFG_MARKDOWN_IMPL]]
+    return {
+        "markdown2": Markdown2MD,
+        "cmark": CmarkgfmMD,
+        "commonmark": CommonMarkMD,
+        "mistletoe": MistletoeMD,
+    }[app.config[CFG_MARKDOWN_IMPL]]
 
 
 _markdowner = None
