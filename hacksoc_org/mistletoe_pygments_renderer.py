@@ -34,6 +34,7 @@ class PygmentsRenderer(HTMLRenderer):
     formatter = HtmlFormatter()
     formatter.noclasses = False
     formatter.cssclass = "codehilite"
+    formatter.wrapcode = True
 
     def __init__(self, *extras, style="default"):
         super().__init__(*extras)
