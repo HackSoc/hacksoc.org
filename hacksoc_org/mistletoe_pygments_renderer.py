@@ -32,7 +32,8 @@ from pygments.formatters.html import HtmlFormatter
 
 class PygmentsRenderer(HTMLRenderer):
     formatter = HtmlFormatter()
-    formatter.noclasses = True
+    formatter.noclasses = False
+    formatter.cssclass = "codehilite"
 
     def __init__(self, *extras, style="default"):
         super().__init__(*extras)
