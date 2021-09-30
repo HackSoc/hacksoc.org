@@ -46,21 +46,52 @@ Since the server READMEs use fenced code blocks and AGMs will often use many tab
 ### Choice of Markdown libraries
 Choosing a Markdown backend is not straightforward; implementations vary in their interpretation of the spec (Gruber's `markdown.pl` or the less ambiguous CommonMark standard) and their extra features (tables, code block highlighting, smart quotes). Currently [`markdown2`][pymd2] is used, although its non-conformance with CommonMark makes a replacement desireable.
 
-To help test between Markdown backends, non-default backends can be selected with the `--markdown` command-line option. Only [`cmark`](https://github.com/commonmark/cmark) is available (provided through the [`cmarkgfm`](https://github.com/theacodes/cmarkgfm) Python bindings).
+To help test between Markdown backends, non-default backends can be selected with the `--markdown` command-line option.
 
 ```
 # Equivalent; markdown2 is the default backend
 hacksoc_org run
-hacksoc_org run --markdown markdown2
+hacksoc_org run  --markdown markdown2
 
-# Use cmark instead
+# Use an alternative instead
 hacksoc_org run --markdown cmark
+hacksoc_org run --markdown commonmark
+hacksoc_org run --markdown mistletoe
+hacksoc_org run --markdown markdown-it
 
 # this works with all subcommands
-hacksoc_org freeze --markdown cmark
+hacksoc_org freeze  --markdown cmark
+
+# in any order
+hacksoc_org  --markdown cmark  run
 ```
+#### Markdown2 (Current default)
+[GitHub](https://github.com/trentm/python-markdown2/wiki)
 
+Provides syntax highlighting via Pygments. Aims to conform to Gruber's Markdown rather than CommonMark. 
 
+#### Cmark
+GitHub ([Python bindings](https://github.com/theacodes/cmarkgfm), [C implementation](https://github.com/github/cmark-gfm))
+
+Fork of the CommonMark reference implementation, maintained by GitHub to provide [GFM](https://github.github.com/gfm/) features. Only provides syntax highlighing for the client-side, by adding a (eg.) `lang="py"` attribute to `<pre>` blocks for a JavaScript library to parse and highlight.
+#### CommonMark
+[GitHub](https://github.com/readthedocs/commonmark.py)
+
+Python port of CommonMark.js, maintained by readthedocs. Provides no syntax highlighting out-of-the-box, but could be added by overriding `HtmlRenderer::code_block`.
+#### Mistletoe
+[GitHub](https://github.com/miyuchina/mistletoe)
+
+Gives an example integration of Pygments for syntax highlighing, adapted into [`mistletoe_pygments_renderer.py`](../hacksoc_org/mistletoe_pygments_renderer.py)
+#### Markdown-it
+[GitHub](https://github.com/executablebooks/markdown-it-py)
+
+Complicated architecture, unclear whether syntax highlighting could be added with a plugin.
+#### Others
+There are many more CommonMark-comforming backends that aren't enabled (yet). They include:
+
+ - [Mistune](https://github.com/lepture/mistune)
+   - Doesn't provide syntax highlighing, but could be added by overriding HTMLRenderer::block_code
+   - Not [strictly](https://github.com/miyuchina/mistletoe#performance) CommonMark compliant
 ## Serving Flask in production
 Some of Flask's extra power (handling POST requests, HTTP redirects) require it to be run in production (as opposed to generating HTML files and serving those from a static web server). Currently the [configuration](../.flaskenv) of Flask puts it into debug mode. This is extremely unsafe to run in production. Secondly, `hacksoc_org run` or `app.run()` should not be used in production as it used Flask's built-in development server, which is not suitable for production use even when debug mode is disabled. Instead, consult [Flask's documentation](https://flask.palletsprojects.com/en/2.0.x/deploying/#self-hosted-options) on options for WSGI and CGI servers.
 
