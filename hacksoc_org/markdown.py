@@ -63,9 +63,9 @@ class CommonMarkMD(AbstractMarkdown):
 class MistletoeMD(AbstractMarkdown):
     def __init__(self) -> None:
         import mistletoe
+        from .mistletoe_pygments_renderer import PygmentsRenderer
 
-        # code highlighting is possible with Pygments
-        self.renderer = mistletoe.HTMLRenderer()
+        self.renderer = PygmentsRenderer()
         self.Document = mistletoe.Document
 
     def render_markdown(self, markdown_src: str) -> str:
