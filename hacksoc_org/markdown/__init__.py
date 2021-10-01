@@ -76,8 +76,10 @@ class MistletoeMD(AbstractMarkdown):
 class MarkdownItMD(AbstractMarkdown):
     def __init__(self) -> None:
         import markdown_it
+        from .markdownit_pygments_highlighter import PygmentsHighlighter
 
         self.md = markdown_it.MarkdownIt().enable("table")
+        self.md.options["highlight"] = PygmentsHighlighter()
 
     def render_markdown(self, markdown_src: str) -> str:
         return self.md.render(markdown_src)

@@ -87,7 +87,26 @@ Gives an example integration of Pygments for syntax highlighing, adapted into [`
 #### Markdown-it
 [GitHub](https://github.com/executablebooks/markdown-it-py)
 
-Complicated architecture, unclear whether syntax highlighting could be added with a plugin.
+Complicated architecture. Syntax highlighing added with Pygments in [`markdownit_pygments_highlighter.py`](../hacksoc_org/markdown/markdownit_pygments_highlighter.py). 
+
+```html
+<!-- Extra markup added here by Markdown-it -->
+<pre>
+  <code class="language-py">
+<!-- -->
+    <div class="codehilite">
+      <pre>
+        <span></span>
+        <code>
+  
+<!-- Other Pygments uses -->
+<div class="codehilite">
+  <pre>
+    <span></span>
+    <code>
+
+```
+
 #### Others
 There are many more CommonMark-comforming backends that aren't enabled (yet). They include:
 
