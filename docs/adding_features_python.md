@@ -34,7 +34,7 @@ NB: The Jinja documentation uses the term "template" to refer to any of:
 [URL generators](https://pythonhosted.org/Frozen-Flask/#url-generators) should only be used for files that aren't intended to be part of the main site, or are intended to be "unlisted". If there's no chain of links from the main page to another page, then you can't really expect anyone to find that page organically. Implementing a URL generator just requires adding a Python function that calls `yield` with each of the routes you want to ensure are rendered, and decorating the function with `@freezer.register_generator`.
 
 ## Modifying the Markdown handler
-All things Markdown are hidden away in `markdown.py` so the rest of the package doesn't have to worry about it. It exports a single function, `render_markdown` which takes a Markdown source string and returns a rendered HTML string. Even if this wraps a single function from a Markdown library, if that library ever changes in the future it means that the codebase only needs to be changed in one place. 
+All things Markdown are hidden away in `markdown/__init__.py` so the rest of the `hacksoc_org` package doesn't have to worry about it. It exports a single function, `render_markdown` which takes a Markdown source string and returns a rendered HTML string. Even if this wraps a single function from a Markdown library, if that library ever changes in the future it means that the codebase only needs to be changed in one place. 
 
 Currently the website uses [`python-markdown2`][pymd2] and loads the following extras:
  - `fenced-code-blocks` allow blocks of code to be placed between triple-backticks (\`\`\`)
@@ -77,11 +77,13 @@ Fork of the CommonMark reference implementation, maintained by GitHub to provide
 #### CommonMark
 [GitHub](https://github.com/readthedocs/commonmark.py)
 
-Python port of CommonMark.js, maintained by readthedocs. Provides no syntax highlighting out-of-the-box, but could be added by overriding `HtmlRenderer::code_block`.
+Python port of CommonMark.js, maintained by readthedocs. Provides no syntax highlighting out-of-the-box, but has been added with [`commonmark_pygments_renderer.py`](../hacksoc_org/markdown/commonmark_pygments_renderer.py).
+
+**Does not support tables**.
 #### Mistletoe
 [GitHub](https://github.com/miyuchina/mistletoe)
 
-Gives an example integration of Pygments for syntax highlighing, adapted into [`mistletoe_pygments_renderer.py`](../hacksoc_org/mistletoe_pygments_renderer.py)
+Gives an example integration of Pygments for syntax highlighing, adapted into [`mistletoe_pygments_renderer.py`](../hacksoc_org/markdown/mistletoe_pygments_renderer.py)
 #### Markdown-it
 [GitHub](https://github.com/executablebooks/markdown-it-py)
 

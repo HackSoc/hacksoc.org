@@ -51,9 +51,10 @@ class CmarkgfmMD(AbstractMarkdown):
 class CommonMarkMD(AbstractMarkdown):
     def __init__(self) -> None:
         import commonmark
+        from .commonmark_pygments_renderer import PygmentsRenderer
 
         self.parser = commonmark.Parser()
-        self.renderer = commonmark.HtmlRenderer()
+        self.renderer = PygmentsRenderer()
 
     def render_markdown(self, markdown_src: str) -> str:
         ast = self.parser.parse(markdown_src)
