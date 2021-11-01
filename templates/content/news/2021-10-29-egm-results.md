@@ -25,7 +25,7 @@ Voters were given access to a Google Form for each election, which required them
 | Candidate                             | Votes (Total: 12) |
 |---------------------------------------|-------------------|
 | **Clara Hohenlohe & Jessica Russell** | **12**            |
-| Re-Open Nominations (RON).            | 0                 |
+| Re-Open Nominations (RON)             | 0                 |
 | Spoiled and Empty Ballots             | 0                 |
 
 ### Ordinary Member
@@ -36,7 +36,7 @@ Voters were given access to a Google Form for each election, which required them
 |-----------------------------|-------------------|
 | **Dominik Hagowski**        | **12**            |
 | Re-Open Nominations (RON)   | 0                 |
-| Spoiled and Empty Ballots.  | 0                 |
+| Spoiled and Empty Ballots   | 0                 |
 
 Congratulations to everyone elected!
 
