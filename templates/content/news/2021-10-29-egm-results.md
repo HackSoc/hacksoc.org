@@ -2,7 +2,7 @@
 title: October 2021 EGM Results
 ---
 
-On Friday 29 October 2021 we held an Extraordinary General Meeting (EGM) to elect a new Press & Publicity Officer, one Ordinary Member, as well as pass an amendment to the constitution.
+On Friday 29 October 2021 we held an Extraordinary General Meeting (EGM) to elect a new Press & Publicity Officer and one Ordinary Member, as well as pass an amendment to the constitution.
 
 Candidates met on Google Meet to present their manifesti, while the meeting was streamed using our in-house RTMP service with a latency of around 10 seconds, and our Lightspeed service with less than a second of delay. Questions from members were taken via Slack. Frequent pauses were given to allow any livestream delay to catch up before moving on to the next item.
 
