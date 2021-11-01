@@ -91,7 +91,7 @@ pip install -e .
 # (Requires Homebrew)
 brew install libgit2
 pip uninstall pygit2
-pip install pygit2 --no-binary :all:
+pip install pygit2 --no-binary pygit2
 ```
 
 On existing installations, if Python throws `ModuleNotFoundError`s, try running `pip install -e .` again as additional dependencies may have been added since your original install.
