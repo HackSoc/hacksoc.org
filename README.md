@@ -86,6 +86,12 @@ venv\Scripts\Activate.ps1
 
 pip install --upgrade pip
 pip install -e .
+
+# If and only if you are using an Apple Silicon-based Mac, you must also install a non-pre-built pygit2
+# (Requires Homebrew)
+brew install libgit2
+pip uninstall pygit2
+pip install pygit2 --no-binary pygit2
 ```
 
 On existing installations, if Python throws `ModuleNotFoundError`s, try running `pip install -e .` again as additional dependencies may have been added since your original install.
