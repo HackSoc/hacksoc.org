@@ -9,7 +9,7 @@ from jinja2 import FileSystemLoader
 import os
 from os import path
 import re
-from datetime import date
+from datetime import date, datetime, timezone
 from operator import attrgetter, itemgetter
 
 import jinja2
@@ -140,3 +140,13 @@ def render_news(article: str):
     return render_template(
         f"content/news/{article}.html.jinja2", date=date.fromisoformat(article[:10])
     )
+
+
+@blueprint.route("/rss.xml")
+def render_rss_feed():
+    """Render the rss feed using template.
+
+    Returns:
+        str: Full HTML page
+    """
+    return render_template("content/rss.xml.jinja2", generate_datetime=datetime.now(timezone.utc))

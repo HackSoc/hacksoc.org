@@ -1,0 +1,24 @@
+{% set commit = git_head() -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>HackSoc News</title>
+        <link>https://www.hacksoc.org/news.html</link>
+        <atom:link href="{{ url_for('.render_rss_feed', _external=True, _scheme="https") }}" rel="self" type="application/rss+xml" />
+        <description>News from HackSoc, the computer science society at the University of York.</description>
+        <lastBuildDate>{{ generate_datetime|to_rfc_822_date }}</lastBuildDate>
+        <language>en-GB</language>
+        <generator>{{ commit.id|commit_to_url }}</generator>
+
+        {% for post in get_news() %}
+        {%- set link = url_for('.render_news', article=post.article_name, _external=True, _scheme="https") -%}
+        <item>
+            <title><![CDATA[{{post.title}}]]></title>
+            <link>{{ link }}</link>
+            <pubDate>{{ post.date|to_rfc_822_date }}</pubDate>
+            <description><![CDATA[{{post.lede}}]]></description>
+            <guid>{{ link }}</guid>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>

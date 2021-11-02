@@ -27,7 +27,7 @@ def get_all_routes() -> List[str]:
     routes = []
 
     for filename in os.listdir(os.path.join(ROOT_DIR, "templates", "content")):
-        if filename.endswith(".html.jinja2"):
+        if filename.endswith((".html.jinja2", ".xml.jinja2")):
             routes.append("/" + removesuffix(filename, ".jinja2"))
 
     for filename in os.listdir(os.path.join(ROOT_DIR, "templates", "content", "news")):
@@ -80,7 +80,7 @@ def get_redirect_page_routes() -> Generator[str, None, None]:
 
     This generator wouldn't be necessary if we used these links from our About pages, but that
     would add an unnecessary redirect in the middle when coming from those pages.
-    
+
     Yields:
         Generator[str, None, None]: URL routes
     """
