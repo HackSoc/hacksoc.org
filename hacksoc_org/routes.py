@@ -3,7 +3,7 @@
 """
 
 from hacksoc_org.loaders import MarkdownServerLoader, MarkdownNewsLoader
-from flask import Blueprint, render_template, url_for
+from flask import Blueprint, Response, render_template, url_for
 from jinja2 import FileSystemLoader
 
 import os
@@ -149,4 +149,20 @@ def render_rss_feed():
     Returns:
         str: Full HTML page
     """
-    return render_template("content/rss.xml.jinja2", generate_datetime=datetime.now(timezone.utc))
+    return Response(
+        render_template("content/rss.xml.jinja2", generate_datetime=datetime.now(timezone.utc)),
+        content_type="application/xml",
+    )
+
+
+@blueprint.route("/atom.xml")
+def render_atom_feed():
+    """Render the atom feed using template.
+
+    Returns:
+        str: Full HTML page
+    """
+    return Response(
+        render_template("content/atom.xml.jinja2", generate_datetime=datetime.now(timezone.utc)),
+        content_type="application/xml",
+    )
