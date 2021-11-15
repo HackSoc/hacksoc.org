@@ -23,7 +23,7 @@ def main(args=None):
 SUBCOMMANDS
 
   run
-    Starts a local development server on https://localhost:5000/. Automatically
+    Starts a local development server on http://localhost:5000/. Automatically
     reloads when templates or Python code is changed. Recommended while 
     developing pages or features.
 
@@ -35,7 +35,7 @@ SUBCOMMANDS
 
   serve
     Calls `freeze` then starts a local HTTP server from `build/` on 
-    https://localhost:5000/. Will not automatically rebuild the website on
+    http://localhost:5000/. Will not automatically rebuild the website on
     content change, you will need to re-run `serve`. Recommended to use this at
     least once to check that a) new content is part of the "frozen" site and b)
     no errors occur in freezing the site.
