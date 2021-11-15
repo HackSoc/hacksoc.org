@@ -113,6 +113,8 @@ There are many more CommonMark-comforming backends that aren't enabled (yet). Th
  - [Mistune](https://github.com/lepture/mistune)
    - Doesn't provide syntax highlighing, but could be added by overriding HTMLRenderer::block_code
    - Not [strictly](https://github.com/miyuchina/mistletoe#performance) CommonMark compliant
+
+
 ## Serving Flask in production
 Some of Flask's extra power (handling POST requests, HTTP redirects) require it to be run in production (as opposed to generating HTML files and serving those from a static web server). Currently the [configuration](../.flaskenv) of Flask puts it into debug mode. This is extremely unsafe to run in production. Secondly, `hacksoc_org run` or `app.run()` should not be used in production as it used Flask's built-in development server, which is not suitable for production use even when debug mode is disabled. Instead, consult [Flask's documentation](https://flask.palletsprojects.com/en/2.0.x/deploying/#self-hosted-options) on options for WSGI and CGI servers.
 

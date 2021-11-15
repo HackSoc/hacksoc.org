@@ -3,6 +3,7 @@ from hacksoc_org import app
 from hacksoc_org.consts import *
 from hacksoc_org.freeze import freeze
 from hacksoc_org.serve import serve
+from hacksoc_org.markdown import implementations, get_backend_help
 
 import argparse
 
@@ -18,9 +19,7 @@ def subcommand(command_str: str) -> Callable[[Callable], Callable]:
 
 
 def main(args=None):
-    parser = argparse.ArgumentParser(
-        allow_abbrev=False,
-        epilog="""
+    epilog = """
 SUBCOMMANDS
 
   run
@@ -40,7 +39,13 @@ SUBCOMMANDS
     content change, you will need to re-run `serve`. Recommended to use this at
     least once to check that a) new content is part of the "frozen" site and b)
     no errors occur in freezing the site.
-""".strip(),
+""".strip()
+
+    epilog += "\n\n" + get_backend_help()
+
+    parser = argparse.ArgumentParser(
+        allow_abbrev=False,
+        epilog=epilog,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
@@ -50,13 +55,7 @@ SUBCOMMANDS
 
     parser.add_argument(
         "--markdown",
-        choices=[
-            "markdown2",
-            "cmark",
-            "commonmark",
-            "mistletoe",
-            "markdown-it",
-        ],
+        choices=list(implementations.keys()),
         default="markdown2",
         help="Markdown backend to use (default markdown2)",
     )
