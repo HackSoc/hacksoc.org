@@ -147,7 +147,7 @@ def render_rss_feed():
     """Render the rss feed using template.
 
     Returns:
-        str: Full HTML page
+        str: RSS XML document
     """
     return Response(
         render_template("content/rss.xml.jinja2", generate_datetime=datetime.now(timezone.utc)),
@@ -160,7 +160,7 @@ def render_atom_feed():
     """Render the atom feed using template.
 
     Returns:
-        str: Full HTML page
+        str: Atom XML document
     """
     return Response(
         render_template("content/atom.xml.jinja2", generate_datetime=datetime.now(timezone.utc)),
