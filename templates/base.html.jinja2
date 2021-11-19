@@ -24,8 +24,8 @@
     {# opengraph metadata for Facebook & Twitter #}
     <meta property="og:title"                       content="{% if title|length>0 %}{{title}}{% else %}HackSoc &ndash; the computer science society{% endif %}">
 
-    {% if lede %} 
-      <meta property="og:description"               content="{{lede|trim}}">  
+    {% if lede %}
+      <meta property="og:description"               content="{{lede|trim}}">
       <meta property="og:type"                      content="article">
     {% else %}
       <meta property="og:type"                      content="website">
@@ -43,6 +43,9 @@
 
     <link rel="icon" type="image/png" href="/static/images/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="/static/images/favicon-32x32.png" sizes="32x32" />
+
+    <link rel="alternate" type="application/rss+xml" href="{{ url_for('.render_rss_feed') }}" />
+    <link rel="alternate" type="application/atom+xml" href="{{ url_for('.render_atom_feed') }}" />
 
     <link href="//fonts.googleapis.com/css?family=Sanchez|Inconsolata:400,700" rel="stylesheet" type="text/css" />
     <link href="/static/fonts/robotoslab_regular_macroman/stylesheet.css" rel="stylesheet" type="text/css" />
@@ -72,7 +75,7 @@
         <p id="server_list">
           <strong>Servers:</strong>
           {% for ele in servers -%}
-            <a href="{{ele.href}}">{{ele.name}}</a> 
+            <a href="{{ele.href}}">{{ele.name}}</a>
           {% endfor %}
           {#- TODO: need to put &middot; after each <a> except last in the CSS #}
         </p>

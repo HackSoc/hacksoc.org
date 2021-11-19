@@ -24,6 +24,10 @@ app.register_blueprint(blueprint)
 
 app.config["FREEZER_DESTINATION"] = path.join(ROOT_DIR, "build")
 
+# Use existing config if it is present, otherwise assume production location,
+# this only applies to freezing and doesn't affect the base URL for debugging.
+app.config.setdefault("FREEZER_BASE_URL", "https://www.hacksoc.org")
+
 import hacksoc_org.filters
 
 # importing to trigger execution; decorated functions will add themselves to the app.

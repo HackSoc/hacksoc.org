@@ -11,6 +11,7 @@ from flask import get_template_attribute
 import yaml
 
 from datetime import date, timedelta, timezone
+from email.utils import format_datetime as rfc_822_format_datetime
 import re
 import os
 from pprint import pformat
@@ -293,3 +294,57 @@ def commit_to_url(full_commit_hash: str) -> str:
         str: URL
     """
     return f"https://github.com/hacksoc/hacksoc.org/commit/{full_commit_hash}"
+
+
+def _to_utc_datetime(to_convert: Union[datetime.datetime, datetime.date]) -> datetime.datetime:
+    """Convert a date or datetime to a datetime in UTC with midnight set if no time exists.
+
+    Args:
+        to_convert (datetime.datetime|datetime.date): date to convert
+
+    Returns:
+        datetime.datetime: the converted datetime
+    """
+    # datetime is a subclass of date so we need to do this backwards comparison
+    # so only date matches and not datetime
+    if not isinstance(to_convert, datetime.datetime):
+        to_convert = datetime.datetime(to_convert.year, to_convert.month, to_convert.day)
+
+    # if we have a "naive" date e.g. one without timezone
+    if to_convert.tzinfo is None or to_convert.tzinfo.utcoffset(to_convert) is None:
+        to_convert = to_convert.replace(tzinfo=timezone.utc)
+
+    return to_convert
+
+
+@app.template_filter()
+def to_rfc_822_date(to_convert: Union[datetime.datetime, datetime.date]) -> str:
+    """Get an RFC-822 formatted date string for a python datetime.
+
+    Args:
+        to_convert (datetime.datetime|datetime.date): date to convert
+
+    Returns:
+        str: formatted date
+    """
+    to_convert = _to_utc_datetime(to_convert)
+
+    # the email module has a function for this format as it's also used in email
+    return rfc_822_format_datetime(to_convert)
+
+
+@app.template_filter()
+def to_rfc_3339_date(to_convert: Union[datetime.datetime, datetime.date]) -> str:
+    """Get an RFC-3339 formatted date string for a python datetime.
+
+    Args:
+        to_convert (datetime.datetime|datetime.date): date to convert
+
+    Returns:
+        str: formatted date
+    """
+    to_convert = _to_utc_datetime(to_convert)
+
+    # the `datetime.isoformat()` method is already RFC-3339 compatible as long
+    # as the datetime is not naive and has a time component.
+    return to_convert.isoformat()
