@@ -105,9 +105,9 @@ Talks
 
    When talk submissions close, change all variables to None (not in quotes).
   #}
-  {%- set submissions_form="https://forms.gle/HSxWLTyYdS7wNbCP6" %}
-  {%- set submissions_term="Spring" %}
-  {%- set submissions_close="2021-12-31" %}
+  {%- set submissions_form=None %}
+  {%- set submissions_term=None %}
+  {%- set submissions_close=None %}
 
   <div class="noticebox">
     {%- if submissions_form and submissions_term and submissions_close %}
@@ -120,9 +120,55 @@ Talks
   {#
    Upcoming talks go here with <h2>Winter Term 2021/22 (Upcoming)</h2>
    Once the *term* has passed, just move it below the HR, and remove the (upcoming).
-  #}
+  #} 
 
-  <h2>Autumn Term 2021/22 (Upcoming)</h2>
+  <h2>Spring Term 2021/22 (Upcoming)</h2>
+  {%- set term="Spring" -%}
+
+  {% call talk() %}
+    title: The History of Calculators
+    speaker: Aaron Christiansen
+    date: 2022-02-03
+    week: 4
+    format: online
+    markdown: |
+      Ever since picking up my first scientific Casio for GCSEs, I've had a strange fascination with calculators. Even in today's smartphone-dominated world, these single-purpose devices still hold an important place, especially in education. As one of the earliest forms of a crude pocket computer, they also have a rich history - which I'll cover in this talk!
+
+      From the earliest mechanical models, to early vacuum-florescent display pocket calculators, and up to the present day, we'll explore notable models and advances made along the way to modern readily-available devices stuffed with extra features.
+  {% endcall %}
+
+  {% call talk() %}
+    title: An Introduction to Reservoir Computing, or Why I’m Doing a PhD in Magic
+    speaker: C Wringe
+    date: 2022-02-24
+    week: 7
+    format: in-person
+    markdown: |
+      Unconventional Computing is a field in Computer Science that attempts to look at new ways of performing computation, and on a larger level, what “performing computation” even means. It can be approached from two directions: unconventional models, which looks at using models other than Turing Machines and Grammars, and unconventional materials, which looks at performing computation on any material that isn’t silicon.
+
+      Reservoir computing is sort of both. It takes the dynamics of any given substance, and uses that to perform computations.
+
+      In this talk, I’ll introduce the models behind Reservoir Computing, some physical instantiations of it, and then I’ll elaborate on the different ways it gets used in the literature. 
+  {% endcall %}
+
+  {% call talk() %}
+    title: Avoiding a Car Crash, an Overview of Automotive Computer Safety
+    speaker: Jacob Allen
+    date: 2022-03-10
+    week: 9
+    format: in-person
+    markdown: |
+      We've all been there, whether it's an app on our phone suddenly closing or a full on "blue screen of death". Computer systems crash. Crashes are mostly harmless, if very annoying, but that's not always the case. What do we do when a computer system crashing might result in a physical car crash as well? Or when a more subtle error might cause a car to slowly veer off course?
+
+      In this talk I will give an overview of the kinds of safety issues which can arise with computer systems, with a particular focus on automotive systems but also in safety critical systems in general. I will then discuss how we can approach the avoidance and mitigation of such safety issues in computer systems. Finally, I will outline how the automotive industry tackles said issues, and the standards and processes involved.
+
+      Please note: this talk will not include any real life examples beyond abstract hypothetical scenarios.
+  {% endcall %}
+
+  <hr>
+
+  <details open>
+  <summary><h2>Autumn Term 2021/22</h2></summary>
   {%- set term="Autumn" -%}
 
   {% call talk() %}
@@ -195,11 +241,11 @@ Talks
 
       In this talk I will explain the origins of Operating Systems and what the roles of Operating Systems are in modern computing. I will also cover what the different forms of Operating System commonly in use are, some of why they are designed the way they are, and give my thought's on what an Operating System actually needs to be an Operating System.
   {% endcall %}
-  
 
-  <hr>
+  </details>
 
-  <details open>
+
+  <details>
   <summary><h2>Summer Term 2020/21</h2></summary>
   {%- set term="Summer" -%}
 
