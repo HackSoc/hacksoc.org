@@ -1,10 +1,11 @@
 from typing import Callable, Dict
-from hacksoc_org import app
+from hacksoc_org import app, ROOT_DIR
 from hacksoc_org.consts import *
 from hacksoc_org.freeze import freeze
 from hacksoc_org.serve import serve
 
 import argparse
+from os import path
 
 subcommand_handlers: Dict[str, Callable] = {}
 
@@ -76,7 +77,7 @@ def do_freeze():
 def do_serve():
     freeze()
     print()
-    serve()
+    serve(path.join(ROOT_DIR, "build"))
 
 
 if __name__ == "__main__":
