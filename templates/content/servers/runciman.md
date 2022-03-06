@@ -34,7 +34,7 @@ All users with a shell account have `~/public_html` and `~/private_html` directo
 This space is subject to the same disk quota as usual.
 
 ## IRC bouncer
-There is a [ZNC] server running on Runciman, speak to your Infrastructure Officer to get an account set up (available to all paying members). Connect from your IRC client via:
+There is a [ZNC][] server running on Runciman, speak to your Infrastructure Officer to get an account set up (available to all paying members). Connect from your IRC client via:
 - `irc.hacksoc.org:6667` - plaintext
 - `irc.hacksoc.org:7000` - SSL (recommended)
 
