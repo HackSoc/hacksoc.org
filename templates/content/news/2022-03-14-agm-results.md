@@ -25,10 +25,10 @@ Candidates met on Discord to present their manifesti and take questions from the
 Two amendments were presented to the society, both of which were accepted. The passing of an amendment required the support of two-thirds of the members voting. You can learn more about the amendments in the linked GitHub issues.
 
  - [Clarify wording regarding which committee positions are required](https://github.com/HackSoc/constitution/pull/20)
-   - **Final vote:** **TBC**
+   - **Final vote:** 15 for, 0 against, 0 abstentions, 1 ineligible to vote
    - **Passed**
  - [Renaming committee positions](https://github.com/HackSoc/constitution/pull/21)
-   - **Final vote:** **TBC**
+   - **Final vote:** 15 for, 0 against, 0 abstentions, 1 ineligible to vote
    - **Passed**
 
 ## Committee Election Results
