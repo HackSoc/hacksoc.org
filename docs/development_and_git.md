@@ -164,7 +164,7 @@ Your pull request may not be perfect, and might need some changes before it's me
 
 If someone replies to you disrespectfully or in a manner that otherwise breaches the Code of Conduct, you can:
  - email hack@yusu.org
- - contact a committee member on slack (in a channel or via a private message).
+ - ping the @Committee role on Discord or direct message one of its members
 
 ## 11. Making changes from feedback
 Once you've recieved feedback, you can follow the earlier steps: make changes, test, commit, push, and the new commit(s) will appear **in the same PR** &ndash; there's no need to delete your PR and create a new one. Once the reviewers are happy with your PR, they will merge it into the `main` branch.

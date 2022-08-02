@@ -6,7 +6,7 @@ name: Shell Server
 
 A plain-text version of this README can be found on `runciman.hacksoc.org:/README`.
 
-Runciman is a shell server maintained by [HackSoc](https://www.hacksoc.org) for the use of members of the society. 
+Runciman is a shell server maintained by [HackSoc](https://www.hacksoc.org) for the use of members of the society.
 
 ## Shell Accounts
 Shell accounts are only available for paid members of the society, in order to request one either speak to a member of the committee, or email [hack@yusu.org](mailto:hack@yusu.org)
@@ -30,7 +30,7 @@ All users with shell accounts are required to have read the Bytemark [Acceptable
 All users with a shell account have `~/public_html` and `~/private_html` directories:
  - `~/public_html`: https://runciman.hacksoc.org/~user/ , directory contents **are listed**
  - `~/private_html`: https://runciman.hacksoc.org/~/user/ , directory contents **not listed**
-  
+
 This space is subject to the same disk quota as usual.
 
 ## IRC bouncer
@@ -39,7 +39,7 @@ There is a [ZNC][] server running on Runciman, speak to your Infrastructure Offi
 - `irc.hacksoc.org:7000` - SSL (recommended)
 
 ## Minecraft server
-There is a vanilla Minecraft server (1.12.2) running on Runciman, connect on `runciman.hacksoc.org` (default port). If it's whitelisted, speak to your Infrastructure Officer or put a message in Slack.
+There is a vanilla Minecraft server (1.12.2) running on Runciman, connect on `runciman.hacksoc.org` (default port). If it's whitelisted, speak to your Infrastructure Officer or put a message in Discord.
 
 ## Scheduled downtime
 Runciman is scheduled to reboot at 4AM on the second Monday of each month. Services or tmuxes that you leave running will be killed, make sure they can come back up!
