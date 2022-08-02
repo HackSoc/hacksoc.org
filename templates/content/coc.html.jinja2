@@ -71,20 +71,20 @@
 </p>
 <h3>Bridging</h3>
 <p>
-    HackSoc’s primary chat platform is Slack. While it is not perfect, we have not yet found a suitable alternative. A summary of the alternatives as well as their pros and cons can be found <a href="https://wiki.hacksoc.org/wiki/Chat/Alternatives" target="_blank">here</a>. We additionally have two other main chat platforms, that are bridged to various channels on Slack.
+    HackSoc’s primary chat platform is Discord. It’s not perfect, but no platform is. A summary of the alternatives as well as their pros and cons can be found <a href="https://wiki.hacksoc.org/wiki/Chat/Alternatives" target="_blank">on our wiki</a>. We have two other chat platforms, Slack and IRC, that are bridged to various channels on Discord.
 </p>
 <p>
-    The HackSoc Discord server is primarily used for virtual events, although it is also frequently used by members as a way to hang out virtually outside of events. The bridged channels are: #general, #food, #bot-testing, and #gaming.
+    The HackSoc Slack workspace is primarily used by past members of HackSoc, but is still available to anyone who prefers its interface. The bridged channels are: #general, #random, #art, #cursed, #electronics, #f1, #food, #gaming, #music, #politics, #quotes, #wholesome, #bot-testing, and #discord-migration.
 </p>
 <p>
-    Additionally, we have a few IRC channels: irc#hacksoc is bridged to slack#general, irc#hacksoc-bottest is linked to slack#bot-testing, and irc#hacksoc-committee (a locked channel) is bridged to slack#committee (a private channel). These channels are mostly used by alumni, and also contain Mathison, a bot that makes things easier for people on irc, which can be found <a href="https://github.com/HackSoc/csbot" target="blank">here</a>.
+    Additionally, we have a few IRC channels: irc#hacksoc is bridged to discord#general, irc#hacksoc-bottest is bridged to discord#beep-boop, and irc#hacksoc-committee (a locked channel) is bridged to discord#committee-sensitive (a private channel). The IRC channels are mostly used by alumni, and also contain Mathison, a bot that makes things easier for people on IRC, the source code for which can be found <a href="https://github.com/HackSoc/csbot" target="blank">here</a>. (Note: Mathison’s messages won’t currently show up on platforms other than IRC.)
 </p>
 <p>
-    The bridging is done using <a href="https://github.com/sersorrel/sosig" target="_blank">sosig</a>. Because of the way we use them, messages in threads (that aren't <em>also</em> sent to channel) aren't bridged to other platforms.
+    The bridging is done using <a href="https://github.com/42wim/matterbridge" target="_blank">matterbridge</a>. Note: messages in threads aren't bridged to other platforms (apart from Slack thread messages which are also sent to channel).
 </p>
 <h3>Content Warnings</h3>
 <p>
-    When posting topics that might be sensitive or upsetting to some people, we like to use Slack’s threads as a type of content warning. The first message is the content warning in brackets, while the actual message would be in the thread replies.
+    When posting topics that might be sensitive or upsetting to some people, we like to use Discord’s spoiler tags as a type of content warning. The message starts with the content warning in brackets, and the actual message is written inside double pipe characters <code>||like this||</code>. When bridged to platforms that don’t support spoiler tags, text in spoiler tags will be removed and replaced with “[redacted]”.
 </p>
 <p>
     There is no hard rule about what topics should be CWed, but some topics you might want to consider warning for are:
@@ -97,22 +97,19 @@
 </ul>
 </p>
 <p>
-    Some topics that people might not want to deal with, like food or politics, have their own channels, and efforts should be made to keep those topics to those channels.
+    Some topics that people might not want to deal with, like food or politics, have their own channels, and efforts should be made to keep those topics to those channels. You can hide any Discord channel by muting it, then enabling “hide muted channels” in the server menu. Some channels (primarily #politics) are opt-in, and you’ll need a role to see them at all – to get access, check #welcome, or ask a committee member for help.
 </p>
 <p>
     It is helpful if CWs are fairly descriptive, as some people will want to know about, say, policies that might affect them personally, but not be able to deal with seeing random hate against them. For example, one might have the following CWs for transphobia:
 </p>
 <blockquote>
-    [reference to transphobic policy, funny]<br />
-    <i>a gallows humour tweet about a new policy</i>
+    [reference to transphobic policy, funny] ||<i>a gallows humour tweet about a new policy</i>||
 </blockquote>
 <blockquote>
-    [transphobic policy, new development]<br />
-    <i>a new update about said transphobic policy</i>
+    [transphobic policy, new development] ||<i>a new update about said transphobic policy</i>||
 </blockquote>
 <blockquote>
-    [transphobia, bad take]<br />
-    <i>a link to a bad tweet</i>
+    [transphobia, bad take] ||<i>a link to a bad tweet</i>||
 </blockquote>
 <p>
     When talking about a specific event, person or group, you may want to include them in the CW, like so:
@@ -124,17 +121,17 @@
     That said, if simply reposting a bad take, please consider whether it’s necessary - bear in mind that repeating lies (even by condemning them) makes it more likely that people will believe them, and the people affected by the take are quite likely to have already seen it. Also, there are certain topics that may be very traumatic to some people even if accompanied by a content warning, so think carefully whether it should be posted at all.
 </p>
 <p>
-    Some people choose to put ranting/talking about being upset behind content warnings. While this might be useful for some people, it is not a requirement, nor should be apologised for if one forgets to do it.
+    Some people choose to put ranting/talking about being upset in a thread. While this might be useful for some people, it is not a requirement, nor should it be apologised for if one forgets to do it.
 </p>
 <h3>IRC interlopers</h3>
 <p>
-    Sometimes people join our chat that may not be familiar with us, or may not be students at the University of York altogether. This can happen because anyone with an @york.ac.uk email can join the Slack, but also because anyone can join the IRC and our website is somehow one of the top Google results for “computer science irc”. Be nice and welcoming to them.
+    Sometimes people join our chat who may not be familiar with us, or may not be students at the University of York altogether. This can happen because anyone with an @york.ac.uk email can join the Slack (and anyone at all can join our Discord server), but particularly because anyone can join the IRC and our website is somehow one of the top Google results for “computer science irc”. Be nice and welcoming to them.
 </p>
 <p>
     Sometimes they may ask us to do their homework or ask an oddly specific CS question that’s clearly an assignment. Feel free to point them in the right direction, but consider not doing their homework for them. Not only can it be a violation of York’s academic misconduct policy or their institution’s honour code, but part of learning CS is learning how to solve problems, which someone solving it for you doesn’t teach. (Incidentally, if you’ve stumbled upon this page via Google, hi! Feel free to join and chat, but please don’t ask us to do your homework.)
 </p>
 <h3>Profiles</h3>
 <p>
-    Some people put their pronouns under “what I do” on Slack, or in their nickname on Discord. This is useful for others, but not required. Consider occasionally checking people’s profiles to see if their pronouns have changed.
+    Some people put their pronouns in their nickname or profile on Discord (NB: Discord profiles are not per-server, so change your nickname rather than your profile if you’d rather not out yourself to the world), or under “what I do” on Slack. This is useful for others, but not required. Consider occasionally checking people’s profiles to see if their pronouns have changed.
 </p>
 {% endblock body %}
