@@ -105,9 +105,9 @@ Talks
 
    When talk submissions close, change all variables to None (not in quotes).
   #}
-  {%- set submissions_form=None %}
-  {%- set submissions_term=None %}
-  {%- set submissions_close=None %}
+  {%- set submissions_form = "https://forms.gle/wbuS128SrUBCUTeK7" %}
+  {%- set submissions_term = "Autumn" %}
+  {%- set submissions_close = "2022-10-03" %}
 
   <div class="noticebox">
     {%- if submissions_form and submissions_term and submissions_close %}
@@ -118,11 +118,12 @@ Talks
   </div>
 
   {#
-   Upcoming talks go here with <h2>Winter Term 2021/22 (Upcoming)</h2>
+   Upcoming talks go here with <h2>Autumn Term 2022/23 (Upcoming)</h2>
    Once the *term* has passed, just move it below the HR, and remove the (upcoming).
   #} 
 
-  <h2>Spring Term 2021/22 (Upcoming)</h2>
+  <hr>
+  <h2>Spring Term 2021/22</h2>
   {%- set term="Spring" -%}
 
   {% call talk() %}
@@ -165,7 +166,6 @@ Talks
       Please note: this talk will not include any real life examples beyond abstract hypothetical scenarios.
   {% endcall %}
 
-  <hr>
 
   <details open>
   <summary><h2>Autumn Term 2021/22</h2></summary>
