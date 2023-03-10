@@ -6,9 +6,11 @@
 """
 import sys
 
-if sys.version < (3.7):
+if sys.version_info < (3, 7):
     print(
-        f"Warning: you are using an older version of Python ({sys.version}) that is not supported by HackSoc.org."
+        "Warning: you are using an older version of Python ("
+        + str(sys.version)
+        + ") that is not supported by HackSoc.org."
     )
 
 
