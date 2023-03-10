@@ -4,11 +4,18 @@
     This module contains the Flask and Jinja boilerplate, HackSoc-specific customisations for pages,
     and user convenience functionality for local testing.
 """
+import sys
+
+if sys.version < (3.7):
+    print(
+        f"Warning: you are using an older version of Python ({sys.version}) that is not supported by HackSoc.org."
+    )
 
 
 import flask
 import yaml
 from os import path
+
 
 # flask app is constructed here
 app = flask.Flask(__name__, static_folder=None, template_folder=None)
