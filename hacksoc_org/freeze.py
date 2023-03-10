@@ -84,11 +84,7 @@ def get_redirect_page_routes() -> Generator[str, None, None]:
     Yields:
         Generator[str, None, None]: URL routes
     """
-    yield from [
-        "/newsletter.html",
-        "/slack.html",
-        "/discord.html"
-    ]
+    yield from ["/newsletter.html", "/slack.html", "/discord.html"]
 
 
 def freeze():
