@@ -16,5 +16,5 @@ def serve(basedir: str, port=5000):
     print(f"Serving {basedir} at http://127.0.0.1:{port}/ ...")
 
     handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=basedir)
-    server = http.server.HTTPServer(('localhost', port), RequestHandlerClass=handler)
+    server = http.server.HTTPServer(("localhost", port), RequestHandlerClass=handler)
     server.serve_forever()
