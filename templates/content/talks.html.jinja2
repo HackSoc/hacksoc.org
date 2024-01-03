@@ -88,7 +88,7 @@ Talks
     HackSoc run talks from industry speakers, members and alumni throughout the academic year. We are currently running a mixture of online talks, using YouTube and our Discord server, and in-person talks on Campus East.
   </p>
   <p>
-    Talks take place between between 7:00 and 8:00 PM certain Thursdays, and are 30 minutes long, followed by 15 minutes of questions.
+    Talks take place between between 5:00 and 6:00 PM certain Thursdays, and are 30 minutes long, followed by 15 minutes of questions.
   </p>
   <p>
     Attending talks is a great way to get a diverse look at what a degree in computer science can be, whether it's more focused on industry or academia. 
@@ -105,22 +105,39 @@ Talks
 
    When talk submissions close, change all variables to None (not in quotes).
   #}
-  {%- set submissions_form = None %}
-  {%- set submissions_term = None %}
-  {%- set submissions_close = None %}
+  {%- set submissions_form = "https://forms.gle/u9h8U1asJUk1t3At5" %}
+  {%- set submissions_term = "1" %}
+  {%- set submissions_close = "2023-12-06" %}
 
   <div class="noticebox">
     {%- if submissions_form and submissions_term and submissions_close %}
-      If you'd like to give a talk in {{ submissions_term }} Term, then please fill in <a href="{{ submissions_form }}">this Google form</a>. Submissions will close on the <strong>{{ submissions_close|from_iso_date|format_date(year=False) }}</strong>.
+      If you'd like to give a talk in Semester {{ submissions_term }}, then please fill in <a href="{{ submissions_form }}">this Google form</a>. Submissions will close on the <strong>{{ submissions_close|from_iso_date|format_date(year=False) }}</strong>.
     {%- else %}
       Submissions for talks are now closed. <a href="{{ mailing_list_signup }}">Subscribe to our mailing list</a> to receive our weekly newsletter and be notified when they open again!
     {%- endif %}
   </div>
 
   {#
-   Upcoming talks go here with <h2>Autumn Term 2022/23 (Upcoming)</h2>
-   Once the *term* has passed, just move it below the HR, and remove the (upcoming).
-  #} 
+   Upcoming talks go here with <h2>Semester 2 2023/24 (Upcoming)</h2>
+   Once the *semester* has passed, just move it below the HR, and remove the (upcoming).
+  #}
+  <details open>
+  <summary><h2>Semester 1 2023/24 (Upcoming)</h2></summary>
+  {%- set term="Semester 1" -%}
+
+  {% call talk() %}
+    title: A Stack of Pushdown Automata Variations
+    speaker: Joseph Krystek-Walton
+    date: 2023-09-28
+    week: 1
+    room: CSE/082X
+    format: in-person
+    markdown: |
+      This talk goes over some of the variations of the Pushdown Automata: who created them, how they work, and what makes them special.
+
+      The major sections will be an introduction to the idea of automata, introduction to Pushdown Automata (PA), Deterministic & Non-Deterministic PA's, modifying how the input is read (sweeping visibly PA, stack Automaton, probably some others), Alternating PA's, multi-stack PA's, Visibly PA's (including a bit on closures), and the combination of these behaviors/where the research is now in the modern day.
+  {% endcall %}
+  </details>
 
   <hr>
 
