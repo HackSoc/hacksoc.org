@@ -1,0 +1,40 @@
+name: Website alive and correct
+
+on:
+  schedule:
+    - cron: 30 8 * * 1-5
+    # 8:30am, Mon-Fri
+  workflow_dispatch:
+    # Also work manually with a button press in GitHub UI.
+
+env:
+  WEBSITE_URL: "https://www.hacksoc.org/"
+
+# TODO: would be good to catch various failures and present a more friendly message.
+
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch website
+        # If this step fails, likely some issue with DNS, HTTPS, or server not running.
+        run: curl $WEBSITE_URL -o index.html --connect-timeout 5
+
+      - uses: actions/checkout@v4
+        with:
+          # Only need the latest commit
+          fetch-depth: 1
+          # And don't even need any files!
+          sparse-checkout: .
+
+      - name: Get Git SHA of HEAD
+        run: git rev-parse main | sed -e 's/^/SHA=/;' >> $GITHUB_OUTPUT
+        # git rev-parse main -- gets the full SHA1 of the most recent commit to 'main' branch
+        # sed -e 's/^/SHA=/;' -- adds "sha=" to the start of the line. This is important because...
+        # >> $GITHUB_OUTPUT -- Store the output in a variable so we can use it later.
+        #                      See https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter
+        id: git_sha
+
+      - name: Search for Git SHA in fetched HTML
+        # If this step fails, then the website is out-of-date.
+        run: grep ${{steps.git_sha.outputs.SHA}} index.html
