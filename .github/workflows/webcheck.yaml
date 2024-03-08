@@ -13,12 +13,18 @@ env:
 # TODO: would be good to catch various failures and present a more friendly message.
 
 jobs:
-  myjob:
+  webcheck:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch website
+        id: curl
         # If this step fails, likely some issue with DNS, HTTPS, or server not running.
-        run: curl $WEBSITE_URL -o index.html --connect-timeout 5
+        run: curl $WEBSITE_URL -o index.html --connect-timeout 5 -sS 2>&1 | sed -e 's/^/OUTPUT=/;' >> $GITHUB_OUTPUT 
+
+      - name: Error message if cURL fails
+        if: failure()
+        # Hopefully displays a nicely formatted error
+        run: echo "::error title=cURL:: ${{ steps.curl.outputs.OUTPUT }}"
 
       - uses: actions/checkout@v4
         with:
@@ -36,5 +42,11 @@ jobs:
         id: git_sha
 
       - name: Search for Git SHA in fetched HTML
+        id: grep
         # If this step fails, then the website is out-of-date.
         run: grep ${{steps.git_sha.outputs.SHA}} index.html
+
+      - name: Error message if SHA mismatches
+        # Only run if this specific step failed.
+        if: failure() && steps.grep.conclusion == 'failure'
+        run: echo ::error title=SHA mismatch:: The commit SHA ${{steps.git_sha.outputs.SHA}} was not found in index.html!
