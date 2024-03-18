@@ -24,6 +24,9 @@ jobs:
         # Hopefully displays a nicely formatted error
         run: echo "::error title=cURL::${{ steps.curl.outputs.OUTPUT }}. This might mean that Runciman is offline"
 
+      - name: Check index.html was written correctly
+        run: stat index.html > /dev/null
+
       - uses: actions/checkout@v4
         with:
           # Only need the latest commit
