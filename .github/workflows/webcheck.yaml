@@ -14,6 +14,13 @@ jobs:
   webcheck:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          # Only need the latest commit
+          fetch-depth: 1
+          # And don't even need any files!
+          sparse-checkout: .
+
       - name: Fetch website
         id: curl
         # If this step fails, likely some issue with DNS, HTTPS, or server not running.
@@ -26,13 +33,6 @@ jobs:
 
       - name: Check index.html was written correctly
         run: stat index.html > /dev/null
-
-      - uses: actions/checkout@v4
-        with:
-          # Only need the latest commit
-          fetch-depth: 1
-          # And don't even need any files!
-          sparse-checkout: .
 
       - name: Get Git SHA of HEAD
         run: git rev-parse main | sed -e 's/^/SHA=/;' >> $GITHUB_OUTPUT
