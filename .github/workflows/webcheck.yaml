@@ -24,7 +24,8 @@ jobs:
       - name: Error message if cURL fails
         if: failure()
         # Hopefully displays a nicely formatted error
-        run: echo "::error title=cURL:: ${{ steps.curl.outputs.OUTPUT }}"
+        # TODO: turn this into a block with a "this might mean Runciman is offline"
+        run: echo "\u003a\u003aerror title=cURL\u003a\u003a${{ steps.curl.outputs.OUTPUT }}"
 
       - uses: actions/checkout@v4
         with:
@@ -48,5 +49,6 @@ jobs:
 
       - name: Error message if SHA mismatches
         # Only run if this specific step failed.
+        # TODO: turn this into a block with a "this might mean xxx is broken"
         if: failure() && steps.grep.conclusion == 'failure'
-        run: echo ::error title=SHA mismatch:: The commit SHA ${{steps.git_sha.outputs.SHA}} was not found in index.html!
+        run: echo \u003a\u003error title=SHA mismatch\u003a\u003The commit SHA ${{steps.git_sha.outputs.SHA}} was not found in index.html!
