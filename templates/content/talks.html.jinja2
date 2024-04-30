@@ -105,9 +105,9 @@ Talks
 
    When talk submissions close, change all variables to None (not in quotes).
   #}
-  {%- set submissions_form = "https://forms.gle/u9h8U1asJUk1t3At5" %}
+  {%- set submissions_form = "https://forms.gle/wjVVEZxr9cYHbGf36" %}
   {%- set submissions_term = "1" %}
-  {%- set submissions_close = "2023-12-06" %}
+  {%- set submissions_close = "2024-05-31" %}
 
   <div class="noticebox">
     {%- if submissions_form and submissions_term and submissions_close %}
@@ -120,9 +120,19 @@ Talks
   {#
    Upcoming talks go here with <h2>Semester 2 2023/24 (Upcoming)</h2>
    Once the *semester* has passed, just move it below the HR, and remove the (upcoming).
+
+   Leaving blank in case we get a talk while the semester is empty - Ren
   #}
+
+  
+
   <details open>
-  <summary><h2>Semester 1 2023/24 (Upcoming)</h2></summary>
+  <summary> <h2> Semester 2 2023/24 </summary>
+  </details>
+
+  <hr>
+
+ <summary><h2>Semester 1 2023/24 </h2></summary>
   {%- set term="Semester 1" -%}
 
   {% call talk() %}
@@ -137,9 +147,6 @@ Talks
 
       The major sections will be an introduction to the idea of automata, introduction to Pushdown Automata (PA), Deterministic & Non-Deterministic PA's, modifying how the input is read (sweeping visibly PA, stack Automaton, probably some others), Alternating PA's, multi-stack PA's, Visibly PA's (including a bit on closures), and the combination of these behaviors/where the research is now in the modern day.
   {% endcall %}
-  </details>
-
-  <hr>
 
   <details open>
   <summary><h2>Spring Term 2021/22</h2></summary>
