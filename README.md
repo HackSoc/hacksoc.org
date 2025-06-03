@@ -108,5 +108,5 @@ Exceptions to this license include the fonts in `static/fonts`, which are licens
 
 The Bytemark name and logo (`static/images/bytemark.png`) are registered trademarks of Bytemark Limited.
 
-[tag-previous]: https://github.com/HackSoc/hacksoc.org/tree/08694ad0fd706c4ff4580303a97031452d73772d
+[tag-previous]: https://github.com/HackSoc/hacksoc.org/tree/node-last
 [tag-hackyll]: https://github.com/HackSoc/hacksoc.org/tree/hakyll-last

@@ -34,7 +34,7 @@ NB: The Jinja documentation uses the term "template" to refer to any of:
 [URL generators](https://pythonhosted.org/Frozen-Flask/#url-generators) should only be used for files that aren't intended to be part of the main site, or are intended to be "unlisted". If there's no chain of links from the main page to another page, then you can't really expect anyone to find that page organically. Implementing a URL generator just requires adding a Python function that calls `yield` with each of the routes you want to ensure are rendered, and decorating the function with `@freezer.register_generator`.
 
 ## Modifying the Markdown handler
-All things Markdown are hidden away in `markdown.py` so the rest of the package doesn't have to worry about it. It exports a single function, `render_markdown` which takes a Markdown source string and returns a rendered HTML string. Even if this wraps a single function from a Markdown library, if that library ever changes in the future it means that the codebase only needs to be changed in one place. 
+All things Markdown are hidden away in `markdown/__init__.py` so the rest of the `hacksoc_org` package doesn't have to worry about it. It exports a single function, `render_markdown` which takes a Markdown source string and returns a rendered HTML string. Even if this wraps a single function from a Markdown library, if that library ever changes in the future it means that the codebase only needs to be changed in one place. 
 
 Currently the website uses [`python-markdown2`][pymd2] and loads the following extras:
  - `fenced-code-blocks` allow blocks of code to be placed between triple-backticks (\`\`\`)
@@ -46,19 +46,73 @@ Since the server READMEs use fenced code blocks and AGMs will often use many tab
 ### Choice of Markdown libraries
 Choosing a Markdown backend is not straightforward; implementations vary in their interpretation of the spec (Gruber's `markdown.pl` or the less ambiguous CommonMark standard) and their extra features (tables, code block highlighting, smart quotes). Currently [`markdown2`][pymd2] is used, although its non-conformance with CommonMark makes a replacement desireable.
 
-To help test between Markdown backends, non-default backends can be selected with the `--markdown` command-line option. Only [`cmark`](https://github.com/commonmark/cmark) is available (provided through the [`cmarkgfm`](https://github.com/theacodes/cmarkgfm) Python bindings).
+To help test between Markdown backends, non-default backends can be selected with the `--markdown` command-line option.
 
 ```
 # Equivalent; markdown2 is the default backend
 hacksoc_org run
-hacksoc_org run --markdown markdown2
+hacksoc_org run  --markdown markdown2
 
-# Use cmark instead
+# Use an alternative instead
 hacksoc_org run --markdown cmark
+hacksoc_org run --markdown commonmark
+hacksoc_org run --markdown mistletoe
+hacksoc_org run --markdown markdown-it
 
 # this works with all subcommands
-hacksoc_org freeze --markdown cmark
+hacksoc_org freeze  --markdown cmark
+
+# in any order
+hacksoc_org  --markdown cmark  run
 ```
+#### Markdown2 (Current default)
+[GitHub](https://github.com/trentm/python-markdown2/wiki)
+
+Provides syntax highlighting via Pygments. Aims to conform to Gruber's Markdown rather than CommonMark. 
+
+#### Cmark
+GitHub ([Python bindings](https://github.com/theacodes/cmarkgfm), [C implementation](https://github.com/github/cmark-gfm))
+
+Fork of the CommonMark reference implementation, maintained by GitHub to provide [GFM](https://github.github.com/gfm/) features. Only provides syntax highlighing for the client-side, by adding a (eg.) `lang="py"` attribute to `<pre>` blocks for a JavaScript library to parse and highlight.
+#### CommonMark
+[GitHub](https://github.com/readthedocs/commonmark.py)
+
+Python port of CommonMark.js, maintained by readthedocs. Provides no syntax highlighting out-of-the-box, but has been added with [`commonmark_pygments_renderer.py`](../hacksoc_org/markdown/commonmark_pygments_renderer.py).
+
+**Does not support tables**.
+#### Mistletoe
+[GitHub](https://github.com/miyuchina/mistletoe)
+
+Gives an example integration of Pygments for syntax highlighing, adapted into [`mistletoe_pygments_renderer.py`](../hacksoc_org/markdown/mistletoe_pygments_renderer.py)
+#### Markdown-it
+[GitHub](https://github.com/executablebooks/markdown-it-py)
+
+Complicated architecture. Syntax highlighing added with Pygments in [`markdownit_pygments_highlighter.py`](../hacksoc_org/markdown/markdownit_pygments_highlighter.py). 
+
+```html
+<!-- Extra markup added here by Markdown-it -->
+<pre>
+  <code class="language-py">
+<!-- -->
+    <div class="codehilite">
+      <pre>
+        <span></span>
+        <code>
+  
+<!-- Other Pygments uses -->
+<div class="codehilite">
+  <pre>
+    <span></span>
+    <code>
+
+```
+
+#### Others
+There are many more CommonMark-comforming backends that aren't enabled (yet). They include:
+
+ - [Mistune](https://github.com/lepture/mistune)
+   - Doesn't provide syntax highlighing, but could be added by overriding HTMLRenderer::block_code
+   - Not [strictly](https://github.com/miyuchina/mistletoe#performance) CommonMark compliant
 
 
 ## Serving Flask in production

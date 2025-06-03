@@ -3,6 +3,7 @@ from hacksoc_org import app, ROOT_DIR
 from hacksoc_org.consts import *
 from hacksoc_org.freeze import freeze
 from hacksoc_org.serve import serve
+from hacksoc_org.markdown import implementations, get_backend_help
 
 import argparse
 from os import path
@@ -19,13 +20,11 @@ def subcommand(command_str: str) -> Callable[[Callable], Callable]:
 
 
 def main(args=None):
-    parser = argparse.ArgumentParser(
-        allow_abbrev=False,
-        epilog="""
+    epilog = """
 SUBCOMMANDS
 
   run
-    Starts a local development server on https://localhost:5000/. Automatically
+    Starts a local development server on http://localhost:5000/. Automatically
     reloads when templates or Python code is changed. Recommended while 
     developing pages or features.
 
@@ -37,11 +36,17 @@ SUBCOMMANDS
 
   serve
     Calls `freeze` then starts a local HTTP server from `build/` on 
-    https://localhost:5000/. Will not automatically rebuild the website on
+    http://localhost:5000/. Will not automatically rebuild the website on
     content change, you will need to re-run `serve`. Recommended to use this at
     least once to check that a) new content is part of the "frozen" site and b)
     no errors occur in freezing the site.
-""".strip(),
+""".strip()
+
+    epilog += "\n\n" + get_backend_help()
+
+    parser = argparse.ArgumentParser(
+        allow_abbrev=False,
+        epilog=epilog,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
@@ -51,7 +56,7 @@ SUBCOMMANDS
 
     parser.add_argument(
         "--markdown",
-        choices=["markdown2", "cmark"],
+        choices=list(implementations.keys()),
         default="markdown2",
         help="Markdown backend to use (default markdown2)",
     )
